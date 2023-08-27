@@ -5,7 +5,7 @@ html {font-family: "Poppins";}
     width: 100%;
     .navContainer {
         width: 100%;
-        display: grid;
+        display:grid;
         grid-template-columns: 50% 50%;
     }
     .userEntry {
@@ -20,29 +20,21 @@ html {font-family: "Poppins";}
         }
     }
 }
-
-.logoContainer {
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
-    width: 100%;
-    scale:0.8;
-}
-.searchBarContainer{
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
-    scale: 0.6;
-    .searchBar {
-        border-radius: 5px;
-        font-size: 16px;
-        font-family: "Poppins";
-        color: #D9D9D9;
-        &:focus {
-            outline: none;
-        }
+.mainContainer {
+    position: relative;
+    margin-top: 8%;
+    .logoContainer {
+        display: flex;
+        justify-content: center;
+        scale:0.9;
+    }
+    .searchBarContainer{
+        display: flex;
+        flex-shrink: 0;
+        position:sticky;
+        justify-content: center;
+        align-items:normal;
+        scale: 0.8;
     }
 }
+
