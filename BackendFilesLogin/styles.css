@@ -28,3 +28,6 @@
     font-weight: bold;
     cursor: pointer;
 }
+.error {
+    background: red;
+}
