@@ -15,12 +15,13 @@ include_once('auth_signup.php');
 
 // Check if the registration form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    error_log("we got into signup");
     // Check if the required form fields exist in $_POST
-    if (isset($_POST["username"]) && isset($_POST["password"])) {
+    if (isset($_POST["newUsername"]) && isset($_POST["newPassword"])) {
        
         // Retrieve user input (e.g., username and password)
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+        $username = $_POST["newUsername"];
+        $password = $_POST["newPassword"];
 
 
         // Perform user registration using a function (auth_signup) similar to authentication
@@ -35,14 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["authenticated"] = true;
 
             // Redirect to a secure page (e.g., user profile)
-            header("Location: Profile_Page.php");
+            header("Location: logged_in_page.php");
             exit();
         } else {
             // Registration failed, provide an error message
             session_start();
             $_SESSION["authenticated"] = false;
             $_SESSION['signup_error'] = $registrationResult['error'];
-            header("Location: signup_page.php"); // Redirect to the signup page
+            header("Location: landing_page_temp.php"); // Redirect to the signup page
             exit;
         }
     } else {
@@ -50,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_start();
         $_SESSION["authenticated"] = false;
         $_SESSION['signup_error'] = "Username and password are required.";
-        header("Location: signup_page.php"); // Redirect to the signup page
+        header("Location: landing_page_temp.php"); // Redirect to the signup page
         exit;
     }
 } else {
@@ -58,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
     $_SESSION["authenticated"] = false;
     $_SESSION['signup_error'] = "Invalid request method.";
-    header("Location: signup_page.php"); // Redirect to the signup page
+    header("Location: landing_page_temp.php"); // Redirect to the signup page
     exit;
 }
 ?>

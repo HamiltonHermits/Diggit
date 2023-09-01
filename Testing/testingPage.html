@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apartment Listings</title>
+    <style>
+        /* CSS styles for suggestions dropdown */
+        #suggestions {
+            display: none;
+            position: absolute;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion:hover {
+            background-color: #f2f2f2;
+        }
+
+        #searchInput:focus + #suggestions {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Enter location or other criteria">
+        <div id="suggestions"></div>
+    </div>
+    <div id="results"></div>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const suggestionsContainer = document.getElementById("suggestions");
+
+        searchInput.addEventListener("input", function () {
+            const query = searchInput.value;
+
+            // Send a request to your PHP suggestions endpoint
+            fetch(`testingSearch.php?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Display the suggestions in the 'suggestions' div
+                    suggestionsContainer.innerHTML = "";
+
+                    data.forEach(suggestion => {
+                        const suggestionElement = document.createElement("div");
+                        suggestionElement.classList.add("suggestion");
+                        suggestionElement.textContent = suggestion;
+                        suggestionsContainer.appendChild(suggestionElement);
+
+                        suggestionElement.addEventListener("click", function () {
+                            // Fill the search input with the clicked suggestion
+                            searchInput.value = suggestion;
+                            suggestionsContainer.innerHTML = ""; // Clear suggestions
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
+    </script>
+</body>
+</html>

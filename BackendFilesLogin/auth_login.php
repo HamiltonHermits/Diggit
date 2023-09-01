@@ -1,15 +1,26 @@
 <?php
 // code to authenticate the user with the database
+include_once('config.php');
 include_once('database_connect.php'); // Include the database connection
 
 function authenticateUser($username, $password) {
     global $conn;
 
     // Prepare and execute the database query
-    $sql = "SELECT id, username, password FROM login_testing WHERE username = ?";
+    $sql = "SELECT user_id, username, password FROM login_testing WHERE username = ?";
+    //ignore
     $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Error in SQL query: " . $conn->error);
+    }
+
     $stmt->bind_param("s", $username);
     $stmt->execute();
+
+    if ($stmt->error) {
+        die("Error in SQL execution: " . $stmt->error);
+    }
+
     $stmt->bind_result($user_id, $db_username, $db_password);
     $stmt->fetch();
     $stmt->close();

@@ -17,6 +17,7 @@ closeLoginButton.addEventListener('click', function() {
     loginModal.style.display = 'none';
 });
 
+
 // Add event listener to open the signup modal
 signupButton.addEventListener('click', function() {
     signupModal.style.display = 'block';
@@ -29,6 +30,11 @@ closeSignupButton.addEventListener('click', function() {
     signupModal.style.display = 'none';
 });
 
+window.addEventListener('click', function(event) {
+    if (event.target == loginModal) {
+        loginModal.style.display = 'none';
+    }
+});
 // Add an event listener to close the signup modal if the user clicks outside the modal
 window.addEventListener('click', function(event) {
     if (event.target == signupModal) {
