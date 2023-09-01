@@ -31,6 +31,7 @@ body {
     
     .sidebar {
         position: fixed; /* Make the sidebar position fixed */
+        min-width: 100px;
         left: 0; /* Stick it to the left side of the screen */
         top: 0; /* Stick it to the top of the screen */
         width: var(--sidebar-width); /* Set the width of the sidebar as per your design */
@@ -60,7 +61,8 @@ body {
         background-color: var(--main-color);
         border: red 2px solid;
         color: white;
-        flex: 1;
+        display: flex;
+        flex-direction: column;
         
         .nav-top {
             display: flex;
@@ -95,7 +97,7 @@ body {
         }
         
         .rate-prop-btn-container {
-            display: flex;
+            position: fixed;
             flex-direction: row;
             justify-content: right;
             /* height: var(--rate-btn-cont-height); */
