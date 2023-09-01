@@ -22,19 +22,14 @@ html {font-family: "Poppins";}
 }
 .mainContainer {
     position: relative;
-    margin-top: 8%;
+    margin-top: 3%;
     .logoContainer {
-        display: flex;
+        display:flex;
         justify-content: center;
         scale:0.9;
     }
     .searchBarContainer{
-        display: flex;
-        flex-shrink: 0;
-        position:sticky;
-        justify-content: center;
-        align-items:normal;
-        scale: 0.8;
+        scale: 0.7;
     }
 }
 

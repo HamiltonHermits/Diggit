@@ -29,7 +29,7 @@ html {
 
 .mainContainer {
   position: relative;
-  margin-top: 8%;
+  margin-top: 3%;
 }
 .mainContainer .logoContainer {
   display: flex;
@@ -37,10 +37,5 @@ html {
   scale: 0.9;
 }
 .mainContainer .searchBarContainer {
-  display: flex;
-  flex-shrink: 0;
-  position: sticky;
-  justify-content: center;
-  align-items: normal;
-  scale: 0.8;
+  scale: 0.7;
 }/*# sourceMappingURL=stylesIndex.css.map */
