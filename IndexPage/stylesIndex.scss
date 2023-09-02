@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,800;1,400&display=swap');
 //Sets background colour
+:root {
+    --main_colour:#AD5511; //Orange
+    --secondary_colour:#D9D9D9; //White
+    --background_colour:#202024; //Background Black
+    --light_secondary_colour: #564B40; //Light White/Brownish
+}
+
 html {
-    background-color: #202024;
+    background-color: var(--background_colour);
     font-family: "Poppins";
 }
 body{font-family: "Poppins";}
@@ -11,39 +18,69 @@ body{font-family: "Poppins";}
 
 .nav {
     .navContainer {
-        width: 100%;
-        height: 10vh;
         display: grid;
         grid-template-columns: 50% 50%;
-
+        width: 100%;
+        height: 5vh;
         .dash {
-            width: 10%;
-            height: 70%;
             display: flex;
+
+            width: 10%;
+            height: 100%;
             min-width: 5vh;
         }
-    }
+        .loginContainer {
+            display: flex;
+            position: relative;
+            justify-self: right;
+            
+            padding-top: 8px;
+            padding-right: 18px;
+            .loginButton{
+                margin: auto;
+                
+                cursor: pointer;
+                border-radius: 25px;
+                border-color: var(--main_colour);
+                background: none;
 
-    .loginContainer {
-        width:90px;
-        .login{
-            width: 100%;
+                font-size:calc(5px + 1.2vw);
+                font-family: "Poppins";
+                font-weight: 600;
+                color: var(--main_colour);
+                
+                height: 5vh;
+                width: 6vw;
+                min-width: 80px;
+            }
         }
     }
+
+    
 }
 
 .mainContainer {
     position: relative;
-    margin-top: 10vh;
+    display:grid;
+    grid-template-rows: auto auto;
+    gap:0px;
+
+    align-items: center;
+    height:50vh;
+    top: 10vh;
 
     .logoContainer {
         display: block;
-        width: 50%;
         margin: auto;
+
+        align-items: flex-end;
+
+        width: 50%;
         min-width: 40vh;
 
         .mainLogoImage {
             object-fit: cover;
+        
             width: 100%;
             height: 100%;
         }
@@ -52,48 +89,62 @@ body{font-family: "Poppins";}
     //https://codepen.io/huange/pen/bGqMqM
     .searchBarContainer {
         position: relative;
+        align-self: flex-start;
         top:5vh;
         .searchBar {
-            position: relative;
             display: flex;
+            position: relative;
+
             margin: auto;
             border: 2px solid #564B40;
             border-radius: 50px;
+
+            text-align:center;
+
             width: 60%;
             min-width: 40vh;
-            text-align:center;
+
+            @media screen and (max-width: 1000px) {
+                top:-7vh;
+            }
+                
             .searchTerm {
                 position: absolute;
+
                 box-sizing: border-box;
-                height: 60px;
-                width: 100%;
+                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
                 border:none;
                 border-radius: 50px;
                 background: none;
-                color: #D9D9D9;
                 outline:none;
                 text-align:center;
-                font-size:calc(5px + 1.2vw);
-                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-                
+                font-size:calc(5px + 1.2vw);
+                color: var(--secondary_colour);
+
+                height: 60px;
+                width: 100%;
             }
             ::placeholder{
-                color: #D9D9D9;
                 font-weight: 500;
+                color: var(--secondary_colour);
             }
             .searchButton {
-                height: 60px;
-                width: 50px;
                 text-align: center;
                 cursor: pointer;
                 background: none;
                 border: none;
+                
+                z-index: 1;
+
+                height: 60px;
+                width: 50px;
                 min-width: 2vh;
                 .svgSearch {
+                    text-align: center;
+
                     width: 70%;
                     height: 100%;
-                    text-align: center;
                 }
             }
 
@@ -102,5 +153,12 @@ body{font-family: "Poppins";}
 
 
 
+    }
+
+    #loginModal{
+        display: none;
+    }
+    #signupModal{
+        display: none;
     }
 }

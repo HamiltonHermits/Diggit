@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,800;1,400&display=swap");
+:root {
+  --main_colour:#AD5511;
+  --secondary_colour:#D9D9D9;
+  --background_colour:#202024;
+  --light_secondary_colour: #564B40;
+}
+
 html {
-  background-color: #202024;
+  background-color: var(--background_colour);
   font-family: "Poppins";
 }
 
@@ -9,32 +16,53 @@ body {
 }
 
 .nav .navContainer {
-  width: 100%;
-  height: 10vh;
   display: grid;
   grid-template-columns: 50% 50%;
+  width: 100%;
+  height: 5vh;
 }
 .nav .navContainer .dash {
-  width: 10%;
-  height: 70%;
   display: flex;
+  width: 10%;
+  height: 100%;
   min-width: 5vh;
 }
-.nav .loginContainer {
-  width: 90px;
+.nav .navContainer .loginContainer {
+  display: flex;
+  position: relative;
+  justify-self: right;
+  padding-top: 8px;
+  padding-right: 18px;
 }
-.nav .loginContainer .login {
-  width: 100%;
+.nav .navContainer .loginContainer .loginButton {
+  margin: auto;
+  cursor: pointer;
+  border-radius: 25px;
+  border-color: var(--main_colour);
+  background: none;
+  font-size: calc(5px + 1.2vw);
+  font-family: "Poppins";
+  font-weight: 600;
+  color: var(--main_colour);
+  height: 5vh;
+  width: 6vw;
+  min-width: 80px;
 }
 
 .mainContainer {
   position: relative;
-  margin-top: 10vh;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 0px;
+  align-items: center;
+  height: 50vh;
+  top: 10vh;
 }
 .mainContainer .logoContainer {
   display: block;
-  width: 50%;
   margin: auto;
+  align-items: flex-end;
+  width: 50%;
   min-width: 40vh;
 }
 .mainContainer .logoContainer .mainLogoImage {
@@ -45,51 +73,64 @@ body {
 }
 .mainContainer .searchBarContainer {
   position: relative;
+  align-self: flex-start;
   top: 5vh;
 }
 .mainContainer .searchBarContainer .searchBar {
-  position: relative;
   display: flex;
+  position: relative;
   margin: auto;
   border: 2px solid #564B40;
   border-radius: 50px;
+  text-align: center;
   width: 60%;
   min-width: 40vh;
-  text-align: center;
+}
+@media screen and (max-width: 1000px) {
+  .mainContainer .searchBarContainer .searchBar {
+    top: -7vh;
+  }
 }
 .mainContainer .searchBarContainer .searchBar .searchTerm {
   position: absolute;
   box-sizing: border-box;
-  height: 60px;
-  width: 100%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border: none;
   border-radius: 50px;
   background: none;
-  color: #D9D9D9;
   outline: none;
   text-align: center;
   font-size: calc(5px + 1.2vw);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  color: var(--secondary_colour);
+  height: 60px;
+  width: 100%;
 }
 .mainContainer .searchBarContainer .searchBar ::-moz-placeholder {
-  color: #D9D9D9;
   font-weight: 500;
+  color: var(--secondary_colour);
 }
 .mainContainer .searchBarContainer .searchBar ::placeholder {
-  color: #D9D9D9;
   font-weight: 500;
+  color: var(--secondary_colour);
 }
 .mainContainer .searchBarContainer .searchBar .searchButton {
-  height: 60px;
-  width: 50px;
   text-align: center;
   cursor: pointer;
   background: none;
   border: none;
+  z-index: 1;
+  height: 60px;
+  width: 50px;
   min-width: 2vh;
 }
 .mainContainer .searchBarContainer .searchBar .searchButton .svgSearch {
+  text-align: center;
   width: 70%;
   height: 100%;
-  text-align: center;
+}
+.mainContainer #loginModal {
+  display: none;
+}
+.mainContainer #signupModal {
+  display: none;
 }/*# sourceMappingURL=stylesIndex.css.map */
