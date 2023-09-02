@@ -100,7 +100,7 @@ body {
   background: none;
   outline: none;
   text-align: center;
-  font-size: calc(5px + 1.2vw);
+  font-size: calc(10px + 1vw);
   color: var(--secondary_colour);
   height: 60px;
   width: 100%;
