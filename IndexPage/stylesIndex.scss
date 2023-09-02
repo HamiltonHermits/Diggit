@@ -24,29 +24,10 @@ body{font-family: "Poppins";}
         }
     }
 
-    .userEntry {
-        display: grid;
-        grid-template-columns: auto auto;
-        align-items: center;
-        justify-items: center;
-        justify-content: right;
-        width: 100%;
-        gap:10px;
-        box-sizing: border-box;
-        .loginContainer {
-            width:90px;
-            .login{
-                
-            }
-        }
-        .signupContainer {
-            width:90px;
-            .signup{
-                
-                // border-radius: 10px 15px;
-                // background: rgba(233, 107, 9, 0.70);
-                // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            }
+    .loginContainer {
+        width:90px;
+        .login{
+            width: 100%;
         }
     }
 }

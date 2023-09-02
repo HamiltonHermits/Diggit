@@ -20,22 +20,13 @@ body {
   display: flex;
   min-width: 5vh;
 }
-.nav .userEntry {
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  justify-items: center;
-  justify-content: right;
+.nav .loginContainer {
+  width: 90px;
+}
+.nav .loginContainer .login {
   width: 100%;
-  gap: 10px;
-  box-sizing: border-box;
 }
-.nav .userEntry .loginContainer {
-  width: 90px;
-}
-.nav .userEntry .signupContainer {
-  width: 90px;
-}
+
 .mainContainer {
   position: relative;
   margin-top: 10vh;
