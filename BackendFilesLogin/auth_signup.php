@@ -14,7 +14,7 @@ include_once('password_check.php');
 function registerUser($username, $password)
 {
     global $conn; // Assuming you have a database connection in database_connect.php
-    
+
     // Sanitize the username to prevent potential SQL injection
     $username = mysqli_real_escape_string($conn, $username);
 
@@ -30,22 +30,22 @@ function registerUser($username, $password)
         return array('registered' => false, 'error' => 'Username already exists.');
     }
 
-    //Perform password strength test using function isPasswordStrong($password) whcih returns an array with true and false and erro message 
+    // Perform password strength test using function isPasswordStrong($password)
     $pStrengthCheck = isPasswordStrong($password);
 
-    if(!$pStrengthCheck['strong_password']){
+    if (!$pStrengthCheck['strong_password']) {
         return array('registered' => false, 'error' => $pStrengthCheck['error']);
     }
 
-    // Hash the password
-    //$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+    // Hash the password securely
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Insert the new user into the database
     $insertUserQuery = "INSERT INTO login_testing (username, password) VALUES (?, ?)";
 
     $stmt = $conn->prepare($insertUserQuery);
-    $stmt->bind_param("ss", $username, $password);
-    
+    $stmt->bind_param("ss", $username, $hashedPassword); // Store the hashed password in the database
+
     if ($stmt->execute()) {
         // Registration successful, return user information
         $user_id = $stmt->insert_id;
@@ -54,5 +54,5 @@ function registerUser($username, $password)
         // Registration failed, return an error
         return array('registered' => false, 'error' => 'Registration failed.');
     }
-    
 }
+?>

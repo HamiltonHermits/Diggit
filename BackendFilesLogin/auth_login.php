@@ -25,20 +25,36 @@ function authenticateUser($username, $password) {
     $stmt->fetch();
     $stmt->close();
 
-    // Verify the password (assuming you use password_hash)
-    //job for cameron - do hashing password_verify($password, $db_password)
-    if ($password == $db_password) {
-        // Password is correct, user is authenticated
-        return [
-            'authenticated' => true,
-            'user_id' => $user_id,
-            'username' => $db_username,
-        ];
-    } else {
-        // Password is incorrect, authentication failed
-        return [
-            'authenticated' => false,
-            'error' => 'Invalid username or password.',
-        ];
-    }
-}
+      // Sanitize the username to prevent potential SQL injection
+      $username = mysqli_real_escape_string($conn, $username);
+
+      // Retrieve the hashed password from the database for the given username
+      $getHashedPasswordQuery = "SELECT password FROM login_testing WHERE username = ?";
+      $stmt = $conn->prepare($getHashedPasswordQuery);
+      $stmt->bind_param("s", $username);
+      $stmt->execute();
+      $result = $stmt->get_result();
+  
+      if ($result->num_rows === 1) {
+          // User found, retrieve the hashed password from the result
+          $row = $result->fetch_assoc();
+          $hashedPasswordFromDB = $row['password'];
+  
+          // Use password_verify to check if the provided password matches the stored hashed password
+          if (password_verify($password, $hashedPasswordFromDB)) {
+            return [
+                'authenticated' => true,
+                'user_id' => $user_id,
+                'username' => $db_username,
+            ]; // Passwords match, user authenticated
+          }
+      }
+  
+      // Password is incorrect, authentication failed
+      return [
+        'authenticated' => false,
+        'error' => 'Invalid username or password.',
+    ]; // Authentication failed
+  }
+    
+?>
