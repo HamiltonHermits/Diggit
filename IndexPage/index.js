@@ -7,7 +7,8 @@ var loginButton = document.getElementById('loginButton');
 var closeLoginButton = document.getElementById('closeButton');
 var signupButton = document.getElementById('signupButton');
 var closeSignupButton = document.getElementById('closeSignupButton');
-var searchbar = document.getElementById('searchbar');
+var searchbar = document.getElementById("searchbar");
+var dropdown = document.getElementById("dropdown");
 
 //event listeners 
 //makes the search text disapear after clicking in it
@@ -24,6 +25,12 @@ document.addEventListener('click', function (event) {
 
 });
 
+function redirectToPage(apartment) {
+    // Replace 'logged_in_page.php' with the actual URL of your logged-in page
+    window.location.href = '../BackendFilesLogin/logged_in_page.php';
+}
+
+// Add an event listener to detect changes in the search bar
 searchbar.addEventListener("input", function() {
     // Get the search query from the input
     var query = searchbar.value;
@@ -32,37 +39,40 @@ searchbar.addEventListener("input", function() {
     fetch("../BackendFilesLogin/search.php?query=" + encodeURIComponent(query))
         .then(response => response.json())
         .then(data => {
-            // Handle the received search results (data) here
+            // Clear previous dropdown items
+            dropdown.innerHTML = "";
 
-            // Clear previous search results
-            //resultsContainer.innerHTML = "";
+            // Populate the dropdown with search results
+            data.forEach(function(apartment) {
+                var dropdownItem = document.createElement("div");
+                dropdownItem.className = "dropdown-item";
+                dropdownItem.textContent = apartment.name; // Display apartment names
 
-            if (data.length === 0) {
-                // No results found
-                // resultsContainer.innerHTML = "<p>No results found.</p>";
-                console.log("No results found");
-            } else {
-                // Display each search result
-                console.log("Some results were found");
-                // data.forEach(function(apartment) {
+                // Add a click event listener to select the item when clicked
+                dropdownItem.addEventListener("click", function() {
+                    // Set the search bar value to the selected item
+                    searchbar.value = apartment.name;
+                    // Hide the dropdown
+                    redirectToPage();
+                });
 
-                //     var resultItem = document.createElement("div");
-                //     resultItem.className = "result-item";
+                // Append the item to the dropdown
+                dropdown.appendChild(dropdownItem);
+            });
 
-                //     // Populate the result item with apartment information
-                //     resultItem.innerHTML = `
-                //         <h3>${apartment.name}</h3>
-                //         <p>Location: ${apartment.location}</p>
-                //     `;
-
-                //     // Append the result item to the results container
-                //     resultsContainer.appendChild(resultItem);
-                // });
-            }
+            // Show the dropdown
+            dropdown.style.display = "block";
         })
         .catch(error => {
             console.error("Error:", error);
         });
+});
+
+// Hide the dropdown when clicking outside of it
+document.addEventListener("click", function(event) {
+    if (event.target !== searchbar && event.target !== dropdown) {
+        dropdown.style.display = "none";
+    }
 });
 
 // Add event listeners to open and close the login modal
