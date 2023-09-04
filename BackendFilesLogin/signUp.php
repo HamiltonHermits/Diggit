@@ -36,14 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["authenticated"] = true;
 
             // Redirect to a secure page (e.g., user profile)
-            header("Location: logged_in_page.php");
+            header("Location: ../IndexPage/index.php");
             exit();
         } else {
             // Registration failed, provide an error message
             session_start();
             $_SESSION["authenticated"] = false;
             $_SESSION['signup_error'] = $registrationResult['error'];
-            header("Location: landing_page_temp.php"); // Redirect to the signup page
+            header("Location: ../IndexPage/index.php"); // Redirect to the signup page
             exit;
         }
     } else {
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_start();
         $_SESSION["authenticated"] = false;
         $_SESSION['signup_error'] = "Username and password are required.";
-        header("Location: landing_page_temp.php"); // Redirect to the signup page
+        header("Location: ../IndexPage/index.php"); // Redirect to the signup page
         exit;
     }
 } else {
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
     $_SESSION["authenticated"] = false;
     $_SESSION['signup_error'] = "Invalid request method.";
-    header("Location: landing_page_temp.php"); // Redirect to the signup page
+    header("Location: ../IndexPage/index.php"); // Redirect to the signup page
     exit;
 }
 ?>
