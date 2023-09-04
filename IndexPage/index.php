@@ -70,7 +70,7 @@ if (isset($_SESSION['signup_error'])) {
 
 
             <!-- The login modal -->
-    <div id="loginModal" class="modal">
+    <div id="loginModal" class="modal" style = "display:none;">
         <div class="modal-content">
             <span class="close" id="closeButton">&times;</span>
             <h2>Login</h2>

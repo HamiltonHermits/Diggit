@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             // Redirect to a secure page (e.g., whatever page they were on)
-            header("Location: Logged_In_Page.php");
+            header("Location: ../IndexPage/index.php");
             exit();
         } else {
             session_start();
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $_SESSION["authenticated"] = false;
             $_SESSION['login_error'] = "Invalid username or password.";
-            header("Location: landing_page_temp.php");
+            header("Location: ../IndexPage/index.php");
 
             exit;
         }
@@ -42,13 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 'username' or 'password' not provided in the form
         $_SESSION["authenticated"] = false;
         $_SESSION['login_error'] = "Username and password are required.";
-        header("Location: landing_page_temp.php");
+        header("Location: ../IndexPage/index.php");
         exit;
     }
 } else {
     // Invalid request method
     $_SESSION["authenticated"] = false;
     $_SESSION['login_error'] = "Invalid request method.";
-    header("Location: landing_page_temp.php");
+    header("Location: ../IndexPage/index.php");
     exit;
 }
