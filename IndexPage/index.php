@@ -66,9 +66,6 @@ if (isset($_SESSION['signup_error'])) {
             </div>
         </div>
 
-
-
-
             <!-- The login modal -->
     <div id="loginModal" class="modal" style = "display:none;">
         <div class="modal-content">
@@ -84,11 +81,11 @@ if (isset($_SESSION['signup_error'])) {
 
             <form id="loginForm" action="../BackendFilesLogin/login.php" method="POST">
                 <!-- Login form fields -->
-                <label for="username">Username or Email:</label>
+                <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required><br>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required><br>
-                <input type="submit" value="Login">
+                <input type="submit" id = "submitLogin" value="Login">
             </form>
 
             <!-- Add a button to open the signup modal -->
@@ -98,6 +95,7 @@ if (isset($_SESSION['signup_error'])) {
 
     <!-- The signup modal (hidden by default) -->
     <div id="signupModal" class="modal" style="display: none;">
+            
         <div class="modal-content">
             <span class="close" id="closeSignupButton">&times;</span>
             <h2>Signup</h2>
@@ -110,15 +108,16 @@ if (isset($_SESSION['signup_error'])) {
             <?php } ?>
 
             <!-- Example signup form -->
-            <form id="signupForm" action="signup.php" method="POST">
+            <form id="signupForm" action="../BackendFilesLogin/signUp.php" method="POST">
                 <!-- Signup form fields -->
                 <label for="newUsername">Username:</label>
                 <input type="text" id="newUsername" name="newUsername" required><br>
                 <label for="newPassword">Password:</label>
                 <input type="password" id="newPassword" name="newPassword" required><br>
-                <input type="submit" value="Signup">
+                <input type="submit" id ="submitSignup" value="Signup">
             </form>
         </div>
+    </div>
     </div>
 
     <script src="index.js"></script>

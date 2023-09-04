@@ -134,39 +134,29 @@ body {
   display: none; /* Hidden by default */
   position: fixed;
   z-index: 1;
-  left: 0;
-  top: 0;
   width: 100%;
-  height: 100%;
+  top: 0px;
+  left: 0px;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4); /* Overlay background with transparency */
+  /* Modal content styles */
 }
-
-/* Modal content styles */
-.modal-content {
+.modal .modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* Center the modal vertically and horizontally */
   padding: 20px;
+  margin-top: 20vh;
+  align-items: center;
   border: 1px solid #888;
-  width: 80%;
-  max-width: 400px; /* Set a maximum width for the modal content */
+  width: 30%;
+  height: auto;
+  min-width: 20vh; /* Set a maximum width for the modal content */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   text-align: center;
+  /* Close button styles */
 }
-
-/* Close button styles */
-.close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-/* Login and signup button styles */
-#loginButton, #signupButton {
+.modal .modal-content #loginButton, .modal .modal-content #signupButton {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -179,13 +169,17 @@ body {
   cursor: pointer;
   border-radius: 5px;
 }
-
-#loginButton:hover, #signupButton:hover {
-  background-color: #45a049;
+.modal .modal-content .close {
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: red;
 }
 
 /* Form input styles (you can customize further) */
-input[type=text], input[type=password] {
+#username, #password, #newUsername, #newPassword {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -196,7 +190,7 @@ input[type=text], input[type=password] {
 }
 
 /* Submit button styles */
-input[type=submit] {
+#submitLogin, #submitSignup {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -210,6 +204,14 @@ input[type=submit] {
   border-radius: 5px;
 }
 
-input[type=submit]:hover {
+#submitLogin:hover {
+  background-color: #45a049;
+}
+
+#submitSignup:hover {
+  background-color: #45a049;
+}
+
+#signupButton:hover {
   background-color: #45a049;
 }/*# sourceMappingURL=stylesIndex.css.map */
