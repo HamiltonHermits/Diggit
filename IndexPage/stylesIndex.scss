@@ -89,6 +89,9 @@ body{font-family: "Poppins";}
         position: relative;
         align-self: flex-start;
         top:5vh;
+        @media screen and (max-width: 1000px) {
+            top:-1vh;
+        }  
         .searchBar {
             display: flex;
             position: relative;
@@ -102,17 +105,14 @@ body{font-family: "Poppins";}
             width: 60%;
             min-width: 40vh;
 
-            @media screen and (max-width: 1000px) {
-                top:-7vh;
-            }
                 
+
             .searchTerm {
-                position: absolute;
+                position: relative;
 
                 box-sizing: border-box;
                 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
                 border:none;
-                border-radius: 50px;
                 background: none;
                 outline:none;
                 text-align:center;
@@ -146,15 +146,55 @@ body{font-family: "Poppins";}
                 }
             }
 
-
         }
+        .dropdown-content {
+            display: flex;
+            position: relative;
+            color: var(--secondary_colour);
+            margin: auto;
+            border-top: none;
+            border-left: 2px solid var(--light_secondary_colour);
+            border-right: 2px solid var(--light_secondary_colour);
+            border-bottom: none;
+            border-radius: 0px 0px 30px 30px;
+            // border-color: #564B40;
+            text-align:center;
+            background-color: var(--light_secondary_colour);
+            width: 60%;
+            min-width: 40vh;
 
+            .dropdown-item{
+                position: relative;
+                display: flex;
+                cursor: pointer;
+                font-size: calc(8px + 0.9vw);
+                text-align: left;
+                width: 100%;
+                white-space: nowrap;
+                box-sizing:border-box;
+                margin:0;
+                padding:10px;
+                overflow:hidden;
 
+                .locationSpan{
+                    position: relative;
+                    text-align: right;
+                    width: 100%;
+                    font-size: calc(8px + 0.9vw);
+                }
+            }
+            .dropdown-item:hover{
+                background-color: var(--secondary_colour);
+                color: var(--light_secondary_colour);
+                // color: var(--main_colour);
+            }
 
+          } 
+        
     }
-    
 
 }
+
 
 /* Modal container styles */
 .modal {

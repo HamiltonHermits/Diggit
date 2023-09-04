@@ -54,7 +54,7 @@ if (isset($_SESSION['signup_error'])) {
             <img class="mainLogoImage" src="./ImagesIndex/mainLogo.png">
         </div>
         <div class="searchBarContainer">
-            <div class="searchBar">
+            <div class="searchBar" id ="borderSearchBar">
                 <button type="submit" class="searchButton">
                     <svg class="svgSearch" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -63,8 +63,8 @@ if (isset($_SESSION['signup_error'])) {
                     </svg>
                 </button>
                 <input id = "searchbar" type="text" class="searchTerm" placeholder="Find your Digs..">
-                <div id="dropdown" class="dropdown-content"></div>
             </div>
+            <div id="dropdown" class="dropdown-content"></div>
         </div>
 
             <!-- The login modal -->
