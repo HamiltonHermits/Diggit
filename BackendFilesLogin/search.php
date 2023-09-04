@@ -7,7 +7,7 @@ include_once('database_connect.php');
 $searchQuery = $_GET["query"];
 
 // Prepare and execute the SQL query
-$stmt = $conn->prepare("SELECT * FROM apartments WHERE name LIKE ? OR location LIKE ? OR description LIKE ?");
+$stmt = $conn->prepare("SELECT * FROM searchbar_testing WHERE name LIKE ? OR location LIKE ? OR description LIKE ?");
 $searchParam = "%" . $searchQuery . "%";
 $stmt->bind_param("sss", $searchParam, $searchParam, $searchParam);
 $stmt->execute();
