@@ -41,67 +41,81 @@ searchbar.addEventListener("input", function() {
     var query = searchbar.value;
     dropdown.style.borderBottom = "2px solid #564B40";
     borderSearchBar.style.borderRadius = "30px 30px 0px 0px"
-    var counter = 0;
-    // var lastVal = data[apartment.length].location;
+    
     // Make an AJAX request to the server-side script
     fetch("../BackendFilesLogin/search.php?query=" + encodeURIComponent(query))
         .then(response => response.json())
         .then(data => {
             // Clear previous dropdown items
             dropdown.innerHTML = "";
-            // Populate the dropdown with search results
-            data.forEach(function(apartment) {
-                counter++;
-            });
-            var lastVal = data[counter-1].location;
-            data.forEach(function(apartment) {
-                var dropdownItem = document.createElement("div");
-                dropdownItem.className = "dropdown-item";
-                dropdownItem.id = "dropdownItem";
-                var locationSpan = document.createElement("span");
-                locationSpan.className = "locationSpan";
-                locationSpan.id = "locationSpanId";
-                locationSpan.style.color = "#D9D9D9"; // Different color
-                locationSpan.textContent = apartment.location;
-                dropdownItem.textContent = apartment.name +'  -  '; // Display apartment names & locations
-                dropdownItem.appendChild(locationSpan);
+            
+            // Check if there are no matching results
+            if (data.length === 0) {
+                var noResultItem = document.createElement("div");
+                noResultItem.className = "no-result";
+                noResultItem.textContent = "No results found";
+                dropdown.appendChild(noResultItem);
+            } else {
+                // Populate the dropdown with search results, limiting to 5 items
+                var counter = 0;
+                var lastVal = data[data.length - 1].location;
+                data.forEach(function(apartment) {
+                    if (counter >= 2) {
+                        return; // Exit the loop when reaching the limit
+                    }
+                    counter++;
 
-                // Add a click event listener to select the item when clicked
-                dropdownItem.addEventListener("click", function() {
-                    // Set the search bar value to the selected item
-                    searchbar.value = apartment.name + ", " + apartment.location;
-                    // Hide the dropdown
-                    redirectToPage();
+                    var dropdownItem = document.createElement("div");
+                    dropdownItem.className = "dropdown-item";
+                    dropdownItem.id = "dropdownItem";
+                    dropdownItem.title = apartment.name + " " + apartment.location;
+
+                    var locationSpan = document.createElement("span");
+                    locationSpan.className = "locationSpan";
+                    locationSpan.id = "locationSpanId";
+                    locationSpan.style.color = "#D9D9D9"; // Different color
+                    locationSpan.textContent = apartment.location;
+                    dropdownItem.textContent = apartment.name + '  -  '; // Display apartment names & locations
+                    dropdownItem.appendChild(locationSpan);
+
+                    // Add a click event listener to select the item when clicked
+                    dropdownItem.addEventListener("click", function() {
+                        // Set the search bar value to the selected item
+                        searchbar.value = apartment.name + ", " + apartment.location;
+                        // Hide the dropdown
+                        redirectToPage();
+                    });
+                    //add a mouseover event listener to change the style of the dropdownitem
+                    dropdownItem.addEventListener('mouseover', function() {
+                        dropdownItem.style.backgroundColor = "#D9D9D9";
+                        locationSpan.style.color = "#564B40";
+                        dropdownItem.style.color = "#564B40";
+                        if (locationSpan.textContent == lastVal) {
+                            dropdownItem.style.borderRadius = "0px 0px 30px 30px";
+                        }
+                    });
+                    //add a mouseout event listener to change the style of the dropdownitem
+                    dropdownItem.addEventListener('mouseout', function() {
+                        dropdownItem.style.backgroundColor = "#564B40";
+                        locationSpan.style.color = "#D9D9D9";
+                        dropdownItem.style.color = "#D9D9D9";
+                        if (locationSpan.textContent == lastVal) {
+                            dropdownItem.style.borderRadius = "0px 0px 30px 30px";
+                        }
+                    });
+                    // Append the item to the dropdown
+                    dropdown.appendChild(dropdownItem);
                 });
-                
-                dropdownItem.addEventListener('mouseover', function () {
-                    dropdownItem.style.backgroundColor = "#D9D9D9";
-                    locationSpan.style.color = "#564B40";
-                    dropdownItem.style.color = "#564B40";
-                    if (locationSpan.textContent == lastVal) {
-                        dropdownItem.style.borderRadius = "0px 0px 30px 30px";
-                    }
-                });
-                dropdownItem.addEventListener('mouseout', function () {
-                    dropdownItem.style.backgroundColor = "#564B40";
-                    locationSpan.style.color = "#D9D9D9";
-                    dropdownItem.style.color = "#D9D9D9";
-                    if (locationSpan.textContent == lastVal) {
-                        dropdownItem.style.borderRadius = "0px 0px 30px 30px";
-                    }
-                });
-                // Append the item to the dropdown
-                dropdown.appendChild(dropdownItem);
-            });
+            }
 
             // Show the dropdown
-            
             dropdown.style.display = "block";
         })
         .catch(error => {
             console.error("Error:", error);
         });
 });
+
 
 // Hide the dropdown when clicking outside of it
 document.addEventListener("click", function(event) {

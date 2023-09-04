@@ -62,7 +62,7 @@ if (isset($_SESSION['signup_error'])) {
                             fill="#AD5511" stroke="#AD5511" />
                     </svg>
                 </button>
-                <input id = "searchbar" type="text" class="searchTerm" placeholder="Find your Digs..">
+                <input id = "searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
             </div>
             <div id="dropdown" class="dropdown-content"></div>
         </div>
