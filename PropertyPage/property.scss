@@ -67,8 +67,14 @@ body {
         .nav-top {
             display: flex;
             flex-direction: row;
+            justify-content: center;
             border: rebeccapurple 2px solid;
             /* height: var(--nav-top-height); */
+        }
+
+        .searchbar {
+            width: 70%;
+            background-color: brown;
         }
         
         .property-parent-container {
@@ -97,13 +103,16 @@ body {
         }
         
         .rate-prop-btn-container {
-            position: fixed;
+            background-color: #000000;
+            display: flex;
             flex-direction: row;
             justify-content: right;
+            
             /* height: var(--rate-btn-cont-height); */
 
             .rate-property {
-                background-color: pink;
+                // left: 100vw;
+                /* background-color: black; */
                 width: var(--btn-rate-prop-width);
                 height: var(--btn-rate-prop-height);
             }
