@@ -11,6 +11,9 @@ var searchbar = document.getElementById("searchbar");
 var borderSearchBar = document.getElementById("borderSearchBar");
 var dropdown = document.getElementById("dropdown");
 var dropdownItem = document.getElementById("dropdownItem");
+var counter;
+var MAX_VIEW = 5;
+var lastval_boolean = false;
 //event listeners 
 //makes the search text disapear after clicking in it
 searchbar.addEventListener('click', function () {
@@ -57,10 +60,11 @@ searchbar.addEventListener("input", function() {
                 dropdown.appendChild(noResultItem);
             } else {
                 // Populate the dropdown with search results, limiting to 5 items
-                var counter = 0;
+                counter = 0;
                 var lastVal = data[data.length - 1].location;
                 data.forEach(function(apartment) {
-                    if (counter >= 2) {
+                    
+                    if (counter >= MAX_VIEW) {
                         return; // Exit the loop when reaching the limit
                     }
                     counter++;
@@ -90,18 +94,15 @@ searchbar.addEventListener("input", function() {
                         dropdownItem.style.backgroundColor = "#D9D9D9";
                         locationSpan.style.color = "#564B40";
                         dropdownItem.style.color = "#564B40";
-                        if (locationSpan.textContent == lastVal) {
-                            dropdownItem.style.borderRadius = "0px 0px 30px 30px";
-                        }
+                        dropdownItem.style.borderRadius = "30px 30px 30px 30px";
+                        
                     });
                     //add a mouseout event listener to change the style of the dropdownitem
                     dropdownItem.addEventListener('mouseout', function() {
                         dropdownItem.style.backgroundColor = "#564B40";
                         locationSpan.style.color = "#D9D9D9";
                         dropdownItem.style.color = "#D9D9D9";
-                        if (locationSpan.textContent == lastVal) {
-                            dropdownItem.style.borderRadius = "0px 0px 30px 30px";
-                        }
+
                     });
                     // Append the item to the dropdown
                     dropdown.appendChild(dropdownItem);
@@ -126,10 +127,11 @@ document.addEventListener("click", function(event) {
 });
 
 // Add event listeners to open and close the login modal
-loginButton.addEventListener('click', function () {
-    loginModal.style.display = 'block';
-});
-
+if(loginButton){//added an if check as it wont exist if user is logged in
+    loginButton.addEventListener('click', function () {
+        loginModal.style.display = 'block';
+    });
+}
 closeLoginButton.addEventListener('click', function () {
     loginModal.style.display = 'none';
 });

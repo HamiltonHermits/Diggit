@@ -3,7 +3,7 @@
 // Include necessary files (similar to login.php)
 include_once('config.php');
 include_once('database_connect.php');
-include_once('auth_signup.php'); 
+include_once('auth_signup.php');
 
 // You'll need to create this file for user registration
 
@@ -17,32 +17,40 @@ include_once('auth_signup.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     error_log("we got into signup");
     // Check if the required form fields exist in $_POST
-    if (isset($_POST["newUsername"]) && isset($_POST["newPassword"])) {
-       
+    if (isset($_POST["newUsername"]) && isset($_POST["newPassword"]) && isset($_POST["passwordConfirm"])) {
+
         // Retrieve user input (e.g., username and password)
         $username = $_POST["newUsername"];
         $password = $_POST["newPassword"];
+        $confirmPass = $_POST["passwordConfirm"];
 
+        if ($password == $confirmPass) {
+            // Perform user registration using a function (auth_signup) similar to authentication
+            $registrationResult = registerUser($username, $password);
 
-        // Perform user registration using a function (auth_signup) similar to authentication
-        $registrationResult = registerUser($username, $password);
+            // Validate the registration result (you would perform actual validation)
+            if ($registrationResult['registered']) {
+                // Registration successful, set up a session or handle as needed
+                session_start();
+                $_SESSION["user_id"] = $registrationResult['user_id'];
+                $_SESSION["username"] = $registrationResult['username'];
+                $_SESSION["authenticated"] = true;
 
-        // Validate the registration result (you would perform actual validation)
-        if ($registrationResult['registered']) {
-            // Registration successful, set up a session or handle as needed
-            session_start();
-            $_SESSION["user_id"] = $registrationResult['user_id'];
-            $_SESSION["username"] = $registrationResult['username'];
-            $_SESSION["authenticated"] = true;
-
-            // Redirect to a secure page (e.g., user profile)
-            header("Location: ../IndexPage/index.php");
-            exit();
+                // Redirect to a secure page (e.g., user profile)
+                header("Location: ../IndexPage/index.php");
+                exit();
+            } else {
+                // Registration failed, provide an error message
+                session_start();
+                $_SESSION["authenticated"] = false;
+                $_SESSION['signup_error'] = $registrationResult['error'];
+                header("Location: ../IndexPage/index.php"); // Redirect to the signup page
+                exit;
+            }
         } else {
-            // Registration failed, provide an error message
             session_start();
             $_SESSION["authenticated"] = false;
-            $_SESSION['signup_error'] = $registrationResult['error'];
+            $_SESSION['signup_error'] = "Password does not match";
             header("Location: ../IndexPage/index.php"); // Redirect to the signup page
             exit;
         }
@@ -62,4 +70,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: ../IndexPage/index.php"); // Redirect to the signup page
     exit;
 }
-?>
