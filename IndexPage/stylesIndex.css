@@ -15,26 +15,26 @@ body {
   font-family: "Poppins";
 }
 
-.nav .navContainer {
+.nav #navContainer {
   display: grid;
   grid-template-columns: 50% 50%;
   width: 100%;
   height: 5vh;
 }
-.nav .navContainer .dash {
+.nav #navContainer #dash {
   display: flex;
   width: 10%;
   height: 100%;
   min-width: 5vh;
 }
-.nav .navContainer .loginContainer {
+.nav #navContainer .loginContainer {
   display: flex;
   position: relative;
   justify-self: right;
   padding-top: 8px;
   padding-right: 18px;
 }
-.nav .navContainer .loginContainer .loginButton {
+.nav #navContainer .loginContainer #loginButton {
   margin: auto;
   cursor: pointer;
   border-radius: 25px;
@@ -49,7 +49,7 @@ body {
   min-width: 80px;
 }
 
-.mainContainer {
+#mainContainer {
   position: relative;
   display: grid;
   grid-template-rows: auto auto;
@@ -58,30 +58,30 @@ body {
   height: 50vh;
   top: 10vh;
 }
-.mainContainer .logoContainer {
+#mainContainer #logoContainer {
   display: block;
   margin: auto;
   align-items: flex-end;
   width: 50%;
   min-width: 40vh;
 }
-.mainContainer .logoContainer .mainLogoImage {
+#mainContainer #logoContainer #mainLogoImage {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   height: 100%;
 }
-.mainContainer .searchBarContainer {
+#mainContainer #searchBarContainer {
   position: relative;
   align-self: flex-start;
   top: 5vh;
 }
 @media screen and (max-width: 1000px) {
-  .mainContainer .searchBarContainer {
+  #mainContainer #searchBarContainer {
     top: -1vh;
   }
 }
-.mainContainer .searchBarContainer .searchBar {
+#mainContainer #searchBarContainer #borderSearchBar {
   display: flex;
   position: relative;
   margin: auto;
@@ -91,7 +91,7 @@ body {
   width: 60%;
   min-width: 40vh;
 }
-.mainContainer .searchBarContainer .searchBar .searchTerm {
+#mainContainer #searchBarContainer #borderSearchBar #searchbar {
   position: relative;
   box-sizing: border-box;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -104,15 +104,15 @@ body {
   height: 60px;
   width: 100%;
 }
-.mainContainer .searchBarContainer .searchBar ::-moz-placeholder {
+#mainContainer #searchBarContainer #borderSearchBar ::-moz-placeholder {
   font-weight: 500;
   color: var(--secondary_colour);
 }
-.mainContainer .searchBarContainer .searchBar ::placeholder {
+#mainContainer #searchBarContainer #borderSearchBar ::placeholder {
   font-weight: 500;
   color: var(--secondary_colour);
 }
-.mainContainer .searchBarContainer .searchBar .searchButton {
+#mainContainer #searchBarContainer #borderSearchBar #searchButton {
   text-align: center;
   cursor: pointer;
   background: none;
@@ -122,12 +122,12 @@ body {
   width: 50px;
   min-width: 2vh;
 }
-.mainContainer .searchBarContainer .searchBar .searchButton .svgSearch {
+#mainContainer #searchBarContainer #borderSearchBar #searchButton .svgSearch {
   text-align: center;
   width: 70%;
   height: 100%;
 }
-.mainContainer .searchBarContainer .dropdown-content {
+#mainContainer #searchBarContainer #dropdown {
   display: flex;
   position: relative;
   color: var(--secondary_colour);
@@ -142,7 +142,7 @@ body {
   width: 60%;
   min-width: 40vh;
 }
-.mainContainer .searchBarContainer .dropdown-content .dropdown-item {
+#mainContainer #searchBarContainer #dropdown .dropdown-item {
   position: relative;
   display: flex;
   cursor: pointer;
@@ -155,13 +155,13 @@ body {
   padding: 10px;
   overflow: hidden;
 }
-.mainContainer .searchBarContainer .dropdown-content .dropdown-item .locationSpan {
+#mainContainer #searchBarContainer #dropdown .dropdown-item .locationSpan {
   position: relative;
   text-align: right;
   width: 100%;
   font-size: calc(8px + 0.9vw);
 }
-.mainContainer .searchBarContainer .dropdown-content .dropdown-item:hover {
+#mainContainer #searchBarContainer #dropdown .dropdown-item:hover {
   background-color: var(--secondary_colour);
   color: var(--light_secondary_colour);
 }
