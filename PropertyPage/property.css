@@ -1,26 +1,29 @@
 :root {
-  --sidebar-width: 19.75%; /* Define a custom CSS variable for sidebar width */
-  --main-width: 80.25%;
+  --sidebar-width: 18.35%; /* Define a custom CSS variable for sidebar width */
+  --main-width: 100%;
   --nav-top-height: 25%;
   --prop-parent-cont-height: 100vh;
   --prop-title-cont-height:6%;
   --prop-images-cont-height: 54%;
   --prop-desc-cont-height: 40%;
+  --top-cont-height: 47.5%;
+  --email-btn-cont-height: 5%;
+  --bottom-cont-height: 47.5%;
   --rate-btn-cont-height: 7.4%;
   --left-box-width: 52.64%;
   --right-box-width: 47.36%;
-  --boxes-container-width: 94.38%;
   --btn-rate-prop-width: 8em;
   --btn-rate-prop-height: 4em;
   --sidebar-color: #202024;
   --main-color: #29292C;
+  --container-box-color: #202024;
+  --inner-box-color: #202024;
 }
 
 /* Reset some default margin and padding */
 body {
   display: flex;
   flex-direction: row;
-  justify-content: right;
   color: #fff;
   box-sizing: border-box;
   /* This element sits behind the visible sidebar, with
@@ -35,7 +38,7 @@ body .sidebar {
   min-width: 100px;
   left: 0; /* Stick it to the left side of the screen */
   top: 0; /* Stick it to the top of the screen */
-  width: var(--sidebar-width); /* Set the width of the sidebar as per your design */
+  width: 15.5%; /* Set the width of the sidebar as per your design */
   background-color: var(--sidebar-color); /* Background color for the sidebar */
   height: 100%; /* Make it cover the full height of the screen */
   /* overflow-y: auto; /* Add vertical scroll if the content overflows */
@@ -54,9 +57,7 @@ body .sidebar ul li a {
 body main {
   width: var(--main-width);
   height: 100%;
-  background-color: #242424;
   background-color: var(--main-color);
-  border: red 2px solid;
   color: white;
   display: flex;
   flex-direction: column;
@@ -65,71 +66,100 @@ body main .nav-top {
   display: flex;
   flex-direction: row;
   justify-content: right;
-  border: rebeccapurple 2px solid;
-  height: var(--nav-top-height);
+  align-items: center;
+  height: 8em;
 }
 body main .nav-top .searchbar {
   background-color: #1b1bd3;
   width: 50%;
+  height: 40%;
 }
 body main .nav-top .profile-container {
   display: flex;
   width: 22%;
   justify-content: right;
 }
-body main .property-parent-container {
+body main .property-parent-container, body main .amenity-parent-container {
   display: flex;
   justify-content: center;
-  height: calc(var(--prop-parent-cont-height) - 2em);
-  border: powderblue 2px solid;
+  height: calc(var(--prop-parent-cont-height) - 12em);
+  width: 100%;
+  gap: 2.41%;
 }
-body main .property-parent-container .boxes-container {
+body main .property-parent-container .boxes-container, body main .amenity-parent-container .boxes-container {
   display: flex;
   flex-direction: row;
-  width: var(--boxes-container-width);
-  gap: 2.41%;
-  border: green 2px solid;
+  justify-content: center;
+  width: 94%;
+  gap: 2em;
 }
-body main .property-parent-container .boxes-container .left-box {
+body main .property-parent-container .boxes-container .left-box, body main .amenity-parent-container .boxes-container .left-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: var(--left-box-width);
-  border: orange 2px solid;
+  background-color: var(--inner-box-color);
 }
-body main .property-parent-container .boxes-container .left-box .prop-title-container {
+body main .property-parent-container .boxes-container .left-box .prop-title-container, body main .amenity-parent-container .boxes-container .left-box .prop-title-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: var(--prop-title-cont-height);
 }
-body main .property-parent-container .boxes-container .left-box .prop-images-container {
+body main .property-parent-container .boxes-container .left-box .prop-images-container, body main .amenity-parent-container .boxes-container .left-box .prop-images-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: var(--prop-images-cont-height);
 }
-body main .property-parent-container .boxes-container .left-box .prop-images-container .prop-images {
+body main .property-parent-container .boxes-container .left-box .prop-images-container .prop-images, body main .amenity-parent-container .boxes-container .left-box .prop-images-container .prop-images {
   width: 90%;
   height: 100%;
-  background-color: #141414;
+  background-color: #725151;
 }
-body main .property-parent-container .boxes-container .left-box .prop-desc-container {
+body main .property-parent-container .boxes-container .left-box .prop-desc-container, body main .amenity-parent-container .boxes-container .left-box .prop-desc-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: var(--prop-desc-cont-height);
-  border: rgb(255, 255, 255) 2px solid;
+  padding: 1em;
 }
-body main .property-parent-container .boxes-container .left-box .prop-desc-container .prop-desc {
+body main .property-parent-container .boxes-container .left-box .prop-desc-container .prop-desc, body main .amenity-parent-container .boxes-container .left-box .prop-desc-container .prop-desc {
   width: 90%;
+  max-height: 90%; /* Set the maximum height at which scrolling will occur */
+  overflow-y: auto; /* Enable vertical scrolling if necessary */
+  border: 1px solid #ccc; /* Optional: Just for visibility */
 }
-body main .property-parent-container .boxes-container .right-box {
+body main .property-parent-container .boxes-container .right-box, body main .amenity-parent-container .boxes-container .right-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: var(--right-box-width);
-  border: rgb(221, 2, 192) 2px solid;
+  background-color: var(--inner-box-color);
+}
+body main .property-parent-container .boxes-container .right-box .top-container, body main .amenity-parent-container .boxes-container .right-box .top-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--top-cont-height);
+  border: #1b1bd3 2px solid;
+}
+body main .property-parent-container .boxes-container .right-box .email-btn-container, body main .amenity-parent-container .boxes-container .right-box .email-btn-container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: var(--email-btn-cont-height);
+  border: #0dc29b 2px solid;
+}
+body main .property-parent-container .boxes-container .right-box .bottom-container, body main .amenity-parent-container .boxes-container .right-box .bottom-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--bottom-cont-height);
+  border: #3b74dd 2px solid;
 }
 body main .rate-prop-btn-container {
   /* height: var(--rate-btn-cont-height); */
@@ -144,6 +174,9 @@ body main .rate-prop-btn-container .rate-property {
   background-color: #fff; /* Background color of the fixed element */
   padding: 10px; /* Adjust as needed */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for visual separation */
+}
+body main .amenity-parent-container {
+  margin-top: 8em;
 }
 
 body, ul {
