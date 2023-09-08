@@ -10,8 +10,8 @@
     --email-btn-cont-height: 5%;
     --bottom-cont-height: 47.5%;
     --rate-btn-cont-height: 7.4%;
-    --left-box-width: 52.64%;
-    --right-box-width: 47.36%;
+    --left-box-width: 50%;
+    --right-box-width: 50%;
     --btn-rate-prop-width: 8em;
     --btn-rate-prop-height: 4em;
 
@@ -29,268 +29,283 @@ body {
     // gap: 1em;
     color: #fff;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* This element sits behind the visible sidebar, with
+the function of allowing flex to work with the main
+element. */
+.background-sidebar-container {
+    width: var(--sidebar-width);
+}
 
-    /* This element sits behind the visible sidebar, with
-    the function of allowing flex to work with the main
-    element. */
-    .background-sidebar-container {
-        width: var(--sidebar-width);
-    }
-    
-    .sidebar {
-        position: fixed; /* Make the sidebar position fixed */
-        min-width: 100px;
-        left: 0; /* Stick it to the left side of the screen */
-        top: 0; /* Stick it to the top of the screen */
-        width: 15.5%; /* Set the width of the sidebar as per your design */
-        background-color: var(--sidebar-color); /* Background color for the sidebar */
-        height: 100%; /* Make it cover the full height of the screen */
-        /* overflow-y: auto; /* Add vertical scroll if the content overflows */
-    }
-    
-    .sidebar ul {
-        list-style: none;
-        padding: 20px;
-    }
-    
-    .sidebar ul li {
-        margin-bottom: 10px;
-    }
-    
-    .sidebar ul li a {
-        color: #fff;
-        text-decoration: none;
-    }
+.sidebar {
+    position: fixed; /* Make the sidebar position fixed */
+    min-width: 100px;
+    left: 0; /* Stick it to the left side of the screen */
+    top: 0; /* Stick it to the top of the screen */
+    width: 15.5%; /* Set the width of the sidebar as per your design */
+    background-color: var(--sidebar-color); /* Background color for the sidebar */
+    height: 100%; /* Make it cover the full height of the screen */
+    /* overflow-y: auto; /* Add vertical scroll if the content overflows */
+}
 
-    main {
-        width: var(--main-width);
-        height: 100%;
-        background-color: var(--main-color);
-        // border: red 2px solid;
-        color: white;
-        display: flex;
-        flex-direction: column;
+.sidebar ul {
+    list-style: none;
+    padding: 20px;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    
+main {
+    width: var(--main-width);
+    height: 100%;
+    background-color: var(--main-color);
+    // border: red 2px solid;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    // border: rebeccapurple 2px solid;
+    height: 8em;
+    // padding: 4em;
+}
+
+.searchbar {
+    background-color: #1b1bd3;
+    width: 50%;
+    height: 40%;
+}
+
+.profile-container {
+    display: flex;
+    width: 22%;
+    justify-content: right;
+}
+
+.property-parent-container, .amenity-parent-container {
+    justify-content: center;
+    border: rebeccapurple 2px solid;
+    /* height: var(--nav-top-height); */
+}
+
+.searchbar {
+    width: 70%;
+    background-color: brown;
+}
         
-        .nav-top {
-            display: flex;
-            flex-direction: row;
-            justify-content: right;
-            align-items: center;
-            // border: rebeccapurple 2px solid;
-            height: 8em;
-            // padding: 4em;
+.property-parent-container {
+    display: flex;
+    justify-content: center;
+    height: calc(var(--prop-parent-cont-height) - 12em);
+    width: 100%; // If you set this to 100%, the page will have a horizontal scroll bar, idk how to fix
+    gap: 2.41%;
+    // border: green  2px solid;
+}
 
-            .searchbar {
-                background-color: #1b1bd3;
-                width: 50%;
-                height: 40%;
-            }
+.boxes-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 94%;
+    gap: 2em;
+}
 
-            .profile-container {
-                display: flex;
-                width: 22%;
-                justify-content: right;
-            }
-        }
+.left-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: var(--left-box-width);
+    // border: orange 2px solid;
+    background-color: var(--inner-box-color);
+}
 
-        .property-parent-container, .amenity-parent-container {
-            justify-content: center;
-            border: rebeccapurple 2px solid;
-            /* height: var(--nav-top-height); */
-        }
+.prop-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: var(--prop-title-cont-height);
+}
 
-        .searchbar {
-            width: 70%;
-            background-color: brown;
-        }
-        
-        .property-parent-container {
-            display: flex;
-            justify-content: center;
-            height: calc(var(--prop-parent-cont-height) - 12em);
-            width: 100%; // If you set this to 100%, the page will have a horizontal scroll bar, idk how to fix
-            gap: 2.41%;
-            // border: green  2px solid;
+.prop-images-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: var(--prop-images-cont-height);
+}
 
-            .boxes-container {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                width: 94%;
-                gap: 2em;
+.prop-images {
+    width: 90%;
+    height: 100%;
+    // border: rgb(55, 255, 255) 2px solid;
+    background-color: #725151;
+}
 
-                .left-box {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    width: var(--left-box-width);
-                    // border: orange 2px solid;
-                    background-color: var(--inner-box-color);
-                    
-                    .prop-title-container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 100%;
-                        height: var(--prop-title-cont-height);
-                    }
+.prop-desc-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: var(--prop-desc-cont-height);
+    padding: 1em;
+    // border: rgb(255, 255, 255) 2px solid;
+}
 
-                    .prop-images-container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 100%;
-                        height: var(--prop-images-cont-height);
-
-                        .prop-images {
-                            width: 90%;
-                            height: 100%;
-                            // border: rgb(55, 255, 255) 2px solid;
-                            background-color: #725151;
-                        }
-                    }
-
-                    .prop-desc-container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 100%;
-                        height: var(--prop-desc-cont-height);
-                        padding: 1em;
-                        // border: rgb(255, 255, 255) 2px solid;
-
-                        .prop-desc {
-                            width: 90%;
-                            max-height: 90%; /* Set the maximum height at which scrolling will occur */
-                            overflow-y: auto; /* Enable vertical scrolling if necessary */
-                            border: 1px solid #ccc; /* Optional: Just for visibility */
-                        }
-                    }
-                }
+.prop-desc {
+    width: 90%;
+    max-height: 90%; /* Set the maximum height at which scrolling will occur */
+    overflow-y: auto; /* Enable vertical scrolling if necessary */
+    border: 1px solid #ccc; /* Optional: Just for visibility */
+}
                 
-                .right-box {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    width: var(--right-box-width);
-                    // border: rgb(221, 2, 192) 2px solid;
-                    background-color: var(--inner-box-color);
+.right-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: var(--right-box-width);
+    // border: rgb(221, 2, 192) 2px solid;
+    background-color: var(--inner-box-color);
+}
 
-                    .top-container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: var(--top-cont-height);
-                        gap: 3em;
+.top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--top-cont-height);
+    gap: 2.5em;
+    padding: 0 1.5em 0 1.5em;
+}
 
-                        .agent-container {
-                            display: flex;
-                            flex-direction: column;
-                            height: 100%;
+.agent-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
 
-                            .agent-title {
-                                text-align: center;
-                            }
+.agent-title {
+    text-align: center;
+}
 
-                            .agent-info-container {
-                                background-color: #29292C;
-                                padding: 1em;
-                                flex-grow: 1;
-                            }
-    
-                            .agent-phone-container, .agent-email-container, .agent-company-container {
-                                display: flex;
-                                flex-direction: row;
-                                gap: 0.3em;
-                            }
-                        }
+.agent-info-container {
+    background-color: #29292C;
+    padding: 1em;
+    flex-grow: 1;
+}
 
-                        .contact-container {
-                            display: flex;
-                            flex-direction: column;
-                            height: 100%;
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
 
-                            .contact-title {
-                                text-align: center;
-                            }
+.contact-title {
+    text-align: center;
+}
 
-                            .contact-info-container {
-                                background-color: #29292C;
-                                padding: 1em;
-                                flex-grow: 1;
-                            }
+.contact-info-container {
+    background-color: #29292C;
+    padding: 1em;
+    flex-grow: 1;
 
-                            .contact-form {
-                                display: flex;
-                                flex-direction: column;
-                                gap: 0.2em;
-                            }
-                        }
-
-                        
-
-                        
-                    }
-                    
-                    .email-btn-container {
-                        display: flex;
-                        justify-content: right;
-                        align-items: center;
-
-                        height: var(--email-btn-cont-height);
-                        // border: #0dc29b 2px solid;
-                    }
-
-                    .bottom-container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        height: var(--bottom-cont-height);
-                        // border: #3b74dd 2px solid;
-                    }
-                }
-            }
-        }
-        
-        .rate-prop-btn-container {
-            // position: fixed;
-            // flex-direction: row;
-            // justify-content: right;
-            background-color: #000000;
-            display: flex;
-            flex-direction: row;
-            justify-content: right;
-            
-            /* height: var(--rate-btn-cont-height); */
-            background-color: red;
-
-            .rate-property {
-                // background-color: pink;
-                // left: 100vw;
-                /* background-color: black; */
-                width: var(--btn-rate-prop-width);
-                height: var(--btn-rate-prop-height);
-                position: fixed;
-                bottom: 0;
-                right: 0;
-                // width: 100%;
-                background-color: #fff; /* Background color of the fixed element */
-                padding: 10px; /* Adjust as needed */
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for visual separation */
-
-            }
-        }
-
-        .amenity-parent-container {
-            margin-top: 8em;
-        }
+    textarea {
+        width: 100%;
+        resize: none;
     }
 }
 
-body, ul {
-    margin: 0;
-    padding: 0;
+// .contact-form {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 0.2em;
+// }
+                    
+.email-btn-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    height: var(--email-btn-cont-height);
+    // border: #0dc29b 2px solid;
+}
+
+.bottom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: var(--bottom-cont-height);
+    // border: #3b74dd 2px solid;
+}
+      
+.rate-prop-btn-container {
+    // position: fixed;
+    // flex-direction: row;
+    // justify-content: right;
+    background-color: #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    
+    /* height: var(--rate-btn-cont-height); */
+    background-color: red;
+}
+
+.rate-property {
+    // background-color: pink;
+    // left: 100vw;
+    /* background-color: black; */
+    width: var(--btn-rate-prop-width);
+    height: var(--btn-rate-prop-height);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    // width: 100%;
+    background-color: #fff; /* Background color of the fixed element */
+    padding: 10px; /* Adjust as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for visual separation */
+
+}
+
+.amenity-parent-container {
+    margin-top: 8em;
+}
+
+@media screen and (max-width: 1127px) {
+    .property-parent-container {
+        height: auto;
+    }
+
+    .left-box, .right-box {
+        height: 100%;
+        width: 80%;
+    }
+
+    .boxes-container {
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        height: auto;
+        gap: 2em;
+        // height: 100%;
+    }
 }
 
 /*# sourceMappingURL=property.css.map */
