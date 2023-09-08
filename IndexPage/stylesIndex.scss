@@ -1,35 +1,291 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,800;1,400&display=swap');
-html {background-color: #202024} //Sets background colour
-html {font-family: "Poppins";}
+//Sets background colour
+:root {
+    --main_colour:#AD5511; //Orange
+    --secondary_colour:#D9D9D9; //White
+    --background_colour:#202024; //Background Black
+    --light_secondary_colour: #564B40; //Light White/Brownish
+}
+
+html {
+    background-color: var(--background_colour);
+    font-family: "Poppins";
+}
+body{font-family: "Poppins";}
+
+
+
+
 .nav {
-    width: 100%;
-    .navContainer {
-        width: 100%;
-        display:grid;
-        grid-template-columns: 50% 50%;
-    }
-    .userEntry {
+    #navContainer {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 50% 50%;
+        width: 100%;
+        height: 5vh;
+        #dash {
+            display: flex;
+
+            width: 10%;
+            height: 100%;
+            min-width: 5vh;
+        }
+        .loginContainer {
+            display: flex;
+            position: relative;
+            justify-self: right;
+            
+            padding-top: 8px;
+            padding-right: 18px;
+            #loginButton{
+                margin: auto;
+                cursor: pointer;
+                border-radius: 25px;
+                border-color: var(--main_colour);
+                background: none;  
+                font-size:calc(5px + 1.2vw);
+                font-family: "Poppins";
+                font-weight: 600;
+                color: var(--main_colour);
+                
+                height: 5vh;
+                width: 6vw;
+                min-width: 80px;
+            }
+        }
+    }
+
+    
+}
+
+#mainContainer {
+    position: relative;
+    display:grid;
+    grid-template-rows: auto auto;
+    gap:0px;
+
+    align-items: center;
+    height:50vh;
+    top: 10vh;
+
+    #logoContainer {
+        display: block;
+        margin: auto;
+
+        align-items: flex-end;
+
+        width: 50%;
+        min-width: 40vh;
+
+        #mainLogoImage {
+            object-fit: cover;
+        
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    //https://codepen.io/huange/pen/bGqMqM
+    #searchBarContainer {
+        position: relative;
+        align-self: flex-start;
+        top:5vh;
+        @media screen and (max-width: 1000px) {
+            top:-1vh;
+        }  
+        #borderSearchBar {
+            display: flex;
+            position: relative;
+
+            margin: auto;
+            border: 2px solid #564B40;
+            border-radius: 50px;
+
+            text-align:center;
+
+            width: 60%;
+            min-width: 40vh;
+
+                
+
+            #searchbar {
+                position: relative;
+
+                box-sizing: border-box;
+                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                border:none;
+                background: none;
+                outline:none;
+                text-align:center;
+
+                font-size:calc(10px + 1vw);
+                color: var(--secondary_colour);
+
+                height: 60px;
+                width: 100%;
+            }
+            ::placeholder{
+                font-weight: 500;
+                color: var(--secondary_colour);
+            }
+            #searchButton {
+                text-align: center;
+                cursor: pointer;
+                background: none;
+                border: none;
+                
+                z-index: 1;
+
+                height: 60px;
+                width: 50px;
+                min-width: 2vh;
+                .svgSearch {
+                    text-align: center;
+
+                    width: 70%;
+                    height: 100%;
+                }
+            }
+
+        }
+        #dropdown{
+            display: flex;
+            position: relative;
+            color: var(--secondary_colour);
+            margin: auto;
+            border-top: none;
+            border-left: 2px solid var(--light_secondary_colour);
+            border-right: 2px solid var(--light_secondary_colour);
+            border-bottom: none;
+            border-radius: 0px 0px 30px 30px;
+            // border-color: #564B40;
+            text-align:center;
+            background-color: var(--light_secondary_colour);
+            width: 60%;
+            min-width: 40vh;
+
+            .dropdown-item{
+                position: relative;
+                display: flex;
+                cursor: pointer;
+                font-size: calc(8px + 0.9vw);
+                text-align: left;
+                width: 100%;
+                white-space: nowrap;
+                box-sizing:border-box;
+                margin:0;
+                padding:10px;
+                overflow:hidden;
+
+                .locationSpan{
+                    position: relative;
+                    text-align: right;
+                    width: 100%;
+                    font-size: calc(8px + 0.9vw);
+                }
+            }
+            .dropdown-item:hover{
+                background-color: var(--secondary_colour);
+                color: var(--light_secondary_colour);
+                // color: var(--main_colour);
+            }
+
+          } 
+        
+    }
+
+}
+
+
+/* Modal container styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    width:100%;
+    top:0px;
+    left:0px;
+    // left:-8px;
+    // height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Overlay background with transparency */
+    
+    /* Modal content styles */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* Center the modal vertically and horizontally */
+        padding: 20px;
+        margin-top: 20vh;
         align-items: center;
-        justify-items: center;   
-        justify-content: right;
-        width: 100%;   
-        .login {
-            padding-right: 10px;
+        border: 1px solid #888;
+        width: 30%;
+        height: auto;
+        min-width: 20vh; /* Set a maximum width for the modal content */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        text-align: center;
+
+        #loginButton, #signupButton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        /* Close button styles */
+        .close {
+            position:absolute;
+            display: flex;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
         }
     }
 }
-.mainContainer {
-    position: relative;
-    margin-top: 3%;
-    .logoContainer {
-        display:flex;
-        justify-content: center;
-        scale:0.9;
-    }
-    .searchBarContainer{
-        scale: 0.7;
-    }
+
+
+/* Form input styles (you can customize further) */
+#username, #password, #newUsername, #newPassword {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Submit button styles */
+#submitLogin,#submitSignup {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+
+    
+}
+
+#submitLogin:hover  {
+    background-color: #45a049;
+}
+
+#submitSignup:hover  {
+    background-color: #45a049;
+}
+
+#signupButton:hover  {
+    background-color: #45a049;
 }
 
