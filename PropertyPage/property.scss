@@ -169,9 +169,56 @@ body {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-
                         height: var(--top-cont-height);
-                        border: #1b1bd3 2px solid;
+                        gap: 3em;
+
+                        .agent-container {
+                            display: flex;
+                            flex-direction: column;
+                            height: 100%;
+
+                            .agent-title {
+                                text-align: center;
+                            }
+
+                            .agent-info-container {
+                                background-color: #29292C;
+                                padding: 1em;
+                                flex-grow: 1;
+                            }
+    
+                            .agent-phone-container, .agent-email-container, .agent-company-container {
+                                display: flex;
+                                flex-direction: row;
+                                gap: 0.3em;
+                            }
+                        }
+
+                        .contact-container {
+                            display: flex;
+                            flex-direction: column;
+                            height: 100%;
+
+                            .contact-title {
+                                text-align: center;
+                            }
+
+                            .contact-info-container {
+                                background-color: #29292C;
+                                padding: 1em;
+                                flex-grow: 1;
+                            }
+
+                            .contact-form {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 0.2em;
+                            }
+                        }
+
+                        
+
+                        
                     }
                     
                     .email-btn-container {
@@ -180,7 +227,7 @@ body {
                         align-items: center;
 
                         height: var(--email-btn-cont-height);
-                        border: #0dc29b 2px solid;
+                        // border: #0dc29b 2px solid;
                     }
 
                     .bottom-container {
@@ -189,7 +236,7 @@ body {
                         align-items: center;
 
                         height: var(--bottom-cont-height);
-                        border: #3b74dd 2px solid;
+                        // border: #3b74dd 2px solid;
                     }
                 }
             }
