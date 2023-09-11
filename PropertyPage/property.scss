@@ -6,9 +6,9 @@
     --prop-title-cont-height:6%;
     --prop-images-cont-height: 54%;
     --prop-desc-cont-height: 40%;
-    --top-cont-height: 47.5%;
+    --top-cont-height: 45%;
     --email-btn-cont-height: 5%;
-    --bottom-cont-height: 47.5%;
+    --bottom-cont-height: 45%;
     --rate-btn-cont-height: 7.4%;
     --left-box-width: 50%;
     --right-box-width: 50%;
@@ -50,21 +50,27 @@ element. */
     /* overflow-y: auto; /* Add vertical scroll if the content overflows */
 }
 
-.sidebar ul {
-    list-style: none;
-    padding: 20px;
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.sidebar ul li {
-    margin-bottom: 10px;
+.sidebar * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
+.logo-container {
+    margin-top: 2em;
 }
 
-    
+.settings-container {
+    margin-bottom: 2em;
+}
+
 main {
     width: var(--main-width);
     height: 100%;
@@ -78,8 +84,9 @@ main {
 .nav-top {
     display: flex;
     flex-direction: row;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
+
     // border: rebeccapurple 2px solid;
     height: 8em;
     // padding: 4em;
@@ -87,7 +94,7 @@ main {
 
 .searchbar {
     background-color: #1b1bd3;
-    width: 50%;
+    width: 30%;
     height: 40%;
 }
 
@@ -103,10 +110,6 @@ main {
     /* height: var(--nav-top-height); */
 }
 
-.searchbar {
-    width: 70%;
-    background-color: brown;
-}
         
 .property-parent-container {
     display: flex;
@@ -188,8 +191,10 @@ main {
     justify-content: center;
     align-items: center;
     height: var(--top-cont-height);
+    // height: 100%;
     gap: 2.5em;
     padding: 0 1.5em 0 1.5em;
+    border: pink 2px solid;
 }
 
 .agent-container {
@@ -220,39 +225,40 @@ main {
     text-align: center;
 }
 
-.contact-info-container {
+.contact-info-container {  
+    display: flex;
     background-color: #29292C;
     padding: 1em;
-    flex-grow: 1;
-
-    textarea {
-        width: 100%;
-        resize: none;
-    }
 }
 
-// .contact-form {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 0.2em;
-// }
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.2em;
+
+    #message {
+        resize: none;
+        height: 3em;
+    }
+    
+}
                     
 .email-btn-container {
     display: flex;
     justify-content: right;
     align-items: center;
-
     height: var(--email-btn-cont-height);
-    // border: #0dc29b 2px solid;
+    border: #0dc29b 2px solid;
 }
 
 .bottom-container {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    // height: 100%;
     height: var(--bottom-cont-height);
-    // border: #3b74dd 2px solid;
+    border: #3b74dd 2px solid;
 }
       
 .rate-prop-btn-container {
@@ -307,5 +313,13 @@ main {
         // height: 100%;
     }
 }
+
+// to make textarea for message in contact form responsive
+// make a media query to 
+// @media screen and (max-height: 854px) and (max-width: 1629px) {
+//     .top-container {
+//         height: 60%;
+//     }
+// }
 
 /*# sourceMappingURL=property.css.map */
