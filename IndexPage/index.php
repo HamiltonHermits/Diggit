@@ -97,7 +97,7 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
                     <?php echo '<script>loginModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
-                <form id="loginForm" action="../BackendFilesLogin/login.php" method="POST">
+                <form id="loginForm" action="../Backend_Files/login.php" method="POST">
                     <!-- Login form fields -->
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($login_username_value); ?>" placeholder="Username" required><br>
@@ -126,7 +126,7 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
                 <?php } ?>
 
                 <!-- Example signup form -->
-                <form id="signupForm" action="../BackendFilesLogin/signUp.php" method="POST">
+                <form id="signupForm" action="../Backend_Files/signUp.php" method="POST">
                     <!-- Signup form fields -->
                     <label for="newUsername">Username:</label>
                     <input type="text" id="newUsername" name="newUsername" value="<?php echo htmlspecialchars($signup_username_value); ?>" placeholder="Username" required><br>

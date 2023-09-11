@@ -1,24 +1,34 @@
 <?php
-// Function to check password strength
-function isPasswordStrong($password) {
+
+/**
+ * Server side function to check password strength
+ * 
+ * Variables Used:
+ *   - $password: Password to be queried.
+
+ * 
+ * @return array An associative array with password strenght status.
+ */
+function isPasswordStrong($password)
+{
     // Check if the password is at least 8 characters long
     if (strlen($password) < 8) {
-        return array('strong_password'=> false,'error' => 'Password needs to be at least 8 characters long');
+        return array('strong_password' => false, 'error' => 'Password needs to be at least 8 characters long');
     }
 
     // Check if the password contains at least one uppercase letter
     if (!preg_match('/[A-Z]/', $password)) {
-        return array('strong_password'=> false,'error' => 'Password needs to contain at least one uppercase letter');
+        return array('strong_password' => false, 'error' => 'Password needs to contain at least one uppercase letter');
     }
 
     // Check if the password contains at least one lowercase letter
     if (!preg_match('/[a-z]/', $password)) {
-        return array('strong_password'=> false,'error' => 'Password needs to contain at least one lowercase letter');
+        return array('strong_password' => false, 'error' => 'Password needs to contain at least one lowercase letter');
     }
 
     // Check if the password contains at least one digit
     if (!preg_match('/[0-9]/', $password)) {
-        return array('strong_password'=> false,'error' => 'Password needs to contain at least one digit');
+        return array('strong_password' => false, 'error' => 'Password needs to contain at least one digit');
     }
 
     //removed because excessive
@@ -28,5 +38,5 @@ function isPasswordStrong($password) {
     // }
 
     // Password meets all strength requirements
-    return array('strong_password'=> true);
+    return array('strong_password' => true);
 }

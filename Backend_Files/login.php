@@ -1,9 +1,18 @@
 <?php
-// Server-side PHP script for processing login
-include_once('config.php');
-include_once('database_connect.php');
 include_once('auth_login.php');
-
+/**
+ * Server-side PHP script for user login processing.
+ *
+ * Variables Used:
+ *   - $_SERVER: Superglobal array containing server environment and request info.
+ *   - $_POST: Superglobal array containing data from HTTP POST request.
+ *   - $username: User-provided username from the login form.
+ *   - $password: User-provided password from the login form.
+ *   - $authResult: Associative array with authentication status.
+ *
+ * Variables Assigned:
+ *   - $_SESSION: Superglobal array for storing user session data.
+ */
 // Check if the login form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the 'username' and 'password' keys exist in $_POST
