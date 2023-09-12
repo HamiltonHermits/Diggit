@@ -1,14 +1,15 @@
 :root {
-  --sidebar-width: 18.35%; /* Define a custom CSS variable for sidebar width */
+  --background-sidebar-width: 18.35%; /* Define a custom CSS variable for sidebar width */
+  --sidebar-width: 15.5%;
   --main-width: 100%;
   --nav-top-height: 25%;
   --prop-parent-cont-height: 100vh;
   --prop-title-cont-height:6%;
   --prop-images-cont-height: 54%;
   --prop-desc-cont-height: 40%;
-  --top-cont-height: 45%;
+  --top-cont-height: 47.5%;
   --email-btn-cont-height: 5%;
-  --bottom-cont-height: 45%;
+  --bottom-cont-height: 47.5%;
   --rate-btn-cont-height: 7.4%;
   --left-box-width: 50%;
   --right-box-width: 50%;
@@ -18,31 +19,36 @@
   --main-color: #29292C;
   --container-box-color: #202024;
   --inner-box-color: #202024;
+  --global-font-color: #D9D9D9;
 }
 
 /* Reset some default margin and padding */
 body {
   display: flex;
   flex-direction: row;
-  color: #fff;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: var(--global-font-color);
+  font-family: "Poppins", "Arial";
+  font-size: 2vmin;
+  font-style: normal;
+  font-weight: 100;
+  line-height: normal;
 }
 
 /* This element sits behind the visible sidebar, with
 the function of allowing flex to work with the main
 element. */
 .background-sidebar-container {
-  width: var(--sidebar-width);
+  width: var(--background-sidebar-width);
 }
 
 .sidebar {
   position: fixed; /* Make the sidebar position fixed */
-  min-width: 100px;
   left: 0; /* Stick it to the left side of the screen */
   top: 0; /* Stick it to the top of the screen */
-  width: 15.5%; /* Set the width of the sidebar as per your design */
+  width: var(--sidebar-width); /* Set the width of the sidebar as per your design */
   background-color: var(--sidebar-color); /* Background color for the sidebar */
   height: 100%; /* Make it cover the full height of the screen */
   /* overflow-y: auto; /* Add vertical scroll if the content overflows */
@@ -65,6 +71,12 @@ element. */
   margin-top: 2em;
 }
 
+.page-indicator-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
 .settings-container {
   margin-bottom: 2em;
 }
@@ -73,9 +85,9 @@ main {
   width: var(--main-width);
   height: 100%;
   background-color: var(--main-color);
-  color: white;
   display: flex;
   flex-direction: column;
+  border: turquoise 1px solid;
 }
 
 .nav-top {
@@ -83,13 +95,36 @@ main {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 8em;
+  height: 6.5em;
+  padding: 0 2em 0 2em;
+}
+
+.empty-div {
+  border: red 2px solid;
 }
 
 .searchbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   background-color: #1b1bd3;
   width: 30%;
+  margin-left: 22%;
   height: 40%;
+  border-radius: 25px 15px;
+  background-color: #AD5511;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.text-icon-container {
+  display: flex;
+  gap: 0.5em;
+  margin-left: 1em;
+}
+
+.crab-logo {
+  margin-right: 1em;
 }
 
 .profile-container {
@@ -100,7 +135,6 @@ main {
 
 .property-parent-container, .amenity-parent-container {
   justify-content: center;
-  border: rebeccapurple 2px solid;
   /* height: var(--nav-top-height); */
 }
 
@@ -110,6 +144,7 @@ main {
   height: calc(var(--prop-parent-cont-height) - 12em);
   width: 100%;
   gap: 2.41%;
+  border: rgb(133, 158, 21) 1px solid;
 }
 
 .boxes-container {
@@ -147,7 +182,7 @@ main {
 .prop-images {
   width: 90%;
   height: 100%;
-  background-color: #725151;
+  background-color: var(--main-color);
 }
 
 .prop-desc-container {
@@ -163,7 +198,6 @@ main {
   width: 90%;
   max-height: 90%; /* Set the maximum height at which scrolling will occur */
   overflow-y: auto; /* Enable vertical scrolling if necessary */
-  border: 1px solid #ccc; /* Optional: Just for visibility */
 }
 
 .right-box {
@@ -180,8 +214,8 @@ main {
   align-items: center;
   height: var(--top-cont-height);
   gap: 2.5em;
-  padding: 0 1.5em 0 1.5em;
-  border: pink 2px solid;
+  padding: 0.5em 1.5em 0 1.5em;
+  /* border: purple 2px solid; */
 }
 
 .agent-container {
@@ -216,6 +250,7 @@ main {
   display: flex;
   background-color: #29292C;
   padding: 1em;
+  height: 100%;
 }
 
 .contact-form {
@@ -234,7 +269,7 @@ main {
   justify-content: right;
   align-items: center;
   height: var(--email-btn-cont-height);
-  border: #0dc29b 2px solid;
+  margin: 0.5em 1.5em 0.5em 0;
 }
 
 .bottom-container {
@@ -242,25 +277,31 @@ main {
   justify-content: center;
   align-items: center;
   height: var(--bottom-cont-height);
-  border: #3b74dd 2px solid;
+  /* border: pink 2px solid; */
+  padding: 0 1.5em 1.5em 1.5em;
+}
+
+.map-container {
+  background-color: var(--main-color);
+  /* border: green 2px solid; */
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
 .rate-prop-btn-container {
-  background-color: #000000;
   display: flex;
   flex-direction: row;
   justify-content: right;
-  /* height: var(--rate-btn-cont-height); */
-  background-color: red;
 }
 
 .rate-property {
-  /* background-color: black; */
   width: var(--btn-rate-prop-width);
   height: var(--btn-rate-prop-height);
   position: fixed;
   bottom: 0;
   right: 0;
+  margin: 1.5em;
   background-color: #fff; /* Background color of the fixed element */
   padding: 10px; /* Adjust as needed */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for visual separation */
@@ -270,13 +311,18 @@ main {
   margin-top: 8em;
 }
 
-@media screen and (max-width: 1127px) {
+a {
+  text-decoration: none;
+  color: var(--global-font-color);
+}
+
+@media screen and (max-width: 1333px) {
   .property-parent-container {
     height: auto;
   }
   .left-box, .right-box {
-    height: 100%;
-    width: 80%;
+    height: 50%;
+    width: 90%;
   }
   .boxes-container {
     flex-direction: column;
