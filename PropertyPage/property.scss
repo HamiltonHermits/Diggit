@@ -22,6 +22,7 @@ body {
     // font-weight: 100;
     // line-height: normal;
     color: var(--global-font-color);
+    background-color: var(--main-color);
 }
 
 //////////--------------------------------------------------------------------------------------------//////////
@@ -99,7 +100,7 @@ main {
 //////////--------------------------------------------------------------------------------------------//////////
 
 .property-parent-container {
-    // height: 100vh;
+    height: calc(100vh - 10em);
 
     background-color: var(--main-color);
 }
@@ -145,11 +146,46 @@ main {
 }
 
 .top-container {
-    height: 5%;
+    display: flex;
+    gap: 2em;
+    height: 47.5%;
+}
+
+.agent-container, .contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+
+.agent-info-container, .contact-info-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    background-color: var(--main-color);
+}
+
+.agent-container * {
+    display: flex;
+    gap: 0.5em;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#message {
+    resize: none;
+    height: 3em;
 }
 
 .email-btn-container {
-    height: 47.5%;
+    display: flex;
+    justify-content: right;
+    height: 5%;
 }
 
 .bottom-container {
@@ -164,8 +200,28 @@ main {
 
 //////////--------------------------------------------------------------------------------------------//////////
 
+.amenity-parent-container {
+    margin: 6em 0 0 0;
+}
+
+
+//////////--------------------------------------------------------------------------------------------//////////
+
 .rate-prop-btn-container {
-    background-color: rgb(4, 253, 37);
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.rate-property {
+    width: var(--btn-rate-prop-width);
+    height: var(--btn-rate-prop-height);
+    position: fixed;
+    bottom: 0;
+    right: 2;
+    margin: 1.5em;
+    padding: 1.5em 2em 1.5em 2em;
+    border-radius: 50px;
 }
 
 *:hover { 
@@ -177,6 +233,30 @@ main {
 a {
     text-decoration: none;
     color: var(--global-font-color);
+}
+
+//////////--------------------------------------------------------------------------------------------//////////
+
+
+
+@media screen and (max-width: 1156px) {
+    // .property-parent-container {
+    //     height: auto;
+    // }
+
+    .left-box, .right-box {
+        height: 100%;
+        width: 80%;
+    }
+
+    .boxes-container {
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        height: auto;
+        gap: 2em;
+        // height: 100%;
+    }
 }
 
 /*# sourceMappingURL=property.css.map */
