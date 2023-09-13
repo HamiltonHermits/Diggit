@@ -56,6 +56,29 @@ body {
     margin-top: 2em;
 }
 
+#digg {
+    color: var(--global-font-color);
+    font-family: Poppins;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#it {
+    color: var(--orange);
+    font-family: Suez One;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#logo {
+    display: flex;
+    flex-direction: row;
+}
+
 .page-indicator-container {
     display: flex;
     flex-direction: column;
@@ -82,24 +105,44 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1em 0 0 0;
 }
 
 .searchbar {
     display: flex;
     justify-content: space-between;
-    width: 40%;
+    align-items: center;
+    width: 25%;
     height: 4vh;
+    padding: 0 1em 0 1em;
+    border-radius: 25px 15px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
     background-color: var(--orange);
+}
+
+#searchbar {
+    width: 100%;
+    
+    background-color: var(--orange);
+    border: none;
+    color: var(--global-font-color);
+}
+
+#searchButton {
+    background-color: #00000000;
+    // border: none;
 }
 
 .text-icon-container {
     display: flex;
+    width: 90%;
     gap: 0.5em;
 }
 
 //////////--------------------------------------------------------------------------------------------//////////
 
-.property-parent-container {
+.property-parent-container, .amenity-parent-container {
     height: calc(100vh - 10em);
 
     background-color: var(--main-color);
@@ -173,6 +216,7 @@ main {
     height: 47.5%;
 }
 
+
 .agent-container, .contact-container {
     display: flex;
     flex-direction: column;
@@ -180,37 +224,53 @@ main {
     width: 100%;
 }
 
-.agent-container * {
+.agent-container * { //make all children of agent-container flex
     display: flex;
     gap: 0.5em;
+}
+
+.agent-title {
+    justify-content: center;
 }
 
 .agent-info-container, .contact-info-container {
     display: flex;
     flex-direction: column;
     height: 100%;
-
-    background-color: var(--main-color);
 }
 
-.agent-title, .contact-title {
-    padding: 0 0 1em 0;
+.agent-info-container {
+    display: flex;
+    padding: 1em;
+
+    background-color: var(--main-color);
 }
 
 .agent-container hr {
     width: 100%;
 }
 
+.contact-title {
+    text-align: center;
+}
+
+.contact-info-container {
+    gap: 3em;
+}
 
 .contact-form {
     display: flex;
     flex-direction: column;
 }
 
+#message-label {
+    margin: 1em 0 0 0;
+}
 
 #message {
     resize: none;
-    height: 3em;
+    height: 6em;
+    // height: 20%;
 }
 
 .email-btn-container {
@@ -249,8 +309,8 @@ main {
     height: var(--btn-rate-prop-height);
     position: fixed;
     bottom: 0;
-    right: 2;
-    margin: 1.5em;
+    right: 0;
+    margin: 0 2em 0.6em 0;
     padding: 1.5em 2em 1.5em 2em;
     border-radius: 50px;
 }
@@ -269,22 +329,27 @@ a {
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f100;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: var(--global-font-color);
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: whitesmoke;
-  }
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: var(--global-font-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: whitesmoke;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--global-font-color);
+    opacity: 1; /* Firefox */
+}
 
 //////////--------------------------------------------------------------------------------------------//////////
 
