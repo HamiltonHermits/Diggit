@@ -1,193 +1,277 @@
 :root {
-  --sidebar-width: 18.35%; /* Define a custom CSS variable for sidebar width */
-  --main-width: 100%;
-  --nav-top-height: 25%;
-  --prop-parent-cont-height: 100vh;
-  --prop-title-cont-height:6%;
-  --prop-images-cont-height: 54%;
-  --prop-desc-cont-height: 40%;
-  --top-cont-height: 47.5%;
-  --email-btn-cont-height: 5%;
-  --bottom-cont-height: 47.5%;
-  --rate-btn-cont-height: 7.4%;
-  --left-box-width: 52.64%;
-  --right-box-width: 47.36%;
-  --btn-rate-prop-width: 8em;
-  --btn-rate-prop-height: 4em;
+  --bg-sidebar-cont-width: 15%;
+  --main-width: 85%;
   --sidebar-color: #202024;
   --main-color: #29292C;
   --container-box-color: #202024;
   --inner-box-color: #202024;
+  --global-font-color: #D9D9D9;
+  --orange: #AD5511;
 }
 
-/* Reset some default margin and padding */
 body {
   display: flex;
   flex-direction: row;
-  color: #fff;
-  box-sizing: border-box;
-  /* This element sits behind the visible sidebar, with
-  the function of allowing flex to work with the main
-  element. */
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", "Arial";
+  color: var(--global-font-color);
+  background-color: var(--main-color);
 }
-body .background-sidebar-container {
-  width: var(--sidebar-width);
+
+.background-sidebar-container {
+  width: var(--bg-sidebar-cont-width);
+  background-color: pink;
 }
-body .sidebar {
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed; /* Make the sidebar position fixed */
-  min-width: 100px;
   left: 0; /* Stick it to the left side of the screen */
   top: 0; /* Stick it to the top of the screen */
-  width: 15.5%; /* Set the width of the sidebar as per your design */
-  background-color: var(--sidebar-color); /* Background color for the sidebar */
-  height: 100%; /* Make it cover the full height of the screen */
-  /* overflow-y: auto; /* Add vertical scroll if the content overflows */
+  width: calc(var(--bg-sidebar-cont-width));
+  height: 100%;
+  background-color: var(--sidebar-color);
 }
-body .sidebar ul {
-  list-style: none;
-  padding: 20px;
+
+.sidebar * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-body .sidebar ul li {
-  margin-bottom: 10px;
+
+.logo-container {
+  margin-top: 2em;
 }
-body .sidebar ul li a {
-  color: #fff;
-  text-decoration: none;
+
+.page-indicator-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }
-body main {
+
+.settings-container {
+  margin-bottom: 2em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
   width: var(--main-width);
   height: 100%;
   background-color: var(--main-color);
-  color: white;
-  display: flex;
-  flex-direction: column;
 }
-body main .nav-top {
+
+.nav-top {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
-  height: 8em;
 }
-body main .nav-top .searchbar {
-  background-color: #1b1bd3;
-  width: 50%;
-  height: 40%;
-}
-body main .nav-top .profile-container {
+
+.searchbar {
   display: flex;
-  width: 22%;
-  justify-content: right;
+  justify-content: space-between;
+  width: 40%;
+  height: 4vh;
+  background-color: var(--orange);
 }
-body main .property-parent-container {
+
+.text-icon-container {
   display: flex;
-  justify-content: center;
-  height: calc(var(--prop-parent-cont-height) - 12em);
-  width: 100%;
-  gap: 2.41%;
+  gap: 0.5em;
 }
-body main .property-parent-container .boxes-container, body main .amenity-parent-container .boxes-container {
+
+.property-parent-container {
+  height: calc(100vh - 10em);
+  background-color: var(--main-color);
+}
+
+.boxes-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 94%;
   gap: 2em;
+  height: 100%;
+  padding: 2em;
 }
-body main .property-parent-container .boxes-container .left-box, body main .amenity-parent-container .boxes-container .left-box {
+
+.left-box, .right-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: var(--left-box-width);
+  width: 50%;
+  gap: 2em;
+  padding: 0.5em 2em 2em 2em;
   background-color: var(--inner-box-color);
 }
-body main .property-parent-container .boxes-container .left-box .prop-title-container, body main .amenity-parent-container .boxes-container .left-box .prop-title-container {
+
+.prop-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5%;
+}
+
+.prop-images-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: var(--prop-title-cont-height);
+  height: 47.5%;
+  background-color: var(--main-color);
 }
-body main .property-parent-container .boxes-container .left-box .prop-images-container, body main .amenity-parent-container .boxes-container .left-box .prop-images-container {
+
+.prop-images {
+  width: 100%;
+  height: 100%;
+}
+
+.prop-desc-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: var(--prop-images-cont-height);
+  height: 47.5%;
 }
-body main .property-parent-container .boxes-container .left-box .prop-images-container .prop-images, body main .amenity-parent-container .boxes-container .left-box .prop-images-container .prop-images {
+
+.prop-desc {
   width: 90%;
   height: 100%;
-  background-color: #725151;
-}
-body main .property-parent-container .boxes-container .left-box .prop-desc-container, body main .amenity-parent-container .boxes-container .left-box .prop-desc-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: var(--prop-desc-cont-height);
-  padding: 1em;
-}
-body main .property-parent-container .boxes-container .left-box .prop-desc-container .prop-desc, body main .amenity-parent-container .boxes-container .left-box .prop-desc-container .prop-desc {
   width: 90%;
   max-height: 90%; /* Set the maximum height at which scrolling will occur */
   overflow-y: auto; /* Enable vertical scrolling if necessary */
-  border: 1px solid #ccc; /* Optional: Just for visibility */
 }
-body main .property-parent-container .boxes-container .right-box, body main .amenity-parent-container .boxes-container .right-box {
+
+.right-box {
+  gap: 1em;
+}
+
+.top-container {
+  display: flex;
+  gap: 2em;
+  height: 47.5%;
+}
+
+.agent-container, .contact-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: var(--right-box-width);
-  background-color: var(--inner-box-color);
+  gap: 1em;
+  width: 100%;
 }
-body main .property-parent-container .boxes-container .right-box .top-container, body main .amenity-parent-container .boxes-container .right-box .top-container {
+
+.agent-container * {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: var(--top-cont-height);
-  border: #1b1bd3 2px solid;
+  gap: 0.5em;
 }
-body main .property-parent-container .boxes-container .right-box .email-btn-container, body main .amenity-parent-container .boxes-container .right-box .email-btn-container {
+
+.agent-info-container, .contact-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--main-color);
+}
+
+.agent-title, .contact-title {
+  padding: 0 0 1em 0;
+}
+
+.agent-container hr {
+  width: 100%;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#message {
+  resize: none;
+  height: 3em;
+}
+
+.email-btn-container {
   display: flex;
   justify-content: right;
-  align-items: center;
-  height: var(--email-btn-cont-height);
-  border: #0dc29b 2px solid;
+  height: 5%;
 }
-body main .property-parent-container .boxes-container .right-box .bottom-container, body main .amenity-parent-container .boxes-container .right-box .bottom-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: var(--bottom-cont-height);
-  border: #3b74dd 2px solid;
+
+.bottom-container {
+  height: 47.5%;
 }
-body main .rate-prop-btn-container {
-  background-color: #000000;
+
+.map-container {
+  height: 100%;
+  background-color: var(--main-color);
+}
+
+.amenity-parent-container {
+  margin: 6em 0 0 0;
+}
+
+.rate-prop-btn-container {
   display: flex;
   flex-direction: row;
   justify-content: right;
-  /* height: var(--rate-btn-cont-height); */
-  background-color: red;
 }
-body main .rate-prop-btn-container .rate-property {
-  /* background-color: black; */
+
+.rate-property {
   width: var(--btn-rate-prop-width);
   height: var(--btn-rate-prop-height);
   position: fixed;
   bottom: 0;
-  right: 0;
-  background-color: #fff; /* Background color of the fixed element */
-  padding: 10px; /* Adjust as needed */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for visual separation */
-}
-body main .amenity-parent-container {
-  margin-top: 8em;
+  right: 2;
+  margin: 1.5em;
+  padding: 1.5em 2em 1.5em 2em;
+  border-radius: 50px;
 }
 
-body, ul {
-  margin: 0;
-  padding: 0;
+*:hover {
+  outline: 1px blue solid;
 }
 
+a {
+  text-decoration: none;
+  color: var(--global-font-color);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--global-font-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: whitesmoke;
+}
+
+@media screen and (max-width: 1156px) {
+  .property-parent-container, .amenity-parent-container {
+    height: 88.75em;
+  }
+  .left-box, .right-box {
+    height: 50%;
+    width: 90%;
+  }
+  .boxes-container {
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    gap: 2em;
+  }
+  .prop-desc {
+    height: 15em;
+    overflow: scroll;
+  }
+}
 /*# sourceMappingURL=property.css.map */
