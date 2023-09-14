@@ -142,7 +142,7 @@ main {
   background-color: rgba(0, 0, 0, 0);
 }
 
-.text-icon-container {
+.borderSearchBar {
   display: flex;
   width: 90%;
   gap: 0.5em;
