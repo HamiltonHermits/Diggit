@@ -18,6 +18,7 @@ body {
 
     font-family: "Poppins", "Arial";
     // font-size: 2vmin;  //this is a scary setting BEWARE
+    font-size: 18px;
     // font-style: normal;
     // font-weight: 100;
     // line-height: normal;
@@ -59,7 +60,7 @@ body {
 #digg {
     color: var(--global-font-color);
     font-family: Poppins;
-    font-size: 55px;
+    font-size: 2.75em;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -68,7 +69,7 @@ body {
 #it {
     color: var(--orange);
     font-family: Suez One;
-    font-size: 55px;
+    font-size: 2.75em;    
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -81,8 +82,33 @@ body {
 
 .page-indicator-container {
     display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.page-indicator-container, .settings-container {
+    font-size: 24px;
+}
+
+.page-indicator-inner-container {
+    display: flex;
     flex-direction: column;
+    align-items: baseline;
     gap: 2em;
+    // width: 100%;
+}
+
+.page-indicator {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    padding: 0.5em 0 0.5em 1em;
+    border-radius:  10px 0 0 10px;
+}   
+
+.current-page-bg-effect {
+    background: linear-gradient(90deg, rgba(173,85,17,1) 0%, rgba(32,32,36,1) 16.12%);
+
 }
 
 .settings-container {
@@ -142,7 +168,7 @@ main {
 
 //////////--------------------------------------------------------------------------------------------//////////
 
-.property-parent-container, .amenity-parent-container {
+.parent-container {
     height: calc(100vh - 10em);
 
     background-color: var(--main-color);
@@ -291,7 +317,7 @@ main {
 
 //////////--------------------------------------------------------------------------------------------//////////
 
-.amenity-parent-container {
+#amenity-parent-container {
     margin: 6em 0 0 0;
 }
 
@@ -354,7 +380,7 @@ background: whitesmoke;
 //////////--------------------------------------------------------------------------------------------//////////
 
 @media screen and (max-width: 1156px) {
-    .property-parent-container, .amenity-parent-container {
+    .parent-container {
         height: 88.75em;
     }
 

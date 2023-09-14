@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="property.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
+    <script src="property.js" defer></script>
 </head>
 <body>
     <div class="background-sidebar-container">
@@ -23,9 +24,20 @@
 
             </div>
             <div class="page-indicator-container">
-                <a href="#">Property</a>
-                <a href="#">Amenities</a>
-                <a href="#">Amenities</a>
+                <div class="page-indicator-inner-container">
+                    <a class="page-indicator" id="prop-indicator" href="#">
+                            <div class="icon">[]</div>
+                            Property
+                    </a>
+                    <a class="page-indicator" id="amenity-indicator"href="#">
+                            <div class="icon">[]</div>
+                            Amenities
+                    </a>
+                    <a class="page-indicator" id="review-indicator" href="#">
+                            <div class="icon">[]</div>
+                            Reviews
+                    </a>
+                </div>
             </div>
             <div class="settings-container">
                 <img src="" alt="">
@@ -54,7 +66,7 @@
             </div>
         </div>
 
-        <div class="property-parent-container">
+        <div class="parent-container" id="property-parent-container" data-target="prop-indicator">
             <div class="boxes-container">
                 <div class="left-box">
                     <div class="prop-title-container">
@@ -125,7 +137,7 @@
             </div>
         </div>
 
-        <div class="amenity-parent-container">
+        <div class="parent-container" id="amenity-parent-container" data-target="amenity-indicator">
             <div class="boxes-container">
                 <div class="left-box">
                     <div class="prop-title-container">
