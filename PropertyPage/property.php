@@ -58,8 +58,8 @@
     <main>
         <div class="nav-top">
             <div class="empty-div"></div>
-            <div class="searchbar">
-                <div class="text-icon-container">
+            <div class="searchbar-container">
+                
                     <div class="borderSearchBar" id="borderSearchBar">
                         <button type="submit" class="searchButton" id="searchButton">
                             <svg class="svgSearch" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,11 +67,9 @@
                             </svg>
                         </button>
                         <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
+                        <div id="dropdown" class="dropdown-content"></div>
                     </div>
-                </div>
-                <div id="dropdown" class="dropdown-content">
                     <div class="crab-logo">crab</div>
-                </div>
             </div>
             <div class="profile-container">
                 <button class="profile">profile</button>

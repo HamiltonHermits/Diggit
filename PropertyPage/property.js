@@ -1,4 +1,7 @@
 var borderSearchBar = document.getElementById("borderSearchBar");
+var counter;
+var MAX_VIEW = 5;
+var lastval_boolean = false;
 
 // Get allparentContainers
 const parentContainers = document.querySelectorAll(".parent-container");
@@ -27,19 +30,41 @@ function updateActivePageIndicator() {
     });
 }
 
+//makes the search text disapear after clicking in it
+searchbar.addEventListener('click', function () {
+    searchbar.placeholder = '';
+    searchbar.style.textAlign = 'left';
+    // borderSearchBar.style.backgroundColor = "#564B40";
+});
+//Add event listerners to repopulate placeholder text
+document.addEventListener('click', function (event) {
+    var clickanywhere = event.target;
+
+    if(clickanywhere !== searchbar && !searchbar.contains(clickanywhere)){
+        searchbar.placeholder = 'Find your Digs..';
+        searchbar.style.textAlign = 'center';
+        // borderSearchBar.style.backgroundColor = "#202024";
+    }
+
+});
+
+function redirectToPage(apartment) {
+    // Replace 'logged_in_page.php' with the actual URL of your logged-in page
+    window.location.href = '../Backend_Files/logged_in_page.php';
+}
+
 // Add an event listener to detect changes in the search bar
 searchbar.addEventListener("input", function() {
     // Get the search query from the input
     var query = searchbar.value;
     dropdown.style.borderBottom = "2px solid #564B40";
-    borderSearchBar.style.borderRadius = "30px 30px 0px 0px"
-    
+    dropdown.style.backgroundColor = "#202024";
+    // borderSearchBar.style.borderRadius = "30px 30px 0px 0px"
     
     // Make an AJAX request to the server-side script
-    fetch("./testSearch.php?query=" + encodeURIComponent(query))
+    fetch("../Backend_Files/search.php?query=" + encodeURIComponent(query))
         .then(response => response.json())
         .then(data => {
-            
             // Clear previous dropdown items
             dropdown.innerHTML = "";
             
@@ -82,17 +107,19 @@ searchbar.addEventListener("input", function() {
                     });
                     //add a mouseover event listener to change the style of the dropdownitem
                     dropdownItem.addEventListener('mouseover', function() {
-                        dropdownItem.style.backgroundColor = "#D9D9D9";
-                        locationSpan.style.color = "#564B40";
-                        dropdownItem.style.color = "#564B40";
-                        dropdownItem.style.borderRadius = "30px 30px 30px 30px";
+                        dropdownItem.style.border = "#AD5511 2px solid"
+                        // dropdownItem.style.backgroundColor = "#D9D9D9";
+                        // locationSpan.style.color = "#564B40";
+                        // dropdownItem.style.color = "#564B40";
+                        // dropdownItem.style.borderRadius = "30px 30px 30px 30px";
                         
                     });
                     //add a mouseout event listener to change the style of the dropdownitem
                     dropdownItem.addEventListener('mouseout', function() {
-                        dropdownItem.style.backgroundColor = "#564B40";
-                        locationSpan.style.color = "#D9D9D9";
-                        dropdownItem.style.color = "#D9D9D9";
+                        // dropdownItem.style.backgroundColor = "#564B40";
+                        dropdownItem.style.border = "none"
+                        // locationSpan.style.color = "#D9D9D9";
+                        // dropdownItem.style.color = "#D9D9D9";
 
                     });
                     // Append the item to the dropdown
@@ -106,6 +133,16 @@ searchbar.addEventListener("input", function() {
         .catch(error => {
             console.error("Error:", error);
         });
+});
+
+
+// Hide the dropdown when clicking outside of it
+document.addEventListener("click", function(event) {
+    if (event.target !== searchbar && event.target !== dropdown) {
+        dropdown.style.display = "none";
+        borderSearchBar.style.borderRadius = "50px"
+        searchbar.style.textAlign = 'left';
+    }
 });
 
 //////////////////////////////////////////////////////////////////////////
