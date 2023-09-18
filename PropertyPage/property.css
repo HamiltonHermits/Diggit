@@ -255,7 +255,7 @@ main {
   width: 100%;
 }
 
-.contact-title {
+.title {
   text-align: center;
 }
 
@@ -294,6 +294,34 @@ main {
 
 #amenity-parent-container {
   margin: 6em 0 0 0;
+}
+#amenity-parent-container * {
+  border: red 1px solid;
+}
+#amenity-parent-container hr {
+  width: 100%;
+}
+#amenity-parent-container #amenity-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--main-color);
+}
+#amenity-parent-container #amenity-item-container #amenity-item-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2em;
+}
+#amenity-parent-container #show-all-container {
+  display: flex;
+  justify-content: center;
+}
+#amenity-parent-container #show-all-container input {
+  height: 30px;
+  width: 20%;
 }
 
 .rate-prop-btn-container {

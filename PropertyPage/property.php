@@ -156,7 +156,7 @@
                             </div>
                         </div>   
                         <div class="contact-container">
-                            <div class="contact-title">Contact</div>
+                            <div class="title">Contact</div>
                             <div class="contact-info-container">
                                 <form action="" class="contact-form">
                                     <label for="details">Your Details</label>
@@ -181,73 +181,74 @@
             </div>
         </div>
 
-        <div class="parent-container" id="amenity-parent-container" data-target="amenity-indicator">
+        <div class="parent-container" id="amenity-parent-container">
             <div class="boxes-container">
-                <div class="left-box">
-                    <div class="prop-title-container">
-                        <div class="prop-title">The Greens</div>
-                    </div>
-                    <div class="prop-images-container">
-                        <div class="prop-images">property images</div>
-                    </div>
-                    <div class="prop-desc-container">
-                        <div class="prop-desc">
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
-                            If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
+                <div class="left-box" id="left-box-amenity">
+                    <div class="title" id="amenity-title">Amenity</div>
+                    <hr> 
+                    <div id="amenity-item-container">
+                        <div id="amenity-item-inner-container">
+                            <?php 
+                                // Prepare and execute the SQL query
+                                $stmt = $conn->prepare("SELECT * FROM property_amenity WHERE prop_id = ?");
+                                $stmt->bind_param("s", $propId);
+                                $stmt->execute();
+
+                                // Get the results
+                                $result = $stmt->get_result();
+                                $result = $result->fetch_assoc();
+
+                                while ($row = mysqli_fetch_array($result)) {
+                                    if ($row['amenity_name']) {
+                                        echo " <div class=\"amenity-item\">
+                                                    <img src=\"#\" alt=\"\">[] {$row['amenity_name']} 
+                                               </div>";
+                                    }  
+                                }
+                                
+                                // SELECT * FROM property_amenity WHERE prop_id = $propId
+                                // loop thru this DBOs
+                                // 
+                            ?>
+                            <div class="amenity-item">
+                                <img src="#" alt="">[] Wifi  
+                            </div>
+                            <div class="amenity-item">
+                                <img src="#" alt="">[] Parking  
+                            </div>
+                            <div class="amenity-item">
+                                <img src="#" alt="">[] Water tank
+                            </div>
+                            <div class="amenity-item">
+                                <img src="#" alt="">[] Laundry
+                            </div>
+                            <div class="amenity-item">
+                                <img src="#" alt="">[] Electric Stove
+                            </div>
+                            <div class="amenity-item">
+                                <img src="#" alt="">[] Gas Stove
+                            </div>
+                            <div class="amenity-item">
+                                <img src="#" alt="">[] Fridge
+                            </div>
+                            <div class="amenity-item">
+                                <img src="#" alt="">[] Microwave
+                            </div>
                         </div>
-                    </div>                        
+                    </div>      
+                    <div id="show-all-container">
+                        <input type="button" name="show-all-btn" value="show all (n)">
+                    </div>                  
                 </div>
                 <div class="right-box">
-                    <div class="top-container">
-                        <div class="agent-container">
-                            <div class="agent-title">Agent</div>
-                            <div class="agent-info-container">
-                                <div class="agent-name">Dianne Psi</div>
-                                <hr>
-                                <div class="agent-phone-container">
-                                    <div class="agent-phone-icon">icon</div>
-                                    <div class="agent-phonenumber">+27 82 555 5555</div>
-                                </div>
-                                <div class="agent-email-container">
-                                    <div class="agent-email-icon">icon</div>
-                                    <div class="agent-email">diannepsi@property.co.za</div>
-                                </div>
-                                <div>
-                                    <div class="agent-company-icon">icon</div>
-                                    <div class="agent-company">Property Co</div>
-                                </div>
-                            </div>
-                        </div>   
-                        <div class="contact-container">
-                            <div class="contact-title">Contact</div>
-                            <div class="contact-info-container">
-                                <form action="" class="contact-form">
-                                    <label for="details">Your Details</label>
-                                    <input type="text">
-                                    <input type="text">
-                                    <input type="text">
-                                    <label for="message">Message</label>
-                                    <textarea name="message" id="message" rows="12"></textarea>
-                                </form>
-                            </div>
-                        </div>         
+                    <div class="title" id="landlord-title">Landlord</div>
+                    <hr>
+                    <div id="picture-name-container">
                     </div>
-                    <div class="email-btn-container">
-                        <button class="email-agent-button">Email Agent</button>
+                    <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
+                    <div id="rating-bars-container">
                     </div>
-                    <div class="bottom-container">
-                        <div class="map-container">
-                            MAP
-                        </div>
-                    </div>
+                    <div id="overall-rating-container">
                 </div>   
             </div>
         </div>
