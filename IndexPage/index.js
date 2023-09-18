@@ -35,7 +35,7 @@ document.addEventListener('click', function (event) {
 
 function redirectToPage(apartment) {
     // Replace 'logged_in_page.php' with the actual URL of your logged-in page
-    window.location.href = '../BackendFilesLogin/logged_in_page.php';
+    window.location.href = '../Backend_Files/logged_in_page.php';
 }
 
 // Add an event listener to detect changes in the search bar
@@ -46,7 +46,7 @@ searchbar.addEventListener("input", function() {
     borderSearchBar.style.borderRadius = "30px 30px 0px 0px"
     
     // Make an AJAX request to the server-side script
-    fetch("../BackendFilesLogin/search.php?query=" + encodeURIComponent(query))
+    fetch("../Backend_Files/search.php?query=" + encodeURIComponent(query))
         .then(response => response.json())
         .then(data => {
             // Clear previous dropdown items
