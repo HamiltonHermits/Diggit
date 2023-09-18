@@ -4,8 +4,8 @@
     include_once('../Backend_Files/database_connect.php');
 
     //Get property id
-    // $propId = $_GET["id"];
-    $propId = "1";
+    $propId = $_GET["id"];
+    // $propId = "1";
 
     // Prepare and execute the SQL query
     $stmt = $conn->prepare("SELECT * from searchbar_testing WHERE ID = ?");
@@ -79,7 +79,6 @@
         <div class="nav-top">
             <div class="empty-div"></div>
             <div class="searchbar-container">
-                
                     <div class="borderSearchBar" id="borderSearchBar">
                         <button type="submit" class="searchButton" id="searchButton">
                             <svg class="svgSearch" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,17 +102,13 @@
                         <div class="prop-title"><?php echo $result['name']; ?></div>
                     </div>
                     <div class="prop-images-container">
-                        <div class="prop-images">property images</div>
+                        <div class="prop-images">
+                            <img src="./propertyImages/<?php echo $result['image']; ?>" alt="property image">
+                        </div>
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
-                            <?php
-                                // echo $property['description'];
-                                // while ($row = mysqli_fetch_array($result)) {
-                                //     echo "<p>$row[name]</p>";
-                                //     // echo "helo";
-                                // }   
-                            ?>
+                            <?php echo $result['description']; ?>
                             <!-- If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
                             If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
                             If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
@@ -132,19 +127,31 @@
                         <div class="agent-container">
                             <div class="agent-title">Agent</div>
                             <div class="agent-info-container">
-                                <div class="agent-name">Dianne Psi</div>
+                                <div class="agent-name">
+                                    Dianne Psi
+                                    <!-- <?php echo $result["agentName"]; ?> -->
+                                </div>
                                 <hr>
                                 <div class="agent-phone-container">
                                     <div class="agent-icon" id="agent-phone-icon">icon</div>
-                                    <div class="agent-info-content" id="agent-phonenumber">+27 82 555 5555</div>
+                                    <div class="agent-info-content" id="agent-phonenumber">
+                                        +27 82 555 5555
+                                        <!-- <?php echo $result["agentPhoneNumber"]; ?> -->
+                                    </div>
                                 </div>
                                 <div class="agent-email-container">
                                     <div class="agent-icon" id="agent-email-icon">icon</div>
-                                    <div class="agent-info-content" id="agent-email">diannepsi@property.co.za</div>
+                                    <div class="agent-info-content" id="agent-email">
+                                        diannepsi@property.co.za
+                                        <!-- <?php echo $result["agentEmail"]; ?> -->
+                                    </div>
                                 </div>
                                 <div>
                                     <div class="agent-icon" id="agent-company-icon">icon</div>
-                                    <div class="agent-info-content" id="agent-company">Property Co</div>
+                                    <div class="agent-info-content" id="agent-company">
+                                        Property Co
+                                        <!-- <?php echo $result["agentCompany"]; ?> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>   
