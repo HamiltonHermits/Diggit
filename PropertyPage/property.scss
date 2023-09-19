@@ -195,7 +195,7 @@ main {
     display: flex;
     flex-direction: column;
     width: 50%;
-    gap: 2em;
+    gap: 1em;
     padding: 0.5em 2em 2em 2em;
 
     background-color: var(--inner-box-color);
@@ -330,9 +330,9 @@ main {
 #amenity-parent-container {
     margin: 6em 0 0 0;
 
-    * {
-        border: red 1px solid;
-    }
+    // * {
+    //     border: red 1px solid;
+    // }
 
     hr {
         width: 100%;
@@ -352,6 +352,17 @@ main {
             flex-direction: column;
             justify-content: space-between;
             gap: 2em;
+        }
+    }
+
+    #picture-name-container {
+        display: flex;
+        align-items: center;
+        gap: 3em;
+        img {
+            width: 200px;
+            height: 200px;
+            background-color: var(--main-color);
         }
     }
     

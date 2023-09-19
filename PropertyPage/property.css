@@ -171,7 +171,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 50%;
-  gap: 2em;
+  gap: 1em;
   padding: 0.5em 2em 2em 2em;
   background-color: var(--inner-box-color);
 }
@@ -295,9 +295,6 @@ main {
 #amenity-parent-container {
   margin: 6em 0 0 0;
 }
-#amenity-parent-container * {
-  border: red 1px solid;
-}
 #amenity-parent-container hr {
   width: 100%;
 }
@@ -314,6 +311,16 @@ main {
   flex-direction: column;
   justify-content: space-between;
   gap: 2em;
+}
+#amenity-parent-container #picture-name-container {
+  display: flex;
+  align-items: center;
+  gap: 3em;
+}
+#amenity-parent-container #picture-name-container img {
+  width: 200px;
+  height: 200px;
+  background-color: var(--main-color);
 }
 #amenity-parent-container #show-all-container {
   display: flex;

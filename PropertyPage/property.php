@@ -15,9 +15,41 @@
     // Get the results
     $result = $stmt->get_result();
     $result = $result->fetch_assoc();
-    
-    // Close the database connection
     $stmt->close();
+
+    // Prepare and execute the SQL query for property_amenity
+    $stmtAmenity = $conn->prepare("SELECT * FROM property_amenity");
+    $stmtAmenity->execute();
+    $resultAmenity = $stmtAmenity->get_result();
+    $propertyAmenities = $resultAmenity->fetch_all(MYSQLI_ASSOC);
+    $stmtAmenity->close();
+
+    $amenityNames = array();
+    // Loop through each entry in $propertyAmenities
+    foreach ($propertyAmenities as $amenity) {
+        $amenityId = $amenity['amenityId'];
+
+        // Prepare and execute the SQL query for amenity_test
+        $stmtAmenityTest = $conn->prepare("SELECT amenityName FROM amenity_test WHERE amenityId = ?");
+        $stmtAmenityTest->bind_param("s", $amenityId);
+        $stmtAmenityTest->execute();
+
+        // Get the result
+        $resultAmenityTest = $stmtAmenityTest->get_result();
+
+        // Fetch the data
+        $amenityTestData = $resultAmenityTest->fetch_assoc();
+
+        $amenityNames[$amenityId] = $amenityTestData['amenityName'];
+
+        // Print the amenityName
+        // echo "Amenity ID: $amenityId, Amenity Name: " . $amenityTestData['amenityName'] . "<br>";
+
+        // Close the statement for amenity_test
+        $stmtAmenityTest->close();
+    }
+
+    // Close the database connection
     $conn->close();
 
 ?>
@@ -189,51 +221,13 @@
                     <div id="amenity-item-container">
                         <div id="amenity-item-inner-container">
                             <?php 
-                                // Prepare and execute the SQL query
-                                $stmt = $conn->prepare("SELECT * FROM property_amenity WHERE prop_id = ?");
-                                $stmt->bind_param("s", $propId);
-                                $stmt->execute();
-
-                                // Get the results
-                                $result = $stmt->get_result();
-                                $result = $result->fetch_assoc();
-
-                                while ($row = mysqli_fetch_array($result)) {
-                                    if ($row['amenity_name']) {
-                                        echo " <div class=\"amenity-item\">
-                                                    <img src=\"#\" alt=\"\">[] {$row['amenity_name']} 
-                                               </div>";
-                                    }  
+                                foreach ($amenityNames as $amenity) {
+                                    echo " <div class=\"amenity-item\">
+                                                <img src=\"#\" alt=\"\">[] $amenity
+                                           </div>
+                                         ";
                                 }
-                                
-                                // SELECT * FROM property_amenity WHERE prop_id = $propId
-                                // loop thru this DBOs
-                                // 
                             ?>
-                            <div class="amenity-item">
-                                <img src="#" alt="">[] Wifi  
-                            </div>
-                            <div class="amenity-item">
-                                <img src="#" alt="">[] Parking  
-                            </div>
-                            <div class="amenity-item">
-                                <img src="#" alt="">[] Water tank
-                            </div>
-                            <div class="amenity-item">
-                                <img src="#" alt="">[] Laundry
-                            </div>
-                            <div class="amenity-item">
-                                <img src="#" alt="">[] Electric Stove
-                            </div>
-                            <div class="amenity-item">
-                                <img src="#" alt="">[] Gas Stove
-                            </div>
-                            <div class="amenity-item">
-                                <img src="#" alt="">[] Fridge
-                            </div>
-                            <div class="amenity-item">
-                                <img src="#" alt="">[] Microwave
-                            </div>
                         </div>
                     </div>      
                     <div id="show-all-container">
@@ -244,9 +238,35 @@
                     <div class="title" id="landlord-title">Landlord</div>
                     <hr>
                     <div id="picture-name-container">
+                        <img src="#" alt="">
+                        <div>Dianna Psi</div>
                     </div>
                     <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
                     <div id="rating-bars-container">
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Politeness
+                            </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Quality of repair
+                            </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Response Time
+                            </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
+                            </div>
+                        </div>
                     </div>
                     <div id="overall-rating-container">
                 </div>   
