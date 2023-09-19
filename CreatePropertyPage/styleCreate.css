@@ -125,7 +125,7 @@ main {
   justify-content: space-between;
   align-items: center;
   width: 35%;
-  min-width: 300px;
+  min-width: 200px;
   max-height: 50px;
   height: 2em;
   padding: 0 1em 0 1em;
@@ -167,7 +167,8 @@ main {
   display: flex;
   flex-direction: column;
   width: 50%;
-  gap: 1vh;
+  min-width: 200px;
+  gap: 1em;
   padding: 0.5em 2em 2em 2em;
   background-color: var(--inner-box-color);
 }
@@ -201,9 +202,7 @@ main {
 }
 .parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container {
   display: grid;
-  width: 100%;
-  height: -moz-max-content;
-  height: max-content;
+  height: 100%;
   padding: 1vw;
   font-size: calc(12px + 0.2vw);
   background-color: var(--main-color);
@@ -224,6 +223,7 @@ main {
   display: grid;
   gap: 3px;
   font-size: calc(10px + 0.2vw);
+  width: 100%;
 }
 .parent-container .boxes-container .right-box .top-container .contact-container .contact-info-container .contact-form #message {
   resize: none;
@@ -233,6 +233,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 50%;
+  min-width: 200px;
   gap: 2em;
   padding: 0.5em 2em 2em 2em;
   background-color: var(--inner-box-color);
@@ -328,6 +329,14 @@ a {
   opacity: 1; /* Firefox */
 }
 
+@media screen and (max-width: 800px) {
+  .logo-container {
+    display: none;
+  }
+  .background-sidebar-container {
+    display: none;
+  }
+}
 @media screen and (max-width: 1156px) {
   .parent-container {
     height: 88.75em;
