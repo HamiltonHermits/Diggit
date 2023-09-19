@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,800;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,800;1,400&display=swap");
 
 :root {
     --bg-sidebar-cont-width: 15%;
     --main-width: 85%;
 
     --sidebar-color: #202024;
-    --main-color: #29292C;
+    --main-color: #29292c;
     --container-box-color: #202024;
     --inner-box-color: #202024;
-    --global-font-color: #D9D9D9;
-    --orange: #AD5511;
+    --global-font-color: #d9d9d9;
+    --orange: #ad5511;
 }
 
 body {
@@ -53,7 +53,7 @@ body {
 
 .logo-container {
     margin-top: 2vh;
-    height:fit-content;
+    height: fit-content;
     #logo {
         display: flex;
         flex-direction: row;
@@ -69,9 +69,9 @@ body {
         }
         #it {
             color: var(--orange);
-            font-family: Suez One; 
-            top:2px;
-            position: relative; 
+            font-family: Suez One;
+            top: 2px;
+            position: relative;
         }
     }
 }
@@ -81,8 +81,8 @@ body {
     margin-bottom: 5vh;
     display: flex;
     padding: 0.5em 0 0.5em 1.5em;
-    .settings{
-        gap:0.6em;
+    .settings {
+        gap: 0.6em;
         display: flex;
     }
     // justify-content: center;
@@ -92,28 +92,24 @@ body {
     display: grid;
     font-size: calc(15px + 0.3vw);
     position: absolute;
-    top:30%; 
+    top: 30%;
     .page-indicator-inner-container {
         flex-direction: column;
         display: flex;
-        gap:15px;
+        gap: 15px;
         .page-indicator {
             display: inline-flex;
             flex-direction: row;
             gap: 0.6em;
             padding: 0.5em 0 0.5em 1.5em;
-            border-radius:  10px 0 0 10px;
+            border-radius: 10px 0 0 10px;
         }
     }
 }
 
 .current-page-bg-effect {
-    background: linear-gradient(90deg, rgba(173,85,17,1) 0%, rgba(32,32,36,1) 16.12%);
-
+    background: linear-gradient(90deg, rgba(173, 85, 17, 1) 0%, rgba(32, 32, 36, 1) 16.12%);
 }
-
-
-
 
 //////////--------------------------------------------------------------------------------------------//////////
 
@@ -145,26 +141,25 @@ main {
         .borderSearchBar {
             display: flex;
             width: 100%;
-            gap: 0.5em;  
+            gap: 0.5em;
             #dropdown {
                 position: absolute;
                 margin: 1.7em 0 0 0;
                 width: 25.5%;
             }
-            #searchbar{
+            #searchbar {
                 width: 100%;
-                
+
                 background-color: var(--orange);
                 border: none;
                 color: var(--global-font-color);
             }
-            
+
             #searchButton {
                 background-color: #00000000;
                 // border: none;
             }
         }
-        
     }
 }
 
@@ -185,39 +180,82 @@ main {
             width: 50%;
             gap: 3em;
             padding: 0.5em 2em 2em 2em;
-        
+
             background-color: var(--inner-box-color);
+            .email-btn-container {
+                display: flex;
+                justify-content: right;
+                height: 5%;
+            }
+
+            .bottom-container {
+                height: 47.5%;
+                .map-container {
+                    height: 100%;
+                    background-color: var(--main-color);
+                }
+            }
             .top-container {
                 display: flex;
                 gap: 2em;
                 height: 47.5%;
-                .agent-container{
+
+                .agent-container {
                     display: flex;
                     flex-direction: column;
                     gap: 1em;
                     width: 100%;
+                    .agent-container hr {
+                        width: 100%;
+                    }
                     .agent-title {
                         justify-content: center;
+                    }
+                    .agent-info-container {
+                        display: grid;
+                        width: 100%;
+                        padding: 1vw;
+                        font-size: calc(12px + 0.2vw);
+
+                        background-color: var(--main-color);
+                        .agent-text-container{
+                            display: inline-flex;
+                            gap:0.5em;
+                        }
                     }
                 }
                 .contact-container {
                     display: flex;
                     flex-direction: column;
-                    gap: 1.5em;
+                    // gap: 1.5em;
                     width: 100%;
+                    .contact-title {
+                        text-align: center;
+                    }
+                    .contact-info-container {
+                        .contact-form {
+                            display: grid;
+                            gap:3px;
+                            font-size: calc(10px + 0.2vw);
+
+                            #message {
+                                resize: none;
+                                height: 5em;
+                            }
+                        }
+                    }
                 }
             }
-            
         }
-        .left-box{
+        .left-box {
             display: flex;
             flex-direction: column;
             width: 50%;
             gap: 2em;
             padding: 0.5em 2em 2em 2em;
-        
+
             background-color: var(--inner-box-color);
-            .prop-title-container{
+            .prop-title-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -230,7 +268,7 @@ main {
                 width: 100%;
                 height: 47.5%;
                 // text-align: center;
-            
+
                 background-color: var(--main-color);
                 .prop-images {
                     width: 100%;
@@ -257,78 +295,16 @@ main {
     }
 }
 
-
-
 // .agent-container * { //make all children of agent-container flex
 //     display: flex;
 //     gap: 0.5em;
 // }
-
-.agent-info-container, .contact-info-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.agent-info-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    display: flex;
-    padding: 1em;
-
-    background-color: var(--main-color);
-}
-
-.agent-container hr {
-    width: 100%;
-}
-
-.contact-title {
-    text-align: center;
-}
-
-.contact-info-container {
-    gap: 3em;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-}
-
-#message-label {
-    margin: 1em 0 0 0;
-}
-
-#message {
-    resize: none;
-    height: 6em;
-    // height: 20%;
-}
-
-.email-btn-container {
-    display: flex;
-    justify-content: right;
-    height: 5%;
-}
-
-.bottom-container {
-    height: 47.5%;
-}
-
-.map-container {
-    height: 100%;
-    background-color: var(--main-color);
-}
-
 
 //////////--------------------------------------------------------------------------------------------//////////
 
 #amenity-parent-container {
     margin: 6em 0 0 0;
 }
-
 
 //////////--------------------------------------------------------------------------------------------//////////
 
@@ -349,9 +325,9 @@ main {
     border-radius: 50px;
 }
 
-// *:hover { 
+// *:hover {
 //     outline:1px blue solid;
-//   } 
+//   }
 
 //////////--------------------------------------------------------------------------------------------//////////
 
@@ -367,20 +343,21 @@ a {
 
 /* Track */
 ::-webkit-scrollbar-track {
-background: #f1f1f100;
+    background: #f1f1f100;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-background: var(--global-font-color);
+    background: var(--global-font-color);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-background: whitesmoke;
+    background: whitesmoke;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: var(--global-font-color);
     opacity: 1; /* Firefox */
 }
@@ -392,7 +369,8 @@ background: whitesmoke;
         height: 88.75em;
     }
 
-    .left-box, .right-box {
+    .left-box,
+    .right-box {
         height: 50%;
         width: 90%;
     }
@@ -403,7 +381,7 @@ background: whitesmoke;
         width: auto;
 
         //the property below is the secret sauce to make image and map grow after resize
-        height: 100%;  
+        height: 100%;
 
         gap: 2em;
     }

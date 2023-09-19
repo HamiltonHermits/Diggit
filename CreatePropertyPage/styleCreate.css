@@ -3,11 +3,11 @@
   --bg-sidebar-cont-width: 15%;
   --main-width: 85%;
   --sidebar-color: #202024;
-  --main-color: #29292C;
+  --main-color: #29292c;
   --container-box-color: #202024;
   --inner-box-color: #202024;
-  --global-font-color: #D9D9D9;
-  --orange: #AD5511;
+  --global-font-color: #d9d9d9;
+  --orange: #ad5511;
 }
 
 body {
@@ -171,6 +171,18 @@ main {
   padding: 0.5em 2em 2em 2em;
   background-color: var(--inner-box-color);
 }
+.parent-container .boxes-container .right-box .email-btn-container {
+  display: flex;
+  justify-content: right;
+  height: 5%;
+}
+.parent-container .boxes-container .right-box .bottom-container {
+  height: 47.5%;
+}
+.parent-container .boxes-container .right-box .bottom-container .map-container {
+  height: 100%;
+  background-color: var(--main-color);
+}
 .parent-container .boxes-container .right-box .top-container {
   display: flex;
   gap: 2em;
@@ -182,14 +194,39 @@ main {
   gap: 1em;
   width: 100%;
 }
+.parent-container .boxes-container .right-box .top-container .agent-container .agent-container hr {
+  width: 100%;
+}
 .parent-container .boxes-container .right-box .top-container .agent-container .agent-title {
   justify-content: center;
+}
+.parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container {
+  display: grid;
+  width: 100%;
+  padding: 1vw;
+  font-size: calc(12px + 0.2vw);
+  background-color: var(--main-color);
+}
+.parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container .agent-text-container {
+  display: inline-flex;
+  gap: 0.5em;
 }
 .parent-container .boxes-container .right-box .top-container .contact-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
   width: 100%;
+}
+.parent-container .boxes-container .right-box .top-container .contact-container .contact-title {
+  text-align: center;
+}
+.parent-container .boxes-container .right-box .top-container .contact-container .contact-info-container .contact-form {
+  display: grid;
+  gap: 3px;
+  font-size: calc(10px + 0.2vw);
+}
+.parent-container .boxes-container .right-box .top-container .contact-container .contact-info-container .contact-form #message {
+  resize: none;
+  height: 5em;
 }
 .parent-container .boxes-container .left-box {
   display: flex;
@@ -230,62 +267,6 @@ main {
   width: 90%;
   max-height: 90%; /* Set the maximum height at which scrolling will occur */
   overflow-y: auto; /* Enable vertical scrolling if necessary */
-}
-
-.agent-info-container, .contact-info-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.agent-info-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  display: flex;
-  padding: 1em;
-  background-color: var(--main-color);
-}
-
-.agent-container hr {
-  width: 100%;
-}
-
-.contact-title {
-  text-align: center;
-}
-
-.contact-info-container {
-  gap: 3em;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-}
-
-#message-label {
-  margin: 1em 0 0 0;
-}
-
-#message {
-  resize: none;
-  height: 6em;
-}
-
-.email-btn-container {
-  display: flex;
-  justify-content: right;
-  height: 5%;
-}
-
-.bottom-container {
-  height: 47.5%;
-}
-
-.map-container {
-  height: 100%;
-  background-color: var(--main-color);
 }
 
 #amenity-parent-container {
@@ -334,12 +315,14 @@ a {
   background: whitesmoke;
 }
 
-::-moz-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::-moz-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--global-font-color);
   opacity: 1; /* Firefox */
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--global-font-color);
   opacity: 1; /* Firefox */
 }
@@ -348,7 +331,8 @@ a {
   .parent-container {
     height: 88.75em;
   }
-  .left-box, .right-box {
+  .left-box,
+  .right-box {
     height: 50%;
     width: 90%;
   }
