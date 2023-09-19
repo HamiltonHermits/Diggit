@@ -27,14 +27,11 @@ function registerUser($username, $password, $email, $firstname, $lastname)
     $email = mysqli_real_escape_string($conn, $email);
 
     // Check if the username or email already exists
-    $checkUsernameQuery = "SELECT * FROM user WHERE user_name = ? OR email = ?";
-    $stmt = mysqli_prepare($conn, $checkUsernameQuery);
-    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    $checkUsernameQuery = "SELECT * FROM user WHERE user_name = '$username' OR email = '$email'";
+    $result = mysqli_query($conn, $checkUsernameQuery);
 
     if (!$result) {
-        return array('registered' => false, 'error' => 'Database error: '. mysqli_error($conn));
+        return array('registered' => false, 'error' => 'Database error: ' . mysqli_error($conn));
     }
 
     if (mysqli_num_rows($result) > 0) {
@@ -53,13 +50,12 @@ function registerUser($username, $password, $email, $firstname, $lastname)
 
     // Insert the new user into the database
     $insertUserQuery = "INSERT INTO user (user_name, password, first_name, last_name, is_admin, is_agent, email, is_deleted) 
-    VALUES (?, ?, ?, ?, '0', '0', ?,'0')";
-    $stmt = mysqli_prepare($conn, $insertUserQuery);
-    mysqli_stmt_bind_param($stmt, "ssssss", $username, $hashedPassword, $firstname, $lastname, $email);
-    
-    if (mysqli_stmt_execute($stmt)) {
+    VALUES ('$username', '$hashedPassword', '$firstname', '$lastname', '0', '0', '$email', '0')";
+
+    $result = mysqli_query($conn, $insertUserQuery) or die("FAILED: ". mysqli_error($conn));
+
+    if ($result) {
         $user_id = mysqli_insert_id($conn);
-        mysqli_stmt_close($stmt);
         return array(
             'registered' => true,
             'user_id' => $user_id,
@@ -68,7 +64,6 @@ function registerUser($username, $password, $email, $firstname, $lastname)
             'email' => $email
         );
     } else {
-        mysqli_stmt_close($stmt);
-        return array('registered' => false, 'error' => 'Registration failed: ' . mysqli_stmt_error($stmt));
+        return array('registered' => false, 'error' => 'Registration failed: ' . mysqli_error($conn));
     }
 }

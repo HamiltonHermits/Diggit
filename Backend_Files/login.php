@@ -31,6 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION["user_id"] = $authResult['user_id'];
             $_SESSION["username"] = $authResult['username'];
+            $_SESSION["fullName"] = $authResult['fullName'];
+            $_SESSION["email"] = $authResult['email'];
+
+
             $_SESSION["authenticated"] = true;
 
 
@@ -42,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Invalid credentials, sends through error message in the session
 
             $_SESSION["authenticated"] = false;
-            $_SESSION['login_error'] = "Invalid username or password.";
+            $_SESSION['login_error'] = $authResult['error'];
             header("Location: ../IndexPage/index.php");
 
             exit;
