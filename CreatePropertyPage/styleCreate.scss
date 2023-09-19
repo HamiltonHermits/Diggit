@@ -166,7 +166,7 @@ main {
 //////////--------------------------------------------------------------------------------------------//////////
 
 .parent-container {
-    height: calc(100vh - 10em);
+    height: 75vh;
 
     background-color: var(--main-color);
     .boxes-container {
@@ -178,7 +178,7 @@ main {
             display: flex;
             flex-direction: column;
             width: 50%;
-            gap: 3em;
+            gap:1vh;
             padding: 0.5em 2em 2em 2em;
 
             background-color: var(--inner-box-color);
@@ -198,7 +198,7 @@ main {
             .top-container {
                 display: flex;
                 gap: 2em;
-                height: 47.5%;
+                // height: 47.5%;
 
                 .agent-container {
                     display: flex;
@@ -214,6 +214,7 @@ main {
                     .agent-info-container {
                         display: grid;
                         width: 100%;
+                        height:max-content;
                         padding: 1vw;
                         font-size: calc(12px + 0.2vw);
 
@@ -266,7 +267,7 @@ main {
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                height: 47.5%;
+                height: 30%;
                 // text-align: center;
 
                 background-color: var(--main-color);
