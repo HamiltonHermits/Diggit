@@ -16,25 +16,29 @@ include_once('password_check.php');
  * @return array An associative array with registration status and user information.
  */
 
-function registerUser($username, $password)
+// ... (previous code)
+
+function registerUser($username, $password, $email, $firstname, $lastname)
 {
-    global $conn; // Assuming you have a database connection in database_connect.php
+    global $conn;
 
-    // Sanitize the username to prevent potential SQL injection
+    // Sanitize and validate input
     $username = mysqli_real_escape_string($conn, $username);
+    $email = mysqli_real_escape_string($conn, $email);
 
-    // Check if the username already exists
-    $checkUsernameQuery = "SELECT * FROM login_testing WHERE username = '$username'";
-    $result = mysqli_query($conn, $checkUsernameQuery);
+    // Check if the username or email already exists
+    $checkUsernameQuery = "SELECT * FROM user WHERE user_name = ? OR email = ?";
+    $stmt = mysqli_prepare($conn, $checkUsernameQuery);
+    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
     if (!$result) {
-        // Error occurred during query execution
-        return array('registered' => false, 'error' => 'Database error.');
+        return array('registered' => false, 'error' => 'Database error: '. mysqli_error($conn));
     }
 
     if (mysqli_num_rows($result) > 0) {
-        // Username already exists, return an error
-        return array('registered' => false, 'error' => 'Username already exists.');
+        return array('registered' => false, 'error' => 'Username or email already exists.');
     }
 
     // Perform password strength test using function isPasswordStrong($password)
@@ -48,15 +52,23 @@ function registerUser($username, $password)
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Insert the new user into the database
-    $insertUserQuery = "INSERT INTO login_testing (username, password) VALUES ('$username', '$hashedPassword')";
-
-    if (mysqli_query($conn, $insertUserQuery)) {
-        // Registration successful, return user information
+    $insertUserQuery = "INSERT INTO user (user_name, password, first_name, last_name, is_admin, is_agent, email, is_deleted) 
+    VALUES (?, ?, ?, ?, '0', '0', ?,'0')";
+    $stmt = mysqli_prepare($conn, $insertUserQuery);
+    mysqli_stmt_bind_param($stmt, "ssssss", $username, $hashedPassword, $firstname, $lastname, $email);
+    
+    if (mysqli_stmt_execute($stmt)) {
         $user_id = mysqli_insert_id($conn);
-        return array('registered' => true, 'user_id' => $user_id, 'username' => $username);
+        mysqli_stmt_close($stmt);
+        return array(
+            'registered' => true,
+            'user_id' => $user_id,
+            'username' => $username,
+            'fullName' => $firstname . " " . $lastname,
+            'email' => $email
+        );
     } else {
-        // Registration failed, return an error
-        return array('registered' => false, 'error' => 'Registration failed.');
+        mysqli_stmt_close($stmt);
+        return array('registered' => false, 'error' => 'Registration failed: ' . mysqli_stmt_error($stmt));
     }
 }
-?>

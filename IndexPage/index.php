@@ -3,8 +3,9 @@
 session_start();
 
 $login_username_value = "";
-
 $signup_username_value = "";
+$signup_email_value = "";
+
 $isAuthenticated = false;
 // Check if a login error message exists
 if (isset($_SESSION['login_error'])) {
@@ -17,6 +18,7 @@ if (isset($_SESSION['login_error'])) {
 if (isset($_SESSION['signup_error'])) {
     $signup_error_message = $_SESSION['signup_error'];
     $signup_username_value = isset($_SESSION['username']) ? $_SESSION['username'] : "";
+    $signup_email_value = isset($_SESSION['email']) ? $_SESSION['email'] : "";
     // Clear the error message from the session
     unset($_SESSION['signup_error']);
 }
@@ -37,7 +39,7 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
     <script defer src="index.js"></script>
 </head>
 <nav class="nav" id="nav">
-    <div class="navContainer"id= "navContainer">
+    <div class="navContainer" id="navContainer">
         <div class="dash" id="dash"><svg viewBox="0 0 61 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_30_602" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="61" height="50">
                     <rect width="61" height="50" fill="#D9D9D9" />
@@ -49,11 +51,11 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
         </div>
         <!-- Personalised Search page if authenticated-->
         <?php if ($isAuthenticated) : ?>
-            <!-- Added temp code to just logout if you need it
-            <form action="../BackendFilesLogin/logout.php" method="post">
+             
+            <form action="../Backend_Files/logout.php" method="post">
                 <button type="submit" class="loginButton">Logout</button>
             </form>
-            -->
+            
             <div class="loginContainer" id="profile">
                 <button type="menu" class="loginButton" id="loginButton"></button>
             </div>
@@ -68,11 +70,11 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
 </nav>
 
 <body>
-    <div class="mainContainer"id="mainContainer">
+    <div class="mainContainer" id="mainContainer">
         <div class="logoContainer" id="logoContainer">
-            <img class="mainLogoImage" id= "mainLogoImage" src="./ImagesIndex/mainLogo.png">
+            <img class="mainLogoImage" id="mainLogoImage" src="./ImagesIndex/mainLogo.png">
         </div>
-        <div class="searchBarContainer"id="searchBarContainer">
+        <div class="searchBarContainer" id="searchBarContainer">
             <div class="borderSearchBar" id="borderSearchBar">
                 <button type="submit" class="searchButton" id="searchButton">
                     <svg class="svgSearch" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,11 +127,19 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
                     <?php echo '<script>signupModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
-                <!-- Example signup form -->
+                <!-- Signup form fields -->
                 <form id="signupForm" action="../Backend_Files/signUp.php" method="POST">
                     <!-- Signup form fields -->
                     <label for="newUsername">Username:</label>
                     <input type="text" id="newUsername" name="newUsername" value="<?php echo htmlspecialchars($signup_username_value); ?>" placeholder="Username" required><br>
+                    <label for="newEmail">Email:</label>
+                    <input type="email" id="newEmail" name="newEmail" value="<?php echo htmlspecialchars($signup_email_value); ?>" placeholder="example@gmail.com" required><br>
+
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="e.g: Klark" required><br>
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="e.g: Kent" required><br>
+
                     <label for="newPassword">Password:</label>
                     <input type="password" id="newPassword" name="newPassword" placeholder="Password" required><br>
                     <label for="passwordConfirm">Confirm Password:</label>
