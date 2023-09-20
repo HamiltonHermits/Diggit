@@ -224,12 +224,12 @@ main {
   justify-content: center;
 }
 .parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container {
-  display: grid;
+  display: flex;
   height: 100%;
   padding: 1vw;
   font-size: calc(2px + 1vw);
+  flex-wrap: wrap;
   border-radius: 15px;
-  white-space: pre-wrap;
   background-color: var(--main-color);
 }
 .parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container .agent-text-container {
