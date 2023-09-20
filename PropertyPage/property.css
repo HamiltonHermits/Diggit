@@ -224,7 +224,7 @@ main {
   justify-content: center;
 }
 .parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container {
-  display: flex;
+  display: grid;
   height: 100%;
   padding: 1vw;
   font-size: calc(2px + 1vw);
@@ -421,9 +421,9 @@ a {
   main {
     width: 100vw;
   }
-  .left-box,
-  .right-box {
+  .left-box, .right-box {
     height: 50%;
+    width: 80%;
   }
   .boxes-container {
     flex-direction: column;
@@ -437,15 +437,12 @@ a {
     overflow: scroll;
   }
 }
-@media screen and (max-width: 1156px) and (max-width: 800px) {
+@media screen and (max-width: 800px) {
   .logo-container {
     display: none;
   }
   .background-sidebar-container {
     display: none;
-  }
-  .left-box, .right-box {
-    width: 80%;
   }
 }
 /*# sourceMappingURL=property.css.map */

@@ -7,15 +7,25 @@
     $propId = $_GET["id"];
     // $propId = "1";
 
-    // Prepare and execute the SQL query
+    // Get property
     $stmt = $conn->prepare("SELECT * from searchbar_testing WHERE ID = ?");
     $stmt->bind_param("s", $propId);
     $stmt->execute();
 
-    // Get the results
     $result = $stmt->get_result();
     $result = $result->fetch_assoc();
     $stmt->close();
+
+    //Get user who created property
+    $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name
+                                 FROM usertbl
+                                 JOIN property ON usertbl.user_id = property.createdBy; ");
+    // $stmtUser->bind_param("s", $propId);
+    $stmtUser->execute();
+
+    $resultUser = $stmtUser->get_result();
+    $resultUser = $resultUser->fetch_assoc();
+    $stmtUser->close();
 
     // Get amenities for property
     $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenityName
@@ -188,29 +198,25 @@
                             <div class="agent-title">Agent</div>
                             <div class="agent-info-container">
                                 <div class="agent-name">
-                                    Dianne Psi
-                                    <!-- <?php echo $result["agentName"]; ?> -->
+                                    <?php echo $resultUser['first_name']; ?>
                                 </div>
-                                <hr>
+                                <!-- <hr> -->
                                 <div class="agent-text-container">
                                     <div class="agent-icon" id="agent-phone-icon">icon</div>
                                     <div class="agent-info-content" id="agent-phonenumber">
-                                        +27 82 555 5555
-                                        <!-- <?php echo $result["agentPhoneNumber"]; ?> -->
+                                        <?php echo $resultUser['agent_phone']; ?>
                                     </div>
                                 </div>
                                 <div class="agent-text-container">
                                     <div class="agent-icon" id="agent-email-icon">icon</div>
                                     <div class="agent-info-content" id="agent-email">
-                                        diannepsi@property.co.za
-                                        <!-- <?php echo $result["agentEmail"]; ?> -->
+                                        <?php echo $resultUser['email']; ?>
                                     </div>
                                 </div>
                                 <div class="agent-text-container">
                                     <div class="agent-icon" id="agent-company-icon">icon</div>
                                     <div class="agent-info-content" id="agent-company">
-                                        Property Co
-                                        <!-- <?php echo $result["agentCompany"]; ?> -->
+                                        <?php echo $resultUser['agent_company']; ?>
                                     </div>
                                 </div>
                             </div>

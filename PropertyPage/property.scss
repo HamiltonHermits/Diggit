@@ -237,7 +237,7 @@ main {
                     }
                     .agent-info-container {
                         // width: 100%;
-                        display: flex;
+                        display: grid;
                         height: 100%;
                         padding: 1vw;
                         font-size: calc(2px + 1vw);
@@ -470,10 +470,9 @@ a {
     main {
         width: 100vw;
     }
-    .left-box,
-    .right-box {
+    .left-box, .right-box {
         height: 50%;
-        // width: 100%;
+        width: 80%;
     }
     .boxes-container {
         flex-direction: column;
@@ -490,17 +489,18 @@ a {
         height: 15em;
         overflow: scroll;
     }
-    @media screen and (max-width: 800px) {
-        .logo-container {
-            display: none;
-        }
-        .background-sidebar-container {
-            display: none;
-        }
-        .left-box,.right-box{
-            width:80%;
-        }
+}
+
+@media screen and (max-width: 800px) {
+    .logo-container {
+        display: none;
     }
+    .background-sidebar-container {
+        display: none;
+    }
+    // .left-box,.right-box{
+    //     width: 80%;
+    // }
 }
 
 /*# sourceMappingURL=property.css.map */
