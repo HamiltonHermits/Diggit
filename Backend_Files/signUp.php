@@ -38,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 session_start();
                 $_SESSION["user_id"] = $registrationResult['user_id'];
                 $_SESSION["username"] = $registrationResult['username'];
-                $_SESSION["user_id"] = $registrationResult['user_id'];
                 $_SESSION["fullName"] = $registrationResult['fullName'];
                 $_SESSION["email"] = $registrationResult['email'];
                 $_SESSION["authenticated"] = true;

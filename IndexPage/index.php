@@ -51,14 +51,11 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
         </div>
         <!-- Personalised Search page if authenticated-->
         <?php if ($isAuthenticated) : ?>
-             
-            <form action="../Backend_Files/logout.php" method="post">
-                <button type="submit" class="loginButton">Logout</button>
-            </form>
-            
-            <div class="loginContainer" id="profile">
-                <button type="menu" class="loginButton" id="loginButton"></button>
+
+            <div class="profileContainer" id="profile">
+                <button id="openModalBtn">Open Profile Modal</button>
             </div>
+
         <?php else : ?>
 
             <div class="loginContainer" id="login">
@@ -148,6 +145,58 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
                 </form>
             </div>
         </div>
+
+        <!-- The profile modal (hidden by default) -->
+        <div id="profileModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModalBtn">&times;</span>
+                <img id="profileImage" src="../ImagesIndex/User.png" alt="Profile Picture">
+                <h2 id="username"><?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
+                <p id="fullName"><?php if (isset($_SESSION['fullName'])) echo $_SESSION['fullName']; ?></p>
+                <p id="email"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
+
+                <button id="changePasswordBtn">Change Password</button>
+
+                <button id="deleteProfileBtn">Delete Profile</button>
+                
+                <form action="../Backend_Files/logout.php" method="post">
+                    <button type="submit" class="loginButton">Logout</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Change Password Modal -->
+        <div id="changePasswordModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeChangePasswordModalBtn">&times;</span>
+                <h2>Change Password</h2>
+                <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
+                    <label for="currentPassword">Current Password:</label>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
+
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+
+                    <label for="confirmPassword">Confirm New Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+                    <button type="submit">Change Password</button>
+                </form>
+            </div>
+        </div>
+        <!-- Confirm Delete Modal -->
+        <div id="confirmDeleteModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeDeleteModalBtn">&times;</span>
+                <h2>Confirm Delete</h2>
+                <p>Are you sure you want to delete your profile?</p>
+                <form action="../Backend_Files/deleteProfile.php" method="post">
+                    <button type="submit" class="deleteButton">Yes, Delete</button>
+                </form>
+                <button id="cancelDeleteBtn">Cancel</button>
+            </div>
+        </div>
+
     </div>
 
     <script src="index.js"></script>

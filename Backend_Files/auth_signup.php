@@ -27,7 +27,7 @@ function registerUser($username, $password, $email, $firstname, $lastname)
     $email = mysqli_real_escape_string($conn, $email);
 
     // Check if the username or email already exists
-    $checkUsernameQuery = "SELECT * FROM user WHERE user_name = '$username' OR email = '$email'";
+    $checkUsernameQuery = "SELECT * FROM usertbl WHERE user_name = '$username' OR email = '$email'";
     $result = mysqli_query($conn, $checkUsernameQuery);
 
     if (!$result) {
@@ -35,6 +35,8 @@ function registerUser($username, $password, $email, $firstname, $lastname)
     }
 
     if (mysqli_num_rows($result) > 0) {
+        //need to check that it is deleted or not
+
         return array('registered' => false, 'error' => 'Username or email already exists.');
     }
 
@@ -49,7 +51,7 @@ function registerUser($username, $password, $email, $firstname, $lastname)
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Insert the new user into the database
-    $insertUserQuery = "INSERT INTO user (user_name, password, first_name, last_name, is_admin, is_agent, email, is_deleted) 
+    $insertUserQuery = "INSERT INTO usertbl (user_name, password, first_name, last_name, is_admin, is_agent, email, is_deleted) 
     VALUES ('$username', '$hashedPassword', '$firstname', '$lastname', '0', '0', '$email', '0')";
 
     $result = mysqli_query($conn, $insertUserQuery) or die("FAILED: ". mysqli_error($conn));
