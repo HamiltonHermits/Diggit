@@ -126,6 +126,15 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 1em 0 0 0;
+    .profile-container {
+        right: 3%;
+        position: relative;
+        .profile {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
     .searchbar-container {
         display: flex;
         justify-content: space-between;
@@ -179,14 +188,26 @@ main {
             flex-direction: column;
             width: 50%;
             min-width: 200px;
-            gap:1em;
+            gap: 1em;
             padding: 0.5em 2em 2em 2em;
-
+            border-radius: 15px;
             background-color: var(--inner-box-color);
+
             .email-btn-container {
                 display: flex;
                 justify-content: right;
-                height: 5%;
+                height: 7%;
+                .email-agent-button {
+                    cursor: pointer;
+                    border-radius: 25px;
+                    border-color: var(--orange);
+                    background: none;
+                    height: 100%;
+                    font-size: calc(7px + 0.6vw);
+                    font-family: "Poppins";
+                    font-weight: 600;
+                    color: var(--global-font-color);
+                }
             }
 
             .bottom-container {
@@ -194,12 +215,14 @@ main {
                 .map-container {
                     height: 100%;
                     background-color: var(--main-color);
+                    border-radius: 15px;
                 }
             }
+
             .top-container {
                 display: flex;
-                gap: 2em;
-                // height: 47.5%;
+                gap: 1em;
+                height: 47.5%;
 
                 .agent-container {
                     display: flex;
@@ -215,14 +238,15 @@ main {
                     .agent-info-container {
                         display: grid;
                         // width: 100%;
-                        height:100%;
+                        height: 100%;
                         padding: 1vw;
-                        font-size: calc(12px + 0.2vw);
-
+                        font-size: calc(2px + 1vw);
+                        border-radius: 15px;
+                        white-space: pre-wrap;
                         background-color: var(--main-color);
-                        .agent-text-container{
+                        .agent-text-container {
                             display: inline-flex;
-                            gap:0.5em;
+                            gap: 0.5em;
                         }
                     }
                 }
@@ -230,18 +254,42 @@ main {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
+
                     .contact-title {
                         text-align: center;
                     }
                     .contact-info-container {
+                        height: 100%;
+
                         .contact-form {
                             display: grid;
-                            gap:3px;
-                            font-size: calc(10px + 0.2vw);
+                            gap: 3px;
+
+                            font-size: calc(8px + 0.2vw);
                             width: 100%;
+                            height: 100%;
+                            .contactTextField {
+                                border-radius: 9px;
+                                // height: 1.5em;
+                                background: #29292c;
+                                border: none;
+                                font-family: Poppins;
+                                font-size: calc(8px + 0.2vw);
+                                font-style: normal;
+                                font-weight: 250;
+                                line-height: normal;
+                            }
                             #message {
                                 resize: none;
                                 height: 5em;
+                                border-radius: 15px;
+                                background: #29292c;
+                                border: none;
+                                font-family: Poppins;
+                                font-size: calc(8px + 0.2vw);
+                                font-style: normal;
+                                font-weight: 250;
+                                line-height: normal;
                             }
                         }
                     }
@@ -254,6 +302,7 @@ main {
             width: 50%;
             min-width: 200px;
             gap: 2em;
+            border-radius: 15px;
             padding: 0.5em 2em 2em 2em;
 
             background-color: var(--inner-box-color);
@@ -267,6 +316,7 @@ main {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                border-radius: 15px;
                 width: 100%;
                 height: 30%;
                 // text-align: center;
@@ -322,6 +372,7 @@ main {
     position: fixed;
     bottom: 0;
     right: 0;
+    z-index: 99;
     margin: 0 2em 0.6em 0;
     padding: 1.5em 2em 1.5em 2em;
     border-radius: 50px;
@@ -365,26 +416,19 @@ a {
 }
 
 //////////--------------------------------------------------------------------------------------------//////////
-@media screen and (max-width:800px) {
-    .logo-container {
-        display: none;
-    }
-    .background-sidebar-container {
-        display: none;
-    }
-    
-}
+
 @media screen and (max-width: 1156px) {
     .parent-container {
         height: 88.75em;
     }
-
+    main {
+        width: 100vw;
+    }
     .left-box,
     .right-box {
         height: 50%;
-        width: 90%;
+        // width: 100%;
     }
-
     .boxes-container {
         flex-direction: column;
         align-items: center;
@@ -399,6 +443,17 @@ a {
     .prop-desc {
         height: 15em;
         overflow: scroll;
+    }
+    @media screen and (max-width: 800px) {
+        .logo-container {
+            display: none;
+        }
+        .background-sidebar-container {
+            display: none;
+        }
+        .left-box,.right-box{
+            width:80%;
+        }
     }
 }
 
