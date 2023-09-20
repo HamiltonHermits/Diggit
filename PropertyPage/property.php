@@ -19,7 +19,7 @@
     //Get agent details who created property
     $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company
                                  FROM usertbl
-                                 JOIN property ON usertbl.user_id = property.createdBy; ");
+                                 JOIN property ON usertbl.user_id = property.created_by; ");
     // $stmtUser->bind_param("s", $propId);
     $stmtUser->execute();
 
@@ -28,15 +28,39 @@
     $stmtUser->close();
 
     // Get amenities for property
-    $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenityName
+    $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name
                                     FROM hamiltonhermits.amenity_test
-                                    INNER JOIN property_amenity ON amenity_test.amenityId = property_amenity.amenityId
-                                    WHERE property_amenity.propId = ?;
+                                    INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
+                                    WHERE property_amenity.prop_id = ?;
                                   ");
     $stmtAmenity->bind_param("s", $propId);
     $stmtAmenity->execute();
     $resultAmenity = $stmtAmenity->get_result();
     $stmtAmenity->close();
+
+
+    // Get reviews for property
+    $stmtReview = $conn->prepare(" SELECT review.written_review
+                                   FROM hamiltonhermits.review
+                                   JOIN hamiltonhermits.usertbl ON review.user_id=usertbl.user_id
+                                   WHERE usertbl.user_id = ?;
+                                 ");
+     $stmtReview->bind_param("s", $propId);
+     $stmtReview->execute();
+     $resultReview = $stmtReview->get_result();
+     $stmtReview->close();
+
+     // Get reviewer's name for property
+    $stmtReviewerName = $conn->prepare(" SELECT usertbl.username
+                                   FROM hamiltonhermits.usertbl
+                                   JOIN hamiltonhermits.review ON usertbl.user_id=review.user_id
+                                   WHERE review.user_id= ?;
+                                ");
+    $stmtReviewerName->bind_param("s", $propId);
+    $stmtReviewerName->execute();
+    $resultReviewerName = $stmtReviewerName->get_result();
+    $stmtReviewerName->close();
+ 
 
     // Close the database connection
     $conn->close();
@@ -258,7 +282,7 @@
                             <?php 
                                 while ($row = mysqli_fetch_array($resultAmenity)) {
                                     echo " <div class=\"amenity-item\">
-                                                <img src=\"#\" alt=\"\">[] {$row['amenityName']}
+                                                <img src=\"#\" alt=\"\">[] {$row['amenity_name']}
                                            </div>";
                                 }
                             ?>
@@ -306,6 +330,35 @@
                 </div>   
             </div>
         </div>
+
+        <!-- work in progress for comment section -->
+       
+    <div class="comment-section">
+        <h2>Comments</h2>
+        <?php
+        // Assuming $resultReview and $resultReviewerName are result objects from your SQL queries
+        // Fetch the comments and reviewer names separately
+        $comments = $resultReview->fetch_all(MYSQLI_ASSOC);
+        $reviewerNames = $resultReviewerName->fetch_all(MYSQLI_ASSOC);
+
+        // Check if both queries returned data
+        if ($comments && $reviewerNames) {
+            // Loop through comments and reviewer names
+            for ($i = 0; $i < count($comments); $i++) {
+                $comment = $comments[$i];
+                $userRow = $reviewerNames[$i];
+
+                echo '<div class="comment">';
+                echo '<strong>' . htmlspecialchars($userRow['username']) . ':</strong>';
+                echo '<p>' . htmlspecialchars($comment['written_review']) . '</p>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>No comments available.</p>';
+        }
+    ?>
+
+        <!-- work in progress for comment section -->
 
         <div class="rate-prop-btn-container">
             <button class="rate-property">
