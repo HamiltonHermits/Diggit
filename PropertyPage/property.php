@@ -16,8 +16,8 @@
     $result = $result->fetch_assoc();
     $stmt->close();
 
-    //Get user who created property
-    $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name
+    //Get agent details who created property
+    $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company
                                  FROM usertbl
                                  JOIN property ON usertbl.user_id = property.createdBy; ");
     // $stmtUser->bind_param("s", $propId);
@@ -198,13 +198,13 @@
                             <div class="agent-title">Agent</div>
                             <div class="agent-info-container">
                                 <div class="agent-name">
-                                    <?php echo $resultUser['first_name']; ?>
+                                    <?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?>
                                 </div>
                                 <!-- <hr> -->
                                 <div class="agent-text-container">
                                     <div class="agent-icon" id="agent-phone-icon">icon</div>
                                     <div class="agent-info-content" id="agent-phonenumber">
-                                        <?php echo $resultUser['agent_phone']; ?>
+                                    <?php echo "{$resultUser['agent_phone']}"; ?>
                                     </div>
                                 </div>
                                 <div class="agent-text-container">
