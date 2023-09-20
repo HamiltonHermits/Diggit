@@ -334,30 +334,73 @@
         <!-- work in progress for comment section -->
        
     <div class="comment-section">
-        <h2>Comments</h2>
-        <?php
-        // Assuming $resultReview and $resultReviewerName are result objects from your SQL queries
-        // Fetch the comments and reviewer names separately
+    <h2>Comments</h2>
+    <label for="sort-comments">Sort by:</label>
+    <select name="sort-comments" id="sort-comments">
+        <option value="desc">Highest Rating</option>
+        <option value="asc">Lowest Rating</option>
+        <option value="oldest">Oldest Comment</option>
+        <option value="newest">Newest Comment</option>
+    </select>
+
+    <?php
+        // Define the default sorting order
+        $sortOrder = "DESC"; // Highest rating by default
+        $orderBy = "avg_prop_review"; // Default sorting column
+
+        // Check if the select input value has changed (using JavaScript)
+        echo '<script>
+                document.getElementById("sort-comments").addEventListener("change", function() {
+                    var selectedValue = this.value;
+                    window.location.href = "property.php?sort=" + selectedValue;
+                });
+              </script>';
+
+        // Check if a sorting option is specified in the URL
+        if (isset($_GET['sort'])) {
+            $sortValue = $_GET['sort'];
+            if ($sortValue === 'asc') {
+                $sortOrder = 'ASC';
+                $orderBy = 'avg_prop_review';
+            } elseif ($sortValue === 'oldest') {
+                $sortOrder = 'ASC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            } elseif ($sortValue === 'newest') {
+                $sortOrder = 'DESC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            }
+        }
+
+        // Assuming $resultReview is a result object from your SQL query
+        // Fetch comments ordered by selected option
+        $sql = "SELECT written_review, date_reviewed FROM review ORDER BY $orderBy $sortOrder ;";
+        $result = $conn->query($sql);
         $comments = $resultReview->fetch_all(MYSQLI_ASSOC);
         $reviewerNames = $resultReviewerName->fetch_all(MYSQLI_ASSOC);
-
-        // Check if both queries returned data
-        if ($comments && $reviewerNames) {
-            // Loop through comments and reviewer names
-            for ($i = 0; $i < count($comments); $i++) {
-                $comment = $comments[$i];
-                $userRow = $reviewerNames[$i];
-
+        // Check if there are comments
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
                 echo '<div class="comment">';
-                echo '<strong>' . htmlspecialchars($userRow['username']) . ':</strong>';
-                echo '<p>' . htmlspecialchars($comment['written_review']) . '</p>';
+                echo '<strong>' . htmlspecialchars($reviewerNames['username']) . ':</strong>';
+                echo '<p>' . htmlspecialchars($row['written_review']) . '</p>';
+                // Display average rating as filled-in stars
+                $averageRating = $row['avg_prop_review']; // Replace with your actual average rating value
+                echo '<p>Average Rating: ';
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $averageRating) {
+                        echo '<span class="star-filled">&#9733;</span>';
+                    } else {
+                        echo '<span class="star-unfilled">&#9733;</span>';
+                    }
+                }
+                echo '</p>';
                 echo '</div>';
             }
         } else {
             echo '<p>No comments available.</p>';
         }
     ?>
-
+</div>
         <!-- work in progress for comment section -->
 
         <div class="rate-prop-btn-container">
