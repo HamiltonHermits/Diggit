@@ -26,6 +26,15 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
     // User is authenticated, show authenticated content
     $isAuthenticated = true;
 }
+
+if (isset($_SESSION['changePasswordError'])) {
+    $changePasswordError = $_SESSION['changePasswordError'];
+    unset($_SESSION['changePasswordError']);
+}
+if (isset($_SESSION['profileMessage'])) {
+    $profileMessage = $_SESSION['profileMessage'];
+    unset($_SESSION['changePasswordError']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -149,6 +158,12 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
         <!-- The profile modal (hidden by default) -->
         <div id="profileModal" class="modal">
             <div class="modal-content">
+
+                <?php if (isset($$profileMessage)) { ?>
+                    <p><?php echo $$profileMessage; ?></p>
+                    <?php echo '<script>profileModal.style.display = "block";</script>'; ?>
+                <?php } ?>
+
                 <span class="close" id="closeModalBtn">&times;</span>
                 <img id="profileImage" src="../ImagesIndex/User.png" alt="Profile Picture">
                 <h2 id="username"><?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
@@ -158,7 +173,7 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
                 <button id="changePasswordBtn">Change Password</button>
 
                 <button id="deleteProfileBtn">Delete Profile</button>
-                
+
                 <form action="../Backend_Files/logout.php" method="post">
                     <button type="submit" class="loginButton">Logout</button>
                 </form>
@@ -168,14 +183,20 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
         <!-- Change Password Modal -->
         <div id="changePasswordModal" class="modal">
             <div class="modal-content">
+
+                <?php if (isset($changePasswordError)) { ?>
+                    <p><?php echo $changePasswordError; ?></p>
+                    <?php echo '<script>changePasswordModal.style.display = "block";</script>'; ?>
+                <?php } ?>
+
                 <span class="close" id="closeChangePasswordModalBtn">&times;</span>
                 <h2>Change Password</h2>
                 <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
                     <label for="currentPassword">Current Password:</label>
                     <input type="password" id="currentPassword" name="currentPassword" required>
 
-                    <label for="newPassword">New Password:</label>
-                    <input type="password" id="newPassword" name="newPassword" required>
+                    <label for="changeNewPassword">New Password:</label>
+                    <input type="password" id="changeNewPassword" name="changeNewPassword" required>
 
                     <label for="confirmPassword">Confirm New Password:</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" required>

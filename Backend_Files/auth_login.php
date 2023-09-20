@@ -23,7 +23,7 @@ function authenticateUser($username, $password)
     $username = mysqli_real_escape_string($conn, $username);
 
     // Retrieve the hashed password from the database for the given username
-    $getHashedPasswordQuery = "SELECT user_id, user_name, first_name, last_name, email ,is_admin , is_agent, password FROM usertbl WHERE user_name = '$username'";
+    $getHashedPasswordQuery = "SELECT user_id, username, first_name, last_name, email ,is_admin , is_agent, password FROM usertbl WHERE username = '$username'";
     //querry the database
     $result = mysqli_query($conn, $getHashedPasswordQuery);
 
@@ -36,7 +36,7 @@ function authenticateUser($username, $password)
         // User found, retrieve the hashed password from the result
         $row = mysqli_fetch_assoc($result);
         $user_id = $row['user_id'];
-        $db_username = $row['user_name'];
+        $db_username = $row['username'];
         $hashedPasswordFromDB = $row['password'];
         $name = $row['first_name']." ". $row['last_name'];
         $email = $row['email'];
