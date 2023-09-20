@@ -30,8 +30,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($password == $confirmPass) {
             // Perform user registration using a function 
-            $registrationResult = registerUser($username, $password,$email,$firstname,$lastname);
 
+            //if the user is already in the table we are just going to update there information
+            $getUser = "SELECT * FROM usertbl WHERE username = '$username'";
+            //query the database
+            $result = mysqli_query($conn, $getUser);
+            
+            if (!$result) {
+                die("Error in SQL query: " . mysqli_error($conn));
+            }
+
+            if (mysqli_num_rows($result) === 1) {
+                $row = mysqli_fetch_assoc($result);
+                $user_id = $row['user_id'];
+                //update there information
+                $registrationResult = reRegisterUser($user_id,$username, $password, $email, $firstname, $lastname);
+            } else {
+                //else we register them as new user
+                $registrationResult = registerUser($username, $password, $email, $firstname, $lastname);
+            }
             // Check if it was registered
             if ($registrationResult['registered']) {
                 // Registration successful, set up a session or handle as needed

@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //authenticate the user with your db 
         $authResult = authenticateUser($username, $password);
 
-        // Validate user credentials (you would perform actual validation)
+        // Validate user credentials
         if ($authResult['authenticated']) {
             // Valid credentials, set up a session or store user information in cookies
             session_start();

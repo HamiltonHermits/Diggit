@@ -165,7 +165,7 @@ if (isset($_SESSION['profileMessage'])) {
                 <?php } ?>
 
                 <span class="close" id="closeModalBtn">&times;</span>
-                <img id="profileImage" src="../ImagesIndex/User.png" alt="Profile Picture">
+                <img id="profileImage" style="max-width: 10vh;" src="ImagesIndex/User.png" alt="Profile Picture">
                 <h2 id="username"><?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
                 <p id="fullName"><?php if (isset($_SESSION['fullName'])) echo $_SESSION['fullName']; ?></p>
                 <p id="email"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
