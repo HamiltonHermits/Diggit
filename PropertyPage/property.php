@@ -4,20 +4,43 @@
     include_once('../Backend_Files/database_connect.php');
 
     //Get property id
-    // $propId = $_GET["id"];
-    $propId = "1";
+    $propId = $_GET["id"];
+    // $propId = "1";
 
-    // Prepare and execute the SQL query
+    // Get property
     $stmt = $conn->prepare("SELECT * from searchbar_testing WHERE ID = ?");
     $stmt->bind_param("s", $propId);
     $stmt->execute();
 
-    // Get the results
     $result = $stmt->get_result();
     $result = $result->fetch_assoc();
-    
-    // Close the database connection
     $stmt->close();
+
+    //Get agent details who created property
+    $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company
+                                 FROM usertbl
+                                 JOIN property ON usertbl.user_id = property.created_by 
+                                 WHERE property.prop_id = ?;
+                               ");
+    $stmtUser->bind_param("s", $propId);
+    $stmtUser->execute();
+
+    $resultUser = $stmtUser->get_result();
+    $resultUser = $resultUser->fetch_assoc();
+    $stmtUser->close();
+
+    // Get amenities for property
+    $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name
+                                    FROM hamiltonhermits.amenity_test
+                                    INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
+                                    WHERE property_amenity.prop_id = ?;
+                                  ");
+    $stmtAmenity->bind_param("s", $propId);
+    $stmtAmenity->execute();
+    $resultAmenity = $stmtAmenity->get_result();
+    $stmtAmenity->close();
+
+    // Close the database connection
     $conn->close();
 
 ?>
@@ -151,10 +174,13 @@
                         </div>
                     </div>
                     <div class="prop-images-container">
-                        <div class="prop-images">property images</div>
+                        <div class="prop-images">
+                            <img src="./propertyImages/<?php echo $result['image']; ?>" alt="property image">
+                        </div>
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
+                            <?php echo $result['description']; ?>
                             <!-- If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
                             If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
                             If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
@@ -173,24 +199,32 @@
                         <div class="agent-container">
                             <div class="agent-title">Agent</div>
                             <div class="agent-info-container">
-                                <div class="agent-name">Dianne Psi</div>
-                                <hr>
+                                <div class="agent-name">
+                                    <?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?>
+                                </div>
+                                <!-- <hr> -->
                                 <div class="agent-text-container">
                                     <div class="agent-icon" id="agent-phone-icon">icon</div>
-                                    <div class="agent-info-content" id="agent-phonenumber">+27 82 555 5555</div>
+                                    <div class="agent-info-content" id="agent-phonenumber">
+                                    <?php echo "{$resultUser['agent_phone']}"; ?>
+                                    </div>
                                 </div>
                                 <div class="agent-text-container">
                                     <div class="agent-icon" id="agent-email-icon">icon</div>
-                                    <div class="agent-info-content" id="agent-email">diannepsi@property.co.za</div>
+                                    <div class="agent-info-content" id="agent-email">
+                                        <?php echo $resultUser['email']; ?>
+                                    </div>
                                 </div>
                                 <div class="agent-text-container">
                                     <div class="agent-icon" id="agent-company-icon">icon</div>
-                                    <div class="agent-info-content" id="agent-company">Property Co</div>
+                                    <div class="agent-info-content" id="agent-company">
+                                        <?php echo $resultUser['agent_company']; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="contact-container">
-                            <div class="contact-title">Contact</div>
+                            <div class="title">Contact</div>
                             <div class="contact-info-container">
                                 <form action="" class="contact-form">
                                     <label for="details">Your Details</label>
@@ -216,6 +250,71 @@
             </div>
         </div>
 
+        <div class="parent-container" id="amenity-parent-container">
+            <div class="boxes-container">
+                <div class="left-box" id="left-box-amenity">
+                    <div class="title" id="amenity-title">
+                        Amenity
+                        <hr>
+                    </div>
+
+                    <div id="amenity-item-container">
+                        <div id="amenity-item-inner-container">
+                            <?php 
+                                $amenityCount = 0;
+                                while ($row = mysqli_fetch_array($resultAmenity)) {
+                                    echo " <div class=\"amenity-item\">
+                                                <img src=\"#\" alt=\"\">[] {$row['amenity_name']}
+                                           </div>";
+                                    $amenityCount++;
+                                }
+                            ?>
+                        </div>
+                    </div>      
+                    <div id="show-all-container">
+                        <input type="button" name="show-all-btn" value="show all (<?php echo $amenityCount?>)" id="show-all-btn">
+                    </div>                  
+                </div>
+                <div class="right-box" id="right-box-amenity">
+                    <div class="title" id="landlord-title">
+                        Landlord
+                        <hr>
+                    </div>
+                    <div id="picture-name-container">
+                        <img src="#" alt="">
+                        <div><?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?></div>
+                    </div>
+                    <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
+                    <div id="rating-bars-container">
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Politeness
+                            </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Quality of repair
+                            </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Response Time
+                            </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
+                            </div>
+                        </div>
+                    </div>
+                    <div id="overall-rating-container">
+                </div>   
+            </div>
+        </div>
 
         <div class="rate-prop-btn-container">
             <button class="rate-property">

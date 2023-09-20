@@ -33,9 +33,9 @@ document.addEventListener('click', function (event) {
 
 });
 
-function redirectToPage(apartment) {
-    // Replace 'logged_in_page.php' with the actual URL of your logged-in page
-    window.location.href = '../Backend_Files/logged_in_page.php';
+function redirectToPage(apartID) {
+    // Go to property page and pass apartment ID has query parameter
+    window.location.href = `../PropertyPage/property.php?id=${apartID}`;
 }
 
 // Add an event listener to detect changes in the search bar
@@ -87,7 +87,7 @@ searchbar.addEventListener("input", function() {
                         // Set the search bar value to the selected item
                         searchbar.value = apartment.name + ", " + apartment.location;
                         // Hide the dropdown
-                        redirectToPage();
+                        redirectToPage(apartment.ID);
                     });
                     //add a mouseover event listener to change the style of the dropdownitem
                     dropdownItem.addEventListener('mouseover', function() {
