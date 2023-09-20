@@ -29,7 +29,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diggit</title>
-    <link rel="stylesheet" href="styleCreate.css">
+    <link rel="stylesheet" href="property.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
 
@@ -40,7 +40,7 @@
 
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="create.js" defer></script>
+    <script src="property.js" defer></script>
 </head>
 
 <body>
@@ -147,7 +147,7 @@
                 <div class="left-box">
                     <div class="prop-title-container">
                         <div class="prop-title">
-                            <!-- <?php echo $result['name']; ?> -->
+                            <?php echo $result['name']; ?>
                         </div>
                     </div>
                     <div class="prop-images-container">
