@@ -19,8 +19,10 @@
     //Get agent details who created property
     $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company
                                  FROM usertbl
-                                 JOIN property ON usertbl.user_id = property.createdBy; ");
-    // $stmtUser->bind_param("s", $propId);
+                                 JOIN property ON usertbl.user_id = property.created_by 
+                                 WHERE property.prop_id = ?;
+                               ");
+    $stmtUser->bind_param("s", $propId);
     $stmtUser->execute();
 
     $resultUser = $stmtUser->get_result();
@@ -28,10 +30,10 @@
     $stmtUser->close();
 
     // Get amenities for property
-    $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenityName
+    $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name
                                     FROM hamiltonhermits.amenity_test
-                                    INNER JOIN property_amenity ON amenity_test.amenityId = property_amenity.amenityId
-                                    WHERE property_amenity.propId = ?;
+                                    INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
+                                    WHERE property_amenity.prop_id = ?;
                                   ");
     $stmtAmenity->bind_param("s", $propId);
     $stmtAmenity->execute();
@@ -251,29 +253,36 @@
         <div class="parent-container" id="amenity-parent-container">
             <div class="boxes-container">
                 <div class="left-box" id="left-box-amenity">
-                    <div class="title" id="amenity-title">Amenity</div>
-                    <hr> 
+                    <div class="title" id="amenity-title">
+                        Amenity
+                        <hr>
+                    </div>
+
                     <div id="amenity-item-container">
                         <div id="amenity-item-inner-container">
                             <?php 
+                                $amenityCount = 0;
                                 while ($row = mysqli_fetch_array($resultAmenity)) {
                                     echo " <div class=\"amenity-item\">
-                                                <img src=\"#\" alt=\"\">[] {$row['amenityName']}
+                                                <img src=\"#\" alt=\"\">[] {$row['amenity_name']}
                                            </div>";
+                                    $amenityCount++;
                                 }
                             ?>
                         </div>
                     </div>      
                     <div id="show-all-container">
-                        <input type="button" name="show-all-btn" value="show all (n)">
+                        <input type="button" name="show-all-btn" value="show all (<?php echo $amenityCount?>)" id="show-all-btn">
                     </div>                  
                 </div>
-                <div class="right-box">
-                    <div class="title" id="landlord-title">Landlord</div>
-                    <hr>
+                <div class="right-box" id="right-box-amenity">
+                    <div class="title" id="landlord-title">
+                        Landlord
+                        <hr>
+                    </div>
                     <div id="picture-name-container">
                         <img src="#" alt="">
-                        <div>Dianna Psi</div>
+                        <div><?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?></div>
                     </div>
                     <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
                     <div id="rating-bars-container">
