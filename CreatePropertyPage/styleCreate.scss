@@ -340,6 +340,10 @@ main {
                         overflow-y: auto; /* Enable vertical scrolling if necessary */
                         // overflow: scroll;
                         // overflow: hidden; /* Hide scrollbars */
+                        .description-text-field{
+                            background: none;
+                            color: red;
+                        }
                     }
                 }
             }

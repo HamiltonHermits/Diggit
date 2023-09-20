@@ -319,6 +319,10 @@ main {
   max-height: 90%; /* Set the maximum height at which scrolling will occur */
   overflow-y: auto; /* Enable vertical scrolling if necessary */
 }
+.parent-container .boxes-container .left-box .prop-images-container .prop-desc-container .prop-desc .description-text-field {
+  background: none;
+  color: red;
+}
 
 #amenity-parent-container {
   margin: 6em 0 0 0;
