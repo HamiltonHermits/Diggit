@@ -17,37 +17,16 @@
     $result = $result->fetch_assoc();
     $stmt->close();
 
-    // Prepare and execute the SQL query for property_amenity
-    $stmtAmenity = $conn->prepare("SELECT * FROM property_amenity");
+    // Get amenities for property
+    $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenityName
+                                    FROM hamiltonhermits.amenity_test
+                                    INNER JOIN property_amenity ON amenity_test.amenityId = property_amenity.amenityId
+                                    WHERE property_amenity.propId = ?;
+                                  ");
+    $stmtAmenity->bind_param("s", $propId);
     $stmtAmenity->execute();
     $resultAmenity = $stmtAmenity->get_result();
-    $propertyAmenities = $resultAmenity->fetch_all(MYSQLI_ASSOC);
     $stmtAmenity->close();
-
-    $amenityNames = array();
-    // Loop through each entry in $propertyAmenities
-    foreach ($propertyAmenities as $amenity) {
-        $amenityId = $amenity['amenityId'];
-
-        // Prepare and execute the SQL query for amenity_test
-        $stmtAmenityTest = $conn->prepare("SELECT amenityName FROM amenity_test WHERE amenityId = ?");
-        $stmtAmenityTest->bind_param("s", $amenityId);
-        $stmtAmenityTest->execute();
-
-        // Get the result
-        $resultAmenityTest = $stmtAmenityTest->get_result();
-
-        // Fetch the data
-        $amenityTestData = $resultAmenityTest->fetch_assoc();
-
-        $amenityNames[$amenityId] = $amenityTestData['amenityName'];
-
-        // Print the amenityName
-        // echo "Amenity ID: $amenityId, Amenity Name: " . $amenityTestData['amenityName'] . "<br>";
-
-        // Close the statement for amenity_test
-        $stmtAmenityTest->close();
-    }
 
     // Close the database connection
     $conn->close();
@@ -221,11 +200,10 @@
                     <div id="amenity-item-container">
                         <div id="amenity-item-inner-container">
                             <?php 
-                                foreach ($amenityNames as $amenity) {
+                                while ($row = mysqli_fetch_array($resultAmenity)) {
                                     echo " <div class=\"amenity-item\">
-                                                <img src=\"#\" alt=\"\">[] $amenity
-                                           </div>
-                                         ";
+                                                <img src=\"#\" alt=\"\">[] {$row['amenityName']}
+                                           </div>";
                                 }
                             ?>
                         </div>
