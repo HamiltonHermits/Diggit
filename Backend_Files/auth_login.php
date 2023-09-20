@@ -15,14 +15,15 @@ include_once('database_connect.php');
  * Note: Prepared statements should be used to prevent SQL injection.
  */
 
-function authenticateUser($username, $password) {
+function authenticateUser($username, $password)
+{
     global $conn;
 
     // Sanitize the username to prevent potential SQL injection
     $username = mysqli_real_escape_string($conn, $username);
 
     // Retrieve the hashed password from the database for the given username
-    $getHashedPasswordQuery = "SELECT user_id, username, password FROM login_testing WHERE username = '$username'";
+    $getHashedPasswordQuery = "SELECT user_id, username, first_name, last_name, email ,is_admin , is_agent, password, is_deleted FROM usertbl WHERE username = '$username'";
     //querry the database
     $result = mysqli_query($conn, $getHashedPasswordQuery);
 
@@ -31,18 +32,32 @@ function authenticateUser($username, $password) {
     }
 
     if (mysqli_num_rows($result) === 1) {
+        
         // User found, retrieve the hashed password from the result
         $row = mysqli_fetch_assoc($result);
         $user_id = $row['user_id'];
         $db_username = $row['username'];
         $hashedPasswordFromDB = $row['password'];
+        $name = $row['first_name']." ". $row['last_name'];
+        $email = $row['email'];
+        
+        $isDeleted = $row['is_deleted'];
 
+        if ($isDeleted){
+            return [
+                'authenticated' => false,
+                'error' => 'Invalid username or password.',
+            ];
+        }
+        
         // Use password_verify to check if the provided password matches the stored hashed password
         if (password_verify($password, $hashedPasswordFromDB)) {
             return [
                 'authenticated' => true,
                 'user_id' => $user_id,
                 'username' => $db_username,
+                'fullName' => $name,
+                'email' => $email,
             ]; // Passwords match, user authenticated
         }
     }

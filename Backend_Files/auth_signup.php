@@ -16,25 +16,27 @@ include_once('password_check.php');
  * @return array An associative array with registration status and user information.
  */
 
-function registerUser($username, $password)
+
+function registerUser($username, $password, $email, $firstname, $lastname)
 {
-    global $conn; // Assuming you have a database connection in database_connect.php
+    global $conn;
 
-    // Sanitize the username to prevent potential SQL injection
+    // Sanitize and validate input
     $username = mysqli_real_escape_string($conn, $username);
+    $email = mysqli_real_escape_string($conn, $email);
 
-    // Check if the username already exists
-    $checkUsernameQuery = "SELECT * FROM login_testing WHERE username = '$username'";
+    // Check if the username or email already exists
+    $checkUsernameQuery = "SELECT * FROM usertbl WHERE username = '$username' OR email = '$email'";
     $result = mysqli_query($conn, $checkUsernameQuery);
 
     if (!$result) {
-        // Error occurred during query execution
-        return array('registered' => false, 'error' => 'Database error.');
+        return array('registered' => false, 'error' => 'Database error: ' . mysqli_error($conn));
     }
 
     if (mysqli_num_rows($result) > 0) {
-        // Username already exists, return an error
-        return array('registered' => false, 'error' => 'Username already exists.');
+        //need to check that it is deleted or not
+
+        return array('registered' => false, 'error' => 'Username or email already exists.');
     }
 
     // Perform password strength test using function isPasswordStrong($password)
@@ -48,15 +50,72 @@ function registerUser($username, $password)
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Insert the new user into the database
-    $insertUserQuery = "INSERT INTO login_testing (username, password) VALUES ('$username', '$hashedPassword')";
+    $insertUserQuery = "INSERT INTO usertbl (username, password, first_name, last_name, is_admin, is_agent, email, is_deleted) 
+    VALUES ('$username', '$hashedPassword', '$firstname', '$lastname', '0', '0', '$email', '0')";
 
-    if (mysqli_query($conn, $insertUserQuery)) {
-        // Registration successful, return user information
+    $result = mysqli_query($conn, $insertUserQuery) or die("FAILED: " . mysqli_error($conn));
+
+    if ($result) {
         $user_id = mysqli_insert_id($conn);
-        return array('registered' => true, 'user_id' => $user_id, 'username' => $username);
+        return array(
+            'registered' => true,
+            'user_id' => $user_id,
+            'username' => $username,
+            'fullName' => $firstname . " " . $lastname,
+            'email' => $email
+        );
     } else {
-        // Registration failed, return an error
-        return array('registered' => false, 'error' => 'Registration failed.');
+        return array('registered' => false, 'error' => 'Registration failed: ' . mysqli_error($conn));
     }
 }
-?>
+function reRegisterUser($user_id, $username, $password, $email, $firstname, $lastname)
+{
+
+    global $conn;
+
+    // Sanitize and validate input
+    $username = mysqli_real_escape_string($conn, $username);
+    $email = mysqli_real_escape_string($conn, $email);
+
+    // Perform password strength test using function isPasswordStrong($password)
+    $pStrengthCheck = isPasswordStrong($password);
+
+    if (!$pStrengthCheck['strong_password']) {
+        return array('registered' => false, 'error' => $pStrengthCheck['error']);
+    }
+
+    // Hash the password securely
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert the new user into the database
+    $updateQuerry = "UPDATE usertbl
+        SET 
+        username = '$username',
+        password = '$hashedPassword',
+        first_name = '$firstname',
+        last_name = '$lastname',
+        is_admin = '0',
+        is_agent = '0',
+        email = '$email',
+        is_deleted = '0'
+        WHERE
+        user_id = $user_id";
+
+    // $insertUserQuery = "INSERT INTO usertbl (username, password, first_name, last_name, is_admin, is_agent, email, is_deleted) 
+    // VALUES ('$username', '$hashedPassword', '$firstname', '$lastname', '0', '0', '$email', '0')";
+
+    $result = mysqli_query($conn, $updateQuerry) or die("FAILED: " . mysqli_error($conn));
+
+    if ($result) {
+        $user_id = mysqli_insert_id($conn);
+        return array(
+            'registered' => true,
+            'user_id' => $user_id,
+            'username' => $username,
+            'fullName' => $firstname . " " . $lastname,
+            'email' => $email
+        );
+    } else {
+        return array('registered' => false, 'error' => 'Registration failed: ' . mysqli_error($conn));
+    }
+}

@@ -16,25 +16,47 @@ include_once('auth_signup.php');
  */
 // Check if the registration form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    error_log("we got into signup");
+    //error_log("we got into signup");
     // Check if the required form fields exist in $_POST
-    if (isset($_POST["newUsername"]) && isset($_POST["newPassword"]) && isset($_POST["passwordConfirm"])) {
+    if (isset($_POST["newUsername"]) && isset($_POST["newPassword"]) && isset($_POST["passwordConfirm"]) && isset($_POST["newEmail"]) && isset($_POST['firstName']) && isset($_POST['lastName'])) {
 
-        // Retrieve user input (e.g., username and password)
+        // Retrieve user input
         $username = $_POST["newUsername"];
         $password = $_POST["newPassword"];
         $confirmPass = $_POST["passwordConfirm"];
+        $email = $_POST["newEmail"];
+        $firstname = $_POST["firstName"];
+        $lastname = $_POST["lastName"];
 
         if ($password == $confirmPass) {
-            // Perform user registration using a function (auth_signup) similar to authentication
-            $registrationResult = registerUser($username, $password);
+            // Perform user registration using a function 
 
+            //if the user is already in the table we are just going to update there information
+            $getUser = "SELECT * FROM usertbl WHERE username = '$username'";
+            //query the database
+            $result = mysqli_query($conn, $getUser);
+            
+            if (!$result) {
+                die("Error in SQL query: " . mysqli_error($conn));
+            }
+
+            if (mysqli_num_rows($result) === 1) {
+                $row = mysqli_fetch_assoc($result);
+                $user_id = $row['user_id'];
+                //update there information
+                $registrationResult = reRegisterUser($user_id,$username, $password, $email, $firstname, $lastname);
+            } else {
+                //else we register them as new user
+                $registrationResult = registerUser($username, $password, $email, $firstname, $lastname);
+            }
             // Check if it was registered
             if ($registrationResult['registered']) {
                 // Registration successful, set up a session or handle as needed
                 session_start();
                 $_SESSION["user_id"] = $registrationResult['user_id'];
                 $_SESSION["username"] = $registrationResult['username'];
+                $_SESSION["fullName"] = $registrationResult['fullName'];
+                $_SESSION["email"] = $registrationResult['email'];
                 $_SESSION["authenticated"] = true;
 
                 // Stay on same page, but with updated sections
@@ -59,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Required fields not provided in the form
         session_start();
         $_SESSION["authenticated"] = false;
-        $_SESSION['signup_error'] = "Username and password are required.";
+        $_SESSION['signup_error'] = "Make sure to fill in every option";
         header("Location: ../IndexPage/index.php"); // Stay on same page, but with updated sections
         exit;
     }
