@@ -4,6 +4,7 @@
   --secondary_colour:#D9D9D9;
   --background_colour:#202024;
   --light_secondary_colour: #564B40;
+  --main-color: #29292c;
 }
 
 html {
@@ -179,12 +180,11 @@ body {
   /* Modal content styles */
 }
 .modal .modal-content {
-  background-color: #fefefe;
+  background-color: var(--background_colour);
   margin: 15% auto; /* Center the modal vertically and horizontally */
   padding: 20px;
   margin-top: 20vh;
   align-items: center;
-  border: 1px solid #888;
   width: 30%;
   height: auto;
   min-width: 20vh; /* Set a maximum width for the modal content */
@@ -194,8 +194,8 @@ body {
   /* Close button styles */
 }
 .modal .modal-content #loginButton, .modal .modal-content #signupButton {
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--main_colour);
+  color: var(--secondary_colour);
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -212,22 +212,29 @@ body {
   padding: 10px;
   cursor: pointer;
   font-size: 20px;
+  color: var(--secondary_colour);
 }
 
+.modalLabel {
+  color: var(--secondary_colour);
+}
+
+/* Login form styles */
 #username, #password, #newUsername, #newPassword {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid #ccc;
+  border: none;
   border-radius: 4px;
   font-size: 16px;
+  background-color: var(--main-color);
 }
 
 /* Submit button styles */
 #submitLogin, #submitSignup {
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--main_colour);
+  color: var(--secondary_colour);
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -240,13 +247,13 @@ body {
 }
 
 #submitLogin:hover {
-  background-color: #45a049;
+  background-color: var(--secondary_colour);
 }
 
 #submitSignup:hover {
-  background-color: #45a049;
+  background-color: var(--secondary_colour);
 }
 
 #signupButton:hover {
-  background-color: #45a049;
+  background-color: var(--secondary_colour);
 }/*# sourceMappingURL=stylesIndex.css.map */

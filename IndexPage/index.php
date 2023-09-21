@@ -96,7 +96,7 @@ if (isset($_SESSION['profileMessage'])) {
         <div id="loginModal" class="modal" style="display:none;">
             <div class="modal-content">
                 <span class="close" id="closeButton">&times;</span>
-                <h2>Login</h2>
+                <h2 class="modalLabel">Login</h2>
 
                 <!-- Display the error message if it exists -->
 
@@ -107,9 +107,9 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <form id="loginForm" action="../Backend_Files/login.php" method="POST">
                     <!-- Login form fields -->
-                    <label for="username">Username:</label>
+                    <label for="username" class="modalLabel">Username:</label>
                     <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($login_username_value); ?>" placeholder="Username" required><br>
-                    <label for="password">Password:</label>
+                    <label for="password" class="modalLabel">Password:</label>
                     <input type="password" id="password" name="password" placeholder="Password" required><br>
                     <input type="submit" id="submitLogin" value="Login">
                 </form>
@@ -124,7 +124,7 @@ if (isset($_SESSION['profileMessage'])) {
 
             <div class="modal-content">
                 <span class="close" id="closeSignupButton">&times;</span>
-                <h2>Signup</h2>
+                <h2 class="modalLabel">Signup</h2>
 
                 <!-- Display the error message if it exists -->
 
@@ -136,19 +136,19 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- Signup form fields -->
                 <form id="signupForm" action="../Backend_Files/signUp.php" method="POST">
                     <!-- Signup form fields -->
-                    <label for="newUsername">Username:</label>
+                    <label for="newUsername" class="modalLabel">Username:</label>
                     <input type="text" id="newUsername" name="newUsername" value="<?php echo htmlspecialchars($signup_username_value); ?>" placeholder="Username" required><br>
-                    <label for="newEmail">Email:</label>
+                    <label for="newEmail" class="modalLabel">Email:</label>
                     <input type="email" id="newEmail" name="newEmail" value="<?php echo htmlspecialchars($signup_email_value); ?>" placeholder="example@gmail.com" required><br>
 
-                    <label for="firstName">First Name:</label>
+                    <label for="firstName" class="modalLabel">First Name:</label>
                     <input type="text" id="firstName" name="firstName" placeholder="e.g: Klark" required><br>
-                    <label for="lastName">Last Name:</label>
+                    <label for="lastName" class="modalLabel">Last Name:</label>
                     <input type="text" id="lastName" name="lastName" placeholder="e.g: Kent" required><br>
 
-                    <label for="newPassword">Password:</label>
+                    <label for="newPassword" class="modalLabel">Password:</label>
                     <input type="password" id="newPassword" name="newPassword" placeholder="Password" required><br>
-                    <label for="passwordConfirm">Confirm Password:</label>
+                    <label for="passwordConfirm" class="modalLabel">Confirm Password:</label>
                     <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm Password" required><br>
                     <input type="submit" id="submitSignup" value="Signup">
                 </form>
