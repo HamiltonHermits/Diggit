@@ -62,7 +62,12 @@ if (isset($_SESSION['profileMessage'])) {
         <?php if ($isAuthenticated) : ?>
 
             <div class="profileContainer" id="profile">
-                <button id="openModalBtn">Open Profile Modal</button>
+                <button id="openModalBtn"><svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4.50202 18.875C5.49597 18.0625 6.60686 17.4219 7.83468 16.9531C9.0625 16.4844 10.3488 16.25 11.6935 16.25C13.0383 16.25 14.3246 16.4844 15.5524 16.9531C16.7802 17.4219 17.8911 18.0625 18.8851 18.875C19.5672 18.0208 20.0983 17.0521 20.4783 15.9688C20.8584 14.8854 21.0484 13.7292 21.0484 12.5C21.0484 9.72917 20.1373 7.36979 18.315 5.42188C16.4928 3.47396 14.2856 2.5 11.6935 2.5C9.10148 2.5 6.89432 3.47396 5.07208 5.42188C3.24983 7.36979 2.33871 9.72917 2.33871 12.5C2.33871 13.7292 2.52873 14.8854 2.90877 15.9688C3.28881 17.0521 3.81989 18.0208 4.50202 18.875ZM11.6935 13.75C10.5437 13.75 9.57409 13.3281 8.78478 12.4844C7.99546 11.6406 7.60081 10.6042 7.60081 9.375C7.60081 8.14583 7.99546 7.10938 8.78478 6.26562C9.57409 5.42188 10.5437 5 11.6935 5C12.8434 5 13.813 5.42188 14.6023 6.26562C15.3916 7.10938 15.7863 8.14583 15.7863 9.375C15.7863 10.6042 15.3916 11.6406 14.6023 12.4844C13.813 13.3281 12.8434 13.75 11.6935 13.75ZM11.6935 25C10.0759 25 8.55578 24.6719 7.13306 24.0156C5.71035 23.3594 4.47278 22.4688 3.42036 21.3438C2.36794 20.2188 1.53478 18.8958 0.920867 17.375C0.306956 15.8542 0 14.2292 0 12.5C0 10.7708 0.306956 9.14583 0.920867 7.625C1.53478 6.10417 2.36794 4.78125 3.42036 3.65625C4.47278 2.53125 5.71035 1.64062 7.13306 0.984375C8.55578 0.328125 10.0759 0 11.6935 0C13.3112 0 14.8313 0.328125 16.254 0.984375C17.6768 1.64062 18.9143 2.53125 19.9667 3.65625C21.0192 4.78125 21.8523 6.10417 22.4662 7.625C23.0801 9.14583 23.3871 10.7708 23.3871 12.5C23.3871 14.2292 23.0801 15.8542 22.4662 17.375C21.8523 18.8958 21.0192 20.2188 19.9667 21.3438C18.9143 22.4688 17.6768 23.3594 16.254 24.0156C14.8313 24.6719 13.3112 25 11.6935 25ZM11.6935 22.5C12.7265 22.5 13.7009 22.3385 14.6169 22.0156C15.5329 21.6927 16.371 21.2292 17.1311 20.625C16.371 20.0208 15.5329 19.5573 14.6169 19.2344C13.7009 18.9115 12.7265 18.75 11.6935 18.75C10.6606 18.75 9.68616 18.9115 8.77016 19.2344C7.85417 19.5573 7.01613 20.0208 6.25605 20.625C7.01613 21.2292 7.85417 21.6927 8.77016 22.0156C9.68616 22.3385 10.6606 22.5 11.6935 22.5ZM11.6935 11.25C12.2003 11.25 12.6193 11.0729 12.9506 10.7187C13.2819 10.3646 13.4476 9.91667 13.4476 9.375C13.4476 8.83333 13.2819 8.38542 12.9506 8.03125C12.6193 7.67708 12.2003 7.5 11.6935 7.5C11.1868 7.5 10.7678 7.67708 10.4365 8.03125C10.1052 8.38542 9.93952 8.83333 9.93952 9.375C9.93952 9.91667 10.1052 10.3646 10.4365 10.7187C10.7678 11.0729 11.1868 11.25 11.6935 11.25Z"
+                            fill="#AD5511" />
+                    </svg></button>
             </div>
 
         <?php else : ?>
@@ -137,19 +142,19 @@ if (isset($_SESSION['profileMessage'])) {
                 <form id="signupForm" action="../Backend_Files/signUp.php" method="POST">
                     <!-- Signup form fields -->
                     <label for="newUsername" class="modalLabel">Username:</label>
-                    <input type="text" id="newUsername" name="newUsername" value="<?php echo htmlspecialchars($signup_username_value); ?>" placeholder="Username" required><br>
+                    <input type="text" id="newUsername" name="newUsername" class="modalInput" value="<?php echo htmlspecialchars($signup_username_value); ?>" placeholder="Username" required>
                     <label for="newEmail" class="modalLabel">Email:</label>
-                    <input type="email" id="newEmail" name="newEmail" value="<?php echo htmlspecialchars($signup_email_value); ?>" placeholder="example@gmail.com" required><br>
+                    <input type="email" id="newEmail" name="newEmail" class="modalInput" value="<?php echo htmlspecialchars($signup_email_value); ?>" placeholder="example@gmail.com" required>
 
                     <label for="firstName" class="modalLabel">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" placeholder="e.g: Klark" required><br>
+                    <input type="text" id="firstName" name="firstName" class="modalInput" placeholder="e.g: Klark" required>
                     <label for="lastName" class="modalLabel">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" placeholder="e.g: Kent" required><br>
+                    <input type="text" id="lastName" name="lastName" class="modalInput" placeholder="e.g: Kent" required>
 
                     <label for="newPassword" class="modalLabel">Password:</label>
-                    <input type="password" id="newPassword" name="newPassword" placeholder="Password" required><br>
+                    <input type="password" id="newPassword" name="newPassword" class="modalInput" placeholder="Password" required>
                     <label for="passwordConfirm" class="modalLabel">Confirm Password:</label>
-                    <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm Password" required><br>
+                    <input type="password" id="passwordConfirm" name="passwordConfirm" class="modalInput" placeholder="Confirm Password" required>
                     <input type="submit" id="submitSignup" value="Signup">
                 </form>
             </div>
@@ -166,9 +171,9 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <span class="close" id="closeModalBtn">&times;</span>
                 <img id="profileImage" style="max-width: 10vh;" src="ImagesIndex/User.png" alt="Profile Picture">
-                <h2 id="username"><?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
-                <p id="fullName"><?php if (isset($_SESSION['fullName'])) echo $_SESSION['fullName']; ?></p>
-                <p id="email"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
+                <h2 id="usernameProfile" class ="modalLabel"><?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
+                <p id="fullNameProfile" class = "modalLabel"><?php if (isset($_SESSION['fullName'])) echo $_SESSION['fullName']; ?></p>
+                <p id="emailProfile" class = "modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
 
                 <button id="changePasswordBtn">Change Password</button>
 
