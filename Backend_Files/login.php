@@ -21,6 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve user input (e.g., username and password)
         $username = $_POST["username"];
         $password = $_POST["password"];
+        //used incase information was wrong
+        session_start();
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
 
         //authenticate the user with your db 
         $authResult = authenticateUser($username, $password);
@@ -29,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($authResult['authenticated']) {
             // Valid credentials, set up a session or store user information in cookies
             session_start();
+            //we dont want the password to be stored for security reasons
+            unset($_SESSION['password']);
             $_SESSION["user_id"] = $authResult['user_id'];
             $_SESSION["username"] = $authResult['username'];
             $_SESSION["fullName"] = $authResult['fullName'];

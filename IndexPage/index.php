@@ -24,6 +24,9 @@ if (isset($_SESSION['signup_error'])) {
 }
 if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
     // User is authenticated, show authenticated content
+    unset($_SESSION["newPassword"]);
+    unset($_SESSION["confirmPass"]);
+    unset($_SESSION['password']);
     $isAuthenticated = true;
 }
 
@@ -113,9 +116,9 @@ if (isset($_SESSION['profileMessage'])) {
                 <form id="loginForm" action="../Backend_Files/login.php" method="POST">
                     <!-- Login form fields -->
                     <label for="username" class="modalLabel">Username:</label>
-                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($login_username_value); ?>" placeholder="Username" required><br>
+                    <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required><br>
                     <label for="password" class="modalLabel">Password:</label>
-                    <input type="password" id="password" name="password" placeholder="Password" required><br>
+                    <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
                     <input type="submit" id="submitLogin" value="Login">
                 </form>
 
@@ -129,6 +132,7 @@ if (isset($_SESSION['profileMessage'])) {
 
             <div class="modal-content">
                 <span class="close" id="closeSignupButton">&times;</span>
+                <span class="back-arrow" style ="color:white;"id="backToLoginButton">&#8592;</span>
                 <h2 class="modalLabel">Signup</h2>
 
                 <!-- Display the error message if it exists -->
@@ -142,19 +146,19 @@ if (isset($_SESSION['profileMessage'])) {
                 <form id="signupForm" action="../Backend_Files/signUp.php" method="POST">
                     <!-- Signup form fields -->
                     <label for="newUsername" class="modalLabel">Username:</label>
-                    <input type="text" id="newUsername" name="newUsername" class="modalInput" value="<?php echo htmlspecialchars($signup_username_value); ?>" placeholder="Username" required>
+                    <input type="text" id="newUsername" name="newUsername" class="modalInput" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required>
                     <label for="newEmail" class="modalLabel">Email:</label>
-                    <input type="email" id="newEmail" name="newEmail" class="modalInput" value="<?php echo htmlspecialchars($signup_email_value); ?>" placeholder="example@gmail.com" required>
+                    <input type="email" id="newEmail" name="newEmail" class="modalInput" value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>" placeholder="example@gmail.com" required>
 
                     <label for="firstName" class="modalLabel">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" class="modalInput" placeholder="e.g: Klark" required>
+                    <input type="text" id="firstName" name="firstName" class="modalInput" value="<?php echo isset($_SESSION['firstName']) ? htmlspecialchars($_SESSION['firstName']) : ''; ?>" placeholder="e.g: Klark" required>
                     <label for="lastName" class="modalLabel">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" class="modalInput" placeholder="e.g: Kent" required>
+                    <input type="text" id="lastName" name="lastName" class="modalInput" value="<?php echo isset($_SESSION['lastName']) ? htmlspecialchars($_SESSION['lastName']) : ''; ?>" placeholder="e.g: Kent" required>
 
                     <label for="newPassword" class="modalLabel">Password:</label>
-                    <input type="password" id="newPassword" name="newPassword" class="modalInput" placeholder="Password" required>
+                    <input type="password" id="newPassword" name="newPassword" class="modalInput" value="<?php echo isset($_SESSION['newPassword']) ? htmlspecialchars($_SESSION['newPassword']) : ''; ?>" placeholder="Password" required>
                     <label for="passwordConfirm" class="modalLabel">Confirm Password:</label>
-                    <input type="password" id="passwordConfirm" name="passwordConfirm" class="modalInput" placeholder="Confirm Password" required>
+                    <input type="password" id="passwordConfirm" name="passwordConfirm" class="modalInput" value="<?php echo isset($_SESSION['confirmPass']) ? htmlspecialchars($_SESSION['confirmPass']) : ''; ?>" placeholder="Confirm Password" required>
                     <input type="submit" id="submitSignup" value="Signup">
                 </form>
             </div>
@@ -195,6 +199,8 @@ if (isset($_SESSION['profileMessage'])) {
                 <?php } ?>
 
                 <span class="close" id="closeChangePasswordModalBtn">&times;</span>
+                <span class="back-arrow" style ="color:white;"id="backToProfile">&#8592;</span>
+                
                 <h2>Change Password</h2>
                 <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
                     <label for="currentPassword">Current Password:</label>
@@ -214,6 +220,7 @@ if (isset($_SESSION['profileMessage'])) {
         <div id="confirmDeleteModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closeDeleteModalBtn">&times;</span>
+
                 <h2>Confirm Delete</h2>
                 <p>Are you sure you want to delete your profile?</p>
                 <form action="../Backend_Files/deleteProfile.php" method="post">

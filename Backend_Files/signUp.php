@@ -25,8 +25,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = $_POST["newPassword"];
         $confirmPass = $_POST["passwordConfirm"];
         $email = $_POST["newEmail"];
-        $firstname = $_POST["firstName"];
-        $lastname = $_POST["lastName"];
+        $firstName = $_POST["firstName"];
+        $lastName = $_POST["lastName"];
+
+        session_start();
+        $_SESSION["username"] = $username ;
+        $_SESSION["newPassword"] = $password ;
+        $_SESSION["confirmPass"] = $confirmPass ;
+        $_SESSION["email"] = $email ;
+        $_SESSION["firstName"] = $firstName ;
+        $_SESSION["lastName"] = $lastName ;
+        
 
         if ($password == $confirmPass) {
             // Perform user registration using a function 
@@ -35,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $getUser = "SELECT * FROM usertbl WHERE username = '$username'";
             //query the database
             $result = mysqli_query($conn, $getUser);
-            
+
             if (!$result) {
                 die("Error in SQL query: " . mysqli_error($conn));
             }
@@ -44,15 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = mysqli_fetch_assoc($result);
                 $user_id = $row['user_id'];
                 //update there information
-                $registrationResult = reRegisterUser($user_id,$username, $password, $email, $firstname, $lastname);
+                $registrationResult = reRegisterUser($user_id, $username, $password, $email, $firstName, $lastName);
             } else {
                 //else we register them as new user
-                $registrationResult = registerUser($username, $password, $email, $firstname, $lastname);
+                $registrationResult = registerUser($username, $password, $email, $firstName, $lastName);
             }
             // Check if it was registered
             if ($registrationResult['registered']) {
                 // Registration successful, set up a session or handle as needed
                 session_start();
+
+                unset($_SESSION["newPassword"]);
+                unset($_SESSION["confirmPass"]);
                 $_SESSION["user_id"] = $registrationResult['user_id'];
                 $_SESSION["username"] = $registrationResult['username'];
                 $_SESSION["fullName"] = $registrationResult['fullName'];

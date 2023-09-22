@@ -23,10 +23,15 @@ var closeModalBtn = document.getElementById("closeModalBtn");
 var openChangePasswordModalBtn = document.getElementById("changePasswordBtn");
 var changePasswordModal = document.getElementById("changePasswordModal");
 var closeChangePasswordModalBtn = document.getElementById("closeChangePasswordModalBtn");
+var backButtonSignup = document.getElementById("backToLoginButton");
+var backButtonProfile = document.getElementById("backToProfile");
+
 
 var deleteProfileBtn = document.getElementById("deleteProfileBtn");
 var closeDeleteModalBtn = document.getElementById("closeDeleteModalBtn");
 var cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
+
+
 
 //makes the search text disapear after clicking in it
 searchbar.addEventListener('click', function () {
@@ -145,6 +150,18 @@ if (openModalBtn) {
         profileModal.style.display = "block";
     });
 }
+//add event for back button profile and login
+backButtonProfile.addEventListener('click', function () {
+    changePasswordModal.style.display = "none";
+    confirmDeleteModal.style.display = "none";
+    profileModal.style.display = "block";
+});
+
+backButtonSignup.addEventListener('click', function () {
+    signupModal.style.display = "none";
+    loginModal.style.display = "block";
+});
+
 closeModalBtn.addEventListener('click', function () {
     profileModal.style.display = "none";
 });
