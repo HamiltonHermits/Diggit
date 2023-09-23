@@ -31,17 +31,22 @@ body {
     background-color: pink;
     height: 100vh;
     min-width: 150px;
+
     .sidebar {
         display: grid;
         flex-direction: column;
         align-content: space-between;
-        position: fixed; /* Make the sidebar position fixed */
-        left: 0; /* Stick it to the left side of the screen */
-        top: 0; /* Stick it to the top of the screen */
+        position: fixed;
+        /* Make the sidebar position fixed */
+        left: 0;
+        /* Stick it to the left side of the screen */
+        top: 0;
+        /* Stick it to the top of the screen */
         width: calc(var(--bg-sidebar-cont-width));
         height: 100vh;
         min-width: 150px;
         background-color: var(--sidebar-color);
+
         .sidebar * {
             display: flex;
             flex-direction: column;
@@ -54,6 +59,7 @@ body {
 .logo-container {
     margin-top: 2vh;
     height: fit-content;
+
     #logo {
         display: flex;
         flex-direction: row;
@@ -63,10 +69,12 @@ body {
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+
         #digg {
             color: var(--global-font-color);
             font-family: Poppins;
         }
+
         #it {
             color: var(--orange);
             font-family: Suez One;
@@ -81,22 +89,27 @@ body {
     margin-bottom: 5vh;
     display: flex;
     padding: 0.5em 0 0.5em 1.5em;
+
     .settings {
         gap: 0.6em;
         display: flex;
     }
+
     // justify-content: center;
 }
+
 .page-indicator-container {
     justify-content: left;
     display: grid;
     font-size: calc(15px + 0.3vw);
     position: absolute;
     top: 30%;
+
     .page-indicator-inner-container {
         flex-direction: column;
         display: flex;
         gap: 15px;
+
         .page-indicator {
             display: inline-flex;
             flex-direction: row;
@@ -126,9 +139,11 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 1em 0 0 0;
+
     .profile-container {
         right: 3%;
         position: relative;
+
         .profile {
             background: none;
             border: none;
@@ -149,6 +164,7 @@ main {
     background-color: var(--orange);
     cursor: pointer;
 }
+
 .inverseFilledButton {
     color: var(--global-font-color);
     display: flex;
@@ -164,11 +180,13 @@ main {
 .parent-container {
     height: 80vh;
     background-color: var(--main-color);
+
     .boxes-container {
         display: flex;
         gap: 2em;
         height: 100%;
         padding: 0.5em 2em 2em 2em;
+
         .right-box {
             display: flex;
             flex-direction: column;
@@ -178,9 +196,11 @@ main {
             padding: 0.5em 2em 2em 2em;
             border-radius: 15px;
             background-color: var(--inner-box-color);
+
             .searchbar-container-container {
                 width: 100%;
                 height: 5%;
+
                 .searchbar-container {
                     display: flex;
                     align-items: center;
@@ -194,15 +214,18 @@ main {
                     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
                     background-color: var(--main-color);
                     border: 2px solid var(--orange);
+
                     .borderSearchBar {
                         display: flex;
                         width: 100%;
                         gap: 0.5em;
+
                         #dropdown {
                             position: absolute;
                             margin: 1.7em 0 0 0;
                             width: 25.5%;
                         }
+
                         #searchbar {
                             width: 100%;
                             background: none;
@@ -224,6 +247,7 @@ main {
 
             .bottom-container {
                 height: 100%;
+
                 .map-container {
                     height: 100%;
                     background-color: var(--main-color);
@@ -231,6 +255,7 @@ main {
                 }
             }
         }
+
         .left-box {
             display: flex;
             flex-direction: column;
@@ -241,14 +266,17 @@ main {
             padding: 0.5em 2em 2em 2em;
 
             background-color: var(--inner-box-color);
+
             .prop-title-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 5%;
                 width: 100%;
+
                 .prop-title {
                     width: 100%;
+
                     .title-text-field {
                         background: none;
                         color: var(--global-font-color);
@@ -263,6 +291,7 @@ main {
                     }
                 }
             }
+
             .prop-desc-container {
                 // display: flex;
                 // justify-content: center;
@@ -273,6 +302,7 @@ main {
                 .prop-desc {
                     width: 100%;
                     height: 100%;
+
                     .description-text-field {
                         background: none;
                         color: var(--global-font-color);
@@ -288,6 +318,7 @@ main {
                     }
                 }
             }
+
             .prop-images-container {
                 display: flex;
                 justify-content: center;
@@ -296,21 +327,25 @@ main {
                 width: 100%;
                 height: 30%;
                 background-color: var(--main-color);
+
                 .select-images-overlay {
                     width: 100%;
                     height: 100%;
                     align-items: center;
                     display: flex;
                     justify-content: center;
+
                     .inputfile {
                         display: none;
                     }
                 }
             }
+
             .amen-addmore-container {
                 justify-content: center;
                 display: flex;
             }
+
             .amenities-container {
                 display: flex;
                 justify-content: center;
@@ -319,11 +354,11 @@ main {
                 width: 100%;
                 height: 100%;
                 background-color: var(--main-color);
+
                 .add-amenities-overlay {
-                    #addAmenities {
-                    }
+                    #addAmenities {}
                 }
-                
+
             }
         }
     }
@@ -336,8 +371,8 @@ main {
 
 //////////--------------------------------------------------------------------------------------------//////////
 
-#ammenities-parent-container{
-    top:7vw;
+#ammenities-parent-container {
+    top: 7vw;
     position: relative;
 }
 
@@ -349,7 +384,8 @@ main {
     justify-content: right;
 }
 
-#rate-property {
+#rate-property,
+#save-property {
     width: var(--btn-rate-prop-width);
     height: var(--btn-rate-prop-height);
     position: fixed;
@@ -395,7 +431,8 @@ a {
 ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: var(--global-font-color);
-    opacity: 1; /* Firefox */
+    opacity: 1;
+    /* Firefox */
 }
 
 //////////--------------------------------------------------------------------------------------------//////////
@@ -404,14 +441,17 @@ a {
     .parent-container {
         height: 88.75em;
     }
+
     main {
         width: 100vw;
     }
+
     .left-box,
     .right-box {
         height: 50%;
         // width: 100%;
     }
+
     .boxes-container {
         flex-direction: column;
         align-items: center;
@@ -422,22 +462,27 @@ a {
 
         gap: 2em;
     }
+
     @media screen and (max-width: 800px) {
         .logo-container {
             display: none;
         }
+
         .background-sidebar-container {
             display: none;
         }
+
         .left-box,
         .right-box {
             width: 80%;
         }
     }
 }
+
 /* Modal container styles */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed;
     z-index: 1;
     width: 100%;
@@ -445,7 +490,8 @@ a {
     top: 0px;
     left: 0px;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Overlay background with transparency */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Overlay background with transparency */
 
     /* Modal content styles */
     .modal-content {
@@ -453,10 +499,11 @@ a {
         position: absolute;
         left: 50%;
         top: 50%;
-        padding:2em;
+        padding: 2em;
         transform: translate(-50%, -50%);
         height: auto;
-        min-width: 20vh; /* Set a maximum width for the modal content */
+        min-width: 20vh;
+        /* Set a maximum width for the modal content */
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         border-radius: 8px;
         text-align: center;
@@ -466,8 +513,23 @@ a {
         --light_secondary_colour: #564b40;
         --main-color: #29292c;
 
+        .modalInput {
+            background-color: var(--main-color);
+            padding: 0.5em;
+            width: 100%;
+            border-radius: 9px;
+            border: none;
+        }
+
+        .modalLabel {
+            color: var(--secondary_colour);
+        }
+
         #loginButton,
-        #signupButton {
+        #signupButton,
+        #applyAgentButton,
+        #backButtonNotAgent,
+        #submitAgentApplication {
             background-color: var(--main_colour);
             color: var(--secondary_colour);
             border: none;
@@ -480,6 +542,7 @@ a {
             cursor: pointer;
             border-radius: 5px;
         }
+
         /* Close button styles */
         .close {
             position: absolute;
@@ -501,6 +564,7 @@ a {
     text-align: center;
     width: 65%;
     position: relative;
+
     .modalInput {
         background-color: var(--main-color);
         padding: 0.5em;
@@ -509,6 +573,7 @@ a {
         border: none;
     }
 }
+
 // , #newUsername, #newPassword
 /* Login form styles */
 #username,
@@ -541,7 +606,9 @@ a {
     border-radius: 5px;
 }
 
-#submitLogin:hover {
+#submitLogin:hover,
+#applyAgentButton:hover,
+#backButtonNotAgent:hover {
     background-color: var(--secondary_colour);
     color: var(--main-color);
 }
@@ -555,10 +622,12 @@ a {
     background-color: var(--secondary_colour);
     color: var(--main-color);
 }
+
 .leaflet-container {
     overflow: hidden;
     z-index: 0;
 }
+
 #loginButton {
     margin: auto;
     cursor: pointer;

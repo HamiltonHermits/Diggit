@@ -40,7 +40,12 @@ function authenticateUser($username, $password)
         $hashedPasswordFromDB = $row['password'];
         $name = $row['first_name']." ". $row['last_name'];
         $email = $row['email'];
-        
+        //agent information
+        $isAgent = $row['is_agent'];
+        $agentPhone = $row['agent_phone'];
+        $agentCompany = $row['agemt_company'];
+
+        //if the user previously had an account with us
         $isDeleted = $row['is_deleted'];
 
         if ($isDeleted){
@@ -52,12 +57,26 @@ function authenticateUser($username, $password)
         
         // Use password_verify to check if the provided password matches the stored hashed password
         if (password_verify($password, $hashedPasswordFromDB)) {
+            if($isAgent){
+                return [
+                    'authenticated' => true,
+                    'user_id' => $user_id,
+                    'username' => $db_username,
+                    'fullName' => $name,
+                    'email' => $email,
+                    'isAgent' => true,
+                    'agentPhone' => $agentPhone,
+                    'agentCompany' => $agentCompany,
+                    
+                ]; // Passwords match, user authenticated
+            }
             return [
                 'authenticated' => true,
                 'user_id' => $user_id,
                 'username' => $db_username,
                 'fullName' => $name,
                 'email' => $email,
+                
             ]; // Passwords match, user authenticated
         }
     }

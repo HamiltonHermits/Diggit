@@ -41,9 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["username"] = $authResult['username'];
             $_SESSION["fullName"] = $authResult['fullName'];
             $_SESSION["email"] = $authResult['email'];
-
-
             $_SESSION["authenticated"] = true;
+            //if the user is loging in as an agent there info is there for adding a property
+            if($authResult['isAgent']){
+                $_SESSION["userType"] = "Agent";
+                $_SESSION["agentPhone"] = $authResult['agentPhone'];
+                $_SESSION["agentCompany"] = $authResult['agentCompany'];
+            }
 
 
             // Redirect to a secure page (e.g., whatever page they were on)

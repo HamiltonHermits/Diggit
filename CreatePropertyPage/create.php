@@ -6,6 +6,8 @@ $login_username_value = "";
 $signup_username_value = "";
 $signup_email_value = "";
 
+
+
 $isAuthenticated = false;
 // Check if a login error message exists
 if (isset($_SESSION['login_error'])) {
@@ -57,7 +59,8 @@ if (isset($_SESSION['profileMessage'])) {
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="create.js" defer></script>
-    <script src="../Backend_Files/common.js"defer></script>
+    <script src="../Backend_Files/common.js" defer></script>
+    <script src="applyAgent.js" defer></script>
 </head>
 
 
@@ -247,10 +250,12 @@ if (isset($_SESSION['profileMessage'])) {
 
 
         <div class="rate-prop-btn-container">
-            <button id="rate-property" class="filledButton">
+            <button id="save-property" class="filledButton">
                 Save Property
             </button>
         </div>
+
+
         <!-- The login modal -->
         <div id="loginModal" class="modal" style="display:none;">
             <div class="modal-content">
@@ -328,15 +333,16 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <span class="close" id="closeModalBtn">&times;</span>
                 <img id="profileImage" style="max-width: 10vh;" src="../IndexPage/ImagesIndex/User.png" alt="Profile Picture">
-                <h2 id="usernameProfile" class="modalLabel"><?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
-                <p id="fullNameProfile" class="modalLabel"><?php if (isset($_SESSION['fullName'])) echo $_SESSION['fullName']; ?></p>
-                <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
 
+                <h2 id="usernameProfile" class="modalLabel">Hello, <?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
+                <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
+                <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
+                <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
                 <button id="changePasswordBtn">Change Password</button>
 
                 <button id="deleteProfileBtn">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php?page=create" method="post">
+                <form action="../Backend_Files/logout.php" method="post">
                     <button type="submit" class="loginButton">Logout</button>
                 </form>
             </div>
@@ -382,7 +388,38 @@ if (isset($_SESSION['profileMessage'])) {
                 <button id="cancelDeleteBtn">Cancel</button>
             </div>
         </div>
-        
+        <!-- Check the user's userType and display the first modal if not "agent" -->
+        <?php if (!isset($_SESSION["userType"])) : ?>
+            <div id="notAgentModal" class="modal" style="display: block;">
+                <div class="modal-content">
+                    <p>Whoops, sorry you're not an agent, but you can apply below.</p>
+
+                    <button id="applyAgentButton">Apply now!</button>
+                    <a href="../IndexPage/index.php">
+                        <button id = "backButtonNotAgent">Go Back</button>
+                    </a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div id="applyAgentModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>Application Form</h2>
+
+                <span class="back-arrow" style="color:white;" id="backToWhoops">&#8592;</span>
+
+                <form id="applicationForm" action="../Backend_Files/applyAgent.php" method="post">
+                    <label for="phoneNumber"class="modalLabel" >Phone Number:</label>
+                    <input type="text" id="phoneNumber" class="modalInput" name="phoneNumber" placeholder="e.g: 082 123 4444" maxlength="10" required><br><br>
+
+                    <label for="companyName" class="modalLabel">Company Name:</label>
+                    <input type="text" id="companyName" class="modalInput" name="companyName" placeholder="e.g: Remax" required><br><br>
+
+                    <input type="submit" id="submitAgentApplication" value="Submit Application">
+                </form>
+            </div>
+        </div>
+
 </body>
 
 </html>
