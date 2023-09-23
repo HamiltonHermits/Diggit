@@ -9,6 +9,11 @@ $signup_email_value = "";
 
 
 $isAuthenticated = false;
+if (isset($_SESSION['applyAgentError'])) {
+    $apply_agent_error_message = $_SESSION['applyAgentError'];
+    unset($_SESSION['applyAgentError']);
+}
+
 // Check if a login error message exists
 if (isset($_SESSION['login_error'])) {
     $login_error_message = $_SESSION['login_error'];
@@ -29,6 +34,7 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
     unset($_SESSION["newPassword"]);
     unset($_SESSION["confirmPass"]);
     unset($_SESSION['password']);
+
     $isAuthenticated = true;
 }
 
@@ -61,6 +67,7 @@ if (isset($_SESSION['profileMessage'])) {
     <script src="create.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
     <script src="applyAgent.js" defer></script>
+    
 </head>
 
 
@@ -131,6 +138,10 @@ if (isset($_SESSION['profileMessage'])) {
             <div class="empty-div"></div>
             <!-- Personalised Page if authenticated-->
             <?php if ($isAuthenticated) : ?>
+                
+                <?php if (isset($_SESSION["userType"])) {
+                    if ($_SESSION["userType"] === 'temp') unset($_SESSION["userType"]);
+                } ?>
 
                 <div class="profile-container" id="profile">
                     <button id="openModalBtn" class="profile"><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -138,10 +149,14 @@ if (isset($_SESSION['profileMessage'])) {
                         </svg></button>
                 </div>
 
-            <?php else : ?>
+            <?php else : $_SESSION["userType"] = 'temp'; ?>
 
-                <div class="loginContainer" id="login">
-                    <button type="menu" class="loginButton" id="loginButton">Log in</button>
+                <div id="notLoggedInModal" class="modal" style="display: block;">
+                    <div class="modal-content">
+                        <p>Please login to continue</p>
+                        <button type="menu" class="loginButton" id="loginButtonCreatePage">Log in</button>
+
+                    </div>
                 </div>
 
             <?php endif; ?>
@@ -250,7 +265,7 @@ if (isset($_SESSION['profileMessage'])) {
 
 
         <div class="rate-prop-btn-container">
-            <button id="save-property" class="filledButton">
+            <button id="save-property" class="filledButton" style = "display:none;">
                 Save Property
             </button>
         </div>
@@ -326,8 +341,8 @@ if (isset($_SESSION['profileMessage'])) {
         <div id="profileModal" class="modal">
             <div class="modal-content">
 
-                <?php if (isset($$profileMessage)) { ?>
-                    <p><?php echo $$profileMessage; ?></p>
+                <?php if (isset($profileMessage)) { ?>
+                    <p><?php echo $profileMessage; ?></p>
                     <?php echo '<script>profileModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -396,7 +411,7 @@ if (isset($_SESSION['profileMessage'])) {
 
                     <button id="applyAgentButton">Apply now!</button>
                     <a href="../IndexPage/index.php">
-                        <button id = "backButtonNotAgent">Go Back</button>
+                        <button id="backButtonNotAgent">Go Back</button>
                     </a>
                 </div>
             </div>
@@ -406,14 +421,20 @@ if (isset($_SESSION['profileMessage'])) {
             <div class="modal-content">
                 <h2>Application Form</h2>
 
+                <?php if (isset($apply_agent_error_message)) { ?>
+                    <p><?php echo $apply_agent_error_message; ?></p>
+                    <?php echo '<script>applyAgentModal.style.display = "block";</script>'; ?>
+                    <?php echo '<script>notAgentModal.style.display = "none";</script>'; ?>
+                <?php } ?>
+
                 <span class="back-arrow" style="color:white;" id="backToWhoops">&#8592;</span>
 
                 <form id="applicationForm" action="../Backend_Files/applyAgent.php" method="post">
-                    <label for="phoneNumber"class="modalLabel" >Phone Number:</label>
-                    <input type="text" id="phoneNumber" class="modalInput" name="phoneNumber" placeholder="e.g: 082 123 4444" maxlength="10" required><br><br>
+                    <label for="phoneNumber" class="modalLabel">Phone Number:</label>
+                    <input type="text" id="phoneNumber" class="modalInput" name="phoneNumber" value="<?php echo isset($_SESSION['phoneNumber']) ? htmlspecialchars($_SESSION['phoneNumber']) : ''; ?>" placeholder="e.g: 082 123 4444" maxlength="10" required><br><br>
 
                     <label for="companyName" class="modalLabel">Company Name:</label>
-                    <input type="text" id="companyName" class="modalInput" name="companyName" placeholder="e.g: Remax" required><br><br>
+                    <input type="text" id="companyName" class="modalInput" name="companyName" value="<?php echo isset($_SESSION['companyName']) ? htmlspecialchars($_SESSION['companyName']) : ''; ?>" placeholder="e.g: Remax" required><br><br>
 
                     <input type="submit" id="submitAgentApplication" value="Submit Application">
                 </form>

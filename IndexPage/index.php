@@ -167,8 +167,8 @@ if (isset($_SESSION['profileMessage'])) {
         <div id="profileModal" class="modal">
             <div class="modal-content">
 
-                <?php if (isset($$profileMessage)) { ?>
-                    <p><?php echo $$profileMessage; ?></p>
+                <?php if (isset($profileMessage)) { ?>
+                    <p><?php echo $profileMessage; ?></p>
                     <?php echo '<script>profileModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 

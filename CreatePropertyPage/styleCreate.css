@@ -444,6 +444,7 @@ a {
   width: 100%;
   border-radius: 9px;
   border: none;
+  color: var(--secondary_colour);
 }
 .modal .modal-content .modalLabel {
   color: var(--secondary_colour);
@@ -452,7 +453,8 @@ a {
 .modal .modal-content #signupButton,
 .modal .modal-content #applyAgentButton,
 .modal .modal-content #backButtonNotAgent,
-.modal .modal-content #submitAgentApplication {
+.modal .modal-content #submitAgentApplication,
+.modal .modal-content #loginButtonCreatePage {
   background-color: var(--main_colour);
   color: var(--secondary_colour);
   border: none;
@@ -490,6 +492,7 @@ a {
   width: 100%;
   border-radius: 9px;
   border: none;
+  color: white;
 }
 
 /* Login form styles */

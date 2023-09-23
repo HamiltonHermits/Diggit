@@ -4,7 +4,59 @@ var applyButton = document.getElementById('applyAgentButton');
 var backButtonNotAgent = document.getElementById('backButtonNotAgent');
 var savePropertyButtonHideIt = document.getElementById('save-property');
 var submitAgentApplication = document.getElementById('submitAgentApplication');
+var loginButtonCreatePage = document.getElementById('loginButtonCreatePage');
+var notLoggedInModal = document.getElementById('notLoggedInModal');
 
+
+
+
+if(loginButtonCreatePage){//we are clicking the login button on create page 
+    
+    loginButtonCreatePage.addEventListener('click', function () {//make sure that when you click the button login comes up
+        loginModal.style.display = 'block';
+        notLoggedInModal.style.display = 'none';
+    });
+    //once login is up we need to check a few things
+    //1. is that clicking close or outside of the modal it just brings you back to notLoggedInModal
+    //2. we need to make sure that clicking outside of the modal for login/signup also brings you back to the notLoggedInModal
+    // we will do this by getting rid of the event listeners that do that and rewrite them
+
+    closeLoginButton.removeEventListener('click', null);
+    closeLoginButton.addEventListener('click', function () {
+        loginModal.style.display = 'none';
+        notLoggedInModal.style.display = 'block';
+    });
+
+    closeSignupButton.removeEventListener('click', null);
+
+    closeSignupButton.addEventListener('click', function () {
+        signupModal.style.display = 'none';
+        loginModal.style.display = 'block';
+    });
+
+    window.removeEventListener('click', null);
+    window.addEventListener('click', function (event) {
+        if (event.target == loginModal) {
+            loginModal.style.display = 'none';
+            notLoggedInModal.style.display = 'block';
+        }
+        if (event.target == signupModal) {
+            signupModal.style.display = 'none';
+            notLoggedInModal.style.display = 'block';
+        }
+        if (event.target == profileModal) {
+            profileModal.style.display = 'none';
+        }
+        if (event.target == changePasswordModal) {
+            changePasswordModal.style.display = 'none';
+        }
+        if (event.target == confirmDeleteModal) {
+            confirmDeleteModal.style.display = 'none';
+        }
+    });
+
+
+}
 
 if (notAgentModal && applyAgentModal && applyButton && backButtonNotAgent && submitAgentApplication) {
     savePropertyButtonHideIt.style.display = 'none';
