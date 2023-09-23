@@ -72,21 +72,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["authenticated"] = true;
 
                 // Stay on same page, but with updated sections
-                header("Location: ../IndexPage/index.php");
+                moveHeader();
                 exit();
             } else {
                 // Registration failed
                 session_start();
                 $_SESSION["authenticated"] = false;
                 $_SESSION['signup_error'] = $registrationResult['error'];
-                header("Location: ../IndexPage/index.php"); // Stay on same page, but with updated sections
+                moveHeader();
                 exit;
             }
         } else {
             session_start();
             $_SESSION["authenticated"] = false;
             $_SESSION['signup_error'] = "Password does not match";
-            header("Location: ../IndexPage/index.php"); // Stay on same page, but with updated sections
+            moveHeader();
             exit;
         }
     } else {
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_start();
         $_SESSION["authenticated"] = false;
         $_SESSION['signup_error'] = "Make sure to fill in every option";
-        header("Location: ../IndexPage/index.php"); // Stay on same page, but with updated sections
+        moveHeader();
         exit;
     }
 } else {
@@ -103,6 +103,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
     $_SESSION["authenticated"] = false;
     $_SESSION['signup_error'] = "Invalid request method.";
-    header("Location: ../IndexPage/index.php"); // Redirect to the signup page
+    moveHeader();
     exit;
+}
+function moveHeader() {
+    if(isset($_GET['page'])){
+        $location = $_GET['page'];
+        if ($location == 'create'){
+            header("Location: ../CreatePropertyPage/$location.php");
+        }
+        exit();
+    }
+    header("Location: ../IndexPage/index.php");
+    exit();
 }

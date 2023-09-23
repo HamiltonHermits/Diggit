@@ -207,6 +207,11 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   text-align: center;
+  --main_colour: #ad5511;
+  --secondary_colour: #d9d9d9;
+  --background_colour: #202024;
+  --light_secondary_colour: #564b40;
+  --main-color: #29292c;
   /* Close button styles */
 }
 .modal .modal-content #loginButton,

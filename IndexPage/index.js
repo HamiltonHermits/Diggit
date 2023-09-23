@@ -1,8 +1,8 @@
 // Get references to the modal elements
 var loginModal = document.getElementById('loginModal');
 var signupModal = document.getElementById('signupModal');
-var profileModal = document.getElementById("profileModal");
-var changePasswordModal = document.getElementById("changePasswordModal");
+var profileModal = document.getElementById('profileModal');
+var changePasswordModal = document.getElementById('changePasswordModal');
 var confirmDeleteModal = document.getElementById('confirmDeleteModal');
 
 // Get references to the buttons that open and close the modals
@@ -10,173 +10,182 @@ var loginButton = document.getElementById('loginButton');
 var closeLoginButton = document.getElementById('closeButton');
 var signupButton = document.getElementById('signupButton');
 var closeSignupButton = document.getElementById('closeSignupButton');
-var searchbar = document.getElementById("searchbar");
-var borderSearchBar = document.getElementById("borderSearchBar");
-var dropdown = document.getElementById("dropdown");
-var dropdownItem = document.getElementById("dropdownItem");
+var searchbar = document.getElementById('searchbar');
+var borderSearchBar = document.getElementById('borderSearchBar');
+var dropdown = document.getElementById('dropdown');
+var dropdownItem = document.getElementById('dropdownItem');
 var counter;
-var MAX_VIEW = 5;
+var MAX_VIEW = 2;
 var lastval_boolean = false;
 
-var openModalBtn = document.getElementById("openModalBtn");
-var closeModalBtn = document.getElementById("closeModalBtn");
-var openChangePasswordModalBtn = document.getElementById("changePasswordBtn");
-var changePasswordModal = document.getElementById("changePasswordModal");
-var closeChangePasswordModalBtn = document.getElementById("closeChangePasswordModalBtn");
-var backButtonSignup = document.getElementById("backToLoginButton");
-var backButtonProfile = document.getElementById("backToProfile");
+var openModalBtn = document.getElementById('openModalBtn');
+var closeModalBtn = document.getElementById('closeModalBtn');
+var openChangePasswordModalBtn = document.getElementById('changePasswordBtn');
+var closeChangePasswordModalBtn = document.getElementById('closeChangePasswordModalBtn');
+var backButtonSignup = document.getElementById('backToLoginButton');
+var backButtonProfile = document.getElementById('backToProfile');
 
+var deleteProfileBtn = document.getElementById('deleteProfileBtn');
+var closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
+var cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
 
-var deleteProfileBtn = document.getElementById("deleteProfileBtn");
-var closeDeleteModalBtn = document.getElementById("closeDeleteModalBtn");
-var cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
+// Function to redirect to property page
+function redirectToPage(apartID) {
+    window.location.href = `../PropertyPage/property.php?id=${apartID}`;
+}
 
-
-
-//makes the search text disapear after clicking in it
+// Event listener to handle clicks in the search bar
 searchbar.addEventListener('click', function () {
     searchbar.placeholder = '';
     searchbar.style.textAlign = 'left';
-    borderSearchBar.style.backgroundColor = "#564B40";
+    borderSearchBar.style.backgroundColor = '#564B40';
 });
-//Add event listerners to repopulate placeholder text
+
+// Event listener to repopulate placeholder text
 document.addEventListener('click', function (event) {
     var clickanywhere = event.target;
 
     if (clickanywhere !== searchbar && !searchbar.contains(clickanywhere)) {
         searchbar.placeholder = 'Find your Digs..';
         searchbar.style.textAlign = 'center';
-        borderSearchBar.style.backgroundColor = "#202024";
+        borderSearchBar.style.backgroundColor = '#202024';
     }
-
 });
 
-function redirectToPage(apartID) {
-    // Go to property page and pass apartment ID has query parameter
-    window.location.href = `../PropertyPage/property.php?id=${apartID}`;
-}
-
 // Add an event listener to detect changes in the search bar
-searchbar.addEventListener("input", function () {
-    // Get the search query from the input
+searchbar.addEventListener('input', function () {
     var query = searchbar.value;
-    dropdown.style.borderBottom = "2px solid #564B40";
-    borderSearchBar.style.borderRadius = "30px 30px 0px 0px"
+    dropdown.style.borderBottom = '2px solid #564B40';
+    borderSearchBar.style.borderRadius = '30px 30px 0px 0px';
 
     // Make an AJAX request to the server-side script
-    fetch("../Backend_Files/search.php?query=" + encodeURIComponent(query))
-        .then(response => response.json())
-        .then(data => {
-            // Clear previous dropdown items
-            dropdown.innerHTML = "";
+    fetch('../Backend_Files/search.php?query=' + encodeURIComponent(query))
+        .then((response) => response.json())
+        .then((data) => {
+            dropdown.innerHTML = ''; // Clear previous dropdown items
 
-            // Check if there are no matching results
             if (data.length === 0) {
-                var noResultItem = document.createElement("div");
-                noResultItem.className = "no-result";
-                noResultItem.textContent = "No results found";
+                // Handle no matching results
+                var noResultItem = document.createElement('div');
+                noResultItem.className = 'no-result';
+                noResultItem.textContent = 'No results found';
                 dropdown.appendChild(noResultItem);
             } else {
-                // Populate the dropdown with search results, limiting to 5 items
+                // Populate the dropdown with search results (limit to MAX_VIEW items)
                 counter = 0;
-                var lastVal = data[data.length - 1].location;
                 data.forEach(function (apartment) {
+                    if (counter == MAX_VIEW) {
+                        // Add "Add Property" link as the last item
+                        var addPropertyItem = document.createElement('a');
+                        addPropertyItem.className = 'dropdown-item add-property';
+                        addPropertyItem.href = '../CreatePropertyPage/create.php'; // Temporary URL
+                        addPropertyItem.textContent = 'Add a Property';
 
-                    if (counter >= MAX_VIEW) {
+                        // Event listeners for mouseover and mouseout
+                        addPropertyItem.addEventListener('mouseover', function () {
+                            addPropertyItem.style.backgroundColor = '#D9D9D9';
+                            addPropertyItem.style.color = '#564B40';
+                            addPropertyItem.style.borderRadius = '30px 30px 30px 30px';
+                        });
+
+                        addPropertyItem.addEventListener('mouseout', function () {
+                            addPropertyItem.style.backgroundColor = '#564B40';
+                            addPropertyItem.style.color = '#D9D9D9';
+                        });
+
+                        dropdown.appendChild(addPropertyItem);
+
                         return; // Exit the loop when reaching the limit
                     }
                     counter++;
 
-                    var dropdownItem = document.createElement("div");
-                    dropdownItem.className = "dropdown-item";
-                    dropdownItem.id = "dropdownItem";
-                    dropdownItem.title = apartment.name + " " + apartment.location;
+                    // Create a new dropdown item element
+                    var dropdownItem = document.createElement('div');
+                    dropdownItem.className = 'dropdown-item';
+                    dropdownItem.id = 'dropdownItem';
+                    dropdownItem.title = apartment.name + ' ' + apartment.location;
 
-                    var locationSpan = document.createElement("span");
-                    locationSpan.className = "locationSpan";
-                    locationSpan.id = "locationSpanId";
-                    locationSpan.style.color = "#D9D9D9"; // Different color
+                    // Create a span element for location
+                    var locationSpan = document.createElement('span');
+                    locationSpan.className = 'locationSpan';
+                    locationSpan.id = 'locationSpanId';
+                    locationSpan.style.color = '#D9D9D9'; // Different color
                     locationSpan.textContent = apartment.location;
                     dropdownItem.textContent = apartment.name + '  -  '; // Display apartment names & locations
                     dropdownItem.appendChild(locationSpan);
 
-                    // Add a click event listener to select the item when clicked
-                    dropdownItem.addEventListener("click", function () {
-                        // Set the search bar value to the selected item
-                        searchbar.value = apartment.name + ", " + apartment.location;
-                        // Hide the dropdown
+                    // Event listeners for click, mouseover, and mouseout
+                    dropdownItem.addEventListener('click', function () {
+                        searchbar.value = apartment.name + ', ' + apartment.location;
                         redirectToPage(apartment.ID);
                     });
-                    //add a mouseover event listener to change the style of the dropdownitem
+
                     dropdownItem.addEventListener('mouseover', function () {
-                        dropdownItem.style.backgroundColor = "#D9D9D9";
-                        locationSpan.style.color = "#564B40";
-                        dropdownItem.style.color = "#564B40";
-                        dropdownItem.style.borderRadius = "30px 30px 30px 30px";
-
+                        dropdownItem.style.backgroundColor = '#D9D9D9';
+                        locationSpan.style.color = '#564B40';
+                        dropdownItem.style.color = '#564B40';
+                        dropdownItem.style.borderRadius = '30px 30px 30px 30px';
                     });
-                    //add a mouseout event listener to change the style of the dropdownitem
+
                     dropdownItem.addEventListener('mouseout', function () {
-                        dropdownItem.style.backgroundColor = "#564B40";
-                        locationSpan.style.color = "#D9D9D9";
-                        dropdownItem.style.color = "#D9D9D9";
-
+                        dropdownItem.style.backgroundColor = '#564B40';
+                        locationSpan.style.color = '#D9D9D9';
+                        dropdownItem.style.color = '#D9D9D9';
                     });
-                    // Append the item to the dropdown
+
                     dropdown.appendChild(dropdownItem);
                 });
             }
 
-            // Show the dropdown
-            dropdown.style.display = "block";
+            dropdown.style.display = 'block'; // Show the dropdown
         })
-        .catch(error => {
-            console.error("Error:", error);
+        .catch((error) => {
+            console.error('Error:', error);
         });
 });
 
-
-// Hide the dropdown when clicking outside of it
-document.addEventListener("click", function (event) {
+// Event listener to hide the dropdown when clicking outside of it
+document.addEventListener('click', function (event) {
     if (event.target !== searchbar && event.target !== dropdown) {
-        dropdown.style.display = "none";
-        borderSearchBar.style.borderRadius = "50px"
+        dropdown.style.display = 'none';
+        borderSearchBar.style.borderRadius = '50px';
     }
 });
 
-//add event listeners to open and close profile
+// Event listeners to open and close profile
 if (openModalBtn) {
     openModalBtn.addEventListener('click', function () {
-        profileModal.style.display = "block";
+        profileModal.style.display = 'block';
     });
 }
-//add event for back button profile and login
+
 backButtonProfile.addEventListener('click', function () {
-    changePasswordModal.style.display = "none";
-    confirmDeleteModal.style.display = "none";
-    profileModal.style.display = "block";
+    changePasswordModal.style.display = 'none';
+    confirmDeleteModal.style.display = 'none';
+    profileModal.style.display = 'block';
 });
 
 backButtonSignup.addEventListener('click', function () {
-    signupModal.style.display = "none";
-    loginModal.style.display = "block";
+    signupModal.style.display = 'none';
+    loginModal.style.display = 'block';
 });
 
 closeModalBtn.addEventListener('click', function () {
-    profileModal.style.display = "none";
-});
-//add event listeners to open and close change password
-openChangePasswordModalBtn.addEventListener("click", function () {
-    changePasswordModal.style.display = "block";
-    profileModal.style.display = "none";
+    profileModal.style.display = 'none';
 });
 
-closeChangePasswordModalBtn.addEventListener("click", function () {
-    changePasswordModal.style.display = "none";
+// Event listeners to open and close change password modal
+openChangePasswordModalBtn.addEventListener('click', function () {
+    changePasswordModal.style.display = 'block';
+    profileModal.style.display = 'none';
 });
 
-// Add event listeners to open and close the login modal
-if (loginButton) {//added an if check as it wont exist if user is logged in
+closeChangePasswordModalBtn.addEventListener('click', function () {
+    changePasswordModal.style.display = 'none';
+});
+
+// Event listeners to open and close the login modal
+if (loginButton) {
     loginButton.addEventListener('click', function () {
         loginModal.style.display = 'block';
     });
@@ -185,35 +194,30 @@ closeLoginButton.addEventListener('click', function () {
     loginModal.style.display = 'none';
 });
 
-
-
-// Add event listener to open the signup modal
+// Event listener to open the signup modal
 signupButton.addEventListener('click', function () {
     signupModal.style.display = 'block';
-
-    // Hide the login modal when Signup is clicked
-    loginModal.style.display = 'none';
+    loginModal.style.display = 'none'; // Hide the login modal when Signup is clicked
 });
 
 closeSignupButton.addEventListener('click', function () {
     signupModal.style.display = 'none';
 });
 
-//add event listnere to open/close confirm delete modal
-deleteProfileBtn.addEventListener("click", function () {
-    confirmDeleteModal.style.display = "block";
-
+// Event listeners to open/close confirm delete modal
+deleteProfileBtn.addEventListener('click', function () {
+    confirmDeleteModal.style.display = 'block';
 });
 
-closeDeleteModalBtn.addEventListener("click", function () {
-    confirmDeleteModal.style.display = "none";
+closeDeleteModalBtn.addEventListener('click', function () {
+    confirmDeleteModal.style.display = 'none';
 });
 
-cancelDeleteBtn.addEventListener("click", function () {
-    confirmDeleteModal.style.display = "none";
+cancelDeleteBtn.addEventListener('click', function () {
+    confirmDeleteModal.style.display = 'none';
 });
 
-//add event listener to close modals if clicked outside 
+// Event listener to close modals if clicked outside
 window.addEventListener('click', function (event) {
     if (event.target == loginModal) {
         loginModal.style.display = 'none';
@@ -232,4 +236,3 @@ window.addEventListener('click', function (event) {
         confirmDeleteModal.style.display = 'none';
     }
 });
-
