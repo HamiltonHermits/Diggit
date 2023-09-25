@@ -11,26 +11,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-function get_property($conn)
-{
-    $sql = "SELECT * FROM property";
-    $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Max Tenants</th>
-            </tr>";
-
-        // Output data of each row
-        getPropertiesPrint($result);
-    } else {
-        echo "No digs found.";
-    }
-}
 // Close the database connection
 $conn->close();
 ?>
@@ -180,12 +161,40 @@ $conn->close();
                     </div>
                     <div id="generateReportButton" class="generateReportButton">
                         <button id="generatePropertyReport" class="filledButton">Generate Report</button>
-                        <button id="allPropertyReport" class="filledButton" onclick="get_property()">List All Properties</button>
+                        <form method="post">
+                            <input type="submit" id="allPropertyReport" class="filledButton" name="allPropertyReport" value="List All Properties">
+                        </form>
                     </div>
                     <div class="report-container" id="property-report-container">
                         <div class="report-text-container" id="property-report-text-container">
                             <?php
-                            function getPropertiesPrint($result){
+                            if (array_key_exists('allPropertyReport', $_REQUEST)) {
+                                # code...
+                                include_once('../Backend_Files/config.php');
+                                include_once('../Backend_Files/database_connect.php');
+                                // Create a database connection
+                                $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+                                // Check if the connection was successful
+                                if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                }
+                                $sql = "SELECT * FROM property";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    echo "<table border='1'>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Max Tenants</th>
+                                        </tr>";
+
+                                    // Output data of each row
+
+                                } else {
+                                    echo "No digs found.";
+                                }
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>
                                         <td>" . $row["prop_id"] . "</td>
@@ -194,9 +203,10 @@ $conn->close();
                                         <td>" . $row["max_tenants"] . "</td>
                                     </tr>";
                                 }
-                        
+
                                 echo "</table>";
                             }
+                            mysqli_close($conn);
                             ?>
                         </div>
 
