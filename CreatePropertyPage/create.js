@@ -1,4 +1,5 @@
 var borderSearchBar = document.getElementById("borderSearchBar");
+
 var counter;
 var MAX_VIEW = 5;
 var lastval_boolean = false;
@@ -30,6 +31,13 @@ function updateActivePageIndicator() {
         }
     });
 }
+
+
+
+
+
+
+
 
 //makes the search text disapear after clicking in it
 searchbar.addEventListener('click', function () {

@@ -223,27 +223,8 @@ if (isset($_SESSION['profileMessage'])) {
                     </div>
                     <div class="amenities-container">
                         <div class="add-amenities-overlay">
-                            <label for="wifi">Internet fibre</label>
-                            <input type="checkbox" id="wifi" name="wifi"><br>
-
-                            <label for="parking">Parking</label>
-                            <input type="checkbox" id="parking" name="parking"><br>
-
-                            <label for="waterTanks">Water Tanks</label>
-                            <input type="checkbox" id="waterTanks" name="waterTanks"><br>
-
-                            <label for="laundry">Laundry</label>
-                            <input type="checkbox" id="laundry" name="laundry"><br>
-
-                            <label for="stove">Stove</label>
-                            <input type="checkbox" id="stove" name="stove"><br>
-
-                            <label for="fridge">Fridge</label>
-                            <input type="checkbox" id="fridge" name="fridge"><br>
-
-                            <label for="microwave">Microwave</label>
-                            <input type="checkbox" id="microwave" name="microwave"><br>
-
+                            <!-- <form method = "POST"> -->
+                            <button type ="submit" id="addAmenities" class="filledButton" name = "addAmenities">Add your Amenities</button>
                         </div>
                     </div>
                     <div class="amen-addmore-container">
@@ -269,13 +250,54 @@ if (isset($_SESSION['profileMessage'])) {
 
 
 
+        <div id="ammenityModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" id="closeButton">&times;</span>
+                <h2 class="modalLabel">Amenities</h2>
+                <?php
+                if (array_key_exists('addAmenities', $_REQUEST)) {
+                    # code...
+                    include_once('../Backend_Files/config.php');
+                    include_once('../Backend_Files/database_connect.php');
+                    // Create a database connection
+                    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+                    // Check if the connection was successful
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "SELECT amenity_name FROM amenity_test";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        echo "<table id = 'ammenityTable' style='border:none;'>";
+
+                        // Output data of each row
+
+                    } else {
+                        echo "No digs found.";
+                    }
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                            <td class = 'name'>" . $row["amenity_name"] . "</td>
+                            <td> <input type='checkbox'> </td>
+                        </tr>";
+                    }
+
+                    echo "</table>";
+                }
+                mysqli_close($conn);
+                ?>
+
+                <!-- Add a button to open the signup modal -->
+                <button id="submitAmmenities" class = "filledButton">Submit Amenities</button>
+            </div>
+        </div>
 
         <!-- The login modal -->
         <div id="loginModal" class="modal" style="display:none;">
             <div class="modal-content">
                 <span class="close" id="closeButton">&times;</span>
                 <h2 class="modalLabel">Login</h2>
-
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($login_error_message)) { ?>
@@ -451,8 +473,6 @@ if (isset($_SESSION['profileMessage'])) {
                 <button onclick="addEmail()">Add</button>
             </div>
         </div>
-
-
 
         <?php if (isset($_SESSION["applicationSuccess"])) : unset($_SESSION["applicationSuccess"]); ?>
             <script>

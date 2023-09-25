@@ -233,15 +233,17 @@ main {
 .parent-container .boxes-container .right-box .report-container {
   width: 100%;
   height: 100%;
+  overflow: scroll;
+  display: none;
 }
 .parent-container .boxes-container .right-box .report-container .report-text-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 15px;
+  font-size: calc(10px + 0.5vw);
   width: 100%;
   height: 100%;
   background-color: var(--main-color);
+  overflow: scroll;
 }
 .parent-container .boxes-container .left-box {
   display: flex;
@@ -267,15 +269,17 @@ main {
 .parent-container .boxes-container .left-box .report-container {
   width: 100%;
   height: 100%;
+  overflow: scroll;
+  display: none;
 }
 .parent-container .boxes-container .left-box .report-container .report-text-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 15px;
+  font-size: calc(10px + 0.5vw);
   width: 100%;
   height: 100%;
   background-color: var(--main-color);
+  overflow: scroll;
 }
 
 #ammenities-parent-container {
