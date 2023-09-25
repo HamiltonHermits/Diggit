@@ -12,7 +12,7 @@
     include_once('../Backend_Files/config.php');
     include_once('../Backend_Files/database_connect.php');
     // Create a database connection
-    $conn = new mysqli($host, $username, $password, $database);
+    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
     // Check if the connection was successful
     if ($conn->connect_error) {
@@ -20,7 +20,7 @@
     }
 
     // SQL query to retrieve dig information
-    $sql = "SELECT * FROM digs";
+    $sql = "SELECT * FROM property";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

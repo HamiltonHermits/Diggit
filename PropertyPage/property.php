@@ -134,7 +134,7 @@
                     </g>
                 </svg>
 
-                <div class="settings">Settings</div>
+                <div class="settings">&nbsp;Settings</div>
             </div>
         </div>
     </div>
