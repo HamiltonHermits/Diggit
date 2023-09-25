@@ -35,6 +35,7 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
     unset($_SESSION["confirmPass"]);
     unset($_SESSION['password']);
 
+
     $isAuthenticated = true;
 }
 
