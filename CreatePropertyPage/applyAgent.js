@@ -34,13 +34,7 @@ submitAmmenityButton.addEventListener('click', function () {
 
 if(addMenityButton){
     addMenityButton.addEventListener('click', function () {
-        var checkBoxes = amenityTable.getElementsByTagName("INPUT");
-        for (let i = 0; i < checkBoxes.length; i++) {
-            if(checkBoxes[i].checked){
-            console.log("Checked")
-        }
-    }
-        amenityModal.style.display = 'block';
+    amenityModal.style.display = 'block';
     });
     window.addEventListener('click', function (event) {
         if (event.target == amenityModal) {

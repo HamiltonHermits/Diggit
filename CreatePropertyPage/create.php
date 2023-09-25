@@ -255,7 +255,6 @@ if (isset($_SESSION['profileMessage'])) {
                 <span class="close" id="closeButton">&times;</span>
                 <h2 class="modalLabel">Amenities</h2>
                 <?php
-                if (array_key_exists('addAmenities', $_REQUEST)) {
                     # code...
                     include_once('../Backend_Files/config.php');
                     include_once('../Backend_Files/database_connect.php');
@@ -284,7 +283,6 @@ if (isset($_SESSION['profileMessage'])) {
                     }
 
                     echo "</table>";
-                }
                 mysqli_close($conn);
                 ?>
 
