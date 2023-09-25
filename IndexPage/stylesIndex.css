@@ -184,7 +184,8 @@ body {
 
 /* Modal container styles */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   position: fixed;
   z-index: 1;
   width: 100%;
@@ -192,7 +193,8 @@ body {
   top: 0px;
   left: 0px;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); /* Overlay background with transparency */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Overlay background with transparency */
   /* Modal content styles */
 }
 .modal .modal-content {
@@ -203,7 +205,8 @@ body {
   padding: 2em;
   transform: translate(-50%, -50%);
   height: auto;
-  min-width: 20vh; /* Set a maximum width for the modal content */
+  min-width: 20vh;
+  /* Set a maximum width for the modal content */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   text-align: center;
@@ -214,8 +217,23 @@ body {
   --main-color: #29292c;
   /* Close button styles */
 }
+.modal .modal-content .modalInput {
+  background-color: var(--main-color);
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 9px;
+  border: none;
+  color: var(--secondary_colour);
+}
+.modal .modal-content .modalLabel {
+  color: var(--secondary_colour);
+}
 .modal .modal-content #loginButton,
-.modal .modal-content #signupButton {
+.modal .modal-content #signupButton,
+.modal .modal-content #applyAgentButton,
+.modal .modal-content #backButtonNotAgent,
+.modal .modal-content #submitAgentApplication,
+.modal .modal-content #loginButtonCreatePage {
   background-color: var(--main_colour);
   color: var(--secondary_colour);
   border: none;
@@ -253,6 +271,7 @@ body {
   width: 100%;
   border-radius: 9px;
   border: none;
+  color: var(--secondary_colour);
 }
 
 /* Login form styles */
