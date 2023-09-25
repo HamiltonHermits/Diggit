@@ -6,6 +6,15 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
     $_SESSION = array();
     // Destroy the session
     session_destroy();
+
+    if(isset($_GET['page'])){
+        $location = $_GET['page'];
+        if ($location == 'create'){
+            header("Location: ../CreatePropertyPage/$location.php");
+        }
+        exit();
+    }
+
     // Redirect the user to a logout confirmation page or login page
     header("Location: ../IndexPage/index.php");
     exit(); // Important to stop further execution

@@ -157,9 +157,51 @@ main {
   cursor: pointer;
 }
 
+.searchbar-container-container {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.searchbar-container-container .searchbar-container {
+  display: flex;
+  align-items: center;
+  height: 1.5em;
+  width: 35%;
+  min-width: 200px;
+  max-height: 50px;
+  padding: 0 1em 0 1em;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: var(--main-color);
+  border: 2px solid var(--orange);
+}
+.searchbar-container-container .searchbar-container .borderSearchBar {
+  display: flex;
+  width: 100%;
+  gap: 0.5em;
+}
+.searchbar-container-container .searchbar-container .borderSearchBar #dropdown {
+  position: absolute;
+  margin: 1.7em 0 0 0;
+  width: 25%;
+}
+.searchbar-container-container .searchbar-container .borderSearchBar #searchbar {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--global-font-color);
+}
+.searchbar-container-container .searchbar-container .borderSearchBar #searchButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 15%;
+  justify-content: left;
+}
+
 .parent-container {
   height: 80vh;
   background-color: var(--main-color);
+  margin-bottom: 12vh;
 }
 .parent-container .boxes-container {
   display: flex;
@@ -177,139 +219,69 @@ main {
   border-radius: 15px;
   background-color: var(--inner-box-color);
 }
-.parent-container .boxes-container .right-box .searchbar-container-container {
-  width: 100%;
-  height: 5%;
-  align-items: center;
-}
-.parent-container .boxes-container .right-box .searchbar-container-container .searchbar-container {
+.parent-container .boxes-container .right-box #generateReportButton {
   display: flex;
-  align-items: center;
-  height: 1.5em;
-  width: 35%;
-  min-width: 200px;
-  max-height: 50px;
-  padding: 0 1em 0 1em;
-  border-radius: 15px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: var(--main-color);
-  border: 2px solid var(--orange);
-}
-.parent-container .boxes-container .right-box .searchbar-container-container .searchbar-container .borderSearchBar {
-  display: flex;
-  width: 100%;
   gap: 0.5em;
 }
-.parent-container .boxes-container .right-box .searchbar-container-container .searchbar-container .borderSearchBar #dropdown {
-  position: absolute;
-  margin: 1.7em 0 0 0;
-  width: 25.5%;
-}
-.parent-container .boxes-container .right-box .searchbar-container-container .searchbar-container .borderSearchBar #searchbar {
+.parent-container .boxes-container .right-box .report-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5%;
   width: 100%;
-  background: none;
-  border: none;
-  color: var(--global-font-color);
 }
-.parent-container .boxes-container .right-box .searchbar-container-container .searchbar-container .borderSearchBar #searchButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 15%;
-  justify-content: left;
-}
-.parent-container .boxes-container .right-box .bottom-container {
+.parent-container .boxes-container .right-box .report-container {
+  width: 100%;
   height: 100%;
+  overflow: scroll;
+  display: none;
 }
-.parent-container .boxes-container .right-box .bottom-container .map-container {
+.parent-container .boxes-container .right-box .report-container .report-text-container {
+  display: flex;
+  border-radius: 15px;
+  font-size: calc(10px + 0.5vw);
+  width: 100%;
   height: 100%;
   background-color: var(--main-color);
-  border-radius: 15px;
+  overflow: scroll;
 }
 .parent-container .boxes-container .left-box {
   display: flex;
   flex-direction: column;
   width: 50%;
   min-width: 300px;
-  gap: 2em;
+  gap: 1em;
   border-radius: 15px;
   padding: 0.5em 2em 2em 2em;
   background-color: var(--inner-box-color);
 }
-.parent-container .boxes-container .left-box .prop-title-container {
+.parent-container .boxes-container .left-box #generateReportButton {
+  display: flex;
+  gap: 0.5em;
+}
+.parent-container .boxes-container .left-box .report-title-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 5%;
   width: 100%;
 }
-.parent-container .boxes-container .left-box .prop-title-container .prop-title {
-  width: 100%;
-}
-.parent-container .boxes-container .left-box .prop-title-container .prop-title .title-text-field {
-  background: none;
-  color: var(--global-font-color);
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  font-family: Poppins;
-  border-color: var(--global-font-color);
-  border-style: dashed;
-  border-radius: 9px;
-}
-.parent-container .boxes-container .left-box .prop-desc-container {
-  width: 100%;
-  height: 47.5%;
-}
-.parent-container .boxes-container .left-box .prop-desc-container .prop-desc {
+.parent-container .boxes-container .left-box .report-container {
   width: 100%;
   height: 100%;
-}
-.parent-container .boxes-container .left-box .prop-desc-container .prop-desc .description-text-field {
-  background: none;
-  color: var(--global-font-color);
-  height: 100%;
-  width: 100%;
-  font-family: Poppins;
-  border-color: var(--global-font-color);
-  border-style: dashed;
-  border-radius: 12px;
-  resize: none;
-  word-wrap: break-word;
-  font-size: calc(8px + 0.6vw);
-}
-.parent-container .boxes-container .left-box .prop-images-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  width: 100%;
-  height: 30%;
-  background-color: var(--main-color);
-}
-.parent-container .boxes-container .left-box .prop-images-container .select-images-overlay {
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-.parent-container .boxes-container .left-box .prop-images-container .select-images-overlay .inputfile {
+  overflow: scroll;
   display: none;
 }
-.parent-container .boxes-container .left-box .amen-addmore-container {
-  justify-content: center;
+.parent-container .boxes-container .left-box .report-container .report-text-container {
   display: flex;
-}
-.parent-container .boxes-container .left-box .amenities-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 15px;
+  font-size: calc(10px + 0.5vw);
   width: 100%;
   height: 100%;
   background-color: var(--main-color);
+  overflow: scroll;
 }
+
 #ammenities-parent-container {
   top: 7vw;
   position: relative;
@@ -493,7 +465,7 @@ a {
   width: 100%;
   border-radius: 9px;
   border: none;
-  color: var(--secondary_colour);
+  color: white;
 }
 
 /* Login form styles */
@@ -563,4 +535,4 @@ a {
   min-width: 80px;
 }
 
-/*# sourceMappingURL=styleCreate.css.map */
+/*# sourceMappingURL=styleDashboard.css.map */

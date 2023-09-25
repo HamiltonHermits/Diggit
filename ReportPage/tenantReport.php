@@ -1,5 +1,13 @@
-<?php
-    
+<!-- report.php -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tenants Report</title>
+</head>
+<body>
+    <h1>Tenants Report</h1>
+
+    <?php
     // Database connection parameters
     include_once('../Backend_Files/config.php');
     include_once('../Backend_Files/database_connect.php');
@@ -20,17 +28,17 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Max Tenants</th>
+                <th>Location</th>
+                <th>Date</th>
             </tr>";
 
         // Output data of each row
         while ($row = $result->fetch_assoc()) {
             echo "<tr>
-                <td>" . $row["prop_id"] . "</td>
-                <td>" . $row["prop_name"] . "</td>
-                <td>" . $row["prop_description"] . "</td>
-                <td>" . $row["max_tenants"] . "</td>
+                <td>" . $row["id"] . "</td>
+                <td>" . $row["name"] . "</td>
+                <td>" . $row["location"] . "</td>
+                <td>" . $row["date"] . "</td>
             </tr>";
         }
 
@@ -38,20 +46,10 @@
     } else {
         echo "No digs found.";
     }
-    header('Location: http://is3-dev.ict.ru.ac.za/SysDev/HamiltonHermits/ReportPage/dashboard.php');
+
     // Close the database connection
     $conn->close();
     ?>
-<!-- report.php -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dig Report</title>
-</head>
-<body>
-    <h1>Dig Report</h1>
-
-    
 
 </body>
 </html>

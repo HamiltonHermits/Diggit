@@ -1,5 +1,8 @@
 var borderSearchBar = document.getElementById("borderSearchBar");
-
+var showAllTenantButton = document.getElementById("allTenantReport");
+var showAllPropertyButton = document.getElementById("allPropertyReport");
+var leftTenantReport = document.getElementById("tenant-report-container");
+var rightPropertyReport = document.getElementById("property-report-container");
 var counter;
 var MAX_VIEW = 5;
 var lastval_boolean = false;
@@ -32,13 +35,12 @@ function updateActivePageIndicator() {
     });
 }
 
-
-
-
-
-
-
-
+showAllPropertyButton.addEventListener('click', function () {
+    rightPropertyReport.style.display = 'block';
+});
+showAllTenantButton.addEventListener('click', function () {
+    leftTenantReport.style.display = 'block';   
+});
 //makes the search text disapear after clicking in it
 searchbar.addEventListener('click', function () {
     searchbar.placeholder = '';
