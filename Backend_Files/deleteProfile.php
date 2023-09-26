@@ -6,7 +6,7 @@ session_start();
 
 if(!isset($_SESSION["user_id"])){
     $_SESSION['changePasswordError'] = "Not logged in";
-    header("Location: ../IndexPage/index.php");
+    moveHeader();
     exit;
 }
 
@@ -19,11 +19,42 @@ $result = mysqli_query($conn, $query);
 
 if ($result) {
     $_SESSION['profileMessage'] = "Deleted";
-    header("Location: ../Backend_Files/logout.php");
+    moveHeaderLogout();
     exit;
 } else {
     $_SESSION['profileMessage'] = "Couldn't Delete";
-    header("Location: ../IndexPage/index.php");
+    moveHeader();
     exit;
 }
+function moveHeader() {
+    //this moves the  page depending on the page you are on if wrong
+    if(isset($_GET['page'])){
+        $location = $_GET['page'];
+        if ($location == 'create'){
+            header("Location: ../CreatePropertyPage/$location.php");
+        }elseif ($location == 'property'){
+            $id = $_GET['id'];
+            header("Location: ../PropertyPage/$location.php?id=$id");
+        }
+        exit();
+    }
+    header("Location: ../IndexPage/index.php");
+    exit();
+}
+function moveHeaderLogout() {
+    //this moves the  page depending on the page you are on if right
+    if(isset($_GET['page'])){
+        $location = $_GET['page'];
+        if ($location == 'create'){
+            header("Location: ../Backend_Files/logout.php?page=$location");
+        }elseif ($location == 'property'){
+            $id = $_GET['id'];
+            header("Location: ../Backend_Files/logout.php?page=$location&id=$id");
+        }
+        exit();
+    }
+    header("Location: ../Backend_Files/logout.php");
+    exit();
+}
+
 ?>

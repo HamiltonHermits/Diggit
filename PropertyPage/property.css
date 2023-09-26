@@ -31,9 +31,12 @@ body {
   display: grid;
   flex-direction: column;
   align-content: space-between;
-  position: fixed; /* Make the sidebar position fixed */
-  left: 0; /* Stick it to the left side of the screen */
-  top: 0; /* Stick it to the top of the screen */
+  position: fixed;
+  /* Make the sidebar position fixed */
+  left: 0;
+  /* Stick it to the left side of the screen */
+  top: 0;
+  /* Stick it to the top of the screen */
   width: calc(var(--bg-sidebar-cont-width));
   height: 100vh;
   min-width: 150px;
@@ -316,8 +319,10 @@ main {
   width: 90%;
   height: 100%;
   width: 90%;
-  max-height: 90%; /* Set the maximum height at which scrolling will occur */
-  overflow-y: auto; /* Enable vertical scrolling if necessary */
+  max-height: 90%;
+  /* Set the maximum height at which scrolling will occur */
+  overflow-y: auto;
+  /* Enable vertical scrolling if necessary */
 }
 
 #amenity-parent-container {
@@ -344,7 +349,8 @@ main {
 #amenity-parent-container #left-box-amenity #amenity-item-container #amenity-item-inner-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(autofill, 1fr); /* Default of seven rows */
+  grid-template-rows: repeat(autofill, 1fr);
+  /* Default of seven rows */
   grid-gap: 10px;
   height: 100%;
 }
@@ -430,13 +436,15 @@ a {
 ::-moz-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--global-font-color);
-  opacity: 1; /* Firefox */
+  opacity: 1;
+  /* Firefox */
 }
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--global-font-color);
-  opacity: 1; /* Firefox */
+  opacity: 1;
+  /* Firefox */
 }
 
 @media screen and (max-width: 1156px) {
@@ -446,7 +454,8 @@ a {
   main {
     width: 100vw;
   }
-  .left-box, .right-box {
+  .left-box,
+  .right-box {
     height: 50%;
     width: 80%;
   }
@@ -470,4 +479,262 @@ a {
     display: none;
   }
 }
+/* Modal container styles */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Overlay background with transparency */
+  /* Modal content styles */
+}
+.modal .modal-content {
+  background-color: var(--background_colour);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 2em;
+  transform: translate(-50%, -50%);
+  height: auto;
+  min-width: 20vh;
+  /* Set a maximum width for the modal content */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  --main_colour: #ad5511;
+  --secondary_colour: #d9d9d9;
+  --background_colour: #202024;
+  --light_secondary_colour: #564b40;
+  --main-color: #29292c;
+  /* Close button styles */
+}
+.modal .modal-content .modalInput {
+  background-color: var(--main-color);
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 9px;
+  border: none;
+  color: var(--secondary_colour);
+}
+.modal .modal-content .modalLabel {
+  color: var(--secondary_colour);
+}
+.modal .modal-content #loginButton,
+.modal .modal-content #signupButton,
+.modal .modal-content #applyAgentButton,
+.modal .modal-content #backButtonNotAgent,
+.modal .modal-content #submitAgentApplication,
+.modal .modal-content #loginButtonCreatePage {
+  background-color: var(--main_colour);
+  color: var(--secondary_colour);
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.modal .modal-content .close {
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--secondary_colour);
+}
+
+.modalLabel {
+  color: var(--secondary_colour);
+}
+
+#signupForm {
+  display: inline-block;
+  text-align: center;
+  width: 65%;
+  position: relative;
+}
+#signupForm .modalInput {
+  background-color: var(--main-color);
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 9px;
+  border: none;
+  color: var(--secondary_colour);
+}
+
+/* Login form styles */
+#username,
+#password {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--secondary_colour);
+  background-color: var(--main-color);
+}
+
+/* Submit button styles */
+#submitLogin,
+#submitSignup {
+  background-color: var(--main_colour);
+  color: var(--secondary_colour);
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#submitLogin:hover {
+  background-color: var(--secondary_colour);
+  color: var(--main-color);
+}
+
+#submitSignup:hover {
+  background-color: var(--secondary_colour);
+  color: var(--main-color);
+}
+
+#signupButton:hover {
+  background-color: var(--secondary_colour);
+  color: var(--main-color);
+}
+
+.loginContainer {
+  display: flex;
+  position: relative;
+  justify-self: right;
+  padding-top: 8px;
+  padding-right: 18px;
+}
+.loginContainer #loginButton {
+  margin: auto;
+  cursor: pointer;
+  border-radius: 25px;
+  border-color: var(--main_colour);
+  background: none;
+  font-size: calc(5px + 1.2vw);
+  font-family: "Poppins";
+  font-weight: 600;
+  color: var(--main_colour);
+  height: 5vh;
+  width: 6vw;
+  min-width: 80px;
+}
+
+.leaflet-container {
+  z-index: 0;
+}
+
+.star-rating .star {
+  font-size: 24px; /* Adjust the size as needed */
+  cursor: pointer;
+  color: #ccc; /* Hollow star color */
+  margin-right: 5px; /* Adjust the spacing between stars */
+}
+
+.star-rating .star.filled {
+  color: #ffcc00; /* Filled star color */
+}
+
+/* Style for the info circle */
+.info-circle {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px; /* Adjust spacing */
+}
+
+/* Style for the info icon (i) inside the circle */
+.info-icon {
+  width: 30px; /* Adjust size */
+  height: 30px; /* Adjust size */
+  background-color: #ccc; /* Circle background color */
+  border-radius: 50%; /* Make it a circle */
+  text-align: center;
+  line-height: 30px; /* Center the 'i' vertically */
+  font-size: 20px; /* Adjust font size */
+  cursor: pointer;
+  color: #333; /* Icon color */
+}
+
+/* Style for the info tooltip */
+.info-tooltip {
+  display: none;
+  position: absolute;
+  background-color: #fff; /* Tooltip background color */
+  border: 1px solid #ccc;
+  padding: 10px; /* Adjust padding */
+  border-radius: 5px;
+  width: 200px; /* Adjust width */
+  top: 0;
+  left: 110%; /* Position it to the right of the circle */
+  z-index: 1; /* Ensure it's above other content */
+}
+
+/* Show the tooltip when hovering over the info circle */
+.info-circle:hover .info-tooltip {
+  display: block;
+}
+
+/* Additional CSS for info circles and tooltips (same as previous) */
+/* Style for the rating sliders */
+.rating-slider {
+  position: relative;
+  width: 100%;
+}
+
+/* Adjust the background color and appearance of the slider and thumb */
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px; /* Adjust the height of the slider */
+  background: linear-gradient(to right, var(--main_colour) 0%, var(--main_colour) var(--value, 0%), #ccc var(--value, 0%), #ccc 100%);
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  border-radius: 5px; /* Rounded slider track */
+}
+
+/* Style for the slider thumb (dot/selector) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px; /* Adjust the width of the thumb */
+  height: 15px; /* Adjust the height of the thumb */
+  background: var(--main_colour); /* Slider thumb color */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px; /* Adjust the width of the thumb */
+  height: 15px; /* Adjust the height of the thumb */
+  background: var(--main_colour); /* Slider thumb color */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Style for the slider value display */
+.slider-value {
+  display: inline-block;
+  margin-left: 5px; /* Adjust spacing */
+}
+
+/* ... */
 /*# sourceMappingURL=property.css.map */

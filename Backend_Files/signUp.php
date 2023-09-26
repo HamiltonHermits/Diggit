@@ -107,10 +107,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
 }
 function moveHeader() {
+    //this moves the login page depending on the page you are on
     if(isset($_GET['page'])){
         $location = $_GET['page'];
         if ($location == 'create'){
             header("Location: ../CreatePropertyPage/$location.php");
+        }elseif ($location == 'property'){
+            $id = $_GET['id'];
+            header("Location: ../PropertyPage/$location.php?id=$id");
         }
         exit();
     }

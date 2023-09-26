@@ -6,8 +6,6 @@ $login_username_value = "";
 $signup_username_value = "";
 $signup_email_value = "";
 
-
-
 $isAuthenticated = false;
 if (isset($_SESSION['applyAgentError'])) {
     $apply_agent_error_message = $_SESSION['applyAgentError'];
@@ -376,7 +374,7 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <button id="deleteProfileBtn">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php" method="post">
+                <form action="../Backend_Files/logout.php?page=create" method="post">
                     <button type="submit" class="loginButton">Logout</button>
                 </form>
             </div>
