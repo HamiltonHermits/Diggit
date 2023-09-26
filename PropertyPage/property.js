@@ -23,10 +23,10 @@ function updateActivePageIndicator() {
         const sidebarElement = document.getElementById(target); // get the sidebar element
 
         if (isElementInViewport(page)) { // if the parent page is in the viewport
-            sidebarElement.classList.add("current-page-bg-effect"); // add the background effect to sidebar element
+            //sidebarElement.classList.add("current-page-bg-effect"); // add the background effect to sidebar element
         } else {
             if (sidebarElement) { //if not null
-                sidebarElement.classList.remove("current-page-bg-effect");
+                //sidebarElement.classList.remove("current-page-bg-effect");
             }
         }
     });
