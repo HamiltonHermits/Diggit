@@ -1,55 +1,45 @@
-<!-- report.php -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Tenants Report</title>
-</head>
-<body>
-    <h1>Tenants Report</h1>
+<?php
+require_once('../Backend_Files/database_connect.php');
 
-    <?php
-    // Database connection parameters
-    include_once('../Backend_Files/config.php');
-    include_once('../Backend_Files/database_connect.php');
-    // Create a database connection
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+// Get the search term from the GET request
+$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 
-    // Check if the connection was successful
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+// Construct the SQL query with the LIKE condition on the "username" column
+$query = "SELECT user_id, username, CONCAT(first_name, ' ', last_name) AS 'name',
+                 IF(is_agent = 1 AND is_admin = 1, 'Admin', IF(is_agent = 1, 'Agent', 'Tenant')) AS 'role',
+                 (CASE is_deleted WHEN 0 THEN 'FALSE' ELSE 'TRUE' END) AS 'deleted', agent_phone, agent_company 
+                 FROM usertbl
+                 WHERE username LIKE '%" . $searchTerm . "%'";
+
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+    // Output the table header with column names
+    echo "<tr>";
+    echo "<th>User ID</th>";
+    echo "<th>Username</th>";
+    echo "<th>Name</th>";
+    echo "<th>Role</th>";
+    echo "<th>Deleted</th>";
+    echo "<th>Agent Phone</th>";
+    echo "<th>Agent Company</th>";
+    echo "</tr>";
+
+    while ($row = $result->fetch_assoc()) {
+        // Generate HTML rows for the table
+        echo "<tr>";
+        echo "<td>" . $row['user_id'] . "</td>";
+        echo "<td>" . $row['username'] . "</td>";
+        echo "<td>" . $row['name'] . "</td>";
+        echo "<td>" . $row['role'] . "</td>";
+        echo "<td>" . $row['deleted'] . "</td>";
+        echo "<td>" . $row['agent_phone'] . "</td>";
+        echo "<td>" . $row['agent_company'] . "</td>";
+        echo "</tr>";
     }
+} else {
+    echo "<tr><td colspan='7'>No data found</td></tr>";
+}
 
-    // SQL query to retrieve dig information
-    $sql = "SELECT * FROM property";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Date</th>
-            </tr>";
-
-        // Output data of each row
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>
-                <td>" . $row["id"] . "</td>
-                <td>" . $row["name"] . "</td>
-                <td>" . $row["location"] . "</td>
-                <td>" . $row["date"] . "</td>
-            </tr>";
-        }
-
-        echo "</table>";
-    } else {
-        echo "No digs found.";
-    }
-
-    // Close the database connection
-    $conn->close();
-    ?>
-
-</body>
-</html>
+$conn->close();
+?>

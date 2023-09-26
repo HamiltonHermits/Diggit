@@ -184,11 +184,12 @@ main {
   margin: 1.7em 0 0 0;
   width: 25%;
 }
-.searchbar-container-container .searchbar-container .borderSearchBar #searchbar {
+.searchbar-container-container .searchbar-container .borderSearchBar #searchbar, .searchbar-container-container .searchbar-container .borderSearchBar #tenantSearchbar, .searchbar-container-container .searchbar-container .borderSearchBar #propertySearchbar {
   width: 100%;
   background: none;
   border: none;
   color: var(--global-font-color);
+  outline: none;
 }
 .searchbar-container-container .searchbar-container .borderSearchBar #searchButton {
   background: none;
@@ -234,7 +235,6 @@ main {
   width: 100%;
   height: 100%;
   overflow: scroll;
-  display: none;
 }
 .parent-container .boxes-container .right-box .report-container .report-text-container {
   display: flex;
@@ -270,7 +270,6 @@ main {
   width: 100%;
   height: 100%;
   overflow: scroll;
-  display: none;
 }
 .parent-container .boxes-container .left-box .report-container .report-text-container {
   display: flex;

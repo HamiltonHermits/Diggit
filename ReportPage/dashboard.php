@@ -1,19 +1,5 @@
 <?php
 
-// Database connection parameters
-include_once('../Backend_Files/config.php');
-include_once('../Backend_Files/database_connect.php');
-// Create a database connection
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-
-// Close the database connection
-$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +18,7 @@ $conn->close();
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="dashboard.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -68,18 +55,6 @@ $conn->close();
                         </div>
                         Amenities
                     </a>
-                    <!-- <a class="page-indicator" id="review-indicator" href="#">
-                        <div class="icon">
-                            <svg width="25" height="25" viewBox="0 0 34 34" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M11.7142 20.5463L16.5505 17.6464L21.3868 20.5463L20.1054 15.1142L24.4043 11.4383L18.7413 10.989L16.5505 5.84279L14.3597 10.989L8.69667 11.4383L12.9956 15.1142L11.7142 20.5463ZM0.0161133 33.2076V3.80064C0.0161133 2.9021 0.339912 2.13289 0.987509 1.49301C1.63511 0.85314 2.4136 0.533203 3.32299 0.533203H29.778C30.6874 0.533203 31.4659 0.85314 32.1135 1.49301C32.7611 2.13289 33.0849 2.9021 33.0849 3.80064V23.4053C33.0849 24.3038 32.7611 25.073 32.1135 25.7129C31.4659 26.3528 30.6874 26.6727 29.778 26.6727H6.62987L0.0161133 33.2076ZM5.22445 23.4053H29.778V3.80064H3.32299V25.2432L5.22445 23.4053Z"
-                                    fill="#D9D9D9" />
-                            </svg>
-
-                        </div>
-                        Reviews
-                    </a> -->
                 </div>
             </div>
             <div class="settings-container">
@@ -121,78 +96,27 @@ $conn->close();
                                 <button type="submit" class="searchButton" id="searchButton">
                                     <svg viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.6 18.5L10.3 12.2C9.8 12.6 9.225 12.9167 8.575 13.15C7.925 13.3833 7.23333 13.5 6.5 13.5C4.68333 13.5 3.14583 12.8708 1.8875 11.6125C0.629167 10.3542 0 8.81667 0 7C0 5.18333 0.629167 3.64583 1.8875 2.3875C3.14583 1.12917 4.68333 0.5 6.5 0.5C8.31667 0.5 9.85417 1.12917 11.1125 2.3875C12.3708 3.64583 13 5.18333 13 7C13 7.73333 12.8833 8.425 12.65 9.075C12.4167 9.725 12.1 10.3 11.7 10.8L18 17.1L16.6 18.5ZM6.5 11.5C7.75 11.5 8.8125 11.0625 9.6875 10.1875C10.5625 9.3125 11 8.25 11 7C11 5.75 10.5625 4.6875 9.6875 3.8125C8.8125 2.9375 7.75 2.5 6.5 2.5C5.25 2.5 4.1875 2.9375 3.3125 3.8125C2.4375 4.6875 2 5.75 2 7C2 8.25 2.4375 9.3125 3.3125 10.1875C4.1875 11.0625 5.25 11.5 6.5 11.5Z" fill="#D9D9D9" />
+
                                     </svg>
                                 </button>
-                                <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Search for a Tenant.." id = "tenantSearchbar">
+                                <input type="text" class="searchTerm" spellcheck="false" placeholder="Search for a Tenant.." id="tenantSearchbar">
                                 <div id="dropdown" class="dropdown-content"></div>
                             </div>
                         </div>
                     </div>
                     <div id="generateReportButton" class="generateReportButton">
-                        <button id="generateTenantReport" class="filledButton">Generate Report</button>
-                        <button id="allTenantReport" class="filledButton" name="allTenantReport">List All Tenant</button>
+                        <button id="generateAllProperties" class="filledButton">Generate All Tenants</button>
+                        <button id="generateSearchReport" class="filledButton" name="allTenantReport">Search Tenant by Username</button>
                     </div>
                     <div class="report-container" id="tenant-report-container">
                         <div class="report-text-container" id="tenant-report-text-container">
-                            <?php
-                            $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+                            <table id="tenant-data-table">
 
-                            // Check if the connection was successful
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-                            getAllTenants($conn);
-                            function getAllTenants($conn)
-                            {
-                                # code...
-                                require_once('../Backend_Files/config.php');
-                                require_once('../Backend_Files/database_connect.php');
-                                // Create a database connection
-
-
-                                $sqlAll = "SELECT user_id, username, CONCAT(first_name, ' ', last_name) AS 'name',
-                                IF(is_agent = 1 AND is_admin = 1, 'Admin', IF(is_agent = 1, 'Agent', 'Tenant')) AS 'role',
-                                (CASE is_deleted WHEN 0 THEN 'FALSE' ELSE 'TRUE' END) AS 'deleted', agent_phone, agent_company 
-                                FROM usertbl";
-                                $result = $conn->query($sqlAll)
-                                    or die("HAHAH BOZO");
-                                if ($result->num_rows > 0) {
-                                    echo "<table border='1' style='border-radius:15px;'>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Username</th>
-                                            <th>Name</th>
-                                            <th>Role</th>
-                                            <th>Deleted</th>
-                                            <th>Agent Phone Number</th>
-                                            <th>Agent Company</th>
-                                        </tr>";
-
-                                    // Output data of each row
-
-                                } else {
-                                    echo "No digs found.";
-                                }
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>
-                                        <td>" . $row["user_id"] . "</td>
-                                        <td>" . $row["username"] . "</td>
-                                        <td>" . $row["name"] . "</td>
-                                        <td>" . $row["role"] . "</td>
-                                        <td>" . $row["deleted"] . "</td>
-                                        <td>" . $row["agent_phone"] . "</td>
-                                        <td>" . $row["agent_company"] . "</td>
-                                    </tr>";
-                                }
-
-                                echo "</table>";
-                            }
-                            mysqli_close($conn);
-
-                            ?>
+                            </table>
                         </div>
-
                     </div>
+
+
                 </div>
 
                 <div class="right-box">
@@ -205,80 +129,25 @@ $conn->close();
                         <div class="searchbar-container">
                             <div class="borderSearchBar" id="borderSearchBar">
                                 <button type="submit" class="searchButton" id="searchButton">
-                                    <svg viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16.6 18.5L10.3 12.2C9.8 12.6 9.225 12.9167 8.575 13.15C7.925 13.3833 7.23333 13.5 6.5 13.5C4.68333 13.5 3.14583 12.8708 1.8875 11.6125C0.629167 10.3542 0 8.81667 0 7C0 5.18333 0.629167 3.64583 1.8875 2.3875C3.14583 1.12917 4.68333 0.5 6.5 0.5C8.31667 0.5 9.85417 1.12917 11.1125 2.3875C12.3708 3.64583 13 5.18333 13 7C13 7.73333 12.8833 8.425 12.65 9.075C12.4167 9.725 12.1 10.3 11.7 10.8L18 17.1L16.6 18.5ZM6.5 11.5C7.75 11.5 8.8125 11.0625 9.6875 10.1875C10.5625 9.3125 11 8.25 11 7C11 5.75 10.5625 4.6875 9.6875 3.8125C8.8125 2.9375 7.75 2.5 6.5 2.5C5.25 2.5 4.1875 2.9375 3.3125 3.8125C2.4375 4.6875 2 5.75 2 7C2 8.25 2.4375 9.3125 3.3125 10.1875C4.1875 11.0625 5.25 11.5 6.5 11.5Z" fill="#D9D9D9" />
-                                    </svg>
+                                    <path d="M16.6 18.5L10.3 12.2C9.8 12.6 9.225 12.9167 8.575 13.15C7.925 13.3833 7.23333 13.5 6.5 13.5C4.68333 13.5 3.14583 12.8708 1.8875 11.6125C0.629167 10.3542 0 8.81667 0 7C0 5.18333 0.629167 3.64583 1.8875 2.3875C3.14583 1.12917 4.68333 0.5 6.5 0.5C8.31667 0.5 9.85417 1.12917 11.1125 2.3875C12.3708 3.64583 13 5.18333 13 7C13 7.73333 12.8833 8.425 12.65 9.075C12.4167 9.725 12.1 10.3 11.7 10.8L18 17.1L16.6 18.5ZM6.5 11.5C7.75 11.5 8.8125 11.0625 9.6875 10.1875C10.5625 9.3125 11 8.25 11 7C11 5.75 10.5625 4.6875 9.6875 3.8125C8.8125 2.9375 7.75 2.5 6.5 2.5C5.25 2.5 4.1875 2.9375 3.3125 3.8125C2.4375 4.6875 2 5.75 2 7C2 8.25 2.4375 9.3125 3.3125 10.1875C4.1875 11.0625 5.25 11.5 6.5 11.5Z" fill="#D9D9D9" />
+
                                 </button>
-                                <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Search for a Property.." id = "propertySearchbar">
+                                <input type="text" class="searchTerm" spellcheck="false" placeholder="Search for a Property.." id="propertySearchbar">
                                 <div id="dropdown" class="dropdown-content"></div>
                             </div>
                         </div>
                     </div>
                     <div id="generateReportButton" class="generateReportButton">
-                        <button id="generatePropertyReport" class="filledButton">Generate Report</button>
-                        <button id="allPropertyReport" class="filledButton" name="allPropertyReport">List All Properties</button>
+                        <button id="allPropertyReport" class="filledButton">Generate All Properties</button>
+                        <button id="generatePropertyReport" class="filledButton" name="allPropertyReport">Search Property by Name</button>
                     </div>
                     <div class="report-container" id="property-report-container">
                         <div class="report-text-container" id="property-report-text-container">
-                            <?php
-                            # code...
-                            require_once('../Backend_Files/config.php');
-                            require_once('../Backend_Files/database_connect.php');
-                            // Create a database connection
-                            $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
-                            // Check if the connection was successful
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-                            getAllProperty($conn);
-                            function getAllProperty($conn)
-                            {
-                                $sqlAll = "SELECT prop_id,prop_name,(usertbl.first_name) AS 'created_by_name',prop_description,created_on,max_tenants,curr_tenants,(CONCAT(street_num,' ',street_name,', ',city,', ',suburb,', ',postal_code))AS 'location'
-                                FROM property,usertbl,location
-                                WHERE property.created_by = usertbl.user_id
-                                AND location.location_id = property.location_id";
-                                $result = $conn->query($sqlAll);
-                                if ($result->num_rows > 0) {
-                                    echo "<table border='1' style='border-radius:15px;'>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Created By</th>
-                                            <th>Description</th>
-                                            <th>Created On</th>
-                                            <th>Max Tenants</th>
-                                            <th>Current Amount of Tenants</th>
-                                            <th>Location</th>
-                                        </tr>";
-
-                                    // Output data of each row
-
-                                } else {
-                                    echo "No digs found.";
-                                }
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>
-                                        <td>" . $row["prop_id"] . "</td>
-                                        <td>" . $row["prop_name"] . "</td>
-                                        <td>" . $row["created_by_name"] . "</td>
-                                        <td>" . $row["prop_description"] . "</td>
-                                        <td>" . $row["created_on"] . "</td>
-                                        <td>" . $row["max_tenants"] . "</td>
-                                        <td>" . $row["curr_tenants"] . "</td>
-                                        <td>" . $row["location"] . "</td>
-                                    </tr>";
-                                }
-
-                                echo "</table>";
-                            }
-                            mysqli_close($conn);
-
-                            ?>
+                            <!-- PHP script will populate the table here -->
                         </div>
-
                     </div>
                 </div>
+
             </div>
         </div>
 
