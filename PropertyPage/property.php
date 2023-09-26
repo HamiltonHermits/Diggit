@@ -492,183 +492,189 @@ $conn->close();
 
         <!-- The Rating Modal -->
         <div id="ratingModal" class="modal" style="display: none;">
-            <div class="modal-content">
+            <div class="modal-content" id="ratingModalInner">
+                <span class="modal-close" id="closeRatingModalBtn">&times;</span>
                 <form id="ratingForm" action="process_ratings.php" method="post">
                     <!-- Property Rating Section -->
-                    <div class="rating-section">
-                        <span class="modal-close" id="closeRatingModalBtn">&times;</span>
-                        <h3>Property Rating</h3>
+                    <div class="rating-section-property">
 
-                        <!-- Star Rating Section -->
-                        <div class="star-rating-section">
+                        <h4>Property Rating</h4>
+                        <div class="combined-inline-property">
+                            <!-- Star Rating Section -->
+                            <div class="star-rating-section">
 
-                            <!-- Cleanliness Rating -->
-                            <div class="rating-item">
-                                <p>Cleanliness</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = cleaner digs</div>
+                                <!-- Cleanliness Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Cleanliness</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">More stars = cleaner digs</div>
+                                    </div>
+                                    <div class="star-rating" data-category="cleanliness" data-rating="0">
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
                                 </div>
-                                <div class="star-rating" data-category="cleanliness" data-rating="0">
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
+
+                                <!-- Noise Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Noise</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">More stars = lower noise levels</div>
+                                    </div>
+                                    <div class="star-rating" data-category="noise" data-rating="0">
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
+                                </div>
+
+                                <!-- Location Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Location</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">More stars = better location</div>
+                                    </div>
+                                    <div class="star-rating" data-category="location" data-rating="0">
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
+
+                                </div>
+
+                                <!-- Safety Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Safety</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">More stars = higher safety</div>
+                                    </div>
+                                    <div class="star-rating" data-category="safety" data-rating="0">
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
+                                </div>
+
+                                <!-- Affordability Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Affordability</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">More stars = better affordability</div>
+                                    </div>
+                                    <div class="star-rating" data-category="affordability" data-rating="0">
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
+                                </div>
+
+                                <!-- Overall Property Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Overall Property Rating</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">More stars = better experience</div>
+                                    </div>
+                                    <div class="star-rating" data-category="overallRating" data-rating="0">
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Noise Rating -->
-                            <div class="rating-item">
-                                <p>Noise</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = lower noise levels</div>
-                                </div>
-                                <div class="star-rating" data-category="noise" data-rating="0">
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
+
+                            <!-- Write a Review Section -->
+                            <div class="review-section">
+                                <p>Please write a review (optional)</p>
+                                <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
+                                <p id="wordCount">0/250</p>
                             </div>
-
-                            <!-- Location Rating -->
-                            <div class="rating-item">
-                                <p>Location</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = better location</div>
-                                </div>
-                                <div class="star-rating" data-category="location" data-rating="0">
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-
-                            </div>
-
-                            <!-- Safety Rating -->
-                            <div class="rating-item">
-                                <p>Safety</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = higher safety</div>
-                                </div>
-                                <div class="star-rating" data-category="safety" data-rating="0">
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
-
-                            <!-- Affordability Rating -->
-                            <div class="rating-item">
-                                <p>Affordability</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = better affordability</div>
-                                </div>
-                                <div class="star-rating" data-category="affordability" data-rating="0">
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
-
-                            <!-- Overall Property Rating -->
-                            <div class="rating-item">
-                                <p>Overall Property Rating</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = better experience</div>
-                                </div>
-                                <div class="star-rating" data-category="overallRating" data-rating="0">
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Write a Review Section -->
-                        <div class="review-section">
-                            <p>Please write a review (optional)</p>
-                            <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
-                            <p id="wordCount">0/250</p>
                         </div>
                     </div>
 
                     <!-- Landlord Rating Section -->
                     <div class="rating-section">
-                        <h3>Landlord Rating</h3>
+                        <h4>Landlord Rating</h4>
 
                         <!-- Politeness Rating -->
                         <div class="rating-item">
-                            <p>Politeness:</p>
-                            <div class="rating-slider" id="politenessRating">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
-                                
-                            </div>
+                            <p class="ratingLabels">Politeness:</p>
                             <div class="info-circle">
                                 <div class="info-icon">i</div>
                                 <div class="info-tooltip">left lower - right higher</div>
                             </div>
+                            <div class="rating-slider" id="politenessRating">
+                                <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
+
+                            </div>
+
                         </div>
 
                         <!-- Quality of Repair Rating -->
                         <div class="rating-item">
-                            <p>Quality of Repair:</p>
-                            <div class="rating-slider" id="repairRating">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
-                                
-                            </div>
+                            <p class="ratingLabels">Quality of Repair:</p>
                             <div class="info-circle">
                                 <div class="info-icon">i</div>
                                 <div class="info-tooltip">left lower - right higher</div>
                             </div>
+                            <div class="rating-slider" id="repairRating">
+                                <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
+
+                            </div>
+
                         </div>
 
                         <!-- Response Time Rating -->
                         <div class="rating-item">
-                            <p>Response Time:</p>
-                            <div class="rating-slider" id="responseTimeRating">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
-                                
-                            </div>
+                            <p class="ratingLabels">Response Time:</p>
                             <div class="info-circle">
                                 <div class="info-icon">i</div>
                                 <div class="info-tooltip">left lower - right higher</div>
                             </div>
+                            <div class="rating-slider" id="responseTimeRating">
+                                <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
+
+                            </div>
+
                         </div>
 
                         <!-- Overall Landlord Rating -->
                         <div class="rating-item">
-                            <p>Overall Landlord Rating:</p>
-                            <div class="rating-slider" id="overallLandlordRating">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
-                                
-                            </div>
+                            <p class="ratingLabels">Overall Landlord Rating:</p>
                             <div class="info-circle">
                                 <div class="info-icon">i</div>
                                 <div class="info-tooltip">left lower - right higher</div>
                             </div>
+                            <div class="rating-slider" id="overallLandlordRating">
+                                <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
+
+                            </div>
+
                         </div>
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" id="submitRatingBtn">Submit</button>
+                        <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
                     </div>
                 </form>
             </div>

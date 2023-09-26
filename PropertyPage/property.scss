@@ -532,57 +532,7 @@ a {
     /* Firefox */
 }
 
-//////////--------------------------------------------------------------------------------------------//////////
 
-@media screen and (max-width: 1156px) {
-    .parent-container {
-        height: 88.75em;
-    }
-
-    main {
-        width: 100vw;
-    }
-
-    .left-box,
-    .right-box {
-        height: 50%;
-        width: 80%;
-    }
-
-    .boxes-container {
-        flex-direction: column;
-        align-items: center;
-        width: auto;
-        // padding: 0.5em 2em 2em 2em;
-        // padding: 0;
-
-        //the property below is the secret sauce to make image and map grow after resize
-        height: 100%;
-
-        gap: 2em;
-    }
-
-    .prop-desc {
-        height: 15em;
-        overflow: scroll;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .logo-container {
-        display: none;
-    }
-
-    .background-sidebar-container {
-        display: none;
-    }
-
-    // .left-box,.right-box{
-    //     width: 80%;
-    // }
-}
-
-////////////////////////////////////////////////////////////Modal stuff and aditional review modal stuff  
 /* Modal container styles */
 .modal {
     display: none;
@@ -753,21 +703,141 @@ a {
         min-width: 80px;
     }
 }
+
 .leaflet-container {
     z-index: 0;
 }
+
+.filledButton {
+    color: var(--global-font-color);
+    display: flex;
+    justify-content: center;
+    border: 2px solid var(--orange);
+    border-radius: 50px;
+    align-items: center;
+    padding: 0.5em;
+    background-color: var(--orange);
+    cursor: pointer;
+}
+
+.inverseFilledButton {
+    color: var(--global-font-color);
+    display: flex;
+    justify-content: center;
+    border: 2px solid var(--orange);
+    background: none;
+    border-radius: 50px;
+    align-items: center;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+#ratingModal {
+    display: flex;
+    flex-direction: column;
+
+    #ratingModalInner {
+        width: 80%;
+        padding: 0;
+        height: 80%;
+        background-color: var(--main-color);
+        font-family: "Poppins";
+        padding:2em;
+        #closeRatingModalBtn {
+            position: absolute;
+            left: 1%;
+            cursor: pointer;
+        }
+
+        #ratingForm {
+            display: flex;
+            width: 100%;
+
+            height: 100%;
+        }
+        .rating-section-property{
+            width: 60%;
+            height: 100%;
+            background-color: var(--background_colour);
+            border-radius: 15px;
+            .combined-inline-property{
+                display: inline-flex;
+                width: 100%;
+                .star-rating-section {
+                    height: 100%;
+                    width: 50%;
+                    .rating-item {
+                        height: 20%;
+    
+                        .ratingLabels {
+                            display: inline;
+                        }
+                    }
+    
+                    .star-rating .star {
+                        font-size: 1.5em;
+                        /* Adjust the size as needed */
+                        cursor: pointer;
+                        color: var(--main_colour);
+                        /* Hollow star color */
+                        margin-right: 5px;
+                        /* Adjust the spacing between stars */
+                    }
+    
+                    .star-rating .star.filled {
+                        color: #ffcc00;
+                        /* Filled star color */
+                    }
+                }
+            }
+            
+        }
+        .rating-section {
+            width: 30%;
+            height: 80%;
+            left:10%;
+            position: relative;
+            background-color: var(--background_colour);
+            border-radius: 15px;
+        }
+
+        .review-section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            right:5%;
+            #reviewTextarea {
+                height: 100%;
+                border-radius: 15px;
+                font-size: 1em;
+                color: var(--secondary_colour);
+                background-color: var(--container-box-color);
+                border-color: var(--light_secondary_colour);
+                resize: none;
+            }
+            #wordCount{
+                position: absolute;
+                bottom:0;
+                right:5%;
+            }
+        }
+
+        #submitRatingBtn {
+            position: absolute;
+            width: 15%;
+            height: 10%;
+            bottom: 5%;
+            right: 10%;
+            font-size: 1em;
+        }
+
+    }
+}
+
 //working on the rating modal stars
 
-.star-rating .star {
-    font-size: 24px; /* Adjust the size as needed */
-    cursor: pointer;
-    color: #ccc; /* Hollow star color */
-    margin-right: 5px; /* Adjust the spacing between stars */
-}
 
-.star-rating .star.filled {
-    color: #ffcc00; /* Filled star color */
-}
 
 //info tooltips 
 
@@ -775,34 +845,38 @@ a {
 .info-circle {
     position: relative;
     display: inline-block;
-    margin-right: 10px; /* Adjust spacing */
-}
+    margin-right: 10px;
+    width: 7%;
 
-/* Style for the info icon (i) inside the circle */
-.info-icon {
-    width: 30px; /* Adjust size */
-    height: 30px; /* Adjust size */
-    background-color: #ccc; /* Circle background color */
-    border-radius: 50%; /* Make it a circle */
-    text-align: center;
-    line-height: 30px; /* Center the 'i' vertically */
-    font-size: 20px; /* Adjust font size */
-    cursor: pointer;
-    color: #333; /* Icon color */
-}
+    /* Adjust spacing */
+    /* Style for the info icon (i) inside the circle */
+    .info-icon {
+        border: 1px solid var(--orange);
+        border-radius: 50%;
+        text-align: center;
+        cursor: pointer;
+        color: var(--orange);
+        /* Icon color */
+    }
 
-/* Style for the info tooltip */
-.info-tooltip {
-    display: none;
-    position: absolute;
-    background-color: #fff; /* Tooltip background color */
-    border: 1px solid #ccc;
-    padding: 10px; /* Adjust padding */
-    border-radius: 5px;
-    width: 200px; /* Adjust width */
-    top: 0;
-    left: 110%; /* Position it to the right of the circle */
-    z-index: 1; /* Ensure it's above other content */
+    /* Style for the info tooltip */
+    .info-tooltip {
+        display: none;
+        position: absolute;
+        background-color: var(--orange);
+        /* Tooltip background color */
+        border: 1px solid var(--orange);
+        padding: 10px;
+        /* Adjust padding */
+        border-radius: 5px;
+        width: 200px;
+        /* Adjust width */
+        top: 0;
+        left: 110%;
+        /* Position it to the right of the circle */
+        z-index: 1;
+        /* Ensure it's above other content */
+    }
 }
 
 /* Show the tooltip when hovering over the info circle */
@@ -818,37 +892,46 @@ a {
 /* Style for the rating sliders */
 .rating-slider {
     position: relative;
-    width: 100%;
+    width: 70%;
+    display: inline-flex;
 }
 
 /* Adjust the background color and appearance of the slider and thumb */
 .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 5px; /* Adjust the height of the slider */
+    height: 5px;
+    /* Adjust the height of the slider */
     background: linear-gradient(to right, var(--main_colour) 0%, var(--main_colour) var(--value, 0%), #ccc var(--value, 0%), #ccc 100%);
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-    border-radius: 5px; /* Rounded slider track */
+    border-radius: 5px;
+    /* Rounded slider track */
 }
 
 /* Style for the slider thumb (dot/selector) */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 15px; /* Adjust the width of the thumb */
-    height: 15px; /* Adjust the height of the thumb */
-    background: var(--main_colour); /* Slider thumb color */
+    width: 15px;
+    /* Adjust the width of the thumb */
+    height: 15px;
+    /* Adjust the height of the thumb */
+    background: var(--main_colour);
+    /* Slider thumb color */
     cursor: pointer;
     border-radius: 50%;
 }
 
 .slider::-moz-range-thumb {
-    width: 15px; /* Adjust the width of the thumb */
-    height: 15px; /* Adjust the height of the thumb */
-    background: var(--main_colour); /* Slider thumb color */
+    width: 15px;
+    /* Adjust the width of the thumb */
+    height: 15px;
+    /* Adjust the height of the thumb */
+    background: var(--main_colour);
+    /* Slider thumb color */
     cursor: pointer;
     border-radius: 50%;
 }
@@ -856,10 +939,69 @@ a {
 /* Style for the slider value display */
 .slider-value {
     display: inline-block;
-    margin-left: 5px; /* Adjust spacing */
+    margin-left: 5px;
+    /* Adjust spacing */
 }
 
 /* ... */
 
+//////////--------------------------------------------------------------------------------------------//////////
 
+@media screen and (max-width: 1156px) {
+    .parent-container {
+        height: 88.75em;
+    }
+
+    main {
+        width: 100vw;
+    }
+
+    .left-box,
+    .right-box {
+        height: 50%;
+        width: 80%;
+    }
+
+    .boxes-container {
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        // padding: 0.5em 2em 2em 2em;
+        // padding: 0;
+
+        //the property below is the secret sauce to make image and map grow after resize
+        height: 100%;
+
+        gap: 2em;
+    }
+
+    .prop-desc {
+        height: 15em;
+        overflow: scroll;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .logo-container {
+        display: none;
+    }
+
+    .background-sidebar-container {
+        display: none;
+    }
+
+    #ratingModal {
+        #ratingModalInner {
+            .rating-section {
+                width: 50%;
+            }
+            .review-section {
+                display: none;
+            }
+        }
+    }
+
+}
+
+////////////////////////////////////////////////////////////Modal stuff and aditional review modal stuff  
 /*# sourceMappingURL=property.css.map */

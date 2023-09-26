@@ -231,7 +231,9 @@ $conn->close();
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
+
                             getAllProperty($conn);
+                            
                             function getAllProperty($conn)
                             {
                                 $sqlAll = "SELECT prop_id,prop_name,(usertbl.first_name) AS 'created_by_name',prop_description,created_on,max_tenants,curr_tenants,(CONCAT(street_num,' ',street_name,', ',city,', ',suburb,', ',postal_code))AS 'location'
