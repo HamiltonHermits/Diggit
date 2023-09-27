@@ -372,357 +372,460 @@ $conn->close();
 
         <div class="parent-container" id="comment-parent-container" data-target="prop-indicator">
             <div class="boxes-container">
-                <div class="commentLabel">Comments</div>
+
                 <div class="left-box">
+                    <div class="comment-label-container">
+                        <div class="commentLabel">Reviews</div>
+                    </div>
                     <div class="comment-section">
                         <div class="sort-comments-container">
-                            <label for="sort-comments">Sort by:</label>
-                            <select name="sort-comments" id="sort-comments">
-                                <option value="desc">Highest Rating</option>
-                                <option value="asc">Lowest Rating</option>
-                                <option value="oldest">Oldest Comment</option>
-                                <option value="newest">Newest Comment</option>
-                            </select>
+                            <div class="inner-sort-comments-container">
+                                <label for="sort-comments">Sort by:</label>
+                                <select name="sort-comments" id="sort-comments">
+                                    <option value="desc">Highest</option>
+                                    <option value="asc">Lowest</option>
+                                    <option value="oldest">Oldest</option>
+                                    <option value="newest">Newest</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class = "comments-list-container">
-                        <?php include('comments.php'); ?>
+                        <div class="comments-list-container">
+                            <?php include('comments.php'); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-box">
+                    <div class="rating-summary-container">
+                        <div class="commentLabel">Overall</div>
+                        <hr class="horizontal-line-comment">
+                        <div class="rating-summary-overall-container">
+                            breakdown <br>
+                            breakdown <br>
+                            breakdown <br>
+                            breakdown <br>
+                            breakdown
+                        </div>
+                        <hr class="horizontal-line-comment">
+                        <div class="rating-summary-breakdown"></div>
+                    </div>
+                    <div class=landlord-rating-summary-container>
+                        <div class="star-rating-section">
+                            <!-- Cleanliness Rating -->
+                            <div class="rating-item">
+                                <p class="ratingLabels">Cleanliness</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">More stars = cleaner digs</div>
+                                </div>
+                                <div class="star-rating" data-category="cleanliness" data-rating="0">
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                </div>
+                            </div>
+
+                            <!-- Noise Rating -->
+                            <div class="rating-item">
+                                <p class="ratingLabels">Noise</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">More stars = lower noise levels</div>
+                                </div>
+                                <div class="star-rating" data-category="noise" data-rating="0">
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                </div>
+                            </div>
+
+                            <!-- Location Rating -->
+                            <div class="rating-item">
+                                <p class="ratingLabels">Location</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">More stars = better location</div>
+                                </div>
+                                <div class="star-rating" data-category="location" data-rating="0">
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                </div>
+
+                            </div>
+
+                            <!-- Safety Rating -->
+                            <div class="rating-item">
+                                <p class="ratingLabels">Safety</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">More stars = higher safety</div>
+                                </div>
+                                <div class="star-rating" data-category="safety" data-rating="0">
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                </div>
+                            </div>
+
+                            <!-- Affordability Rating -->
+                            <div class="rating-item">
+                                <p class="ratingLabels">Affordability</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">More stars = better affordability</div>
+                                </div>
+                                <div class="star-rating" data-category="affordability" data-rating="0">
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
 
 
-        <!-- The login modal -->
-        <div id="loginModal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <span class="close" id="closeButton">&times;</span>
-                <h2 class="modalLabel">Login</h2>
+            <!-- The login modal -->
+            <div id="loginModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close" id="closeButton">&times;</span>
+                    <h2 class="modalLabel">Login</h2>
 
-                <!-- Display the error message if it exists -->
+                    <!-- Display the error message if it exists -->
 
-                <?php if (isset($login_error_message)) { ?>
-                    <p><?php echo $login_error_message; ?></p>
-                    <?php echo '<script>loginModal.style.display = "block";</script>'; ?>
-                <?php } ?>
+                    <?php if (isset($login_error_message)) { ?>
+                        <p><?php echo $login_error_message; ?></p>
+                        <?php echo '<script>loginModal.style.display = "block";</script>'; ?>
+                    <?php } ?>
 
-                <form id="loginForm" action="../Backend_Files/login.php?page=property&id=<?php echo $propId; ?>" method="POST">
-                    <!-- Login form fields -->
-                    <label for="username" class="modalLabel">Username:</label>
-                    <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required><br>
-                    <label for="password" class="modalLabel">Password:</label>
-                    <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
-                    <input type="submit" id="submitLogin" value="Login">
-                </form>
+                    <form id="loginForm" action="../Backend_Files/login.php?page=property&id=<?php echo $propId; ?>" method="POST">
+                        <!-- Login form fields -->
+                        <label for="username" class="modalLabel">Username:</label>
+                        <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required><br>
+                        <label for="password" class="modalLabel">Password:</label>
+                        <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
+                        <input type="submit" id="submitLogin" value="Login">
+                    </form>
 
-                <!-- Add a button to open the signup modal -->
-                <button id="signupButton">Signup</button>
+                    <!-- Add a button to open the signup modal -->
+                    <button id="signupButton">Signup</button>
+                </div>
             </div>
-        </div>
 
-        <!-- The signup modal (hidden by default) -->
-        <div id="signupModal" class="modal" style="display: none;">
+            <!-- The signup modal (hidden by default) -->
+            <div id="signupModal" class="modal" style="display: none;">
 
-            <div class="modal-content">
-                <span class="close" id="closeSignupButton">&times;</span>
-                <span class="back-arrow" style="color:white;" id="backToLoginButton">&#8592;</span>
-                <h2 class="modalLabel">Signup</h2>
+                <div class="modal-content">
+                    <span class="close" id="closeSignupButton">&times;</span>
+                    <span class="back-arrow" style="color:white;" id="backToLoginButton">&#8592;</span>
+                    <h2 class="modalLabel">Signup</h2>
 
-                <!-- Display the error message if it exists -->
+                    <!-- Display the error message if it exists -->
 
-                <?php if (isset($signup_error_message)) { ?>
-                    <p><?php echo $signup_error_message; ?></p>
-                    <?php echo '<script>signupModal.style.display = "block";</script>'; ?>
-                <?php } ?>
+                    <?php if (isset($signup_error_message)) { ?>
+                        <p><?php echo $signup_error_message; ?></p>
+                        <?php echo '<script>signupModal.style.display = "block";</script>'; ?>
+                    <?php } ?>
 
-                <!-- Signup form fields -->
-                <form id="signupForm" action="../Backend_Files/signUp.php?page=property&id=<?php echo $propId; ?>" method="POST">
                     <!-- Signup form fields -->
-                    <label for="newUsername" class="modalLabel">Username:</label>
-                    <input type="text" id="newUsername" name="newUsername" class="modalInput" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required>
-                    <label for="newEmail" class="modalLabel">Email:</label>
-                    <input type="email" id="newEmail" name="newEmail" class="modalInput" value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>" placeholder="example@gmail.com" required>
+                    <form id="signupForm" action="../Backend_Files/signUp.php?page=property&id=<?php echo $propId; ?>" method="POST">
+                        <!-- Signup form fields -->
+                        <label for="newUsername" class="modalLabel">Username:</label>
+                        <input type="text" id="newUsername" name="newUsername" class="modalInput" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required>
+                        <label for="newEmail" class="modalLabel">Email:</label>
+                        <input type="email" id="newEmail" name="newEmail" class="modalInput" value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>" placeholder="example@gmail.com" required>
 
-                    <label for="firstName" class="modalLabel">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" class="modalInput" value="<?php echo isset($_SESSION['firstName']) ? htmlspecialchars($_SESSION['firstName']) : ''; ?>" placeholder="e.g: Klark" required>
-                    <label for="lastName" class="modalLabel">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" class="modalInput" value="<?php echo isset($_SESSION['lastName']) ? htmlspecialchars($_SESSION['lastName']) : ''; ?>" placeholder="e.g: Kent" required>
+                        <label for="firstName" class="modalLabel">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" class="modalInput" value="<?php echo isset($_SESSION['firstName']) ? htmlspecialchars($_SESSION['firstName']) : ''; ?>" placeholder="e.g: Klark" required>
+                        <label for="lastName" class="modalLabel">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" class="modalInput" value="<?php echo isset($_SESSION['lastName']) ? htmlspecialchars($_SESSION['lastName']) : ''; ?>" placeholder="e.g: Kent" required>
 
-                    <label for="newPassword" class="modalLabel">Password:</label>
-                    <input type="password" id="newPassword" name="newPassword" class="modalInput" value="<?php echo isset($_SESSION['newPassword']) ? htmlspecialchars($_SESSION['newPassword']) : ''; ?>" placeholder="Password" required>
-                    <label for="passwordConfirm" class="modalLabel">Confirm Password:</label>
-                    <input type="password" id="passwordConfirm" name="passwordConfirm" class="modalInput" value="<?php echo isset($_SESSION['confirmPass']) ? htmlspecialchars($_SESSION['confirmPass']) : ''; ?>" placeholder="Confirm Password" required>
-                    <input type="submit" id="submitSignup" value="Signup">
-                </form>
+                        <label for="newPassword" class="modalLabel">Password:</label>
+                        <input type="password" id="newPassword" name="newPassword" class="modalInput" value="<?php echo isset($_SESSION['newPassword']) ? htmlspecialchars($_SESSION['newPassword']) : ''; ?>" placeholder="Password" required>
+                        <label for="passwordConfirm" class="modalLabel">Confirm Password:</label>
+                        <input type="password" id="passwordConfirm" name="passwordConfirm" class="modalInput" value="<?php echo isset($_SESSION['confirmPass']) ? htmlspecialchars($_SESSION['confirmPass']) : ''; ?>" placeholder="Confirm Password" required>
+                        <input type="submit" id="submitSignup" value="Signup">
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <!-- The profile modal (hidden by default) -->
-        <div id="profileModal" class="modal" style="display: none;">
-            <div class="modal-content">
+            <!-- The profile modal (hidden by default) -->
+            <div id="profileModal" class="modal" style="display: none;">
+                <div class="modal-content">
 
-                <?php if (isset($profileMessage)) { ?>
-                    <p><?php echo $profileMessage; ?></p>
-                    <?php echo '<script>profileModal.style.display = "block";</script>'; ?>
-                <?php } ?>
+                    <?php if (isset($profileMessage)) { ?>
+                        <p><?php echo $profileMessage; ?></p>
+                        <?php echo '<script>profileModal.style.display = "block";</script>'; ?>
+                    <?php } ?>
 
-                <span class="close" id="closeModalBtn">&times;</span>
-                <img id="profileImage" style="max-width: 10vh;" src="../IndexPage/ImagesIndex/User.png" alt="Profile Picture">
+                    <span class="close" id="closeModalBtn">&times;</span>
+                    <img id="profileImage" style="max-width: 10vh;" src="../IndexPage/ImagesIndex/User.png" alt="Profile Picture">
 
-                <h2 id="usernameProfile" class="modalLabel">Hello, <?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
-                <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
-                <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
-                <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn" class="inverseFilledButton">Change Password</button>
+                    <h2 id="usernameProfile" class="modalLabel">Hello, <?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></h2>
+                    <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
+                    <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
+                    <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
+                    <button id="changePasswordBtn" class="inverseFilledButton">Change Password</button>
 
-                <button id="deleteProfileBtn" class="inverseFilledButton">Delete Profile</button>
+                    <button id="deleteProfileBtn" class="inverseFilledButton">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php?page=property&id=<?php echo $propId; ?>" method="post" id="formProfileBtn">
-                    <button type="submit" class="filledButton loginButton">Logout</button>
-                </form>
+                    <form action="../Backend_Files/logout.php?page=property&id=<?php echo $propId; ?>" method="post" id="formProfileBtn">
+                        <button type="submit" class="filledButton loginButton">Logout</button>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <!-- Change Password Modal -->
-        <div id="changePasswordModal" class="modal" style="display: none;">
-            <div class="modal-content">
+            <!-- Change Password Modal -->
+            <div id="changePasswordModal" class="modal" style="display: none;">
+                <div class="modal-content">
 
-                <?php if (isset($changePasswordError)) { ?>
-                    <p><?php echo $changePasswordError; ?></p>
-                    <?php echo '<script>changePasswordModal.style.display = "block";</script>'; ?>
-                <?php } ?>
+                    <?php if (isset($changePasswordError)) { ?>
+                        <p><?php echo $changePasswordError; ?></p>
+                        <?php echo '<script>changePasswordModal.style.display = "block";</script>'; ?>
+                    <?php } ?>
 
-                <span class="close" id="closeChangePasswordModalBtn">&times;</span>
-                <span class="back-arrow" style="color:white;" id="backToProfile">&#8592;</span>
+                    <span class="close" id="closeChangePasswordModalBtn">&times;</span>
+                    <span class="back-arrow" style="color:white;" id="backToProfile">&#8592;</span>
 
-                <h2>Change Password</h2>
-                <form id="changePasswordForm" action="../Backend_Files/change_password.php?page=property&id=<?php echo $propId; ?>" method="post">
-                    <label for="currentPassword">Current Password:</label>
-                    <input type="password" id="currentPassword" name="currentPassword" required>
+                    <h2>Change Password</h2>
+                    <form id="changePasswordForm" action="../Backend_Files/change_password.php?page=property&id=<?php echo $propId; ?>" method="post">
+                        <label for="currentPassword">Current Password:</label>
+                        <input type="password" id="currentPassword" name="currentPassword" required>
 
-                    <label for="changeNewPassword">New Password:</label>
-                    <input type="password" id="changeNewPassword" name="changeNewPassword" required>
+                        <label for="changeNewPassword">New Password:</label>
+                        <input type="password" id="changeNewPassword" name="changeNewPassword" required>
 
-                    <label for="confirmPassword">Confirm New Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <label for="confirmPassword">Confirm New Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-                    <button type="submit">Change Password</button>
-                </form>
+                        <button type="submit">Change Password</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <!-- Confirm Delete Modal -->
-        <div id="confirmDeleteModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close" id="closeDeleteModalBtn">&times;</span>
+            <!-- Confirm Delete Modal -->
+            <div id="confirmDeleteModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" id="closeDeleteModalBtn">&times;</span>
 
-                <h2>Confirm Delete</h2>
-                <p>Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" method="post">
-                    <button type="submit" class="deleteButton">Yes, Delete</button>
-                </form>
-                <button id="cancelDeleteBtn">Cancel</button>
+                    <h2>Confirm Delete</h2>
+                    <p>Are you sure you want to delete your profile?</p>
+                    <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" method="post">
+                        <button type="submit" class="deleteButton">Yes, Delete</button>
+                    </form>
+                    <button id="cancelDeleteBtn">Cancel</button>
+                </div>
             </div>
-        </div>
 
 
 
-        <!-- The Rating Modal -->
-        <div id="ratingModal" class="modal" style="display: none;">
-            <div class="modal-content" id="ratingModalInner">
-                <span class="modal-close" id="closeRatingModalBtn">&times;</span>
-                <form id="ratingForm" action="process_ratings.php" method="post">
-                    <!-- Property Rating Section -->
-                    <div class="rating-section-property">
+            <!-- The Rating Modal -->
+            <div id="ratingModal" class="modal" style="display: none;">
+                <div class="modal-content" id="ratingModalInner">
+                    <span class="modal-close" id="closeRatingModalBtn">&times;</span>
+                    <form id="ratingForm" action="process_ratings.php" method="post">
+                        <!-- Property Rating Section -->
+                        <div class="rating-section-property">
 
-                        <div class="rating-modal-header">Property Rating</div>
-                        <div class="combined-inline-property">
-                            <!-- Star Rating Section -->
-                            <div class="star-rating-section">
+                            <div class="rating-modal-header">Property Rating</div>
+                            <div class="combined-inline-property">
+                                <!-- Star Rating Section -->
+                                <div class="star-rating-section">
 
-                                <!-- Cleanliness Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Cleanliness</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">More stars = cleaner digs</div>
+                                    <!-- Cleanliness Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Cleanliness</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">More stars = cleaner digs</div>
+                                        </div>
+                                        <div class="star-rating" data-category="cleanliness" data-rating="0">
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                        </div>
                                     </div>
-                                    <div class="star-rating" data-category="cleanliness" data-rating="0">
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
+
+                                    <!-- Noise Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Noise</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">More stars = lower noise levels</div>
+                                        </div>
+                                        <div class="star-rating" data-category="noise" data-rating="0">
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Location</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">More stars = better location</div>
+                                        </div>
+                                        <div class="star-rating" data-category="location" data-rating="0">
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Safety Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Safety</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">More stars = higher safety</div>
+                                        </div>
+                                        <div class="star-rating" data-category="safety" data-rating="0">
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Affordability Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Affordability</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">More stars = better affordability</div>
+                                        </div>
+                                        <div class="star-rating" data-category="affordability" data-rating="0">
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Overall Property Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Overall Property Rating</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">More stars = better experience</div>
+                                        </div>
+                                        <div class="star-rating" data-category="overallRating" id="overallRating" data-rating="0">
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                            <span class="star">&#9734;</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- Noise Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Noise</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">More stars = lower noise levels</div>
-                                    </div>
-                                    <div class="star-rating" data-category="noise" data-rating="0">
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-                                </div>
 
-                                <!-- Location Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Location</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">More stars = better location</div>
-                                    </div>
-                                    <div class="star-rating" data-category="location" data-rating="0">
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-
-                                </div>
-
-                                <!-- Safety Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Safety</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">More stars = higher safety</div>
-                                    </div>
-                                    <div class="star-rating" data-category="safety" data-rating="0">
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-                                </div>
-
-                                <!-- Affordability Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Affordability</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">More stars = better affordability</div>
-                                    </div>
-                                    <div class="star-rating" data-category="affordability" data-rating="0">
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-                                </div>
-
-                                <!-- Overall Property Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Overall Property Rating</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">More stars = better experience</div>
-                                    </div>
-                                    <div class="star-rating" data-category="overallRating" id="overallRating" data-rating="0">
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <!-- Write a Review Section -->
-                            <div class="review-section">
-                                <div id="writeAReview">Please write a review (optional)</div>
-                                <div class="reviewTextarea">
-                                    <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
-                                    <div id="wordCount">0/250</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Landlord Rating Section -->
-                    <div class="rating-section-with-submit">
-                        <div class="rating-section">
-                            <div class="ratingLabel">Landlord Rating</div>
-
-                            <!-- Politeness Rating -->
-                            <div class="landlord-rating-section">
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Politeness:</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">left lower - right higher</div>
-                                    </div>
-                                    <div class="rating-slider" id="politenessRating">
-                                        <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
-
-                                    </div>
-
-                                </div>
-
-                                <!-- Quality of Repair Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Quality of Repair:</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">left lower - right higher</div>
-                                    </div>
-                                    <div class="rating-slider" id="repairRating">
-                                        <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
-
-                                    </div>
-
-                                </div>
-
-                                <!-- Response Time Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Response Time:</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">left lower - right higher</div>
-                                    </div>
-                                    <div class="rating-slider" id="responseTimeRating">
-                                        <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
-
-                                    </div>
-
-                                </div>
-
-                                <!-- Overall Landlord Rating -->
-                                <div class="rating-item">
-                                    <p class="ratingLabels">Overall Landlord Rating:</p>
-                                    <div class="info-circle">
-                                        <div class="info-icon">i</div>
-                                        <div class="info-tooltip">left lower - right higher</div>
-                                    </div>
-                                    <div class="rating-slider" id="overallLandlordRating">
-                                        <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
-
+                                <!-- Write a Review Section -->
+                                <div class="review-section">
+                                    <div id="writeAReview">Please write a review (optional)</div>
+                                    <div class="reviewTextarea">
+                                        <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
+                                        <div id="wordCount">0/250</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
 
+                        <!-- Landlord Rating Section -->
+                        <div class="rating-section-with-submit">
+                            <div class="rating-section">
+                                <div class="ratingLabel">Landlord Rating</div>
+
+                                <!-- Politeness Rating -->
+                                <div class="landlord-rating-section">
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Politeness:</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">left lower - right higher</div>
+                                        </div>
+                                        <div class="rating-slider" id="politenessRating">
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Quality of Repair Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Quality of Repair:</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">left lower - right higher</div>
+                                        </div>
+                                        <div class="rating-slider" id="repairRating">
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Response Time Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Response Time:</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">left lower - right higher</div>
+                                        </div>
+                                        <div class="rating-slider" id="responseTimeRating">
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Overall Landlord Rating -->
+                                    <div class="rating-item">
+                                        <p class="ratingLabels">Overall Landlord Rating:</p>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">left lower - right higher</div>
+                                        </div>
+                                        <div class="rating-slider" id="overallLandlordRating">
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
+
+                            </div>
                         </div>
-                    </div>
-                    <!-- Modal footer -->
+                        <!-- Modal footer -->
 
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
 
 
 

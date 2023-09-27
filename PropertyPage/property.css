@@ -408,16 +408,55 @@ main {
   height: 100vh;
   gap: 1em;
 }
-#comment-parent-container .boxes-container .commentLabel {
-  width: 60%;
-  height: 10%;
+#comment-parent-container .boxes-container .left-box {
+  width: 100%;
+  height: 90%;
+  background: none;
+  padding: 0;
+}
+#comment-parent-container .boxes-container .left-box .comment-label-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+#comment-parent-container .boxes-container .left-box .comment-label-container .commentLabel {
+  font-size: 30px;
   padding: 0 2em 0 2em;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
   background-color: var(--inner-box-color);
 }
-#comment-parent-container .boxes-container .left-box {
+#comment-parent-container .boxes-container .left-box .comment-section {
+  background-color: var(--inner-box-color);
   width: 60%;
-  height: 90%;
+  border-radius: 15px;
+  height: 100%;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .sort-comments-container {
+  width: 100%;
+  display: grid;
+  justify-content: flex-end;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .sort-comments-container .inner-sort-comments-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .sort-comments-container .inner-sort-comments-container #sort-comments {
+  height: 100%;
+  font-size: calc(10px + 0.7vw);
+  border-radius: 20px;
+  background-color: var(--main-color);
+  border: none;
+  color: var(--global-font-color);
+}
+#comment-parent-container .boxes-container .left-box .comment-section .sort-comments-container .inner-sort-comments-container #sort-comments option {
+  width: 45%;
+  border: none;
 }
 #comment-parent-container .boxes-container .left-box .comments-list-container {
   display: grid;
