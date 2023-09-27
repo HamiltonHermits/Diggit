@@ -48,10 +48,10 @@ include_once('../Backend_Files/database_connect.php');
 $propId = $_GET["id"];
 // $propId = "1";
 
-// Get property
-$stmt = $conn->prepare("SELECT * from searchbar_testing WHERE ID = ?");
-$stmt->bind_param("s", $propId);
-$stmt->execute();
+    // Get property
+    $stmt = $conn->prepare("SELECT * from property WHERE prop_id = ?");
+    $stmt->bind_param("s", $propId);
+    $stmt->execute();
 
 $result = $stmt->get_result();
 $result = $result->fetch_assoc();
@@ -205,7 +205,7 @@ $conn->close();
                 <div class="left-box">
                     <div class="prop-title-container">
                         <div class="prop-title">
-                            <?php echo $result['name']; ?>
+                            <?php echo $result['prop_name']; ?>
                         </div>
                     </div>
                     <div class="prop-images-container">
@@ -215,7 +215,7 @@ $conn->close();
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
-                            <?php echo $result['description']; ?>
+                            <?php echo $result['prop_description']; ?>
                             <!-- If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
                             If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
                             If you are looking for a flat or an apartment that is situated in a garden setting, this is the place for you! This highly sought after complex is ideally situated close to Rhodes and the Peppergrove Mall and extremely popular with students. It has two sizeable bedrooms, one bathroom, open plan kitchen/lounge, resnet for students, 24 hour security and off street parking. Its on the ground floor which gives you instant access to the garden ar- ...show more
