@@ -850,16 +850,17 @@ $conn->close();
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer" id="modalFoot" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">>
-                                <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
-
-                            </div>
+                            
                         </div>
                         <!-- Modal footer -->
 
                     </form>
                 </div>
             </div>
+            <div class="modal-footer" id="notLoggedInModalSomethingElse" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">>
+                                <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
+
+                            </div>
         </div>
 
     </main>
