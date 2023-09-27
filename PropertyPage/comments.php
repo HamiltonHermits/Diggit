@@ -28,11 +28,11 @@ if (!$result) {
 
 // Display comments
 while ($row = mysqli_fetch_assoc($result)) {
-    echo '<div class="comment">';
-    echo '<h3>' . '<strong>' . $row['username'] . ':</p>' . '</strong>'. '</h3>';
-    echo '<p>' . $row['written_review'] . '</p>';
-    echo '<p>Rating: ' . $row['avg_prop_review'] . '</p>';
-    echo '<p>Date: ' . $row['date_reviewed'] . '</p>';
+    echo '<div class ="comment-container">';
+    echo '<div class = "star-rating-comment">' . $row['avg_prop_review'] . '</div>';
+    echo '<div class = "username-date-comment">' . $row['username'] . ' - ' . $row['date_reviewed'] . '</div>';
+    echo '<div class = "description-comment">' . $row['written_review'] . '</div>';
+    echo '<hr class = "horizontal-line-comment">';
     echo '</div>';
 }
 

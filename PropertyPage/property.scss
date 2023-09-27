@@ -481,6 +481,56 @@ main {
     }
 }
 
+
+
+#comment-parent-container{
+    margin: 6em 0 0 0;
+    .boxes-container{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        gap:1em;
+        .commentLabel{
+            width: 60%;
+            height: 10%;
+            padding: 0 2em 0 2em;
+            border-radius: 15px;
+            background-color: var(--inner-box-color);
+        }
+        .left-box{
+            width: 60%;
+            height: 90%;
+            
+            .comment-section{
+                .sort-comments-container{
+
+                }
+            }
+            .comments-list-container{
+                display: grid;
+                .comment-container{
+                    font-family: "Poppins";
+                    margin-top:1em;
+                    display: grid;
+
+                    .star-rating-comment{
+
+                    }
+                    .username-date-comment{
+                        font-weight: 600;
+                        font-size: calc(10px + 0.5vw);
+                    }
+                    .description-comment{
+                        font-size: calc(5px + 0.7vw);
+                    }
+                    .horizontal-line-comment{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
 //////////--------------------------------------------------------------------------------------------//////////
 
 .rate-prop-btn-container {
