@@ -139,7 +139,15 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 1em 0 0 0;
-
+    #dashboardContainer{
+        left:3%;
+        #openModalBtnDashboard{
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
     .profileContainer {
         right: 3%;
         position: relative;
@@ -729,6 +737,33 @@ a {
     cursor: pointer;
 }
 
+#profileModal {
+    #closeModalBtn {
+        top:-10px;
+        left:0;
+        font-size: 1em;
+        position: absolute;
+    }
+    #changePasswordBtn {
+        display: inline-flex;
+        margin-bottom: 2vh;
+    }
+    #deleteProfileBtn {
+        display: inline-flex;
+    }
+    #formProfileBtn {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        height: 10vh;
+        .loginButton {
+            display: flex;
+            width: 85%;
+            height: 60%;
+        }
+    }
+}
 #ratingModal {
     display: flex;
     flex-direction: column;
@@ -743,7 +778,7 @@ a {
         #closeRatingModalBtn {
             position: absolute;
             left: 1%;
-            top:0;
+            top: 0;
             cursor: pointer;
         }
 
@@ -805,26 +840,26 @@ a {
                 width: 100%;
                 height: 80%;
                 background-color: var(--background_colour);
-                border-radius: 15px;    
-                .ratingLabel{
+                border-radius: 15px;
+                .ratingLabel {
                     height: 10%;
                 }
                 .landlord-rating-section {
                     height: 90%;
                     .rating-item {
                         height: 25%;
-                        .ratingLabels{
+                        .ratingLabels {
                             display: unset;
                         }
                     }
                 }
             }
-            .modal-footer{
+            .modal-footer {
                 height: 20%;
                 justify-content: center;
                 align-items: flex-end;
                 display: flex;
-                #submitRatingBtn{
+                #submitRatingBtn {
                     width: 80%;
                     height: 50%;
                     background-color: var(--inner-box-color);
@@ -1029,22 +1064,28 @@ a {
     .background-sidebar-container {
         display: none;
     }
-
+    .nav-top {
+        #dashboardContainer{
+            #openModalBtnDashboard{
+                display: block;
+            }
+        }
+    }
     #ratingModal {
         #ratingModalInner {
-            .rating-section-property{
-                padding:0;
+            .rating-section-property {
+                padding: 0;
                 width: 50%;
-                .combined-inline-property{
-                    .star-rating-section{
+                .combined-inline-property {
+                    .star-rating-section {
                         width: 100%;
                     }
                 }
             }
-            .rating-section-with-submit{
+            .rating-section-with-submit {
                 width: 50%;
             }
-            
+
             .review-section {
                 display: none;
             }
