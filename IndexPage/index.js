@@ -51,7 +51,9 @@ searchbar.addEventListener('input', function () {
             } else {
                 // Populate the dropdown with search results (limit to MAX_VIEW items)
                 counter = 0;
+                
                 data.forEach(function (apartment) {
+                    console.log(apartment.street_num);
                     if (counter == MAX_VIEW) {
                         // Add "Add Property" link as the last item
                         var addPropertyItem = document.createElement('a');
@@ -65,14 +67,14 @@ searchbar.addEventListener('input', function () {
                             addPropertyItem.style.color = '#564B40';
                             addPropertyItem.style.borderRadius = '30px 30px 30px 30px';
                         });
-
+                        
                         addPropertyItem.addEventListener('mouseout', function () {
                             addPropertyItem.style.backgroundColor = '#564B40';
                             addPropertyItem.style.color = '#D9D9D9';
                         });
-
+                        
                         dropdown.appendChild(addPropertyItem);
-
+                        
                         return; // Exit the loop when reaching the limit
                     }
                     counter++;
@@ -81,21 +83,22 @@ searchbar.addEventListener('input', function () {
                     var dropdownItem = document.createElement('div');
                     dropdownItem.className = 'dropdown-item';
                     dropdownItem.id = 'dropdownItem';
-                    dropdownItem.title = apartment.name + ' ' + apartment.location;
+                    streetNumName = apartment.street_num + ' ' + apartment.street_name;
+                    dropdownItem.title = apartment.prop_name + ' '  + streetNumName;
+                    dropdownItem.textContent = apartment.prop_name + '  -  ' + streetNumName; // Display apartment names & locations
 
                     // Create a span element for location
-                    var locationSpan = document.createElement('span');
-                    locationSpan.className = 'locationSpan';
-                    locationSpan.id = 'locationSpanId';
-                    locationSpan.style.color = '#D9D9D9'; // Different color
-                    locationSpan.textContent = apartment.location;
-                    dropdownItem.textContent = apartment.name + '  -  '; // Display apartment names & locations
-                    dropdownItem.appendChild(locationSpan);
+                    // var locationSpan = document.createElement('span');
+                    // locationSpan.className = 'locationSpan';
+                    // locationSpan.id = 'locationSpanId';
+                    // locationSpan.style.color = '#D9D9D9'; // Different color
+                    // locationSpan.textCo  ntent = apartment.street_num + apartment.street_name;
+                    // dropdownItem.appendChild(locationSpan);
 
                     // Event listeners for click, mouseover, and mouseout
                     dropdownItem.addEventListener('click', function () {
-                        searchbar.value = apartment.name + ', ' + apartment.location;
-                        redirectToPage(apartment.ID);
+                        searchbar.value = apartment.prop_name + ', ' + streetNumName;
+                        redirectToPage(apartment.prop_id);
                     });
 
                     dropdownItem.addEventListener('mouseover', function () {
