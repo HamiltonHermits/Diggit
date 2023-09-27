@@ -125,6 +125,7 @@ main {
 }
 .nav-top .profileContainer {
   right: 3%;
+  min-width: 200px;
   position: relative;
 }
 .nav-top .profileContainer #openModalBtn {
