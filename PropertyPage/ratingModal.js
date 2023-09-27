@@ -27,10 +27,10 @@ window.addEventListener('click', (event) => {
 
 // Initialize an object to store the slider values
 const sliderValues = {
-    politeness: 3, // Default value for politeness
-    repair: 3, // Default value for repair
-    responseTime: 3, // Default value for response time
-    overallLandlord: 3, // Default value for overall landlord rating
+    politeness: 0, // Default value for politeness
+    repairRating: 0, // Default value for repair
+    responseTimeRating: 0, // Default value for response time
+    overallLandlordRating: 0, // Default value for overall landlord rating
 };
 
 // JavaScript to update slider values, store them, and log them
@@ -43,7 +43,7 @@ sliderElements.forEach((slider) => {
     slider.addEventListener('input', () => {
         const value = parseInt(slider.value); // Get the updated value
         sliderValues[category] = value; // Update the stored value
-
+        
         // Set the --value custom property for the slider track
         slider.style.setProperty('--value', `${(value - 1) * 25}%`);
 
@@ -71,8 +71,6 @@ reviewTextarea.addEventListener('input', () => {
         wordCountDisplay.textContent = `250/250`;
     }
 });
-
-
 
 // Initialize an object to store selected ratings for each category
 const selectedRatings = {};
@@ -127,15 +125,18 @@ ratingForm.addEventListener('submit', (event) => {
 
         }
     }
+    let isAllRatedLandLord = true;
+
     for (const category in sliderValues) {
-        if (sliderValues.hasOwnProperty(category) && sliderValues[category] === 0) {
-            isAllRated = false; // If any slider has a value of 0, set isAllRated to false
+        if (sliderValues[category] === 0) {
+            isAllRatedLandLord = false; // If any slider has a value of 0, set isAllRated to false
             break; // No need to continue checking once one slider is not chosen
         }
     }
+  
 
     // If all categories are rated, add star ratings, slider ratings, and review textarea to formData and submit via AJAX
-    if (isAllRated && userId != "") {
+    if (isAllRated && userId != "" && isAllRatedLandLord) {
         // Get form data
         const formData = new FormData(ratingForm);
 
@@ -190,6 +191,7 @@ ratingForm.addEventListener('submit', (event) => {
         });
     } else {
     // Display a message to the user indicating that they need to rate all categories
-    alert('Please rate all categories before submitting the form.');
+    alert('Please rate all categories before submitting the form.PropertyRating:'+isAllRated+" Landlord"+isAllRatedLandLord);
+    
 }
 });
