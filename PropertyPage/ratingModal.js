@@ -2,6 +2,11 @@
 var openRatingModalBtn = document.getElementById('openRatingModalBtn');
 var ratingModal = document.getElementById('ratingModal');
 var closeRatingModalBtn = document.getElementById('closeRatingModalBtn');
+var divWithIds = document.getElementById('modalFoot');//this is not scuffed at all i promise
+var userId = divWithIds.getAttribute('data-user-id');
+var pageId = divWithIds.getAttribute('data-page-id');
+
+// console.log(userId," ",pageId);
 
 // Open the modal
 closeRatingModalBtn.addEventListener('click', () => {
@@ -22,10 +27,10 @@ window.addEventListener('click', (event) => {
 
 // Initialize an object to store the slider values
 const sliderValues = {
-    politeness: 3, // Default value for politeness
-    repair: 3, // Default value for repair
-    responseTime: 3, // Default value for response time
-    overallLandlord: 3, // Default value for overall landlord rating
+    politeness: 0, // Default value for politeness
+    repairRating: 0, // Default value for repair
+    responseTimeRating: 0, // Default value for response time
+    overallLandlordRating: 0, // Default value for overall landlord rating
 };
 
 // JavaScript to update slider values, store them, and log them
@@ -38,7 +43,7 @@ sliderElements.forEach((slider) => {
     slider.addEventListener('input', () => {
         const value = parseInt(slider.value); // Get the updated value
         sliderValues[category] = value; // Update the stored value
-
+        
         // Set the --value custom property for the slider track
         slider.style.setProperty('--value', `${(value - 1) * 25}%`);
 
@@ -67,8 +72,6 @@ reviewTextarea.addEventListener('input', () => {
     }
 });
 
-
-
 // Initialize an object to store selected ratings for each category
 const selectedRatings = {};
 
@@ -79,7 +82,7 @@ const starContainers = document.querySelectorAll('.star-rating');
 starContainers.forEach((container) => {
     const category = container.getAttribute('data-category');
     selectedRatings[category] = 0;
-    
+
     const stars = container.querySelectorAll('.star');
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {
@@ -119,18 +122,21 @@ ratingForm.addEventListener('submit', (event) => {
             isAllRated = false;
             // You can add visual feedback for the user here if needed
             console.log(`somethingElse "${somethingElse}" is not rated.`);
-            
+
         }
     }
+    let isAllRatedLandLord = true;
+
     for (const category in sliderValues) {
-        if (sliderValues.hasOwnProperty(category) && sliderValues[category] === 0) {
-            isAllRated = false; // If any slider has a value of 0, set isAllRated to false
+        if (sliderValues[category] === 0) {
+            isAllRatedLandLord = false; // If any slider has a value of 0, set isAllRated to false
             break; // No need to continue checking once one slider is not chosen
         }
     }
+  
 
     // If all categories are rated, add star ratings, slider ratings, and review textarea to formData and submit via AJAX
-    if (isAllRated) {
+    if (isAllRated && userId != "" && isAllRatedLandLord) {
         // Get form data
         const formData = new FormData(ratingForm);
 
@@ -151,6 +157,12 @@ ratingForm.addEventListener('submit', (event) => {
         const reviewTextarea = document.getElementById('reviewTextarea');
         formData.append('property_review', reviewTextarea.value);
 
+        formData.append('propertyId', pageId);//this is gotten at the top
+
+        formData.append('userId', userId);//this shouldnt work if its not set
+
+
+
         // Make the AJAX request
         fetch("process_ratings.php", {
             method: "POST",
@@ -159,18 +171,27 @@ ratingForm.addEventListener('submit', (event) => {
             .then(response => {
                 if (response.ok) {
                     // Handle a successful response (e.g., show a success message)
-                    console.log("Rating submitted successfully");
+                    return response.json(); // Parse the JSON response
                 } else {
                     // Handle errors (e.g., show an error message)
                     console.error("Error submitting rating");
+                    throw new Error("Problem with response");
                 }
             })
-            .catch(error => {
-                // Handle network errors
-                console.error("Network error:", error);
-            });
+            .then(data => {
+                if (data && data.message) {
+                    console.log("Message from server:", data.message); // Log the specific message from the JSON response
+                } else {
+                    console.error("No message found in the JSON response");
+                }
+            })
+            .catch (error => {
+            // Handle network errors
+            console.error("Network error:", error);
+        });
     } else {
-        // Display a message to the user indicating that they need to rate all categories
-        alert('Please rate all categories before submitting the form.');
-    }
+    // Display a message to the user indicating that they need to rate all categories
+    alert('Please rate all categories before submitting the form.PropertyRating:'+isAllRated+" Landlord"+isAllRatedLandLord);
+    
+}
 });

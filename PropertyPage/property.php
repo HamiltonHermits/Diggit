@@ -38,6 +38,16 @@ if (isset($_SESSION['profileMessage'])) {
     $profileMessage = $_SESSION['profileMessage'];
     unset($_SESSION['changePasswordError']);
 }
+// if (isset($_GET['id'])) {
+//     // Escape and format the data before embedding it in JavaScript
+//     $pageId = $_GET['id'];
+//     echo "<div style='display: none;' id = pageIdDiv>$pageId</div>";
+// }
+// if (isset($_SESSION['user_id'])) {
+//     // Escape and format the data before embedding it in JavaScript
+//     $userId = $_SESSION['user_id'];
+//     echo "<div style='display: none;' id = userIdDiv>$userId</div>";
+// }
 
 
 //Connect to database
