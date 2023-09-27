@@ -402,8 +402,22 @@ $conn->close();
                         <div class="comments-list-container">
                             <?php include('comments.php'); ?>
                         </div>
+                        <div class="comment-page-container">
+                            <div class="previous-page-container">
+                                <button class="previous-page-button firstOrLastPage">Previous</button>
+                            </div>
+                            <div class="page-number-container">
+                                <button class="page-number current-page">1</button>
+                                <button class="page-number">2</button>
+                                <button class="page-number">3</button>
+                            </div>
+                            <div class="next-page-container">
+                                <button class="next-page-button">Next Page</button>
+                            </div>
+                        </div>
                     </div>
-                    
+
+
                 </div>
                 <div class="right-box">
                     <div class="rating-summary-container">

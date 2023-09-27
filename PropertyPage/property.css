@@ -401,6 +401,7 @@ main {
 
 #comment-parent-container {
   margin: 6em 0 0 0;
+  font-family: "Poppins";
 }
 #comment-parent-container .boxes-container {
   display: flex;
@@ -461,19 +462,71 @@ main {
   width: 45%;
   border: none;
 }
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container {
+  display: flex;
+  padding: 1em 2em 2em 2em;
+  height: 10%;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .previous-page-container {
+  width: 22.25%;
+  display: flex;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .previous-page-container .previous-page-button {
+  width: 75%;
+  border-radius: 15px;
+  border: none;
+  background-color: var(--main-color);
+  color: var(--global-font-color);
+}
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .previous-page-container .firstOrLastPage {
+  color: rgba(217, 217, 217, 0.2);
+}
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .page-number-container {
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .page-number-container .page-number {
+  width: 12%;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--main-color);
+  color: var(--global-font-color);
+}
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .page-number-container .current-page {
+  background-color: var(--inner-box-color);
+  border: 1px solid var(--orange);
+}
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .next-page-container {
+  width: 22.25%;
+  display: flex;
+  justify-content: flex-end;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .next-page-container .next-page-button {
+  width: 80%;
+  border-radius: 15px;
+  border: none;
+  background-color: var(--main-color);
+  color: var(--global-font-color);
+}
 #comment-parent-container .boxes-container .left-box .comments-list-container {
   display: flex;
   flex-direction: column;
-  padding: 0em 2em 2em 2em;
+  padding: 0em 2em 0.5em 2em;
 }
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container {
   font-family: "Poppins";
   margin-top: 1em;
   display: grid;
 }
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .star-rating-comment {
+  color: var(--orange);
+}
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .username-date-comment {
   font-weight: 600;
   font-size: calc(10px + 0.5vw);
+  margin: 1em 0 1em 0;
 }
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .description-comment {
   font-size: calc(5px + 0.7vw);
@@ -487,8 +540,18 @@ main {
 }
 #comment-parent-container .boxes-container .right-box .rating-summary-container {
   background-color: var(--inner-box-color);
-  padding: 2em 2em 2em 2em;
+  padding: 1em 2em 2em 2em;
   border-radius: 15px;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .commentLabel {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .horizontal-line-comment {
+  font-size: 5px;
 }
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container {
   background-color: var(--inner-box-color);
@@ -501,6 +564,10 @@ main {
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .ratingLabels {
   display: inline;
 }
+#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .star-rating .star {
+  color: var(--orange);
+}
+
 .rate-prop-btn-container {
   display: flex;
   flex-direction: row;
