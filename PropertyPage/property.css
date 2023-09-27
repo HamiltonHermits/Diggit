@@ -125,7 +125,6 @@ main {
 }
 .nav-top .profileContainer {
   right: 3%;
-  min-width: 200px;
   position: relative;
 }
 .nav-top .profileContainer #openModalBtn {
@@ -180,7 +179,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 50%;
-  min-width: 200px;
+  min-width: 300px;
   gap: 1em;
   padding: 0.5em 2em 2em 2em;
   border-radius: 15px;
@@ -686,7 +685,7 @@ a {
   font-size: 1.2em;
 }
 #ratingModal #ratingModalInner .rating-section-property .combined-inline-property .star-rating-section .star-rating .star {
-  font-size: 1.5em;
+  font-size: calc(15px + 1.5vw);
   /* Adjust the size as needed */
   cursor: pointer;
   color: var(--main_colour);
@@ -772,8 +771,7 @@ a {
 .info-circle {
   position: relative;
   display: inline-block;
-  margin-right: 10px;
-  width: 7%;
+  width: 15px;
   /* Adjust spacing */
   /* Style for the info icon (i) inside the circle */
   /* Style for the info tooltip */
@@ -781,6 +779,9 @@ a {
 .info-circle .info-icon {
   border: 1px solid var(--orange);
   border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  font-size: 0.6em;
   text-align: center;
   cursor: pointer;
   color: var(--orange);
