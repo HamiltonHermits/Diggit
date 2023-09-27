@@ -649,6 +649,7 @@ a {
 #ratingModal #ratingModalInner #closeRatingModalBtn {
   position: absolute;
   left: 1%;
+  top: 0;
   cursor: pointer;
 }
 #ratingModal #ratingModalInner #ratingForm {
