@@ -333,7 +333,7 @@ if (isset($_SESSION['profileMessage'])) {
                 <?php } ?>
 
                 <!-- Signup form fields -->
-                <form id="signupForm" action="../Backend_Files/signUp.php" method="POST">
+                <form id="signupForm" action="../Backend_Files/signUp.php?page=create" method="POST">
                     <!-- Signup form fields -->
                     <label for="newUsername" class="modalLabel">Username:</label>
                     <input type="text" id="newUsername" name="newUsername" class="modalInput" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required>

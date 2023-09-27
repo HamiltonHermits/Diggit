@@ -19,6 +19,7 @@ window.addEventListener('click', (event) => {
         ratingModal.style.display = 'none';
     }
 });
+
 //write a review js 
 // Get the textarea element and word count display element
 const reviewTextarea = document.getElementById('reviewTextarea');
@@ -44,7 +45,6 @@ reviewTextarea.addEventListener('input', () => {
 
 
 // Initialize an object to store selected ratings for each category
-//this is what we gonna grab when we submit the form 
 const selectedRatings = {};
 
 // JavaScript to handle star rating selection
@@ -75,11 +75,7 @@ starContainers.forEach((container) => {
             console.log(`Selected rating for ${category}: ${rating}`);
         });
     });
-});
-// Get the form element
-const ratingForm = document.getElementById('ratingForm');
-
-// Add a submit event listener to the form
+});// Add a submit event listener to the form
 ratingForm.addEventListener('submit', (event) => {
     // Prevent the form from submitting by default
     event.preventDefault();
@@ -91,7 +87,7 @@ ratingForm.addEventListener('submit', (event) => {
     categories.forEach((category) => {
         const categoryId = category.id;
         const rating = parseInt(category.querySelector('.star-rating').getAttribute('data-rating'));
-        
+
         if (rating === 0) {
             // If any category is not rated, set the flag to false
             isAllRated = false;
@@ -103,36 +99,48 @@ ratingForm.addEventListener('submit', (event) => {
         }
     });
 
-    // If all categories are rated, submit the form
+    // If all categories are rated, add star ratings, slider ratings, and review textarea to formData and submit via AJAX
     if (isAllRated) {
-        ratingForm.submit();
+        // Get form data
+        const formData = new FormData(ratingForm);
+
+        // Add star ratings from the selectedRatings object
+        for (const category in selectedRatings) {
+            formData.append(category, selectedRatings[category]);
+        }
+
+        // Add slider ratings
+        const sliderElements = document.querySelectorAll('.slider');
+        sliderElements.forEach((slider) => {
+            const category = slider.parentElement.id;
+            const value = slider.value;
+            formData.append(category, value);
+        });
+
+        // Add review textarea
+        const reviewTextarea = document.getElementById('reviewTextarea');
+        formData.append('property_review', reviewTextarea.value);
+
+        // Make the AJAX request
+        fetch("process_ratings.php", {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle a successful response (e.g., show a success message)
+                console.log("Rating submitted successfully");
+            } else {
+                // Handle errors (e.g., show an error message)
+                console.error("Error submitting rating");
+            }
+        })
+        .catch(error => {
+            // Handle network errors
+            console.error("Network error:", error);
+        });
     } else {
         // Display a message to the user indicating that they need to rate all categories
         alert('Please rate all categories before submitting the form.');
     }
-});
-// Initialize an object to store the slider values
-const sliderValues = {
-    politeness: 3, // Default value for politeness
-    repair: 3, // Default value for repair
-    responseTime: 3, // Default value for response time
-    overallLandlord: 3, // Default value for overall landlord rating
-};
-
-// JavaScript to update slider values, store them, and log them
-const sliderElements = document.querySelectorAll('.slider');
-
-sliderElements.forEach((slider) => {
-    const category = slider.parentElement.id; // Get the category name
-    slider.value = sliderValues[category]; // Set the slider value from the stored object
-
-    slider.addEventListener('input', () => {
-        const value = parseInt(slider.value); // Get the updated value
-        sliderValues[category] = value; // Update the stored value
-
-        // Set the --value custom property for the slider track
-        slider.style.setProperty('--value', `${(value - 1) * 25}%`);
-
-        console.log(`Category: ${category}, Value: ${value}`); // Log the value
-    });
 });
