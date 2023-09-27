@@ -122,6 +122,7 @@ main {
 }
 .nav-top .profile-container {
   right: 3%;
+  min-width: 200px;
   position: relative;
 }
 .nav-top .profile-container .profile {
@@ -447,6 +448,7 @@ a {
     width: 100vw;
   }
   .left-box, .right-box {
+    min-width: 0px;
     height: 50%;
     width: 80%;
   }
