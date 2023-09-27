@@ -404,23 +404,67 @@ main {
 }
 #comment-parent-container .boxes-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100vh;
   gap: 1em;
 }
-#comment-parent-container .boxes-container .commentLabel {
-  width: 60%;
+#comment-parent-container .boxes-container .left-box {
+  width: 100%;
+  height: 90%;
+  background: none;
+  padding: 0;
+  gap: 1em;
+}
+#comment-parent-container .boxes-container .left-box .comment-label-container {
+  width: 100%;
   height: 10%;
+  display: flex;
+}
+#comment-parent-container .boxes-container .left-box .comment-label-container .commentLabel {
+  font-size: 30px;
   padding: 0 2em 0 2em;
+  width: 100%;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
   background-color: var(--inner-box-color);
 }
-#comment-parent-container .boxes-container .left-box {
-  width: 60%;
-  height: 90%;
+#comment-parent-container .boxes-container .left-box .comment-section {
+  background-color: var(--inner-box-color);
+  border-radius: 15px;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .sort-comments-container {
+  width: 100%;
+  display: grid;
+  justify-content: flex-end;
+  padding-top: 1em;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .sort-comments-container .inner-sort-comments-container {
+  height: 100%;
+  right: 10%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+#comment-parent-container .boxes-container .left-box .comment-section .sort-comments-container .inner-sort-comments-container #sort-comments {
+  height: 100%;
+  font-size: calc(10px + 0.7vw);
+  border-radius: 20px;
+  background-color: var(--main-color);
+  border: none;
+  color: var(--global-font-color);
+}
+#comment-parent-container .boxes-container .left-box .comment-section .sort-comments-container .inner-sort-comments-container #sort-comments option {
+  width: 45%;
+  border: none;
 }
 #comment-parent-container .boxes-container .left-box .comments-list-container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  padding: 0em 2em 2em 2em;
 }
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container {
   font-family: "Poppins";
@@ -437,7 +481,26 @@ main {
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .horizontal-line-comment {
   width: 100%;
 }
-
+#comment-parent-container .boxes-container .right-box {
+  background: none;
+  padding: 0;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container {
+  background-color: var(--inner-box-color);
+  padding: 2em 2em 2em 2em;
+  border-radius: 15px;
+}
+#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container {
+  background-color: var(--inner-box-color);
+  padding: 2em 2em 2em 2em;
+  border-radius: 15px;
+}
+#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section {
+  text-align: center;
+}
+#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .ratingLabels {
+  display: inline;
+}
 .rate-prop-btn-container {
   display: flex;
   flex-direction: row;

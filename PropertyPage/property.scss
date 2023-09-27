@@ -139,9 +139,9 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 1em 0 0 0;
-    #dashboardContainer{
-        left:3%;
-        #openModalBtnDashboard{
+    #dashboardContainer {
+        left: 3%;
+        #openModalBtnDashboard {
             display: none;
             background: none;
             border: none;
@@ -481,50 +481,135 @@ main {
     }
 }
 
-
-
-#comment-parent-container{
+#comment-parent-container {
     margin: 6em 0 0 0;
-    .boxes-container{
+    .boxes-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         height: 100vh;
-        gap:1em;
-        .commentLabel{
-            width: 60%;
-            height: 10%;
-            padding: 0 2em 0 2em;
-            border-radius: 15px;
-            background-color: var(--inner-box-color);
-        }
-        .left-box{
-            width: 60%;
+        gap: 1em;
+        
+        .left-box {
+            width: 100%;
             height: 90%;
-            
-            .comment-section{
-                .sort-comments-container{
-
+            background:none;
+            padding:0;
+            gap:1em;
+            .comment-label-container {
+                width: 100%;
+                height: 10%;
+                display: flex;
+                .commentLabel {
+                    font-size: 30px;
+                    padding: 0 2em 0 2em;
+                    width: 100%;
+                    border-radius: 15px;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    flex-wrap: wrap;
+                    background-color: var(--inner-box-color);
                 }
             }
-            .comments-list-container{
-                display: grid;
-                .comment-container{
+            .comment-section {
+                background-color: var(--inner-box-color);
+                border-radius: 15px;
+                .sort-comments-container {
+                    width: 100%;
+                    display: grid;
+                    justify-content: flex-end;
+                    padding-top: 1em;
+                    .inner-sort-comments-container {
+                        height: 100%;
+                        right:10%;
+                        display: flex;
+                        position: relative;
+                        
+                        align-items: center;
+                        justify-content: space-between;
+                        #sort-comments {
+                            height: 100%;
+                            font-size: calc(10px + 0.7vw);
+                            border-radius: 20px;
+                            background-color: var(--main-color);
+                            border: none;
+                            color: var(--global-font-color);
+                            option {
+                                width: 45%;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .comments-list-container {
+                display: flex;
+                flex-direction: column;
+                padding: 0em 2em 2em 2em;
+                .comment-container {
                     font-family: "Poppins";
-                    margin-top:1em;
+                    margin-top: 1em;
                     display: grid;
 
-                    .star-rating-comment{
-
+                    .star-rating-comment {
                     }
-                    .username-date-comment{
+                    .username-date-comment {
                         font-weight: 600;
                         font-size: calc(10px + 0.5vw);
                     }
-                    .description-comment{
+                    .description-comment {
                         font-size: calc(5px + 0.7vw);
                     }
-                    .horizontal-line-comment{
+                    .horizontal-line-comment {
                         width: 100%;
+                    }
+                }
+            }
+        }
+        .right-box{
+            background: none;
+            padding:0;
+            .rating-summary-container{
+                background-color: var(--inner-box-color);
+                padding:2em 2em 2em 2em;
+                border-radius: 15px;
+                .commentLabel{
+
+                }
+                .horizontal-line-comment{
+
+                }
+                .rating-summary-overall-container{
+
+                }
+                .rating-summary-breakdown{
+
+                }
+                
+            }
+            .landlord-rating-summary-container{
+                background-color: var(--inner-box-color);
+                padding:2em 2em 2em 2em;
+                border-radius: 15px;
+                .star-rating-section{
+                    text-align: center;
+                    .rating-item{
+                        .ratingLabels{
+                            display: inline;
+                        }
+                        .info-circle{
+                            .info-icon{
+
+                            }
+                            .info-tooltip{
+
+                            }
+                        }
+                        .star-rating{
+                            .star{
+
+                            }
+                        }
                     }
                 }
             }
@@ -790,8 +875,8 @@ a {
 
 #profileModal {
     #closeModalBtn {
-        top:-10px;
-        left:0;
+        top: -10px;
+        left: 0;
         font-size: 1em;
         position: absolute;
     }
@@ -1116,8 +1201,8 @@ a {
         display: none;
     }
     .nav-top {
-        #dashboardContainer{
-            #openModalBtnDashboard{
+        #dashboardContainer {
+            #openModalBtnDashboard {
                 display: block;
             }
         }
