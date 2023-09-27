@@ -123,6 +123,15 @@ main {
   align-items: center;
   padding: 1em 0 0 0;
 }
+.nav-top #dashboardContainer {
+  left: 3%;
+}
+.nav-top #dashboardContainer #openModalBtnDashboard {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 .nav-top .profileContainer {
   right: 3%;
   position: relative;
@@ -634,6 +643,32 @@ a {
   cursor: pointer;
 }
 
+#profileModal #closeModalBtn {
+  top: -10px;
+  left: 0;
+  font-size: 1em;
+  position: absolute;
+}
+#profileModal #changePasswordBtn {
+  display: inline-flex;
+  margin-bottom: 2vh;
+}
+#profileModal #deleteProfileBtn {
+  display: inline-flex;
+}
+#profileModal #formProfileBtn {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 10vh;
+}
+#profileModal #formProfileBtn .loginButton {
+  display: flex;
+  width: 85%;
+  height: 60%;
+}
+
 #ratingModal {
   display: flex;
   flex-direction: column;
@@ -896,6 +931,9 @@ a {
   }
   .background-sidebar-container {
     display: none;
+  }
+  .nav-top #dashboardContainer #openModalBtnDashboard {
+    display: block;
   }
   #ratingModal #ratingModalInner .rating-section-property {
     padding: 0;

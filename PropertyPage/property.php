@@ -48,10 +48,10 @@ include_once('../Backend_Files/database_connect.php');
 $propId = $_GET["id"];
 // $propId = "1";
 
-    // Get property
-    $stmt = $conn->prepare("SELECT * from property WHERE prop_id = ?");
-    $stmt->bind_param("s", $propId);
-    $stmt->execute();
+// Get property
+$stmt = $conn->prepare("SELECT * from property WHERE prop_id = ?");
+$stmt->bind_param("s", $propId);
+$stmt->execute();
 
 $result = $stmt->get_result();
 $result = $result->fetch_assoc();
@@ -168,7 +168,19 @@ $conn->close();
     </div>
     <main>
         <div class="nav-top">
-            <div class="empty-div"></div>
+            <div class="profileContainer" id="dashboardContainer">
+                <button id="openModalBtnDashboard">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_486_85" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                            <rect width="30" height="30" fill="#D9D9D9" />
+                        </mask>
+                        <g mask="url(#mask0_486_85)">
+                            <path d="M6 19H9V13H15V19H18V10L12 5.5L6 10V19ZM4 21V9L12 3L20 9V21H13V15H11V21H4Z" fill="#ad5511" />
+                        </g>
+                    </svg>
+
+                </button>
+            </div>
             <div class="searchbar-container">
 
                 <div class="borderSearchBar" id="borderSearchBar">
@@ -358,24 +370,24 @@ $conn->close();
         </div>
 
         <div class="comment-section">
-        <h2>Comments</h2>
-        <label for="sort-comments">Sort by:</label>
-        <select name="sort-comments" id="sort-comments">
-            <option value="desc">Highest Rating</option>
-            <option value="asc">Lowest Rating</option>
-            <option value="oldest">Oldest Comment</option>
-            <option value="newest">Newest Comment</option>
-        </select>
-    </div>
+            <h2>Comments</h2>
+            <label for="sort-comments">Sort by:</label>
+            <select name="sort-comments" id="sort-comments">
+                <option value="desc">Highest Rating</option>
+                <option value="asc">Lowest Rating</option>
+                <option value="oldest">Oldest Comment</option>
+                <option value="newest">Newest Comment</option>
+            </select>
+        </div>
 
-    <?php include('comments.php'); ?>
+        <?php include('comments.php'); ?>
 
-    <script>
-        document.getElementById("sort-comments").addEventListener("change", function() {
-            var selectedValue = this.value;
-            window.location.href = "property.php?sort=" + selectedValue;
-        });
-    </script>
+        <script>
+            document.getElementById("sort-comments").addEventListener("change", function() {
+                var selectedValue = this.value;
+                window.location.href = "property.php?sort=" + selectedValue;
+            });
+        </script>
 
 
 
@@ -460,12 +472,12 @@ $conn->close();
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn">Change Password</button>
+                <button id="changePasswordBtn" class="inverseFilledButton">Change Password</button>
 
-                <button id="deleteProfileBtn">Delete Profile</button>
+                <button id="deleteProfileBtn" class="inverseFilledButton">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php?page=property&id=<?php echo $propId; ?>" method="post">
-                    <button type="submit" class="loginButton">Logout</button>
+                <form action="../Backend_Files/logout.php?page=property&id=<?php echo $propId; ?>" method="post" id="formProfileBtn">
+                    <button type="submit" class="filledButton loginButton">Logout</button>
                 </form>
             </div>
         </div>
