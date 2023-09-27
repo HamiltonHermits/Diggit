@@ -498,7 +498,7 @@ $conn->close();
                     <!-- Property Rating Section -->
                     <div class="rating-section-property">
 
-                        <h4>Property Rating</h4>
+                        <div class="rating-modal-header">Property Rating</div>
                         <div class="combined-inline-property">
                             <!-- Star Rating Section -->
                             <div class="star-rating-section">
@@ -591,7 +591,7 @@ $conn->close();
                                         <div class="info-icon">i</div>
                                         <div class="info-tooltip">More stars = better experience</div>
                                     </div>
-                                    <div class="star-rating" data-category="overallRating" data-rating="0">
+                                    <div class="star-rating" data-category="overallRating" id="overallRating" data-rating="0">
                                         <span class="star">&#9734;</span>
                                         <span class="star">&#9734;</span>
                                         <span class="star">&#9734;</span>
@@ -604,78 +604,84 @@ $conn->close();
 
                             <!-- Write a Review Section -->
                             <div class="review-section">
-                                <p>Please write a review (optional)</p>
-                                <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
-                                <p id="wordCount">0/250</p>
+                                <div id="writeAReview">Please write a review (optional)</div>
+                                <div class="reviewTextarea">
+                                    <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
+                                    <div id="wordCount">0/250</div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Landlord Rating Section -->
-                    <div class="rating-section">
-                        <h4>Landlord Rating</h4>
+                    <div class="rating-section-with-submit">
+                        <div class="rating-section">
+                            <div class="ratingLabel">Landlord Rating</div>
 
-                        <!-- Politeness Rating -->
-                        <div class="rating-item">
-                            <p class="ratingLabels">Politeness:</p>
-                            <div class="info-circle">
-                                <div class="info-icon">i</div>
-                                <div class="info-tooltip">left lower - right higher</div>
+                            <!-- Politeness Rating -->
+                            <div class="landlord-rating-section">
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Politeness:</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">left lower - right higher</div>
+                                    </div>
+                                    <div class="rating-slider" id="politenessRating">
+                                        <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Quality of Repair Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Quality of Repair:</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">left lower - right higher</div>
+                                    </div>
+                                    <div class="rating-slider" id="repairRating">
+                                        <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Response Time Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Response Time:</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">left lower - right higher</div>
+                                    </div>
+                                    <div class="rating-slider" id="responseTimeRating">
+                                        <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Overall Landlord Rating -->
+                                <div class="rating-item">
+                                    <p class="ratingLabels">Overall Landlord Rating:</p>
+                                    <div class="info-circle">
+                                        <div class="info-icon">i</div>
+                                        <div class="info-tooltip">left lower - right higher</div>
+                                    </div>
+                                    <div class="rating-slider" id="overallLandlordRating">
+                                        <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="rating-slider" id="politenessRating">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
-
-                            </div>
-
                         </div>
-
-                        <!-- Quality of Repair Rating -->
-                        <div class="rating-item">
-                            <p class="ratingLabels">Quality of Repair:</p>
-                            <div class="info-circle">
-                                <div class="info-icon">i</div>
-                                <div class="info-tooltip">left lower - right higher</div>
-                            </div>
-                            <div class="rating-slider" id="repairRating">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
-
-                            </div>
-
-                        </div>
-
-                        <!-- Response Time Rating -->
-                        <div class="rating-item">
-                            <p class="ratingLabels">Response Time:</p>
-                            <div class="info-circle">
-                                <div class="info-icon">i</div>
-                                <div class="info-tooltip">left lower - right higher</div>
-                            </div>
-                            <div class="rating-slider" id="responseTimeRating">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
-
-                            </div>
-
-                        </div>
-
-                        <!-- Overall Landlord Rating -->
-                        <div class="rating-item">
-                            <p class="ratingLabels">Overall Landlord Rating:</p>
-                            <div class="info-circle">
-                                <div class="info-icon">i</div>
-                                <div class="info-tooltip">left lower - right higher</div>
-                            </div>
-                            <div class="rating-slider" id="overallLandlordRating">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
-
-                            </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
 
                         </div>
                     </div>
-
                     <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
-                    </div>
+
                 </form>
             </div>
         </div>

@@ -123,12 +123,12 @@ main {
   align-items: center;
   padding: 1em 0 0 0;
 }
-.nav-top .profile-container {
+.nav-top .profileContainer {
   right: 3%;
   min-width: 200px;
   position: relative;
 }
-.nav-top .profile-container .profile {
+.nav-top .profileContainer #openModalBtn {
   background: none;
   border: none;
   cursor: pointer;
@@ -662,20 +662,28 @@ a {
   height: 100%;
   background-color: var(--background_colour);
   border-radius: 15px;
+  padding-right: 2em;
+}
+#ratingModal #ratingModalInner .rating-section-property .rating-modal-header {
+  height: 8%;
 }
 #ratingModal #ratingModalInner .rating-section-property .combined-inline-property {
   display: inline-flex;
   width: 100%;
+  height: 92%;
 }
 #ratingModal #ratingModalInner .rating-section-property .combined-inline-property .star-rating-section {
   height: 100%;
   width: 50%;
 }
 #ratingModal #ratingModalInner .rating-section-property .combined-inline-property .star-rating-section .rating-item {
-  height: 20%;
+  height: 16%;
 }
 #ratingModal #ratingModalInner .rating-section-property .combined-inline-property .star-rating-section .rating-item .ratingLabels {
   display: inline;
+}
+#ratingModal #ratingModalInner .rating-section-property .combined-inline-property .star-rating-section #overallRating {
+  font-size: 1.2em;
 }
 #ratingModal #ratingModalInner .rating-section-property .combined-inline-property .star-rating-section .star-rating .star {
   font-size: 1.5em;
@@ -690,42 +698,74 @@ a {
   color: #ffcc00;
   /* Filled star color */
 }
-#ratingModal #ratingModalInner .rating-section {
+#ratingModal #ratingModalInner .rating-section-with-submit {
   width: 30%;
-  height: 80%;
-  left: 10%;
+  left: 5%;
   position: relative;
+  height: 100%;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .rating-section {
+  width: 100%;
+  height: 80%;
   background-color: var(--background_colour);
   border-radius: 15px;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .rating-section .ratingLabel {
+  height: 10%;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .rating-section .landlord-rating-section {
+  height: 90%;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .rating-section .landlord-rating-section .rating-item {
+  height: 25%;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .rating-section .landlord-rating-section .rating-item .ratingLabels {
+  display: unset;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .modal-footer {
+  height: 20%;
+  justify-content: center;
+  align-items: flex-end;
+  display: flex;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .modal-footer #submitRatingBtn {
+  width: 80%;
+  height: 50%;
+  background-color: var(--inner-box-color);
+  font-size: calc(10px + 1vw);
 }
 #ratingModal #ratingModalInner .review-section {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 50%;
-  right: 5%;
-}
-#ratingModal #ratingModalInner .review-section #reviewTextarea {
   height: 100%;
+}
+#ratingModal #ratingModalInner .review-section #writeAReview {
+  height: 10%;
+}
+#ratingModal #ratingModalInner .review-section .reviewTextarea {
+  height: 80%;
+  display: flex;
+}
+#ratingModal #ratingModalInner .review-section .reviewTextarea #reviewTextarea {
+  resize: none;
+  height: 100%;
+  width: 100%;
   border-radius: 15px;
   font-size: 1em;
   color: var(--secondary_colour);
   background-color: var(--container-box-color);
   border-color: var(--light_secondary_colour);
-  resize: none;
 }
-#ratingModal #ratingModalInner .review-section #wordCount {
-  position: absolute;
-  bottom: 0;
-  right: 5%;
-}
-#ratingModal #ratingModalInner #submitRatingBtn {
-  position: absolute;
-  width: 15%;
-  height: 10%;
-  bottom: 5%;
-  right: 10%;
-  font-size: 1em;
+#ratingModal #ratingModalInner .review-section .reviewTextarea #wordCount {
+  position: relative;
+  width: 0%;
+  right: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  justify-content: flex-end;
 }
 
 /* Style for the info circle */
@@ -855,7 +895,14 @@ a {
   .background-sidebar-container {
     display: none;
   }
-  #ratingModal #ratingModalInner .rating-section {
+  #ratingModal #ratingModalInner .rating-section-property {
+    padding: 0;
+    width: 50%;
+  }
+  #ratingModal #ratingModalInner .rating-section-property .combined-inline-property .star-rating-section {
+    width: 100%;
+  }
+  #ratingModal #ratingModalInner .rating-section-with-submit {
     width: 50%;
   }
   #ratingModal #ratingModalInner .review-section {
