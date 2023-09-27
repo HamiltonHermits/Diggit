@@ -20,6 +20,31 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// Initialize an object to store the slider values
+const sliderValues = {
+    politeness: 3, // Default value for politeness
+    repair: 3, // Default value for repair
+    responseTime: 3, // Default value for response time
+    overallLandlord: 3, // Default value for overall landlord rating
+};
+
+// JavaScript to update slider values, store them, and log them
+const sliderElements = document.querySelectorAll('.slider');
+
+sliderElements.forEach((slider) => {
+    const category = slider.parentElement.id; // Get the category name
+    slider.value = sliderValues[category]; // Set the slider value from the stored object
+
+    slider.addEventListener('input', () => {
+        const value = parseInt(slider.value); // Get the updated value
+        sliderValues[category] = value; // Update the stored value
+
+        // Set the --value custom property for the slider track
+        slider.style.setProperty('--value', `${(value - 1) * 25}%`);
+
+        console.log(`Category: ${category}, Value: ${value}`); // Log the value
+    });
+});
 //write a review js 
 // Get the textarea element and word count display element
 const reviewTextarea = document.getElementById('reviewTextarea');
@@ -50,10 +75,12 @@ const selectedRatings = {};
 // JavaScript to handle star rating selection
 const starContainers = document.querySelectorAll('.star-rating');
 
+// Initialize selectedRatings with default values for each category
 starContainers.forEach((container) => {
-    const stars = container.querySelectorAll('.star');
     const category = container.getAttribute('data-category');
+    selectedRatings[category] = 0;
     
+    const stars = container.querySelectorAll('.star');
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {
             const rating = index + 1; // Rating starts from 1, not 0
@@ -75,29 +102,32 @@ starContainers.forEach((container) => {
             console.log(`Selected rating for ${category}: ${rating}`);
         });
     });
-});// Add a submit event listener to the form
+});
+
+
+
 ratingForm.addEventListener('submit', (event) => {
     // Prevent the form from submitting by default
     event.preventDefault();
 
-    // Check if any category has a rating of 0 (not rated)
-    const categories = document.querySelectorAll('.rating-item');
     let isAllRated = true;
 
-    categories.forEach((category) => {
-        const categoryId = category.id;
-        const rating = parseInt(category.querySelector('.star-rating').getAttribute('data-rating'));
 
-        if (rating === 0) {
-            // If any category is not rated, set the flag to false
+    for (const somethingElse in selectedRatings) {
+        if (selectedRatings.hasOwnProperty(somethingElse) && selectedRatings[somethingElse] === 0) {
+            // If any category is not rated (has a value of 0), set the flag to false
             isAllRated = false;
             // You can add visual feedback for the user here if needed
-            category.classList.add('unrated');
-        } else {
-            // Remove any previous visual feedback
-            category.classList.remove('unrated');
+            console.log(`somethingElse "${somethingElse}" is not rated.`);
+            
         }
-    });
+    }
+    for (const category in sliderValues) {
+        if (sliderValues.hasOwnProperty(category) && sliderValues[category] === 0) {
+            isAllRated = false; // If any slider has a value of 0, set isAllRated to false
+            break; // No need to continue checking once one slider is not chosen
+        }
+    }
 
     // If all categories are rated, add star ratings, slider ratings, and review textarea to formData and submit via AJAX
     if (isAllRated) {
@@ -126,19 +156,19 @@ ratingForm.addEventListener('submit', (event) => {
             method: "POST",
             body: formData,
         })
-        .then(response => {
-            if (response.ok) {
-                // Handle a successful response (e.g., show a success message)
-                console.log("Rating submitted successfully");
-            } else {
-                // Handle errors (e.g., show an error message)
-                console.error("Error submitting rating");
-            }
-        })
-        .catch(error => {
-            // Handle network errors
-            console.error("Network error:", error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    // Handle a successful response (e.g., show a success message)
+                    console.log("Rating submitted successfully");
+                } else {
+                    // Handle errors (e.g., show an error message)
+                    console.error("Error submitting rating");
+                }
+            })
+            .catch(error => {
+                // Handle network errors
+                console.error("Network error:", error);
+            });
     } else {
         // Display a message to the user indicating that they need to rate all categories
         alert('Please rate all categories before submitting the form.');
