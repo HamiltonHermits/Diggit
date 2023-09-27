@@ -5,7 +5,10 @@ var lastval_boolean = false;
 
 // Get allparentContainers
 const parentContainers = document.querySelectorAll(".parent-container");
-
+document.getElementById("sort-comments").addEventListener("change", function() {
+    var selectedValue = this.value;
+    window.location.href = "property.php?sort=" + selectedValue;
+});
 // Function to check if an element is in the viewport
 function isElementInViewport(el) {
     var rect = el.getBoundingClientRect();

@@ -379,25 +379,28 @@ $conn->close();
             </button>
         </div>
 
-        <div class="comment-section">
-            <h2>Comments</h2>
-            <label for="sort-comments">Sort by:</label>
-            <select name="sort-comments" id="sort-comments">
-                <option value="desc">Highest Rating</option>
-                <option value="asc">Lowest Rating</option>
-                <option value="oldest">Oldest Comment</option>
-                <option value="newest">Newest Comment</option>
-            </select>
+
+        <div class="parent-container" id="comment-parent-container" data-target="prop-indicator">
+            <div class="boxes-container">
+                <div class="commentLabel">Comments</div>
+                <div class="left-box">
+                    <div class="comment-section">
+                        <div class="sort-comments-container">
+                            <label for="sort-comments">Sort by:</label>
+                            <select name="sort-comments" id="sort-comments">
+                                <option value="desc">Highest Rating</option>
+                                <option value="asc">Lowest Rating</option>
+                                <option value="oldest">Oldest Comment</option>
+                                <option value="newest">Newest Comment</option>
+                            </select>
+                        </div>
+                        <div class = "comments-list-container">
+                        <?php include('comments.php'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <?php include('comments.php'); ?>
-
-        <script>
-            document.getElementById("sort-comments").addEventListener("change", function() {
-                var selectedValue = this.value;
-                window.location.href = "property.php?sort=" + selectedValue;
-            });
-        </script>
 
 
 

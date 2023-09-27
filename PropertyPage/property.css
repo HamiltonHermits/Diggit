@@ -399,6 +399,45 @@ main {
   min-width: 100px;
 }
 
+#comment-parent-container {
+  margin: 6em 0 0 0;
+}
+#comment-parent-container .boxes-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 1em;
+}
+#comment-parent-container .boxes-container .commentLabel {
+  width: 60%;
+  height: 10%;
+  padding: 0 2em 0 2em;
+  border-radius: 15px;
+  background-color: var(--inner-box-color);
+}
+#comment-parent-container .boxes-container .left-box {
+  width: 60%;
+  height: 90%;
+}
+#comment-parent-container .boxes-container .left-box .comments-list-container {
+  display: grid;
+}
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container {
+  font-family: "Poppins";
+  margin-top: 1em;
+  display: grid;
+}
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .username-date-comment {
+  font-weight: 600;
+  font-size: calc(10px + 0.5vw);
+}
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .description-comment {
+  font-size: calc(5px + 0.7vw);
+}
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .horizontal-line-comment {
+  width: 100%;
+}
+
 .rate-prop-btn-container {
   display: flex;
   flex-direction: row;
