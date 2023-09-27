@@ -372,13 +372,19 @@ $conn->close();
                 </div>
             </div>
         </div>
+        <?php if ($isAuthenticated) : ?>
+            <div class="rate-prop-btn-container">
+                <button class="rate-property" id="openRatingModalBtn">
+                    Rate Property
+                </button>
 
-        <div class="rate-prop-btn-container">
-            <button class="rate-property" id="openRatingModalBtn">
-                Rate Property
-            </button>
-        </div>
-
+        <?php else : ?>
+            <div class="rate-prop-btn-container">
+                <button class="rate-property" id="openRatingModalBtnButItsNot">
+                    Rate Property
+                </button>
+            </div>
+        <?php endif; ?>
 
         <div class="parent-container" id="comment-parent-container" data-target="prop-indicator">
             <div class="boxes-container">
@@ -394,8 +400,8 @@ $conn->close();
                                 <option value="newest">Newest Comment</option>
                             </select>
                         </div>
-                        <div class = "comments-list-container">
-                        <?php include('comments.php'); ?>
+                        <div class="comments-list-container">
+                            <?php include('comments.php'); ?>
                         </div>
                     </div>
                 </div>
@@ -539,7 +545,7 @@ $conn->close();
 
 
         <!-- The Rating Modal -->
-        <div id="ratingModal" class="modal" style="display: none;" >
+        <div id="ratingModal" class="modal" style="display: none;">
 
             <div class="modal-content" id="ratingModalInner">
                 <span class="modal-close" id="closeRatingModalBtn">&times;</span>
@@ -725,7 +731,7 @@ $conn->close();
                             </div>
                         </div>
                         <!-- this is scuffed for passing through data to js -->
-                        <div class="modal-footer" id = "modalFoot" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
+                        <div class="modal-footer" id="modalFoot" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
                             <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
 
                         </div>
@@ -734,11 +740,14 @@ $conn->close();
 
                 </form>
             </div>
+
         </div>
-
-
-
-
+        <div id="notLoggedInModalSomethingElse" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p>Please login to make a review</p>
+                <button type="menu" class="loginButton" id="loginButtonPropertyPage">Log in</button>
+            </div>
+        </div>
     </main>
 </body>
 
