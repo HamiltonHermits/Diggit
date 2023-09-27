@@ -373,12 +373,19 @@ $conn->close();
             </div>
         </div>
 
-        <div class="rate-prop-btn-container">
-            <button class="rate-property" id="openRatingModalBtn">
-                Rate Property
-            </button>
-        </div>
-
+        <?php if ($isAuthenticated) : ?>
+            <div class="rate-prop-btn-container">
+                <button class="rate-property" id="openRatingModalBtn">
+                    Rate Property
+                </button>
+            </div>
+        <?php else : ?>
+            <div class="rate-prop-btn-container">
+                <button class="rate-property" id="openRatingModalBtnButItsNot">
+                    Rate Property
+                </button>
+            </div>
+        <?php endif; ?>
 
         <div class="parent-container" id="comment-parent-container" data-target="prop-indicator">
             <div class="boxes-container">
@@ -843,7 +850,7 @@ $conn->close();
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer" id="modalFoot" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">>
                                 <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
 
                             </div>
@@ -853,9 +860,7 @@ $conn->close();
                     </form>
                 </div>
             </div>
-
-
-
+        </div>
 
     </main>
 </body>

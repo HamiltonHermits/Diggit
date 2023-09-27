@@ -43,6 +43,15 @@ if(addMenityButton){
     });
 }
 if(loginButtonCreatePage){//we are clicking the login button on create page 
+    loginButtonCreatePage.addEventListener('mouseenter', function() {
+        loginButtonCreatePage.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+        loginButtonCreatePage.style.color = '#202024';
+    });
+
+    loginButtonCreatePage.addEventListener('mouseleave', function() {
+        loginButtonCreatePage.style.backgroundColor = '#ad5511'; // Change back to the normal color
+        loginButtonCreatePage.style.color = '#d9d9d9';
+    });
     
     loginButtonCreatePage.addEventListener('click', function () {//make sure that when you click the button login comes up
         loginModal.style.display = 'block';

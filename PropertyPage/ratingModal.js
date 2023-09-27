@@ -5,25 +5,59 @@ var closeRatingModalBtn = document.getElementById('closeRatingModalBtn');
 var divWithIds = document.getElementById('modalFoot');//this is not scuffed at all i promise
 var userId = divWithIds.getAttribute('data-user-id');
 var pageId = divWithIds.getAttribute('data-page-id');
-
+var openRatingModalBtnButItsNot = document.getElementById('openRatingModalBtnButItsNot');
+var notLoggedInModalSomethingElse = document.getElementById('notLoggedInModalSomethingElse');
+var loginButtonPropertyPage = document.getElementById('loginButtonPropertyPage');
 // console.log(userId," ",pageId);
 
-// Open the modal
-closeRatingModalBtn.addEventListener('click', () => {
-    ratingModal.style.display = 'none';
-});
-// Open the modal
-openRatingModalBtn.addEventListener('click', () => {
-    ratingModal.style.display = 'block';
-});
+//event listeners for when the user is not logged in 
+if (openRatingModalBtnButItsNot) {
+    openRatingModalBtnButItsNot.addEventListener('click', () => {
+        notLoggedInModalSomethingElse.style.display = 'block';
+    });
+    window.addEventListener('click', (event) => {
 
+        if (event.target == notLoggedInModalSomethingElse) {
+            notLoggedInModalSomethingElse.style.display = 'none';
+        }
+    });
+}
 
-// Close the modal if the user clicks outside the modal content
-window.addEventListener('click', (event) => {
-    if (event.target == ratingModal) {
+//event listeners for when the user is logged in 
+if (openRatingModalBtn) {
+    openRatingModalBtn.addEventListener('click', () => {
+        ratingModal.style.display = 'block';
+        openRatingModalBtn.style.display = 'none';
+    });
+    closeRatingModalBtn.addEventListener('click', () => {
         ratingModal.style.display = 'none';
-    }
-});
+        openRatingModalBtn.style.display = 'block';
+    });
+    window.addEventListener('click', (event) => {
+        if (event.target == ratingModal) {
+            ratingModal.style.display = 'none';
+            openRatingModalBtn.style.display = 'block';
+        }
+    });
+}
+if (loginButtonPropertyPage) {//we are clicking the login button on create page 
+    loginButtonPropertyPage.addEventListener('mouseenter', function () {
+        loginButtonPropertyPage.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+        loginButtonPropertyPage.style.color = '#202024';
+    });
+
+    loginButtonPropertyPage.addEventListener('mouseleave', function () {
+        loginButtonPropertyPage.style.backgroundColor = '#ad5511'; // Change back to the normal color
+        loginButtonPropertyPage.style.color = '#d9d9d9';
+    });
+
+    loginButtonPropertyPage.addEventListener('click', function () {//make sure that when you click the button login comes up
+        loginModal.style.display = 'block';
+        notLoggedInModalSomethingElse.style.display = 'none';
+    });
+}
+
+
 
 // Initialize an object to store the slider values
 const sliderValues = {
@@ -43,7 +77,7 @@ sliderElements.forEach((slider) => {
     slider.addEventListener('input', () => {
         const value = parseInt(slider.value); // Get the updated value
         sliderValues[category] = value; // Update the stored value
-        
+
         // Set the --value custom property for the slider track
         slider.style.setProperty('--value', `${(value - 1) * 25}%`);
 
@@ -133,7 +167,7 @@ ratingForm.addEventListener('submit', (event) => {
             break; // No need to continue checking once one slider is not chosen
         }
     }
-  
+
 
     // If all categories are rated, add star ratings, slider ratings, and review textarea to formData and submit via AJAX
     if (isAllRated && userId != "" && isAllRatedLandLord) {
@@ -185,13 +219,13 @@ ratingForm.addEventListener('submit', (event) => {
                     console.error("No message found in the JSON response");
                 }
             })
-            .catch (error => {
-            // Handle network errors
-            console.error("Network error:", error);
-        });
+            .catch(error => {
+                // Handle network errors
+                console.error("Network error:", error);
+            });
     } else {
-    // Display a message to the user indicating that they need to rate all categories
-    alert('Please rate all categories before submitting the form.PropertyRating:'+isAllRated+" Landlord"+isAllRatedLandLord);
-    
-}
+        // Display a message to the user indicating that they need to rate all categories
+        alert('Please rate all categories before submitting the form.PropertyRating:' + isAllRated + " Landlord" + isAllRatedLandLord);
+
+    }
 });

@@ -676,7 +676,8 @@ a {
 .modal .modal-content #applyAgentButton,
 .modal .modal-content #backButtonNotAgent,
 .modal .modal-content #submitAgentApplication,
-.modal .modal-content #loginButtonCreatePage {
+.modal .modal-content #loginButtonCreatePage,
+.modal .modal-content #loginButtonPropertyPage {
   background-color: var(--main_colour);
   color: var(--secondary_colour);
   border: none;
