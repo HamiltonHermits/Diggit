@@ -75,14 +75,40 @@ $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name
                                     FROM hamiltonhermits.amenity_test
                                     INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
                                     WHERE property_amenity.prop_id = ?;
+                                    INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
+                                    WHERE property_amenity.prop_id = ?;
                                   ");
 $stmtAmenity->bind_param("s", $propId);
 $stmtAmenity->execute();
 $resultAmenity = $stmtAmenity->get_result();
 $stmtAmenity->close();
 
-// Close the database connection
-$conn->close();
+
+    // Get reviews for property
+    $stmtReview = $conn->prepare(" SELECT review.written_review
+                                   FROM hamiltonhermits.review
+                                   JOIN hamiltonhermits.usertbl ON review.user_id=usertbl.user_id
+                                   WHERE usertbl.user_id = ?;
+                                 ");
+     $stmtReview->bind_param("s", $propId);
+     $stmtReview->execute();
+     $resultReview = $stmtReview->get_result();
+     $stmtReview->close();
+
+     // Get reviewer's name for property
+    $stmtReviewerName = $conn->prepare(" SELECT usertbl.username
+                                   FROM hamiltonhermits.usertbl
+                                   JOIN hamiltonhermits.review ON usertbl.user_id=review.user_id
+                                   WHERE review.user_id= ?;
+                                ");
+    $stmtReviewerName->bind_param("s", $propId);
+    $stmtReviewerName->execute();
+    $resultReviewerName = $stmtReviewerName->get_result();
+    $stmtReviewerName->close();
+ 
+
+    // Close the database connection
+    $conn->close();
 
 ?>
 
@@ -350,6 +376,150 @@ $conn->close();
                 </div>
             </div>
         </div>
+
+        <!-- work in progress for comment section -->
+       
+    <div class="comment-section">
+    <h2>Comments</h2>
+    <label for="sort-comments">Sort by:</label>
+    <select name="sort-comments" id="sort-comments">
+        <option value="desc">Highest Rating</option>
+        <option value="asc">Lowest Rating</option>
+        <option value="oldest">Oldest Comment</option>
+        <option value="newest">Newest Comment</option>
+    </select>
+
+    <?php
+        // Define the default sorting order
+        $sortOrder = "DESC"; // Highest rating by default
+        $orderBy = "avg_prop_review"; // Default sorting column
+
+        // Check if the select input value has changed (using JavaScript)
+        echo '<script>
+                document.getElementById("sort-comments").addEventListener("change", function() {
+                    var selectedValue = this.value;
+                    window.location.href = "property.php?sort=" + selectedValue;
+                });
+              </script>';
+
+        // Check if a sorting option is specified in the URL
+        if (isset($_GET['sort'])) {
+            $sortValue = $_GET['sort'];
+            if ($sortValue === 'asc') {
+                $sortOrder = 'ASC';
+                $orderBy = 'avg_prop_review';
+            } elseif ($sortValue === 'oldest') {
+                $sortOrder = 'ASC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            } elseif ($sortValue === 'newest') {
+                $sortOrder = 'DESC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            }
+        }
+
+        // Assuming $resultReview is a result object from your SQL query
+        // Fetch comments ordered by selected option
+        $sql = "SELECT written_review, date_reviewed FROM review ORDER BY $orderBy $sortOrder ;";
+        $result = $conn->query($sql);
+        $comments = $resultReview->fetch_all(MYSQLI_ASSOC);
+        $reviewerNames = $resultReviewerName->fetch_all(MYSQLI_ASSOC);
+        // Check if there are comments
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="comment">';
+                echo '<strong>' . htmlspecialchars($reviewerNames['username']) . ':</strong>';
+                echo '<p>' . htmlspecialchars($row['written_review']) . '</p>';
+                // Display average rating as filled-in stars
+                $averageRating = $row['avg_prop_review']; // Replace with your actual average rating value
+                echo '<p>Average Rating: ';
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $averageRating) {
+                        echo '<span class="star-filled">&#9733;</span>';
+                    } else {
+                        echo '<span class="star-unfilled">&#9733;</span>';
+                    }
+                }
+                echo '</p>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>No comments available.</p>';
+        }
+    ?>
+</div>
+        <!-- work in progress for comment section -->
+
+        <!-- work in progress for comment section -->
+       
+    <div class="comment-section">
+    <h2>Comments</h2>
+    <label for="sort-comments">Sort by:</label>
+    <select name="sort-comments" id="sort-comments">
+        <option value="desc">Highest Rating</option>
+        <option value="asc">Lowest Rating</option>
+        <option value="oldest">Oldest Comment</option>
+        <option value="newest">Newest Comment</option>
+    </select>
+
+    <?php
+        // Define the default sorting order
+        $sortOrder = "DESC"; // Highest rating by default
+        $orderBy = "avg_prop_review"; // Default sorting column
+
+        // Check if the select input value has changed (using JavaScript)
+        echo '<script>
+                document.getElementById("sort-comments").addEventListener("change", function() {
+                    var selectedValue = this.value;
+                    window.location.href = "property.php?sort=" + selectedValue;
+                });
+              </script>';
+
+        // Check if a sorting option is specified in the URL
+        if (isset($_GET['sort'])) {
+            $sortValue = $_GET['sort'];
+            if ($sortValue === 'asc') {
+                $sortOrder = 'ASC';
+                $orderBy = 'avg_prop_review';
+            } elseif ($sortValue === 'oldest') {
+                $sortOrder = 'ASC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            } elseif ($sortValue === 'newest') {
+                $sortOrder = 'DESC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            }
+        }
+
+        // Assuming $resultReview is a result object from your SQL query
+        // Fetch comments ordered by selected option
+        $sql = "SELECT written_review, date_reviewed FROM review ORDER BY $orderBy $sortOrder ;";
+        $result = $conn->query($sql);
+        $comments = $resultReview->fetch_all(MYSQLI_ASSOC);
+        $reviewerNames = $resultReviewerName->fetch_all(MYSQLI_ASSOC);
+        // Check if there are comments
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="comment">';
+                echo '<strong>' . htmlspecialchars($reviewerNames['username']) . ':</strong>';
+                echo '<p>' . htmlspecialchars($row['written_review']) . '</p>';
+                // Display average rating as filled-in stars
+                $averageRating = $row['avg_prop_review']; // Replace with your actual average rating value
+                echo '<p>Average Rating: ';
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $averageRating) {
+                        echo '<span class="star-filled">&#9733;</span>';
+                    } else {
+                        echo '<span class="star-unfilled">&#9733;</span>';
+                    }
+                }
+                echo '</p>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>No comments available.</p>';
+        }
+    ?>
+</div>
+        <!-- work in progress for comment section -->
 
         <div class="rate-prop-btn-container">
             <button class="rate-property" id="openRatingModalBtn">
