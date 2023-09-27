@@ -403,26 +403,29 @@ $conn->close();
                             <?php include('comments.php'); ?>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="right-box">
                     <div class="rating-summary-container">
                         <div class="commentLabel">Overall</div>
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-overall-container">
+                            breakdown with review
+                        </div>
+                        <hr class="horizontal-line-comment">
+                        <div class="rating-summary-breakdown">
                             breakdown <br>
                             breakdown <br>
                             breakdown <br>
                             breakdown <br>
                             breakdown
                         </div>
-                        <hr class="horizontal-line-comment">
-                        <div class="rating-summary-breakdown"></div>
                     </div>
                     <div class=landlord-rating-summary-container>
                         <div class="star-rating-section">
                             <!-- Cleanliness Rating -->
                             <div class="rating-item">
-                                <p class="ratingLabels">Cleanliness</p>
+                                <div class="ratingLabels">Cleanliness</div>
                                 <div class="info-circle">
                                     <div class="info-icon">i</div>
                                     <div class="info-tooltip">More stars = cleaner digs</div>
@@ -438,7 +441,7 @@ $conn->close();
 
                             <!-- Noise Rating -->
                             <div class="rating-item">
-                                <p class="ratingLabels">Noise</p>
+                                <div class="ratingLabels">Noise</div>
                                 <div class="info-circle">
                                     <div class="info-icon">i</div>
                                     <div class="info-tooltip">More stars = lower noise levels</div>
@@ -454,7 +457,7 @@ $conn->close();
 
                             <!-- Location Rating -->
                             <div class="rating-item">
-                                <p class="ratingLabels">Location</p>
+                                <div class="ratingLabels">Location</div>
                                 <div class="info-circle">
                                     <div class="info-icon">i</div>
                                     <div class="info-tooltip">More stars = better location</div>
@@ -471,7 +474,7 @@ $conn->close();
 
                             <!-- Safety Rating -->
                             <div class="rating-item">
-                                <p class="ratingLabels">Safety</p>
+                                <div class="ratingLabels">Safety</div>
                                 <div class="info-circle">
                                     <div class="info-icon">i</div>
                                     <div class="info-tooltip">More stars = higher safety</div>
@@ -487,7 +490,7 @@ $conn->close();
 
                             <!-- Affordability Rating -->
                             <div class="rating-item">
-                                <p class="ratingLabels">Affordability</p>
+                                <div class="ratingLabels">Affordability</div>
                                 <div class="info-circle">
                                     <div class="info-icon">i</div>
                                     <div class="info-tooltip">More stars = better affordability</div>

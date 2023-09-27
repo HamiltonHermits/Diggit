@@ -485,7 +485,7 @@ main {
     margin: 6em 0 0 0;
     .boxes-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         height: 100vh;
         gap: 1em;
         
@@ -494,13 +494,15 @@ main {
             height: 90%;
             background:none;
             padding:0;
+            gap:1em;
             .comment-label-container {
                 width: 100%;
-                height: 100%;
+                height: 10%;
                 display: flex;
                 .commentLabel {
                     font-size: 30px;
                     padding: 0 2em 0 2em;
+                    width: 100%;
                     border-radius: 15px;
                     display: flex;
                     justify-content: center;
@@ -511,16 +513,18 @@ main {
             }
             .comment-section {
                 background-color: var(--inner-box-color);
-                width: 60%;
                 border-radius: 15px;
-                height: 100%;
                 .sort-comments-container {
                     width: 100%;
                     display: grid;
                     justify-content: flex-end;
+                    padding-top: 1em;
                     .inner-sort-comments-container {
                         height: 100%;
+                        right:10%;
                         display: flex;
+                        position: relative;
+                        
                         align-items: center;
                         justify-content: space-between;
                         #sort-comments {
@@ -539,7 +543,9 @@ main {
                 }
             }
             .comments-list-container {
-                display: grid;
+                display: flex;
+                flex-direction: column;
+                padding: 0em 2em 2em 2em;
                 .comment-container {
                     font-family: "Poppins";
                     margin-top: 1em;
@@ -556,6 +562,54 @@ main {
                     }
                     .horizontal-line-comment {
                         width: 100%;
+                    }
+                }
+            }
+        }
+        .right-box{
+            background: none;
+            padding:0;
+            .rating-summary-container{
+                background-color: var(--inner-box-color);
+                padding:2em 2em 2em 2em;
+                border-radius: 15px;
+                .commentLabel{
+
+                }
+                .horizontal-line-comment{
+
+                }
+                .rating-summary-overall-container{
+
+                }
+                .rating-summary-breakdown{
+
+                }
+                
+            }
+            .landlord-rating-summary-container{
+                background-color: var(--inner-box-color);
+                padding:2em 2em 2em 2em;
+                border-radius: 15px;
+                .star-rating-section{
+                    text-align: center;
+                    .rating-item{
+                        .ratingLabels{
+                            display: inline;
+                        }
+                        .info-circle{
+                            .info-icon{
+
+                            }
+                            .info-tooltip{
+
+                            }
+                        }
+                        .star-rating{
+                            .star{
+
+                            }
+                        }
                     }
                 }
             }
