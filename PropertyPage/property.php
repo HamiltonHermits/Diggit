@@ -38,6 +38,16 @@ if (isset($_SESSION['profileMessage'])) {
     $profileMessage = $_SESSION['profileMessage'];
     unset($_SESSION['changePasswordError']);
 }
+// if (isset($_GET['id'])) {
+//     // Escape and format the data before embedding it in JavaScript
+//     $pageId = $_GET['id'];
+//     echo "<div style='display: none;' id = pageIdDiv>$pageId</div>";
+// }
+// if (isset($_SESSION['user_id'])) {
+//     // Escape and format the data before embedding it in JavaScript
+//     $userId = $_SESSION['user_id'];
+//     echo "<div style='display: none;' id = userIdDiv>$userId</div>";
+// }
 
 
 //Connect to database
@@ -526,7 +536,8 @@ $conn->close();
 
 
         <!-- The Rating Modal -->
-        <div id="ratingModal" class="modal" style="display: none;">
+        <div id="ratingModal" class="modal" style="display: none;" >
+
             <div class="modal-content" id="ratingModalInner">
                 <span class="modal-close" id="closeRatingModalBtn">&times;</span>
                 <form id="ratingForm" action="process_ratings.php" method="post">
@@ -710,7 +721,8 @@ $conn->close();
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <!-- this is scuffed for passing through data to js -->
+                        <div class="modal-footer" id = "modalFoot" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
                             <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
 
                         </div>
