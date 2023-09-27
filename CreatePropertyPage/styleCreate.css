@@ -132,6 +132,11 @@ main {
   border: none;
   cursor: pointer;
 }
+.nav-top .profile-container .profile #openModalBtn {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
 
 .filledButton {
   color: var(--global-font-color);
