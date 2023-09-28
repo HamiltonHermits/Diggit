@@ -5,6 +5,7 @@ var dropdownItem = document.getElementById('dropdownItem');
 var counter;
 var MAX_VIEW = 3;
 var lastval_boolean = false;
+var searchBarCheck = true;
 
 
 // Function to redirect to property page
@@ -51,13 +52,17 @@ searchbar.addEventListener('input', function () {
             } else {
                 // Populate the dropdown with search results (limit to MAX_VIEW items)
                 counter = 0;
-                
+
                 data.forEach(function (apartment) {
+                    //debug code
                     //console.log(apartment.street_num);
-                    if (counter == MAX_VIEW) {
-                        console.log(counter);
+                    //console.log(counter);
+                    //this needs allot of work
+                    
+                    if (counter === MAX_VIEW && searchBarCheck) {
+                        searchBarCheck = false;
                         // Add "Add Property" link as the last item
-                        var addPropertyItem = document.createElement('a');
+                        const addPropertyItem = document.createElement('a');
                         addPropertyItem.className = 'dropdown-item add-property';
                         addPropertyItem.href = '../CreatePropertyPage/create.php'; // Temporary URL
                         addPropertyItem.textContent = 'Add a Property';
@@ -68,44 +73,44 @@ searchbar.addEventListener('input', function () {
                             addPropertyItem.style.color = '#564B40';
                             addPropertyItem.style.borderRadius = '30px 30px 30px 30px';
                         });
-                        
+
                         addPropertyItem.addEventListener('mouseout', function () {
                             addPropertyItem.style.backgroundColor = '#564B40';
                             addPropertyItem.style.color = '#D9D9D9';
                         });
-                        
+
                         dropdown.appendChild(addPropertyItem);
-                        
-                        return; // Exit the loop when reaching the limit
+
+                    } else {
+                        counter++;
+
+                        // Create a new dropdown item element
+                        var dropdownItem = document.createElement('div');
+                        dropdownItem.className = 'dropdown-item';
+                        dropdownItem.id = 'dropdownItem';
+                        streetNumName = apartment.street_num + ' ' + apartment.street_name;
+                        dropdownItem.title = apartment.prop_name + ' ' + streetNumName;
+                        dropdownItem.textContent = apartment.prop_name + '  -  ' + streetNumName; // Display apartment names & locations
+
+                        // Event listeners for click, mouseover, and mouseout
+                        dropdownItem.addEventListener('click', function () {
+                            searchbar.value = apartment.prop_name + ', ' + streetNumName;
+                            redirectToPage(apartment.prop_id);
+                        });
+
+                        dropdownItem.addEventListener('mouseover', function () {
+                            dropdownItem.style.backgroundColor = '#D9D9D9';
+                            dropdownItem.style.color = '#564B40';
+                            dropdownItem.style.borderRadius = '30px 30px 30px 30px';
+                        });
+
+                        dropdownItem.addEventListener('mouseout', function () {
+                            dropdownItem.style.backgroundColor = '#564B40';
+                            dropdownItem.style.color = '#D9D9D9';
+                        });
+
+                        dropdown.appendChild(dropdownItem);
                     }
-                    counter++;
-
-                    // Create a new dropdown item element
-                    var dropdownItem = document.createElement('div');
-                    dropdownItem.className = 'dropdown-item';
-                    dropdownItem.id = 'dropdownItem';
-                    streetNumName = apartment.street_num + ' ' + apartment.street_name;
-                    dropdownItem.title = apartment.prop_name + ' '  + streetNumName;
-                    dropdownItem.textContent = apartment.prop_name + '  -  ' + streetNumName; // Display apartment names & locations
-
-                    // Event listeners for click, mouseover, and mouseout
-                    dropdownItem.addEventListener('click', function () {
-                        searchbar.value = apartment.prop_name + ', ' + streetNumName;
-                        redirectToPage(apartment.prop_id);
-                    });
-
-                    dropdownItem.addEventListener('mouseover', function () {
-                        dropdownItem.style.backgroundColor = '#D9D9D9';
-                        dropdownItem.style.color = '#564B40';
-                        dropdownItem.style.borderRadius = '30px 30px 30px 30px';
-                    });
-
-                    dropdownItem.addEventListener('mouseout', function () {
-                        dropdownItem.style.backgroundColor = '#564B40';
-                        dropdownItem.style.color = '#D9D9D9';
-                    });
-
-                    dropdown.appendChild(dropdownItem);
                 });
             }
 
