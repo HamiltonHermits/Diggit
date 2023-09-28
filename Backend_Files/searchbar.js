@@ -21,6 +21,14 @@ function handleApartmentClick(apartment) {
     };
 }
 
+document.addEventListener('click', function (event) {
+    if (event.target !== searchbar && event.target !== dropdown) {
+        dropdown.style.display = 'none';
+        borderSearchBar.style.borderRadius = '50px';
+    }
+});
+
+
 searchbar.addEventListener('input', function () {
 
     var query = searchbar.value;
