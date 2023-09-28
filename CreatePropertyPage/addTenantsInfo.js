@@ -14,12 +14,12 @@ function openAddTenantModal(){
 
 function isValidEmail(email) {
     // A simple regular expression to check if the email is valid
-    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(email);
 }
 
 function addEmail() {
-    var email = emailInput.value.trim();
+    const email = emailInput.value.trim();
     if (email) {
         if (isValidEmail(email)) {
             const listItem = document.createElement('li');

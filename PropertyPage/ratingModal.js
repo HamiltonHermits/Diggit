@@ -60,10 +60,10 @@ if (loginButtonPropertyPage) {//we are clicking the login button on create page
 
 // Initialize an object to store the slider values
 const sliderValues = {
-    politeness: 0, // Default value for politeness
-    repairRating: 0, // Default value for repair
-    responseTimeRating: 0, // Default value for response time
-    overallLandlordRating: 0, // Default value for overall landlord rating
+    politenessRating: 1, // Default value for politeness
+    repairRating: 1, // Default value for repair
+    responseTimeRating: 1, // Default value for response time
+    overallLandlordRating: 1, // Default value for overall landlord rating
 };
 
 // JavaScript to update slider values, store them, and log them

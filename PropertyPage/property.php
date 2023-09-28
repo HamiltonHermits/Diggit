@@ -112,7 +112,8 @@ $conn->close();
 
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="property.js" defer></script>
+    <script src="../Backend_Files/searchbar.js" defer></script>
+    <!-- <script src="property.js" defer></script> -->
     <script src="ratingModal.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
 </head>
