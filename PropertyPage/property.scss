@@ -564,7 +564,7 @@ main {
                         display: flex;
 
                         .previous-page-button {
-                            width: 75%;
+                            width: 100%;
                             border-radius: 15px;
                             border: none;
                             background-color: var(--main-color);
@@ -601,7 +601,7 @@ main {
                         justify-content: flex-end;
 
                         .next-page-button {
-                            width: 80%;
+                            width: 100%;
                             border-radius: 15px;
                             border: none;
                             background-color: var(--main-color);
@@ -645,7 +645,7 @@ main {
         .right-box {
             background: none;
             padding: 0;
-
+            height: 90%;
             .rating-summary-container {
                 background-color: var(--inner-box-color);
                 padding: 1em 2em 2em 2em;
@@ -1278,7 +1278,47 @@ a {
         height: 50%;
         width: 80%;
     }
-
+    .parent-container{
+        .boxes-container{
+            .right-box{
+                width: 90%;
+            }
+            .left-box{
+                width: 90%;
+            }
+        }
+    }
+    #comment-parent-container{
+        .boxes-container{
+            flex-direction: column-reverse;
+            height: 80%;
+            .right-box{
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 50%;
+                .rating-summary-container{
+                    width: 50%;
+                    .rating-summary-overall-container{
+                        font-size: 2.5vw;
+                    }
+                    .rating-summary-breakdown{
+                        font-size: calc(10px + 2.5vw);
+                    }
+                }
+                .landlord-rating-summary-container{
+                    width: 50%;
+                    .star-rating-section{
+                        .rating-item{
+                            .star-rating{
+                                font-size: calc(15px + 1.5vw);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     .boxes-container {
         flex-direction: column;
         align-items: center;
