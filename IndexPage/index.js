@@ -3,7 +3,7 @@ var borderSearchBar = document.getElementById('borderSearchBar');
 var dropdown = document.getElementById('dropdown');
 var dropdownItem = document.getElementById('dropdownItem');
 var counter;
-var MAX_VIEW = 2;
+var MAX_VIEW = 3;
 var lastval_boolean = false;
 
 
@@ -53,8 +53,9 @@ searchbar.addEventListener('input', function () {
                 counter = 0;
                 
                 data.forEach(function (apartment) {
-                    console.log(apartment.street_num);
+                    //console.log(apartment.street_num);
                     if (counter == MAX_VIEW) {
+                        console.log(counter);
                         // Add "Add Property" link as the last item
                         var addPropertyItem = document.createElement('a');
                         addPropertyItem.className = 'dropdown-item add-property';
@@ -87,14 +88,6 @@ searchbar.addEventListener('input', function () {
                     dropdownItem.title = apartment.prop_name + ' '  + streetNumName;
                     dropdownItem.textContent = apartment.prop_name + '  -  ' + streetNumName; // Display apartment names & locations
 
-                    // Create a span element for location
-                    // var locationSpan = document.createElement('span');
-                    // locationSpan.className = 'locationSpan';
-                    // locationSpan.id = 'locationSpanId';
-                    // locationSpan.style.color = '#D9D9D9'; // Different color
-                    // locationSpan.textCo  ntent = apartment.street_num + apartment.street_name;
-                    // dropdownItem.appendChild(locationSpan);
-
                     // Event listeners for click, mouseover, and mouseout
                     dropdownItem.addEventListener('click', function () {
                         searchbar.value = apartment.prop_name + ', ' + streetNumName;
@@ -103,14 +96,12 @@ searchbar.addEventListener('input', function () {
 
                     dropdownItem.addEventListener('mouseover', function () {
                         dropdownItem.style.backgroundColor = '#D9D9D9';
-                        locationSpan.style.color = '#564B40';
                         dropdownItem.style.color = '#564B40';
                         dropdownItem.style.borderRadius = '30px 30px 30px 30px';
                     });
 
                     dropdownItem.addEventListener('mouseout', function () {
                         dropdownItem.style.backgroundColor = '#564B40';
-                        locationSpan.style.color = '#D9D9D9';
                         dropdownItem.style.color = '#D9D9D9';
                     });
 
