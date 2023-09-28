@@ -66,8 +66,8 @@ if (isset($_SESSION['profileMessage'])) {
     <script src="create.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
     <script src="applyAgent.js" defer></script>
-    <script src="createPropertyForm.js" defer></script>
     <script src="addTenantsInfo.js" defer></script>
+    <script src="createPropertyForm.js" defer></script>
 
 </head>
 
@@ -177,13 +177,14 @@ if (isset($_SESSION['profileMessage'])) {
                     </div>
                     <div class="prop-images-container">
                         <div class="select-images-overlay">
-                            <input type="file" id="file" class="inputfile" multiple>
-                            <label id="addImage" for="files" class="inverseFilledButton">Add images</label>
+                            <input type="file" id="file" name="file" multiple />
+                            <!-- <input type="file" id="file" class="inputfile" multiple> -->
+                            <!-- <input type="file" id="file" class="inputfile" multiple> -->
                         </div>
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
-                            <textarea class="description-text-field" placeholder="Please add a description"></textarea>
+                            <textarea id="desc-text-field"class="description-text-field" placeholder="Please add a description"></textarea>
                         </div>
                     </div>
                 </div>
