@@ -8,51 +8,70 @@ const tenantsInput = emailArray; // of type array
 
 // if save property button is pressed
 document.getElementById('save-property').addEventListener('click', function () {
-    if (confirm('Are you sure you want to add property')) {
-        // formData = {
-        //     title: titleInput.value,
-        //     file: fileInput.files[0],
-        //     desc: descriptionInput.value,
-        //     searchbar: searchbarInput.value,
-        //     amenitys: amenitysInput,
-        //     tenants: tenantsInput
-        // }
-        formData = new FormData();
-        formData.append('title', titleInput.value);
-        formData.append('file', fileInput.files[0]);
-        // formData.append('desc', descriptionInput.value);
-        // formData.append('searchbar', searchbarInput.value);
-        // formData.append('amenities', amenitysInput);
-        // formData.append('tenants', tenantsInput);
-        
-        console.log(formData); 
-
-        //Make the AJAX request
-        fetch("createProperty.php", {
-            method: "POST",
-            body: formData,
-        })
-            .then(response => {
-                if (response.ok) {
-                    // Handle a successful response (e.g., show a success message)
-                    return response.json(); // Parse the JSON response
-                } else {
-                    // Handle errors (e.g., show an error message)
-                    console.error("Error submitting rating");
-                    throw new Error("Problem with response");
-                }
+    // check if all the input fields are filled out 
+    // titleInput.value.trim() !== "" && fileInput.files.length !== 0 
+    // && descriptionInput.value.trim() !== "" && searchbarInput.value.trim() !== "" 
+    // && amenitysInput.length !== 0 && tenantsInput.length !== 0
+    if (true) {
+        if (confirm('Are you sure you want to add property')) {
+            // formData = {
+            //     title: titleInput.value,
+            //     file: fileInput.files[0],
+            //     desc: descriptionInput.value,
+            //     searchbar: searchbarInput.value,
+            //     amenitys: amenitysInput,
+            //     tenants: tenantsInput
+            // }
+            formData = new FormData();
+            formData.append('title', titleInput.value);
+            formData.append('file', fileInput.files[0]);
+            formData.append('desc', descriptionInput.value);
+            formData.append('searchbar', searchbarInput.value);
+            // formData.append('amenities', amenitysInput);
+            // formData.append('tenants', tenantsInput);
+            
+            // console.log(formData); 
+    
+            //Make the AJAX request
+            fetch("createProperty.php", {
+                method: "POST",
+                body: formData,
             })
-            .then(data => {
-                if (data && data.message) {
-                    console.log("Message from server:", data.message); // Log the specific message from the JSON response
-                } else {
-                    console.error("No message found in the JSON response");
-                }
-            })
-            .catch(error => {
-                // Handle network errors
-                console.error("Network error:", error);
-            });
+                .then(response => {
+                    // if (response.ok) {
+                    //     // Handle a successful response (e.g., show a success message)
+                    //     return response.json(); // Parse the JSON response
+                    // } else if(response.error) {
+                    //     console.error(error);
+                    // } else {
+                    //     // Handle errors (e.g., show an error message)
+                    //     console.error("Error submitting rating");
+                    //     throw new Error("Problem with response");
+                    // }
+                    if (response.ok) {
+                        // Handle a successful response
+                        return response.json(); // Parse the JSON response
+                    } else {
+                        // Handle errors
+                        return response.json().then(errorData => {
+                            throw new Error(errorData.error); // Throw an error with the error message
+                        });
+                    }
+                })
+                .then(data => {
+                    if (data && data.message) {
+                        console.log("Message from server:", data.message); // Log the specific message from the JSON response
+                    } else {
+                        console.error("No message found in the JSON response");
+                    }
+                })
+                .catch(error => {
+                    // Handle network errors
+                    console.error("Network error:", error);
+                });
+        }
+    } else {
+        alert("You have not filled out all the input fields");
     }
 });
 
