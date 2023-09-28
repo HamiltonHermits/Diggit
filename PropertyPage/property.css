@@ -2,6 +2,7 @@
 :root {
   --bg-sidebar-cont-width: 15%;
   --main-width: 85%;
+  --light-secondary-colour: #564b40;
   --sidebar-color: #202024;
   --main-color: #29292c;
   --container-box-color: #202024;
@@ -124,7 +125,9 @@ main {
   padding: 1em 0 0 0;
 }
 .nav-top #dashboardContainer {
-  left: 3%;
+  position: relative;
+  justify-content: flex-end;
+  display: flex;
 }
 .nav-top #dashboardContainer #openModalBtnDashboard {
   display: none;
@@ -133,8 +136,8 @@ main {
   cursor: pointer;
 }
 .nav-top .profileContainer {
-  right: 3%;
   position: relative;
+  width: 10%;
 }
 .nav-top .profileContainer #openModalBtn {
   background: none;
@@ -143,35 +146,55 @@ main {
 }
 .nav-top .searchbar-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  width: 35%;
+  width: 80%;
+  position: absolute;
+  top: 2vh;
+  box-sizing: border-box;
+}
+.nav-top .searchbar-container .borderSearchBar {
+  gap: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 50%;
   min-width: 200px;
   max-height: 50px;
   height: 2em;
-  padding: 0 1em 0 1em;
   border-radius: 25px 15px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: var(--orange);
 }
-.nav-top .searchbar-container .borderSearchBar {
-  display: flex;
-  width: 100%;
-  gap: 0.5em;
-}
-.nav-top .searchbar-container .borderSearchBar #dropdown {
-  position: absolute;
-  margin: 1.7em 0 0 0;
-  width: 25.5%;
-}
 .nav-top .searchbar-container .borderSearchBar #searchbar {
-  width: 100%;
-  background-color: var(--orange);
+  width: 80%;
+  height: 70%;
+  background: none;
   border: none;
   color: var(--global-font-color);
 }
 .nav-top .searchbar-container .borderSearchBar #searchButton {
-  background-color: rgba(0, 0, 0, 0);
+  background: none;
+  width: 5%;
+  border: none;
+}
+.nav-top .searchbar-container .borderSearchBar #crab-logo {
+  width: 15%;
+}
+.nav-top .searchbar-container #dropdown {
+  position: relative;
+  display: grid;
+  width: 50%;
+  background-color: var(--light-secondary-colour);
+  height: 100%;
+  min-width: 200px;
+  border-radius: 0px 0px 27px 27px;
+}
+.nav-top .searchbar-container #dropdown .dropdown-item {
+  height: 100%;
+  padding: 10px;
 }
 
 .parent-container {
@@ -197,7 +220,7 @@ main {
 .parent-container .boxes-container .right-box .email-btn-container {
   display: flex;
   justify-content: right;
-  height: 7%;
+  height: 100%;
 }
 .parent-container .boxes-container .right-box .email-btn-container .email-agent-button {
   cursor: pointer;
@@ -252,6 +275,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
+  color: var(--global-font-color);
 }
 .parent-container .boxes-container .right-box .top-container .contact-container .contact-title {
   text-align: center;
@@ -275,6 +299,7 @@ main {
   font-style: normal;
   font-weight: 250;
   line-height: normal;
+  color: var(--global-font-color);
 }
 .parent-container .boxes-container .right-box .top-container .contact-container .contact-info-container .contact-form #message {
   resize: none;
@@ -1137,18 +1162,32 @@ a {
   .nav-top #dashboardContainer #openModalBtnDashboard {
     display: block;
   }
+  .nav-top .searchbar-container {
+    width: 100%;
+  }
   #ratingModal #ratingModalInner .rating-section-property {
     padding: 0;
     width: 50%;
+  }
+  #ratingModal #ratingModalInner .rating-section-property .combined-inline-property {
+    flex-direction: column;
   }
   #ratingModal #ratingModalInner .rating-section-property .combined-inline-property .star-rating-section {
     width: 100%;
   }
   #ratingModal #ratingModalInner .rating-section-with-submit {
-    width: 50%;
+    width: 45%;
   }
   #ratingModal #ratingModalInner .review-section {
-    display: none;
+    display: contents;
+  }
+  #ratingModal #ratingModalInner .review-section .reviewTextarea {
+    height: 55%;
+    padding: 1em;
+  }
+  #ratingModal #ratingModalInner .review-section .reviewTextarea #reviewTextarea {
+    height: auto;
+    font-size: 1.5em;
   }
 }
 /*# sourceMappingURL=property.css.map */

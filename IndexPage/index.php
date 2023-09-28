@@ -179,12 +179,12 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn">Change Password</button>
+                <button id="changePasswordBtn" class = "inverseFilledButton">Change Password</button>
 
-                <button id="deleteProfileBtn">Delete Profile</button>
+                <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
 
                 <form action="../Backend_Files/logout.php" method="post">
-                    <button type="submit" class="loginButton">Logout</button>
+                    <button type="submit" class="loginButton" class = "filledButton">Logout</button>
                 </form>
             </div>
         </div>

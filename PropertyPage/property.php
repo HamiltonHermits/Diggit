@@ -201,9 +201,11 @@ $conn->close();
                         </svg>
                     </button>
                     <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
-                    <div id="dropdown" class="dropdown-content"></div>
+                    <div id="crab-logo">crab</div>
+
                 </div>
-                <div class="crab-logo">crab</div>
+                <div id="dropdown" class="dropdown-content"></div>
+
             </div>
             <!-- Personalised Search page if authenticated-->
             <?php if ($isAuthenticated) : ?>
@@ -284,20 +286,21 @@ $conn->close();
                         <div class="contact-container">
                             <div class="title">Contact</div>
                             <div class="contact-info-container">
-                                <form action="" class="contact-form">
+                                <form action="mailto:g21j5408@ru.ac.za.com" method = "get" enctype = "text/plain" class="contact-form">
                                     <label for="details">Your Details</label>
-                                    <input type="text" class="contactTextField" placeholder="name">
-                                    <input type="text" class="contactTextField" placeholder="email">
+                                    <input type="text" class="contactTextField" placeholder="name" name = "subject">
+                                    <input type="email" class="contactTextField" placeholder="email" name = "email">
                                     <input type="text" class="contactTextField" placeholder="phone number">
-                                    <label id="message-label" for="message">Message</label>
-                                    <textarea name="message" id="message" rows="12" placeholder="Please contact the agent regarding this property."></textarea>
+                                    <label id="message-label" for="body">Message</label>
+                                    <textarea name="body" id="message" rows="12" placeholder="Please contact the agent regarding this property."></textarea>
+                                    <div class="email-btn-container">
+                                        <input type = "submit" class="email-agent-button" value ="Email Agent">
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="email-btn-container">
-                        <button class="email-agent-button">Email Agent</button>
-                    </div>
+
                     <div class="bottom-container">
                         <div class="map-container" id="map">
                             MAP

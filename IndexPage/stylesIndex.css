@@ -65,6 +65,32 @@ body {
   min-width: 80px;
 }
 
+#profileModal #closeModalBtn {
+  top: -10px;
+  left: 0;
+  font-size: 1em;
+  position: absolute;
+}
+#profileModal #changePasswordBtn {
+  display: inline-flex;
+  margin-bottom: 2vh;
+}
+#profileModal #deleteProfileBtn {
+  display: inline-flex;
+}
+#profileModal #formProfileBtn {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 10vh;
+}
+#profileModal #formProfileBtn .loginButton {
+  display: flex;
+  width: 85%;
+  height: 60%;
+}
+
 #mainContainer {
   position: relative;
   display: grid;
