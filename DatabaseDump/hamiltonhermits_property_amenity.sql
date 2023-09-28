@@ -29,7 +29,7 @@ CREATE TABLE `property_amenity` (
   PRIMARY KEY (`prop_amenity_id`),
   KEY `propId_idx` (`prop_id`),
   KEY `amenityId_idx` (`amenity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Junction table';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Junction table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

@@ -44,7 +44,7 @@ CREATE TABLE `review` (
   KEY `user_id_idxx` (`user_id`),
   CONSTRAINT `prop_id` FOREIGN KEY (`prop_id`) REFERENCES `property` (`prop_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `usertbl` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
