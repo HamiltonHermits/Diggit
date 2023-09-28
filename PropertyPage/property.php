@@ -850,7 +850,7 @@ $conn->close();
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <!-- Modal footer -->
 
@@ -858,9 +858,9 @@ $conn->close();
                 </div>
             </div>
             <div class="modal-footer" id="notLoggedInModalSomethingElse" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">>
-                                <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
+                <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
 
-                            </div>
+            </div>
         </div>
 
     </main>
