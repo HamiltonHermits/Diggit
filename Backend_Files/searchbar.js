@@ -1,62 +1,33 @@
-var borderSearchBar = document.getElementById("borderSearchBar");
+var searchbar = document.getElementById('searchbar');
+var borderSearchBar = document.getElementById('borderSearchBar');
+var dropdown = document.getElementById('dropdown');
+var dropdownItem = document.getElementById('dropdownItem');
 var counter;
 var MAX_VIEW = 5;
 var lastval_boolean = false;
+var searchBarCheck = true;
+var dropdownThere = false;
 
-// Get allparentContainers
-const parentContainers = document.querySelectorAll(".parent-container");
-document.getElementById("sort-comments").addEventListener("change", function() {
-    var selectedValue = this.value;
-    window.location.href = "property.php?sort=" + selectedValue;
-});
-// Function to check if an element is in the viewport
-function isElementInViewport(el) {
-    var rect = el.getBoundingClientRect();
-    return (
-        rect.top >= - 300 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight + 300 || document.documentElement.clientHeight + 300) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-function updateActivePageIndicator() {
-    parentContainers.forEach(function(page) { // loop through each parent page
-        const target = page.dataset.target; // associated sidebar element for this current parent page
-        const sidebarElement = document.getElementById(target); // get the sidebar element
-
-        if (isElementInViewport(page)) { // if the parent page is in the viewport
-            //sidebarElement.classList.add("current-page-bg-effect"); // add the background effect to sidebar element
-        } else {
-            if (sidebarElement) { //if not null
-                //sidebarElement.classList.remove("current-page-bg-effect");
-            }
-        }
-    });
-}
-
-//makes the search text disapear after clicking in it
-searchbar.addEventListener('click', function () {
-    searchbar.placeholder = '';
-    searchbar.style.textAlign = 'left';
-    // borderSearchBar.style.backgroundColor = "#564B40";
-});
-//Add event listerners to repopulate placeholder text
-document.addEventListener('click', function (event) {
-    var clickanywhere = event.target;
-
-    if(clickanywhere !== searchbar && !searchbar.contains(clickanywhere)){
-        searchbar.placeholder = 'Find your Digs..';
-        searchbar.style.textAlign = 'center';
-        // borderSearchBar.style.backgroundColor = "#202024";
-    }
-
-});
 
 function redirectToPage(apartID) {
     // Go to property page and pass apartment ID has query parameter
     window.location.href = `../PropertyPage/property.php?id=${apartID}`;
 }
+function handleApartmentClick(apartment) {
+    return function () {
+        //console.log(apartment.prop_id);
+        searchbar.value = apartment.prop_name + ', ' + streetNumName;
+        redirectToPage(apartment.prop_id);
+    };
+}
+
+document.addEventListener('click', function (event) {
+    if (event.target !== searchbar && event.target !== dropdown) {
+        dropdown.style.display = 'none';
+        borderSearchBar.style.borderRadius = '50px';
+    }
+});
+
 
 searchbar.addEventListener('input', function () {
 
@@ -93,13 +64,9 @@ searchbar.addEventListener('input', function () {
                     dropdownItem.textContent = apartment.prop_name + '  -  ' + streetNumName; // Display apartment names & locations
 
                     // Event listeners for click, mouseover, and mouseout
-                    dropdownItem.addEventListener('click', function () {
-                        console.log(apartment.prop_id);
-                        searchbar.value = apartment.prop_name + ', ' + streetNumName;
-                        
-                        console.log(searchbar.value);
-                        //redirectToPage(apartment.prop_id);
-                    });
+
+                    dropdownItem.addEventListener('click', handleApartmentClick(apartment));
+
 
                     dropdownItem.addEventListener('mouseover', function () {
                         dropdownItem.style.backgroundColor = '#D9D9D9';
@@ -154,40 +121,3 @@ searchbar.addEventListener('input', function () {
         });
 
 });
-
-
-// Hide the dropdown when clicking outside of it
-document.addEventListener("click", function(event) {
-    if (event.target !== searchbar && event.target !== dropdown) {
-        dropdown.style.display = "none";
-        borderSearchBar.style.borderRadius = "50px"
-        searchbar.style.textAlign = 'left';
-    }
-});
-
-//////////////////////////////////////////////////////////////////////////
-// Map implementation
-
-var map = L.map('map');
-var latitude = -33.3089706;
-var longitude = 26.5209919;
-var propName = "The Greens";
-
-map.setView([latitude, longitude], 15.5); //coords + zoom level
-
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-var marker = L.marker([latitude, longitude]).addTo(map); //marker
-
-marker.bindPopup(`${propName}`).openPopup();
-
-//////////////////////////////////////////////////////////////////////////
-
-// Listen for scroll events
-window.addEventListener("scroll", updateActivePageIndicator);
-
-// Initial check (in case user starts midway down the page)
-updateActivePageIndicator();

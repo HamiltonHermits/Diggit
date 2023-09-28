@@ -2,9 +2,8 @@
 var openRatingModalBtn = document.getElementById('openRatingModalBtn');
 var ratingModal = document.getElementById('ratingModal');
 var closeRatingModalBtn = document.getElementById('closeRatingModalBtn');
-var divWithIds = document.getElementById('modalFoot');//this is not scuffed at all i promise
-var userId = divWithIds.getAttribute('data-user-id');
-var pageId = divWithIds.getAttribute('data-page-id');
+var userId = ratingModal.getAttribute('data-user-id');
+var pageId = ratingModal.getAttribute('data-page-id');
 var openRatingModalBtnButItsNot = document.getElementById('openRatingModalBtnButItsNot');
 var notLoggedInModalSomethingElse = document.getElementById('notLoggedInModalSomethingElse');
 var loginButtonPropertyPage = document.getElementById('loginButtonPropertyPage');
@@ -61,10 +60,10 @@ if (loginButtonPropertyPage) {//we are clicking the login button on create page
 
 // Initialize an object to store the slider values
 const sliderValues = {
-    politeness: 0, // Default value for politeness
-    repairRating: 0, // Default value for repair
-    responseTimeRating: 0, // Default value for response time
-    overallLandlordRating: 0, // Default value for overall landlord rating
+    politenessRating: 1, // Default value for politeness
+    repairRating: 1, // Default value for repair
+    responseTimeRating: 1, // Default value for response time
+    overallLandlordRating: 1, // Default value for overall landlord rating
 };
 
 // JavaScript to update slider values, store them, and log them
