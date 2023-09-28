@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: IS3-dev.ict.ru.ac.za    Database: hamiltonhermits
+-- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
 -- ------------------------------------------------------
 -- Server version	8.0.20
 
@@ -24,23 +24,26 @@ DROP TABLE IF EXISTS `review`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `review` (
   `review_id` int NOT NULL,
-  `user_id` int NOT NULL,
   `prop_id` int NOT NULL,
-  `politeness_rating` double DEFAULT NULL,
-  `written_review` double DEFAULT NULL,
-  `cleanliness_rating` double DEFAULT NULL,
-  `noise_rating` double DEFAULT NULL,
-  `location_rating` double DEFAULT NULL,
-  `saftey_rating` double DEFAULT NULL,
-  `affordability_rating` double DEFAULT NULL,
-  `repair_quality_rating` double DEFAULT NULL,
-  `response_time_rating` double DEFAULT NULL,
+  `politeness_rating` double NOT NULL,
+  `written_review` varchar(300) NOT NULL,
+  `cleanliness_rating` double NOT NULL,
+  `noise_rating` double NOT NULL,
+  `location_rating` double NOT NULL,
+  `saftey_rating` double NOT NULL,
+  `affordability_rating` double NOT NULL,
+  `repair_quality_rating` double NOT NULL,
+  `response_time_rating` double NOT NULL,
+  `user_id` int NOT NULL,
+  `avg_prop_review` double NOT NULL,
+  `date_reviewed` date NOT NULL,
   PRIMARY KEY (`review_id`),
   UNIQUE KEY `review_id_UNIQUE` (`review_id`),
   KEY `prop_id_idx` (`prop_id`),
   KEY `user_id_idx` (`user_id`),
+  KEY `user_id_idxx` (`user_id`),
   CONSTRAINT `prop_id` FOREIGN KEY (`prop_id`) REFERENCES `property` (`prop_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `usertbl` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,6 +53,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (1,1,5,'THis is a test',5,4,3,5,2,4,5,1,3.7,'2023-10-10'),(2,7,3,'Hello',2,2,2,0,2,2,2,2,2,'2020-03-03');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-18 17:36:00
+-- Dump completed on 2023-09-28 18:58:28

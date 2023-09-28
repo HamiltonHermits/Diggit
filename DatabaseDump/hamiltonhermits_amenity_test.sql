@@ -16,30 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `property_amenity`
+-- Table structure for table `amenity_test`
 --
 
-DROP TABLE IF EXISTS `property_amenity`;
+DROP TABLE IF EXISTS `amenity_test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `property_amenity` (
-  `prop_amenity_id` int NOT NULL AUTO_INCREMENT,
-  `prop_id` int NOT NULL,
-  `amenity_id` int NOT NULL,
-  PRIMARY KEY (`prop_amenity_id`),
-  KEY `propId_idx` (`prop_id`),
-  KEY `amenityId_idx` (`amenity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Junction table';
+CREATE TABLE `amenity_test` (
+  `amenity_id` int NOT NULL AUTO_INCREMENT,
+  `amenity_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`amenity_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Contains every possible amenity on record';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `property_amenity`
+-- Dumping data for table `amenity_test`
 --
 
-LOCK TABLES `property_amenity` WRITE;
-/*!40000 ALTER TABLE `property_amenity` DISABLE KEYS */;
-INSERT INTO `property_amenity` VALUES (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),(12,1,6),(13,1,7),(15,2,1);
-/*!40000 ALTER TABLE `property_amenity` ENABLE KEYS */;
+LOCK TABLES `amenity_test` WRITE;
+/*!40000 ALTER TABLE `amenity_test` DISABLE KEYS */;
+INSERT INTO `amenity_test` VALUES (1,'wifi'),(2,'propertyParking'),(3,'waterTank'),(4,'laundry'),(5,'electricStove'),(6,'gasStove'),(7,'fridge'),(8,'microwave');
+/*!40000 ALTER TABLE `amenity_test` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-28 18:58:28
+-- Dump completed on 2023-09-28 18:58:29

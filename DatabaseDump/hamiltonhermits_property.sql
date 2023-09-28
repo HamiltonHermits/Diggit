@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: IS3-dev.ict.ru.ac.za    Database: hamiltonhermits
+-- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
 -- ------------------------------------------------------
 -- Server version	8.0.20
 
@@ -23,20 +23,20 @@ DROP TABLE IF EXISTS `property`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `property` (
-  `prop_id` int NOT NULL,
+  `prop_id` int NOT NULL AUTO_INCREMENT,
   `prop_name` varchar(50) NOT NULL,
+  `created_by` int NOT NULL,
   `prop_description` varchar(5000) NOT NULL,
-  `Location_id` int NOT NULL,
-  `created_by(agentID)` int NOT NULL,
   `created_on` date NOT NULL,
   `max_tenants` int NOT NULL,
   `curr_tenants` int NOT NULL,
+  `location_id` int NOT NULL,
   PRIMARY KEY (`prop_id`),
-  UNIQUE KEY `prop_id_UNIQUE` (`prop_id`),
-  UNIQUE KEY `created_by(agentID)_UNIQUE` (`created_by(agentID)`),
-  KEY `location_id_idx` (`Location_id`),
-  CONSTRAINT `location_id` FOREIGN KEY (`Location_id`) REFERENCES `location` (`location_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `propId_UNIQUE` (`prop_id`),
+  UNIQUE KEY `location_id_UNIQUE` (`location_id`),
+  KEY `createdBy_idx` (`created_by`),
+  CONSTRAINT `createdBy` FOREIGN KEY (`created_by`) REFERENCES `usertbl` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +45,7 @@ CREATE TABLE `property` (
 
 LOCK TABLES `property` WRITE;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
+INSERT INTO `property` VALUES (1,'testPropertyPleaseWork',4,'lool','2023-02-02',2,1,3),(7,'Cozy Apartment',4,'A comfortable apartment with a great view','2023-09-01',4,2,4),(8,'Spacious Loft',4,'An open and airy loft space','2023-09-02',6,3,5),(9,'Downtown Condo',4,'Modern condo in the heart of the city','2023-09-03',2,1,6),(10,'Luxury Penthouse',5,'Elegant penthouse with panoramic views','2023-09-04',4,2,7);
 /*!40000 ALTER TABLE `property` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-18 17:35:59
+-- Dump completed on 2023-09-28 18:58:28

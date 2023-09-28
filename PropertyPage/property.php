@@ -666,7 +666,7 @@ $conn->close();
 
 
             <!-- The Rating Modal -->
-            <div id="ratingModal" class="modal" style="display: none;">
+            <div id="ratingModal" class="modal" style="display: none;" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
                 <div class="modal-content" id="ratingModalInner">
                     <span class="modal-close" id="closeRatingModalBtn">&times;</span>
                     <form id="ratingForm" action="process_ratings.php" method="post">
@@ -850,16 +850,23 @@ $conn->close();
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer" id="modalFoot" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">>
+                            <!-- Modal footer -->
+                            <div class="modal-footer" id="ratingfooter">
                                 <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
-
                             </div>
                         </div>
-                        <!-- Modal footer -->
-
                     </form>
                 </div>
             </div>
+            <div id="notLoggedInModalSomethingElse" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <p>Please login to make a review</p>
+                    <button type="menu" class="loginButton" id="loginButtonPropertyPage">Log in</button>
+
+                </div>
+            </div>
+
+
         </div>
 
     </main>
