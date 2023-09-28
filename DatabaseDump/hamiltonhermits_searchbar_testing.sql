@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: IS3-dev.ict.ru.ac.za    Database: hamiltonhermits
+-- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
 -- ------------------------------------------------------
 -- Server version	8.0.20
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-18 17:36:00
+-- Dump completed on 2023-09-28 18:58:27
