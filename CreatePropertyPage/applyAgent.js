@@ -12,11 +12,14 @@ var notLoggedInModal = document.getElementById('notLoggedInModal');
 var amenityTable = document.getElementById("ammenityTable");
 var submitAmmenityButton = document.getElementById("submitAmmenities");
 
+
+var arr = [];
+var arr2 = [];
 submitAmmenityButton.addEventListener('click', function () {
     var checkBoxes = amenityTable.getElementsByTagName("INPUT");
     var names = amenityTable.getElementsByClassName("name");
-    arr = [];
-    arr2 = [];
+    // arr = [];
+    // arr2 = [];
         for (let i = 0; i < checkBoxes.length; i++) {
             if(checkBoxes[i].checked){
                 arr.push(i)
@@ -28,7 +31,8 @@ submitAmmenityButton.addEventListener('click', function () {
             arr2.push(names[i].textContent);
         }
     }
-    console.log(arr2);
+    // use arr2 in the createPropertyForm.js
+    // console.log(arr2);
         amenityModal.style.display = 'block';
     });
 

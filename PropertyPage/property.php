@@ -51,8 +51,8 @@ if (isset($_SESSION['profileMessage'])) {
 
 
 //Connect to database
-include_once('../Backend_Files/config.php');
-include_once('../Backend_Files/database_connect.php');
+// require_once('../Backend_Files/config.php');
+require_once('../Backend_Files/database_connect.php');
 
 //Get property id
 $propId = $_GET["id"];

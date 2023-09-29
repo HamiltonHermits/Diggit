@@ -96,6 +96,8 @@ main {
 }
 #property-parent-container .boxes-container .right-box .bottom-container {
   height: 100%;
+  /* display: none; */
+  visibility: hidden;
 }
 #property-parent-container .boxes-container .right-box .bottom-container .map-container {
   height: 100%;
