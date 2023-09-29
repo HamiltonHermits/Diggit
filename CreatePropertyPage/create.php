@@ -70,7 +70,9 @@ if (isset($_SESSION['profileMessage'])) {
     <script src="applyAgent.js" defer></script>
     <script src="addTenantsInfo.js" defer></script>
     <script src="map.js" defer></script>
+    <script src="amenities.js" defer></script>
     <script src="createPropertyForm.js" defer></script>
+    
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -262,7 +264,7 @@ if (isset($_SESSION['profileMessage'])) {
 
         <div id="ammenityModal" class="modal" style="display:none;">
             <div class="modal-content">
-                <span class="close" id="closeButton">&times;</span>
+                <span class="close" id="closeAmenityButton">&times;</span>
                 <h2 class="modalLabel">Amenities</h2>
                 <?php
                     # code...
@@ -298,7 +300,7 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <!-- Add a button to open the signup modal -->
                 <!-- <button id="submitAmenities">Submit Amenities</button> -->
-                <button id="submitAmenitiesBtn">Submit Amenities</button>
+                <button id="submitAmenitiesBtn" class="filledButton" >Submit Amenities</button>
             </div>
         </div>
 
@@ -389,7 +391,7 @@ if (isset($_SESSION['profileMessage'])) {
                 <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
 
                 <form action="../Backend_Files/logout.php?page=create" method="post" id = "formProfileBtn">
-                    <button type="submit" class="filledButton loginButton">Logout</button>
+                    <button id="logoutButton" type="submit" class="filledButton loginButton">Logout</button>
                 </form>
             </div>
         </div>

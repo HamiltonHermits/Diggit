@@ -34,13 +34,16 @@
         $propAmenities = isset($_POST['amenities']) ? $_POST['amenities'] : '';
         // Get tenants array
         $propTenants = isset($_POST['tenants']) ? $_POST['tenants'] : '';
+        
+        // Get the date
+        $currentDate = date("Y-m-d");
 
         //Connect to database
         require_once('../Backend_Files/database_connect.php');
 
         //insert prop title
-        $query = "INSERT INTO property (prop_name, created_by, prop_description, address, lat, `long`) 
-                    VALUES ('$propTitle', '$userId', '$propDescription', '$propAddress', '$propLat', '$propLong')";
+        $query = "INSERT INTO property (prop_name, created_by, prop_description,created_on, address, lat, `long`) 
+                    VALUES ('$propTitle', '$userId', '$propDescription','$currentDate', '$propAddress', '$propLat', '$propLong')";
         $result = mysqli_query($conn, $query);
 
         if (!$result) { //if query fails, return error, check network packets in dev tools
@@ -74,6 +77,11 @@
                 // insert images into database
                 $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$file_name')";
                 $result = mysqli_query($conn, $query);
+                if (!$result) { //if query fails, return error, check network packets in dev tools
+                    http_response_code(400); // Bad Request
+                    echo json_encode(["error" => "Query error: " . $conn->error]);
+                    exit;
+                }
             }
         }
         
@@ -83,14 +91,36 @@
         foreach ($propAmenitiesArray as $amenity) {
             $query = "INSERT INTO property_amenity (prop_id, amenity_id) VALUES ('$prop_id','$amenity')";
             $result = mysqli_query($conn, $query);
+            if (!$result) { //if query fails, return error, check network packets in dev tools
+                http_response_code(400); // Bad Request
+                echo json_encode(["error" => "Query error: " . $conn->error]);
+                exit;
+            }
         }
 
         // insert prop tenants
+        $tenantCount = 0;
         $propTenantsArray = explode(",", $propTenants); //break string into an array
         foreach ($propTenantsArray as $tenant) {
+            $tenantCount = $tenantCount + 1;
             $query = "INSERT INTO tenants (prop_id, tenant_id) VALUES ('$prop_id','$tenant')";
             $result = mysqli_query($conn, $query);
+            if (!$result) { //if query fails, return error, check network packets in dev tools
+                http_response_code(400); // Bad Request
+                echo json_encode(["error" => "Query error: " . $conn->error]);
+                exit;
+            }
         }
+
+        //set the current amount of tenants
+        $query = "UPDATE property SET curr_tenants = '$tenantCount' WHERE (prop_id = '$prop_id')";
+        $result = mysqli_query($conn, $query);
+        if (!$result) { //if query fails, return error, check network packets in dev tools
+            http_response_code(400); // Bad Request
+            echo json_encode(["error" => "Query error: " . $conn->error]);
+            exit;
+        }
+
         
         // You can now process the data as needed, e.g., insert it into a database
     
