@@ -36,9 +36,6 @@ function updateActivePageIndicator() {
 
 
 
-
-
-
 //makes the search text disapear after clicking in it
 searchbar.addEventListener('click', function () {
     searchbar.placeholder = '';
@@ -153,25 +150,6 @@ document.addEventListener("click", function(event) {
         searchbar.style.textAlign = 'left';
     }
 });
-
-//////////////////////////////////////////////////////////////////////////
-// Map implementation
-
-var map = L.map('map');
-var latitude = -33.3089706;
-var longitude = 26.5209919;
-var propName = "The Greens";
-
-map.setView([latitude, longitude], 15.5); //coords + zoom level
-
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-var marker = L.marker([latitude, longitude]).addTo(map); //marker
-
-marker.bindPopup(`${propName}`).openPopup();
 
 //////////////////////////////////////////////////////////////////////////
 

@@ -26,7 +26,14 @@
         // Get description
         $propDescription = isset($_POST['desc']) ? $_POST['desc'] : '';
         // Get searchbar text
-        $propSearchbar = isset($_POST['searchbar']) ? $_POST['searchbar'] : '';
+        $propAddress= isset($_POST['address']) ? $_POST['address'] : '';
+
+        //Get lat and long
+        $propLat = isset($_POST['lat']) ? $_POST['lat'] : '';
+        // $propLat = floatval($propLat);
+        $propLong = isset($_POST['long']) ? $_POST['long'] : '';
+        // $propLong = floatval($propLong);
+
         // Get amenities array
         $propAmenities = isset($_POST['amenities']) ? $_POST['amenities'] : '';
         // Get tenants array
@@ -36,9 +43,15 @@
         require_once('../Backend_Files/database_connect.php');
 
         //insert prop title
-            $query = "INSERT INTO property (prop_name, created_by, prop_description, address) 
-                      VALUES ('$propTitle', '$userId', '$propDescription', '$propSearchbar')";
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        $query = "INSERT INTO property (prop_name, created_by, prop_description, address, lat, `long`) 
+                    VALUES ('$propTitle', '$userId', '$propDescription', '$propAddress', '$propLat', '$propLong')";
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) { //if query fails, return error, check network packets in dev tools
+            http_response_code(400); // Bad Request
+            echo json_encode(["error" => "Query error: " . $conn->error]);
+            exit;
+        }
 
         ////////////////////////////////////
         // get prop_id using prop_name
@@ -50,6 +63,11 @@
         //insert prop images
         $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$propImages')";
         $result = mysqli_query($conn, $query);
+
+        // if ($mysqli->connect_errno) {
+        //     throw new Exception("Database connection error: " . $mysqli->connect_error);
+        // }
+ 
         
 
         //insert prop description
@@ -82,7 +100,7 @@
     
         // For demonstration purposes, we'll just create a response array
         $response['success'] = true;
-        $response['message'] = 'this ran ' . $prop_id . ' successfully';
+        $response['message'] = 'this ran ' . gettype($propLat) . $propLong . ' successfully';
     
         // Send the JSON response
         header('Content-Type: application/json');

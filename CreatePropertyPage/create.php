@@ -57,6 +57,7 @@ if (isset($_SESSION['profileMessage'])) {
     <link rel="stylesheet" href="styleCreate.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
+    <link rel="stylesheet" href="map.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -67,7 +68,11 @@ if (isset($_SESSION['profileMessage'])) {
     <script src="../Backend_Files/common.js" defer></script>
     <script src="applyAgent.js" defer></script>
     <script src="addTenantsInfo.js" defer></script>
+    <script src="map.js" defer></script>
     <script src="createPropertyForm.js" defer></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
 </head>
 
@@ -189,9 +194,16 @@ if (isset($_SESSION['profileMessage'])) {
                     </div>
                 </div>
                 <div class="right-box">
-                    <div class="searchbar-container-container">
-                        <div class="searchbar-container">
 
+                    <!-- Code from https://majindv.blogspot.com/2021/03/leafleft-get-coordinates-css.html -->
+                    <div class="map-search-container">
+                        <input type="text" placeholder="Search property address" for="search" id="address">
+                        <button id="search-map-btn">Search</button>
+                    </div>
+                    <div id="coord-results"></div>
+
+                    <div class="searchbar-container-container" style="display: none;">
+                        <div class="searchbar-container">
                             <div class="borderSearchBar" id="borderSearchBar">
                                 <button type="submit" class="searchButton" id="searchButton">
                                     <svg viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -204,9 +216,7 @@ if (isset($_SESSION['profileMessage'])) {
                         </div>
                     </div>
                     <div class="bottom-container">
-                        <div class="map-container" id="map">
-                            MAP
-                        </div>
+                        <div class="map-container" id="map"></div>
                     </div>
                 </div>
             </div>
