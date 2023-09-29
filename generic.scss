@@ -1,0 +1,562 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,800;1,400&display=swap");
+
+:root {
+    --bg-sidebar-cont-width: 15%;
+    --main-width: 85%;
+    --light-secondary-colour: #564b40;
+    --sidebar-color: #202024;
+    --main-color: #29292c;
+    --container-box-color: #202024;
+    --inner-box-color: #202024;
+    --global-font-color: #d9d9d9;
+    --orange: #ad5511;
+}
+
+html {
+    background-color: var(--background_colour);
+    font-family: "Poppins";
+}
+
+body {
+    font-family: "Poppins";
+}
+
+//Generic Filled Button
+.filledButton {
+    color: var(--global-font-color);
+    display: flex;
+    justify-content: center;
+    border: 2px solid var(--orange);
+    border-radius: 50px;
+    align-items: center;
+    padding: 0.5em;
+    background-color: var(--orange);
+    cursor: pointer;
+}
+
+//Generic inver Filled Button
+.inverseFilledButton {
+    color: var(--global-font-color);
+    display: flex;
+    justify-content: center;
+    border: 2px solid var(--orange);
+    background: none;
+    border-radius: 50px;
+    align-items: center;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+//Login Profile Modal
+#profileModal {
+    #closeModalBtn {
+        top: -10px;
+        left: 0;
+        font-size: 1em;
+        position: absolute;
+    }
+
+    #changePasswordBtn {
+        display: inline-flex;
+        margin-bottom: 2vh;
+    }
+
+    #deleteProfileBtn {
+        display: inline-flex;
+    }
+
+    #formProfileBtn {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        height: 10vh;
+
+        .loginButton {
+            display: flex;
+            width: 85%;
+            height: 60%;
+        }
+    }
+}
+
+//Tooltips Generic
+/* Style for the info circle */
+.info-circle {
+    position: relative;
+    display: inline-block;
+    width: 15px;
+
+    /* Adjust spacing */
+    /* Style for the info icon (i) inside the circle */
+    .info-icon {
+        border: 1px solid var(--orange);
+        border-radius: 50%;
+        height: 100%;
+        width: 100%;
+        font-size: 0.6em;
+        text-align: center;
+        cursor: pointer;
+        color: var(--orange);
+        /* Icon color */
+    }
+
+    /* Style for the info tooltip */
+    .info-tooltip {
+        display: none;
+        position: absolute;
+        background-color: var(--orange);
+        /* Tooltip background color */
+        border: 1px solid var(--orange);
+        padding: 10px;
+        /* Adjust padding */
+        border-radius: 5px;
+        width: 200px;
+        /* Adjust width */
+        top: 0;
+        left: 110%;
+        /* Position it to the right of the circle */
+        z-index: 1;
+        /* Ensure it's above other content */
+    }
+}
+
+/* Show the tooltip when hovering over the info circle */
+.info-circle:hover .info-tooltip {
+    display: block;
+}
+
+//slidders/////////////////////////////
+
+/* Style for the rating sliders */
+.rating-slider {
+    position: relative;
+    width: 70%;
+    display: inline-flex;
+}
+
+/* Adjust the background color and appearance of the slider and thumb */
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    /* Adjust the height of the slider */
+    background: linear-gradient(to right,
+            var(--main_colour) 0%,
+            var(--main_colour) var(--value, 0%),
+            #ccc var(--value, 0%),
+            #ccc 100%);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    border-radius: 5px;
+    /* Rounded slider track */
+}
+
+/* Style for the slider thumb (dot/selector) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    /* Adjust the width of the thumb */
+    height: 15px;
+    /* Adjust the height of the thumb */
+    background: var(--main_colour);
+    /* Slider thumb color */
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+    width: 15px;
+    /* Adjust the width of the thumb */
+    height: 15px;
+    /* Adjust the height of the thumb */
+    background: var(--main_colour);
+    /* Slider thumb color */
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Style for the slider value display */
+.slider-value {
+    display: inline-block;
+    margin-left: 5px;
+    /* Adjust spacing */
+}
+
+//////////--------------------------------------------------------------------------------------------//////////
+
+.background-sidebar-container {
+    width: var(--bg-sidebar-cont-width);
+    background-color: pink;
+    height: 100vh;
+    min-width: 150px;
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: fixed;
+        /* Make the sidebar position fixed */
+        left: 0;
+        /* Stick it to the left side of the screen */
+        top: 0;
+        /* Stick it to the top of the screen */
+        width: calc(var(--bg-sidebar-cont-width));
+        height: 100vh;
+        min-width: 150px;
+        background-color: var(--sidebar-color);
+
+        .sidebar * {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-container {
+            margin-top: 2vh;
+            height: 10%;
+        
+            #logo {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                // font-size: calc(28px + 1vw);
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+        
+                #digg {
+                    color: var(--global-font-color);
+                    font-family: Poppins;
+                }
+        
+                #it {
+                    color: var(--orange);
+                    font-family: Suez One;
+                    top: 2px;
+                    position: relative;
+                }
+            }
+        }
+        
+        .page-indicator-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            .page-indicator-inner-container {
+                flex-direction: column;
+                display: flex;
+                gap: 15px;
+                width: 100%;
+                .page-indicator {
+                    display: inline-flex;
+                    flex-direction: row;
+                    border-radius: 10px 0 0 10px;
+                    justify-content: flex-start;
+                    gap:1em;
+                    left:15%;
+                    position: relative;
+                    width: 85%;
+                    .icon{
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+        .settings-container {
+            display: flex;
+            height: 25%;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            left:15%;
+            .settings {
+                gap: 0.6em;
+                display: flex;
+            }
+        
+            // justify-content: center;
+        }
+    }
+}
+
+
+
+.current-page-bg-effect {
+    background: linear-gradient(90deg, rgba(173, 85, 17, 1) 0%, rgba(32, 32, 36, 1) 16.12%);
+}
+
+
+
+
+
+
+.parent-container {
+    height: 75vh;
+
+    background-color: var(--main-color);
+
+    .boxes-container {
+        display: flex;
+        gap: 2em;
+        height: 100%;
+        padding: 2em;
+
+        .right-box {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            min-width: 300px;
+            gap: 1em;
+            padding: 0.5em 2em 2em 2em;
+            border-radius: 15px;
+            background-color: var(--inner-box-color);
+        }
+
+        .left-box {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            min-width: 300px;
+            gap: 1em;
+            border-radius: 15px;
+            padding: 0.5em 2em 2em 2em;
+
+            background-color: var(--inner-box-color);
+        }
+    }
+}
+
+/* Modal container styles */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Overlay background with transparency */
+
+    /* Modal content styles */
+    .modal-content {
+        background-color: var(--background_colour);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        padding: 2em;
+        transform: translate(-50%, -50%);
+        height: auto;
+        min-width: 20vh;
+        /* Set a maximum width for the modal content */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        text-align: center;
+        --main_colour: #ad5511;
+        --secondary_colour: #d9d9d9;
+        --background_colour: #202024;
+        --light_secondary_colour: #564b40;
+        --main-color: #29292c;
+
+        .modalInput {
+            background-color: var(--main-color);
+            padding: 0.5em;
+            width: 100%;
+            border-radius: 9px;
+            border: none;
+            color: var(--secondary_colour);
+        }
+
+        .modalLabel {
+            color: var(--secondary_colour);
+        }
+
+        /* Close button styles */
+        .close {
+            position: absolute;
+            display: flex;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--secondary_colour);
+        }
+
+        #loginButton,
+        #signupButton,
+        #submitLogin,
+        #submitSignup,
+        #applyAgentButton,
+        #backButtonNotAgent,
+        #submitAgentApplication,
+        #loginButtonPropertyPage,
+        #loginButtonCreatePage {
+            background-color: var(--main_colour);
+            color: var(--secondary_colour);
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #signupForm,
+        #loginForm {
+            display: inline-block;
+            text-align: center;
+            width: 65%;
+            position: relative;
+
+            .modalInput {
+                background-color: var(--main-color);
+                padding: 0.5em;
+                width: 100%;
+                border-radius: 9px;
+                border: none;
+                color: var(--secondary_colour);
+            }
+
+            // , #newUsername, #newPassword
+            /* Login form styles */
+            #username,
+            #password {
+                width: 90%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                // border: 2px solid var(--secondary_colour);
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                color: var(--secondary_colour);
+                background-color: var(--main-color);
+            }
+
+            #submitLogin:hover {
+                background-color: var(--secondary_colour);
+                color: var(--main-color);
+            }
+
+            #submitSignup:hover {
+                background-color: var(--secondary_colour);
+                color: var(--main-color);
+            }
+
+            #signupButton:hover {
+                background-color: var(--secondary_colour);
+                color: var(--main-color);
+            }
+        }
+    }
+}
+
+
+.rate-prop-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+
+    .rate-property,
+    #save-property {
+        width: var(--btn-rate-prop-width);
+        height: var(--btn-rate-prop-height);
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 99;
+        margin: 0 2em 0.6em 0;
+        padding: 1.5em 2em 1.5em 2em;
+        border-radius: 50px;
+    }
+}
+
+//////////--------------------------------------------------------------------------------------------//////////
+
+a {
+    text-decoration: none;
+    color: var(--global-font-color);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--global-font-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: whitesmoke;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--global-font-color);
+    opacity: 1;
+    /* Firefox */
+}
+
+.leaflet-container {
+    z-index: 0;
+}
+
+
+
+
+@media screen and (max-width: 1156px) {
+    main {
+        width: 100vw;
+    }
+
+    body .parent-container {
+        height: 88.75em;
+
+        .boxes-container {
+            flex-direction: column;
+            align-items: center;
+            width: auto;
+            //the property below is the secret sauce to make image and map grow after resize
+            height: 100%;
+            gap: 2em;
+
+            .right-box {
+                width: 90%;
+                height: 50%;
+            }
+
+            .left-box {
+                width: 90%;
+                height: 50%;
+            }
+        }
+    }
+    @media screen and (max-width: 800px) {
+        .logo-container {
+            display: none;
+        }
+
+        .background-sidebar-container {
+            display: none;
+        }
+    }
+}

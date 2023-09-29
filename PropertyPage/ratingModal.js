@@ -176,12 +176,15 @@ ratingForm.addEventListener('submit', (event) => {
         // Add star ratings from the selectedRatings object
         for (const category in selectedRatings) {
             formData.append(category, selectedRatings[category]);
+            console.log(category);
         }
 
         // Add slider ratings
         const sliderElements = document.querySelectorAll('.slider');
         sliderElements.forEach((slider) => {
+
             const category = slider.parentElement.id;
+            console.log(category);
             const value = slider.value;
             formData.append(category, value);
         });
