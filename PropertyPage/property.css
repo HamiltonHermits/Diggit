@@ -386,12 +386,13 @@ main {
   border: none;
   background-color: var(--main-color);
   color: var(--global-font-color);
+  text-wrap: nowrap;
 }
 #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .previous-page-container .firstOrLastPage {
   color: rgba(217, 217, 217, 0.2);
 }
 #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .page-number-container {
-  width: 55%;
+  width: 80%;
   display: flex;
   justify-content: center;
   gap: 2px;
@@ -418,6 +419,7 @@ main {
   border: none;
   background-color: var(--main-color);
   color: var(--global-font-color);
+  text-wrap: nowrap;
 }
 #comment-parent-container .boxes-container .left-box .comments-list-container {
   display: flex;
@@ -673,6 +675,15 @@ main {
   #ratingModal #ratingModalInner .review-section .reviewTextarea #reviewTextarea {
     height: auto;
     font-size: 1.5em;
+  }
+  #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .previous-page-container {
+    width: auto;
+  }
+  #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .page-number-container .page-number {
+    width: auto;
+  }
+  #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .next-page-container {
+    width: auto;
   }
 }
 /*# sourceMappingURL=property.css.map */

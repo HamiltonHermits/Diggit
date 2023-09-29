@@ -124,7 +124,7 @@ main {
             .report-container {
                 width: 100%;
                 height: 100%;
-                overflow: scroll;
+                overflow:auto;
 
                 .report-text-container {
                     display: flex;
@@ -134,7 +134,7 @@ main {
                     width: 100%;
                     height: 100%;
                     background-color: var(--main-color);
-                    overflow: scroll;
+                    overflow: auto;
                     text-wrap: nowrap;
                 }
 
@@ -158,7 +158,7 @@ main {
             .report-container {
                 width: 100%;
                 height: 100%;
-                overflow: scroll;
+                overflow:auto;
 
                 .report-text-container {
                     display: flex;
@@ -168,7 +168,7 @@ main {
                     width: 100%;
                     height: 100%;
                     background-color: var(--main-color);
-                    overflow: scroll;
+                    overflow:auto;
                     text-wrap: nowrap;
                 }
 
