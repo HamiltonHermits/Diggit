@@ -101,11 +101,12 @@ $conn->close();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diggit</title>
-    <link rel="stylesheet" href="property.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
+    <link rel="stylesheet" href="property.css" />
+    <link rel="stylesheet" href="../generic.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -219,7 +220,7 @@ $conn->close();
             <?php else : ?>
 
                 <div class="loginContainer" id="login">
-                    <button type="menu" class="loginButton" id="loginButton">Log in</button>
+                    <button type="menu" class="inverseFilledButton loginButton" id="loginButton">Log in</button>
                 </div>
 
             <?php endif; ?>
@@ -555,17 +556,17 @@ $conn->close();
                         <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required><br>
                         <label for="password" class="modalLabel">Password:</label>
                         <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
-                        <input type="submit" id="submitLogin" value="Login">
+                        <input type="submit" id="submitLogin" class = "filledButton" value="Login">
+                        <button id="signupButton" class = "filledButton">Signup</button>
                     </form>
 
                     <!-- Add a button to open the signup modal -->
-                    <button id="signupButton">Signup</button>
+                    
                 </div>
             </div>
 
             <!-- The signup modal (hidden by default) -->
             <div id="signupModal" class="modal" style="display: none;">
-
                 <div class="modal-content">
                     <span class="close" id="closeSignupButton">&times;</span>
                     <span class="back-arrow" style="color:white;" id="backToLoginButton">&#8592;</span>
@@ -865,7 +866,7 @@ $conn->close();
             <div id="notLoggedInModalSomethingElse" class="modal" style="display: none;">
                 <div class="modal-content">
                     <p>Please login to make a review</p>
-                    <button type="menu" class="loginButton" id="loginButtonPropertyPage">Log in</button>
+                    <button type="menu" class="filledButton loginButton" id="loginButtonPropertyPage">Log in</button>
 
                 </div>
             </div>

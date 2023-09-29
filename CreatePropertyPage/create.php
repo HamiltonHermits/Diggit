@@ -55,6 +55,7 @@ if (isset($_SESSION['profileMessage'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diggit</title>
     <link rel="stylesheet" href="styleCreate.css">
+    <link rel="stylesheet" href="../generic.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
 
@@ -310,10 +311,11 @@ if (isset($_SESSION['profileMessage'])) {
                     <!-- do this to stay logged in on the current page -->
                     <input type="hidden" name="loginPage" value="create.php">
                     <input type="submit" id="submitLogin" value="Login">
+                    <button id="signupButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-                <button id="signupButton">Signup</button>
+                
             </div>
         </div>
 
@@ -370,12 +372,12 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn">Change Password</button>
+                <button id="changePasswordBtn" class = "inverseFilledButton">Change Password</button>
 
-                <button id="deleteProfileBtn">Delete Profile</button>
+                <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php?page=create" method="post">
-                    <button type="submit" class="loginButton">Logout</button>
+                <form action="../Backend_Files/logout.php?page=create" method="post" id = "formProfileBtn">
+                    <button type="submit" class="filledButton loginButton">Logout</button>
                 </form>
             </div>
         </div>

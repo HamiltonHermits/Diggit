@@ -1,0 +1,506 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,800;1,400&display=swap");
+:root {
+  --bg-sidebar-cont-width: 15%;
+  --main-width: 85%;
+  --light-secondary-colour: #564b40;
+  --sidebar-color: #202024;
+  --main-color: #29292c;
+  --container-box-color: #202024;
+  --inner-box-color: #202024;
+  --global-font-color: #d9d9d9;
+  --orange: #ad5511;
+}
+
+html {
+  background-color: var(--background_colour);
+  font-family: "Poppins";
+}
+
+body {
+  font-family: "Poppins";
+}
+
+.filledButton {
+  color: var(--global-font-color);
+  display: flex;
+  justify-content: center;
+  border: 2px solid var(--orange);
+  border-radius: 50px;
+  align-items: center;
+  padding: 0.5em;
+  background-color: var(--orange);
+  cursor: pointer;
+}
+
+.inverseFilledButton {
+  color: var(--global-font-color);
+  display: flex;
+  justify-content: center;
+  border: 2px solid var(--orange);
+  background: none;
+  border-radius: 50px;
+  align-items: center;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+#profileModal #closeModalBtn {
+  top: -10px;
+  left: 0;
+  font-size: 1em;
+  position: absolute;
+}
+#profileModal #changePasswordBtn {
+  display: inline-flex;
+  margin-bottom: 2vh;
+}
+#profileModal #deleteProfileBtn {
+  display: inline-flex;
+}
+#profileModal #formProfileBtn {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 10vh;
+}
+#profileModal #formProfileBtn .loginButton {
+  display: flex;
+  width: 85%;
+  height: 60%;
+}
+
+/* Style for the info circle */
+.info-circle {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  /* Adjust spacing */
+  /* Style for the info icon (i) inside the circle */
+  /* Style for the info tooltip */
+}
+.info-circle .info-icon {
+  border: 1px solid var(--orange);
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  font-size: 0.6em;
+  text-align: center;
+  cursor: pointer;
+  color: var(--orange);
+  /* Icon color */
+}
+.info-circle .info-tooltip {
+  display: none;
+  position: absolute;
+  background-color: var(--orange);
+  /* Tooltip background color */
+  border: 1px solid var(--orange);
+  padding: 10px;
+  /* Adjust padding */
+  border-radius: 5px;
+  width: 200px;
+  /* Adjust width */
+  top: 0;
+  left: 110%;
+  /* Position it to the right of the circle */
+  z-index: 1;
+  /* Ensure it's above other content */
+}
+
+/* Show the tooltip when hovering over the info circle */
+.info-circle:hover .info-tooltip {
+  display: block;
+}
+
+/* Style for the rating sliders */
+.rating-slider {
+  position: relative;
+  width: 70%;
+  display: inline-flex;
+}
+
+/* Adjust the background color and appearance of the slider and thumb */
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  /* Adjust the height of the slider */
+  background: linear-gradient(to right, var(--main_colour) 0%, var(--main_colour) var(--value, 0%), #ccc var(--value, 0%), #ccc 100%);
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  border-radius: 5px;
+  /* Rounded slider track */
+}
+
+/* Style for the slider thumb (dot/selector) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  /* Adjust the width of the thumb */
+  height: 15px;
+  /* Adjust the height of the thumb */
+  background: var(--main_colour);
+  /* Slider thumb color */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px;
+  /* Adjust the width of the thumb */
+  height: 15px;
+  /* Adjust the height of the thumb */
+  background: var(--main_colour);
+  /* Slider thumb color */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Style for the slider value display */
+.slider-value {
+  display: inline-block;
+  margin-left: 5px;
+  /* Adjust spacing */
+}
+
+.background-sidebar-container {
+  width: var(--bg-sidebar-cont-width);
+  background-color: pink;
+  height: 100vh;
+  min-width: 150px;
+}
+.background-sidebar-container .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  /* Make the sidebar position fixed */
+  left: 0;
+  /* Stick it to the left side of the screen */
+  top: 0;
+  /* Stick it to the top of the screen */
+  width: calc(var(--bg-sidebar-cont-width));
+  height: 100vh;
+  min-width: 150px;
+  background-color: var(--sidebar-color);
+}
+.background-sidebar-container .sidebar .sidebar * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.background-sidebar-container .sidebar .logo-container {
+  margin-top: 2vh;
+  height: 10%;
+}
+.background-sidebar-container .sidebar .logo-container #logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.background-sidebar-container .sidebar .logo-container #logo #digg {
+  color: var(--global-font-color);
+  font-family: Poppins;
+}
+.background-sidebar-container .sidebar .logo-container #logo #it {
+  color: var(--orange);
+  font-family: Suez One;
+  top: 2px;
+  position: relative;
+}
+.background-sidebar-container .sidebar .page-indicator-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+.background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container {
+  flex-direction: column;
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+.background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container .page-indicator {
+  display: inline-flex;
+  flex-direction: row;
+  border-radius: 10px 0 0 10px;
+  justify-content: flex-start;
+  gap: 1em;
+  left: 15%;
+  position: relative;
+  width: 85%;
+}
+.background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container .page-indicator .icon {
+  display: flex;
+  align-items: center;
+}
+.background-sidebar-container .sidebar .settings-container {
+  display: flex;
+  height: 25%;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  left: 15%;
+}
+.background-sidebar-container .sidebar .settings-container .settings {
+  gap: 0.6em;
+  display: flex;
+}
+
+.current-page-bg-effect {
+  background: linear-gradient(90deg, rgb(173, 85, 17) 0%, rgb(32, 32, 36) 16.12%);
+}
+
+.parent-container {
+  height: 75vh;
+  background-color: var(--main-color);
+}
+.parent-container .boxes-container {
+  display: flex;
+  gap: 2em;
+  height: 100%;
+  padding: 2em;
+}
+.parent-container .boxes-container .right-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-width: 300px;
+  gap: 1em;
+  padding: 0.5em 2em 2em 2em;
+  border-radius: 15px;
+  background-color: var(--inner-box-color);
+}
+.parent-container .boxes-container .left-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-width: 300px;
+  gap: 1em;
+  border-radius: 15px;
+  padding: 0.5em 2em 2em 2em;
+  background-color: var(--inner-box-color);
+}
+
+/* Modal container styles */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Overlay background with transparency */
+  /* Modal content styles */
+}
+.modal .modal-content {
+  background-color: var(--background_colour);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 2em;
+  transform: translate(-50%, -50%);
+  height: auto;
+  min-width: 20vh;
+  /* Set a maximum width for the modal content */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  --main_colour: #ad5511;
+  --secondary_colour: #d9d9d9;
+  --background_colour: #202024;
+  --light_secondary_colour: #564b40;
+  --main-color: #29292c;
+  /* Close button styles */
+}
+.modal .modal-content .modalInput {
+  background-color: var(--main-color);
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 9px;
+  border: none;
+  color: var(--secondary_colour);
+}
+.modal .modal-content .modalLabel {
+  color: var(--secondary_colour);
+}
+.modal .modal-content .close {
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--secondary_colour);
+}
+.modal .modal-content #loginButton,
+.modal .modal-content #signupButton,
+.modal .modal-content #submitLogin,
+.modal .modal-content #submitSignup,
+.modal .modal-content #applyAgentButton,
+.modal .modal-content #backButtonNotAgent,
+.modal .modal-content #submitAgentApplication,
+.modal .modal-content #loginButtonPropertyPage,
+.modal .modal-content #loginButtonCreatePage {
+  background-color: var(--main_colour);
+  color: var(--secondary_colour);
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.modal .modal-content #signupForm,
+.modal .modal-content #loginForm {
+  display: inline-block;
+  text-align: center;
+  width: 65%;
+  position: relative;
+  /* Login form styles */
+}
+.modal .modal-content #signupForm .modalInput,
+.modal .modal-content #loginForm .modalInput {
+  background-color: var(--main-color);
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 9px;
+  border: none;
+  color: var(--secondary_colour);
+}
+.modal .modal-content #signupForm #username,
+.modal .modal-content #signupForm #password,
+.modal .modal-content #loginForm #username,
+.modal .modal-content #loginForm #password {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--secondary_colour);
+  background-color: var(--main-color);
+}
+.modal .modal-content #signupForm #submitLogin:hover,
+.modal .modal-content #loginForm #submitLogin:hover {
+  background-color: var(--secondary_colour);
+  color: var(--main-color);
+}
+.modal .modal-content #signupForm #submitSignup:hover,
+.modal .modal-content #loginForm #submitSignup:hover {
+  background-color: var(--secondary_colour);
+  color: var(--main-color);
+}
+.modal .modal-content #signupForm #signupButton:hover,
+.modal .modal-content #loginForm #signupButton:hover {
+  background-color: var(--secondary_colour);
+  color: var(--main-color);
+}
+
+.rate-prop-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.rate-prop-btn-container .rate-property,
+.rate-prop-btn-container #save-property {
+  width: var(--btn-rate-prop-width);
+  height: var(--btn-rate-prop-height);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  margin: 0 2em 0.6em 0;
+  padding: 1.5em 2em 1.5em 2em;
+  border-radius: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--global-font-color);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--global-font-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: whitesmoke;
+}
+
+::-moz-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--global-font-color);
+  opacity: 1;
+  /* Firefox */
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--global-font-color);
+  opacity: 1;
+  /* Firefox */
+}
+
+.leaflet-container {
+  z-index: 0;
+}
+
+@media screen and (max-width: 1156px) {
+  main {
+    width: 100vw;
+  }
+  body .parent-container {
+    height: 88.75em;
+  }
+  body .parent-container .boxes-container {
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    gap: 2em;
+  }
+  body .parent-container .boxes-container .right-box {
+    width: 90%;
+    height: 50%;
+  }
+  body .parent-container .boxes-container .left-box {
+    width: 90%;
+    height: 50%;
+  }
+}
+@media screen and (max-width: 1156px) and (max-width: 800px) {
+  .logo-container {
+    display: none;
+  }
+  .background-sidebar-container {
+    display: none;
+  }
+}/*# sourceMappingURL=generic.css.map */

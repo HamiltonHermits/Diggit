@@ -48,6 +48,7 @@ if (isset($_SESSION['profileMessage'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiggIt</title>
     <link rel="stylesheet" href="stylesIndex.css">
+    <link rel="stylesheet" href="../generic.css" />
     <script src="index.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
     
@@ -119,10 +120,11 @@ if (isset($_SESSION['profileMessage'])) {
                     <label for="password" class="modalLabel">Password:</label>
                     <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
                     <input type="submit" id="submitLogin" value="Login">
+                    <button id="signupButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-                <button id="signupButton">Signup</button>
+                
             </div>
         </div>
 
