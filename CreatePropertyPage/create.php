@@ -55,8 +55,10 @@ if (isset($_SESSION['profileMessage'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diggit</title>
     <link rel="stylesheet" href="styleCreate.css">
+    <link rel="stylesheet" href="../generic.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
+    <link rel="stylesheet" href="map.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -66,8 +68,12 @@ if (isset($_SESSION['profileMessage'])) {
     <script src="create.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
     <script src="applyAgent.js" defer></script>
-    <script src="createPropertyForm.js" defer></script>
     <script src="addTenantsInfo.js" defer></script>
+    <script src="map.js" defer></script>
+    <script src="createPropertyForm.js" defer></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
 </head>
 
@@ -172,40 +178,46 @@ if (isset($_SESSION['profileMessage'])) {
                 <div class="left-box">
                     <div class="prop-title-container">
                         <div class="prop-title">
-                            <input id="newPropertyTitle" type="text" class="title-text-field" placeholder="Please add a property title">
+                            <input id="newPropertyTitle" type="text" class="title-text-field" placeholder="Please add a property title" required>
                         </div>
                     </div>
                     <div class="prop-images-container">
                         <div class="select-images-overlay">
-                            <input type="file" id="file" class="inputfile" multiple>
-                            <label id="addImage" for="files" class="inverseFilledButton">Add images</label>
+                            <input type="file" id="file" name="file" multiple required  accept=".jpg, .png, .jpeg"/>
+                            <!-- <input type="file" id="file" class="inputfile" multiple> -->
+                            <!-- <input type="file" id="file" class="inputfile" multiple> -->
                         </div>
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
-                            <textarea class="description-text-field" placeholder="Please add a description"></textarea>
+                            <textarea id="desc-text-field"class="description-text-field" placeholder="Please add a description" required></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="right-box">
-                    <div class="searchbar-container-container">
-                        <div class="searchbar-container">
 
+                    <!-- Code from https://majindv.blogspot.com/2021/03/leafleft-get-coordinates-css.html -->
+                    <div class="map-search-container">
+                        <input type="text" placeholder="Search property address" for="search" id="address">
+                        <button id="search-map-btn">Search</button>
+                    </div>
+                    <div id="coord-results"></div>
+
+                    <div class="searchbar-container-container" style="display: none;">
+                        <div class="searchbar-container">
                             <div class="borderSearchBar" id="borderSearchBar">
                                 <button type="submit" class="searchButton" id="searchButton">
                                     <svg viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.6 18.5L10.3 12.2C9.8 12.6 9.225 12.9167 8.575 13.15C7.925 13.3833 7.23333 13.5 6.5 13.5C4.68333 13.5 3.14583 12.8708 1.8875 11.6125C0.629167 10.3542 0 8.81667 0 7C0 5.18333 0.629167 3.64583 1.8875 2.3875C3.14583 1.12917 4.68333 0.5 6.5 0.5C8.31667 0.5 9.85417 1.12917 11.1125 2.3875C12.3708 3.64583 13 5.18333 13 7C13 7.73333 12.8833 8.425 12.65 9.075C12.4167 9.725 12.1 10.3 11.7 10.8L18 17.1L16.6 18.5ZM6.5 11.5C7.75 11.5 8.8125 11.0625 9.6875 10.1875C10.5625 9.3125 11 8.25 11 7C11 5.75 10.5625 4.6875 9.6875 3.8125C8.8125 2.9375 7.75 2.5 6.5 2.5C5.25 2.5 4.1875 2.9375 3.3125 3.8125C2.4375 4.6875 2 5.75 2 7C2 8.25 2.4375 9.3125 3.3125 10.1875C4.1875 11.0625 5.25 11.5 6.5 11.5Z" fill="#D9D9D9" />
                                     </svg>
                                 </button>
-                                <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find property location..">
+                                <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find property location.." required>
                                 <div id="dropdown" class="dropdown-content"></div>
                             </div>
                         </div>
                     </div>
                     <div class="bottom-container">
-                        <div class="map-container" id="map">
-                            MAP
-                        </div>
+                        <div class="map-container" id="map"></div>
                     </div>
                 </div>
             </div>
@@ -310,10 +322,11 @@ if (isset($_SESSION['profileMessage'])) {
                     <!-- do this to stay logged in on the current page -->
                     <input type="hidden" name="loginPage" value="create.php">
                     <input type="submit" id="submitLogin" value="Login">
+                    <button id="signupButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-                <button id="signupButton">Signup</button>
+                
             </div>
         </div>
 
@@ -370,12 +383,12 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn">Change Password</button>
+                <button id="changePasswordBtn" class = "inverseFilledButton">Change Password</button>
 
-                <button id="deleteProfileBtn">Delete Profile</button>
+                <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php?page=create" method="post">
-                    <button type="submit" class="loginButton">Logout</button>
+                <form action="../Backend_Files/logout.php?page=create" method="post" id = "formProfileBtn">
+                    <button type="submit" class="filledButton loginButton">Logout</button>
                 </form>
             </div>
         </div>

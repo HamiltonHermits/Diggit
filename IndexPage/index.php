@@ -48,6 +48,7 @@ if (isset($_SESSION['profileMessage'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiggIt</title>
     <link rel="stylesheet" href="stylesIndex.css">
+    <link rel="stylesheet" href="../generic.css" />
     <script src="index.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
     
@@ -119,10 +120,11 @@ if (isset($_SESSION['profileMessage'])) {
                     <label for="password" class="modalLabel">Password:</label>
                     <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
                     <input type="submit" id="submitLogin" value="Login">
+                    <button id="signupButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-                <button id="signupButton">Signup</button>
+                
             </div>
         </div>
 
@@ -179,12 +181,12 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn">Change Password</button>
+                <button id="changePasswordBtn" class = "inverseFilledButton">Change Password</button>
 
-                <button id="deleteProfileBtn">Delete Profile</button>
+                <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
 
                 <form action="../Backend_Files/logout.php" method="post">
-                    <button type="submit" class="loginButton">Logout</button>
+                    <button type="submit" class="loginButton" class = "filledButton">Logout</button>
                 </form>
             </div>
         </div>

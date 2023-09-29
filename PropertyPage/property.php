@@ -51,8 +51,8 @@ if (isset($_SESSION['profileMessage'])) {
 
 
 //Connect to database
-include_once('../Backend_Files/config.php');
-include_once('../Backend_Files/database_connect.php');
+// require_once('../Backend_Files/config.php');
+require_once('../Backend_Files/database_connect.php');
 
 //Get property id
 $propId = $_GET["id"];
@@ -101,11 +101,12 @@ $conn->close();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diggit</title>
-    <link rel="stylesheet" href="property.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
+    <link rel="stylesheet" href="property.css" />
+    <link rel="stylesheet" href="../generic.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -201,9 +202,11 @@ $conn->close();
                         </svg>
                     </button>
                     <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
-                    <div id="dropdown" class="dropdown-content"></div>
+                    <div id="crab-logo">crab</div>
+
                 </div>
-                <div class="crab-logo">crab</div>
+                <div id="dropdown" class="dropdown-content"></div>
+
             </div>
             <!-- Personalised Search page if authenticated-->
             <?php if ($isAuthenticated) : ?>
@@ -217,7 +220,7 @@ $conn->close();
             <?php else : ?>
 
                 <div class="loginContainer" id="login">
-                    <button type="menu" class="loginButton" id="loginButton">Log in</button>
+                    <button type="menu" class="inverseFilledButton loginButton" id="loginButton">Log in</button>
                 </div>
 
             <?php endif; ?>
@@ -284,20 +287,21 @@ $conn->close();
                         <div class="contact-container">
                             <div class="title">Contact</div>
                             <div class="contact-info-container">
-                                <form action="" class="contact-form">
+                                <form action="mailto:g21j5408@ru.ac.za.com" method = "get" enctype = "text/plain" class="contact-form">
                                     <label for="details">Your Details</label>
-                                    <input type="text" class="contactTextField" placeholder="name">
-                                    <input type="text" class="contactTextField" placeholder="email">
+                                    <input type="text" class="contactTextField" placeholder="name" name = "subject">
+                                    <input type="email" class="contactTextField" placeholder="email" name = "email">
                                     <input type="text" class="contactTextField" placeholder="phone number">
-                                    <label id="message-label" for="message">Message</label>
-                                    <textarea name="message" id="message" rows="12" placeholder="Please contact the agent regarding this property."></textarea>
+                                    <label id="message-label" for="body">Message</label>
+                                    <textarea name="body" id="message" rows="12" placeholder="Please contact the agent regarding this property."></textarea>
+                                    <div class="email-btn-container">
+                                        <input type = "submit" class="email-agent-button" value ="Email Agent">
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="email-btn-container">
-                        <button class="email-agent-button">Email Agent</button>
-                    </div>
+
                     <div class="bottom-container">
                         <div class="map-container" id="map">
                             MAP
@@ -552,17 +556,17 @@ $conn->close();
                         <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required><br>
                         <label for="password" class="modalLabel">Password:</label>
                         <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
-                        <input type="submit" id="submitLogin" value="Login">
+                        <input type="submit" id="submitLogin" class = "filledButton" value="Login">
+                        <button id="signupButton" class = "filledButton">Signup</button>
                     </form>
 
                     <!-- Add a button to open the signup modal -->
-                    <button id="signupButton">Signup</button>
+                    
                 </div>
             </div>
 
             <!-- The signup modal (hidden by default) -->
             <div id="signupModal" class="modal" style="display: none;">
-
                 <div class="modal-content">
                     <span class="close" id="closeSignupButton">&times;</span>
                     <span class="back-arrow" style="color:white;" id="backToLoginButton">&#8592;</span>
@@ -862,7 +866,7 @@ $conn->close();
             <div id="notLoggedInModalSomethingElse" class="modal" style="display: none;">
                 <div class="modal-content">
                     <p>Please login to make a review</p>
-                    <button type="menu" class="loginButton" id="loginButtonPropertyPage">Log in</button>
+                    <button type="menu" class="filledButton loginButton" id="loginButtonPropertyPage">Log in</button>
 
                 </div>
             </div>

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diggit</title>
     <link rel="stylesheet" href="styleDashboard.css">
+    <link rel="stylesheet" href="../generic.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
 
@@ -151,7 +152,7 @@
             </div>
         </div>
 
-        <div class="parent-container" id="property-parent-container" data-target="prop-indicator">
+        <div class="parent-container" id="user-parent-container" data-target="prop-indicator">
             <div class="boxes-container">
                 <div class="left-box">
                     <div class="report-title-container">
