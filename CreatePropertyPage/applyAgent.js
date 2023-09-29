@@ -10,31 +10,58 @@ var amenityModal = document.getElementById('ammenityModal');
 var closeLoginButton = document.getElementById('closeButton');
 var notLoggedInModal = document.getElementById('notLoggedInModal');
 var amenityTable = document.getElementById("ammenityTable");
-var submitAmmenityButton = document.getElementById("submitAmmenities");
+var submitAmmenityBtn = document.getElementById("submitAmenitiesBtn");
+console.log(submitAmmenityBtn);
 
 
-var arr = [];
-var arr2 = [];
-submitAmmenityButton.addEventListener('click', function () {
-    var checkBoxes = amenityTable.getElementsByTagName("INPUT");
+//listen for the submitAmenity button to be clicked
+var arrayOfAmenityIds = [];
+submitAmmenityBtn.addEventListener('click', function () {
+    var input = amenityTable.getElementsByTagName("input");
     var names = amenityTable.getElementsByClassName("name");
-    // arr = [];
-    // arr2 = [];
-        for (let i = 0; i < checkBoxes.length; i++) {
-            if(checkBoxes[i].checked){
-                arr.push(i)
-        }
-    }
-    count = 0;
     for (let i = 0; i < names.length; i++) {
-        if(arr.includes(i)){
-            arr2.push(names[i].textContent);
+        if(input[i].checked){
+            // if not in array add it
+            if (!arrayOfAmenityIds.includes(names[i].id)) {
+                arrayOfAmenityIds.push(names[i].id);
+            }
         }
     }
-    // use arr2 in the createPropertyForm.js
-    // console.log(arr2);
-        amenityModal.style.display = 'block';
-    });
+    console.log(arrayOfAmenityIds);
+});
+
+
+// submitAmmenityBtn.addEventListener('click', function () {
+//     // var checkBoxes = amenityTable.getElementsByTagName("INPUT");
+//     var names = amenityTable.getElementsByClassName("name");
+//     // arr = [];
+//     // arr2 = [];
+
+//     names.forEach(amenity => {
+//         if (amenity.checked) {
+//             console.log(amenity.id);
+//             arr2.push(amenity.id);
+//         }
+//     });
+
+//     console.log("arr2 pelase work " + arr2);
+
+//     //     for (let i = 0; i < checkBoxes.length; i++) {
+//     //         if(checkBoxes[i].checked){
+//     //             arr.push(i)
+//     //     }
+//     // }
+//     // count = 0;
+//     // for (let i = 0; i < names.length; i++) {
+//     //     if(arr.includes(i)){
+//     //         // push the id of the element into the array
+//     //         arr2.push(names[i].id);
+//     //     }
+//     // }
+//     // use arr2 in the createPropertyForm.js
+//     // console.log(arr2);
+//         amenityModal.style.display = 'block';
+//     });
 
 if(addMenityButton){
     addMenityButton.addEventListener('click', function () {

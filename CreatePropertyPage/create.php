@@ -275,7 +275,7 @@ if (isset($_SESSION['profileMessage'])) {
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "SELECT amenity_name FROM amenity_test";
+                    $sql = "SELECT amenity_id, amenity_name FROM amenity_test";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         echo "<table id = 'ammenityTable' style='border:none;'>";
@@ -287,7 +287,7 @@ if (isset($_SESSION['profileMessage'])) {
                     }
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
-                            <td class = 'name'>" . $row["amenity_name"] . "</td>
+                            <td class = 'name' id='{$row["amenity_id"]}'>" . $row["amenity_name"] . "</td>
                             <td> <input type='checkbox'> </td>
                         </tr>";
                     }
@@ -297,7 +297,8 @@ if (isset($_SESSION['profileMessage'])) {
                 ?>
 
                 <!-- Add a button to open the signup modal -->
-                <button id="submitAmmenities" class = "filledButton">Submit Amenities</button>
+                <!-- <button id="submitAmenities">Submit Amenities</button> -->
+                <button id="submitAmenitiesBtn">Submit Amenities</button>
             </div>
         </div>
 

@@ -77,54 +77,26 @@
             }
         }
         
-
-        //insert prop images
-        // loop through each image and insert into database
-        // foreach ($propImages as $image) {
-        //     $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$image')";
-        //     $result = mysqli_query($conn, $query);
-        // }
-
-        // $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$propImages')";
-        // $result = mysqli_query($conn, $query);
-
-        // if ($mysqli->connect_errno) {
-        //     throw new Exception("Database connection error: " . $mysqli->connect_error);
-        // }
- 
-        
-
-        //insert prop description
-        // $query = "INSERT INTO searchbar_testing (location) VALUES ('$propDescription')";
-        // $result = mysqli_query($conn, $query);
-
-        //insert prop searchbar
-        // $query = "INSERT INTO searchbar_testing (location) VALUES ('$propSearchbar')";
-        // $result = mysqli_query($conn, $query);
-
         //insert prop amenities
-        // propAmenities in the form of a string like: "wifi,waterTank,electricStove"
-        // $propAmenitiesArray = explode(",", $propAmenities); //break string into an array
-        // foreach ($propAmenitiesArray as $amenity) {
-        //     $query = "INSERT INTO searchbar_testing (location) VALUES ('$amenity')";
-        //     $result = mysqli_query($conn, $query);
-        // }
+        // propAmenities in the form of a string like: "1,2,3,4"
+        $propAmenitiesArray = explode(",", $propAmenities); //break string into an array
+        foreach ($propAmenitiesArray as $amenity) {
+            $query = "INSERT INTO property_amenity (prop_id, amenity_id) VALUES ('$prop_id','$amenity')";
+            $result = mysqli_query($conn, $query);
+        }
 
-        //insert prop tenants
-        // $propTenantsArray = explode(",", $propTenants); //break string into an array
-        // foreach ($propTenantsArray as $tenant) {
-        //     $query = "INSERT INTO searchbar_testing (location) VALUES ('$tenant')";
-        //     $result = mysqli_query($conn, $query);
-        // }
-
-
-
-    
+        // insert prop tenants
+        $propTenantsArray = explode(",", $propTenants); //break string into an array
+        foreach ($propTenantsArray as $tenant) {
+            $query = "INSERT INTO tenants (prop_id, tenant_id) VALUES ('$prop_id','$tenant')";
+            $result = mysqli_query($conn, $query);
+        }
+        
         // You can now process the data as needed, e.g., insert it into a database
     
         // For demonstration purposes, we'll just create a response array
         $response['success'] = true;
-        $response['message'] = 'this ran succesfully ' . gettype($something) . $something;
+        $response['message'] = 'this ran succesfully ' . $propTenants;
     
         // Send the JSON response
         header('Content-Type: application/json');
