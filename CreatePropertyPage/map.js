@@ -133,7 +133,7 @@ function showAddress() {
         let suggestion = document.createElement("div");
         suggestion.style = "display: inline-block;";
         suggestion.className = "suggestion";
-        suggestion.innerHTML = "If you can't find your address, click the map to pin your property. (";
+        suggestion.innerHTML = "If you can't find your address, click the map to pin your property.";
         results.appendChild(suggestion);
     } else {
         manualAddressEntry();

@@ -17,12 +17,8 @@
     
         // Get the data sent via POST
         $propTitle = isset($_POST['title']) ? $_POST['title'] : '';
-        // Get images
-        $propImages = isset($_FILES['file']) ? $_FILES['file'] : '';
-        $propImages = time() . $_FILES['file']['name'];
-        //move the file to the upload folder
-        $destination = "../PropertyPage/images/" . $propImages;
-        move_uploaded_file($_FILES['file']['tmp_name'], $destination);
+    
+
         // Get description
         $propDescription = isset($_POST['desc']) ? $_POST['desc'] : '';
         // Get searchbar text
@@ -60,9 +56,37 @@
         $prop_id = mysqli_fetch_assoc($result)['prop_id'];
         ////////////////////////////////////
 
+        // Get images from array
+        if (isset($_FILES['images'])) {
+            $uploadedFiles = $_FILES['images'];
+            $something = "";
+            foreach ($uploadedFiles['tmp_name'] as $key => $tmp_name) {
+                $file_name = time() . $uploadedFiles['name'][$key];
+                $file_tmp = $tmp_name;
+                $something .=  " " . $file_name;
+        
+                // Construct the destination path for the uploaded file
+                $destination = "../PropertyPage/images/" . $file_name;
+        
+                // Move the uploaded file to the destination
+                move_uploaded_file($file_tmp, $destination);
+
+                // insert images into database
+                $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$file_name')";
+                $result = mysqli_query($conn, $query);
+            }
+        }
+        
+
         //insert prop images
-        $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$propImages')";
-        $result = mysqli_query($conn, $query);
+        // loop through each image and insert into database
+        // foreach ($propImages as $image) {
+        //     $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$image')";
+        //     $result = mysqli_query($conn, $query);
+        // }
+
+        // $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$propImages')";
+        // $result = mysqli_query($conn, $query);
 
         // if ($mysqli->connect_errno) {
         //     throw new Exception("Database connection error: " . $mysqli->connect_error);
@@ -100,7 +124,7 @@
     
         // For demonstration purposes, we'll just create a response array
         $response['success'] = true;
-        $response['message'] = 'this ran ' . gettype($propLat) . $propLong . ' successfully';
+        $response['message'] = 'this ran succesfully ' . gettype($something) . $something;
     
         // Send the JSON response
         header('Content-Type: application/json');

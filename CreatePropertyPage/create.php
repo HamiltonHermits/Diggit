@@ -182,7 +182,7 @@ if (isset($_SESSION['profileMessage'])) {
                     </div>
                     <div class="prop-images-container">
                         <div class="select-images-overlay">
-                            <input type="file" id="file" name="file" multiple required/>
+                            <input type="file" id="file" name="file" multiple required  accept=".jpg, .png, .jpeg"/>
                             <!-- <input type="file" id="file" class="inputfile" multiple> -->
                             <!-- <input type="file" id="file" class="inputfile" multiple> -->
                         </div>
