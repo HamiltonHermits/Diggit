@@ -6,7 +6,7 @@ var closeAmenityButton = document.getElementById('closeAmenityButton');
 var amenityTable = document.getElementById("ammenityTable");
 var submitAmmenityBtn = document.getElementById("submitAmenitiesBtn");
 
-console.log(submitAmmenityBtn);
+
 //listen for the submitAmenity button to be clicked
 var arrayOfAmenityIds = [];
 submitAmmenityBtn.addEventListener('click', function () {

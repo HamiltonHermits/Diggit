@@ -3,16 +3,17 @@ const titleInput = document.getElementById('newPropertyTitle');
 const fileInput = document.getElementById('file');
 const descriptionInput = document.getElementById('desc-text-field');
 const addressInput = document.getElementById('address');
-const amenitysInput = arrayOfAmenityIds; // of type array
-const tenantsInput = emailArray; // of type array
 
 
 // if save property button is pressed
 document.getElementById('save-property').addEventListener('click', function () {
+    const amenitysInput = arrayOfAmenityIds; // of type array
+    const tenantsInput = emailArray; // of type array
+
     let lat = latitudeGlobal;
     let long = longitudeGlobal;
-    // console.log(lat, long);
-    // console.log(titleInput.value.trim() !== "", fileInput.files.length !== 0, descriptionInput.value.trim() !== "", addressInput.value.trim() !== "", lat != 0, long != 0, amenitysInput.length !== 0, tenantsInput.length !== 0);
+
+    console.log(titleInput.value.trim() !== "", fileInput.files.length !== 0, descriptionInput.value.trim() !== "", addressInput.value.trim() !== "", lat != 0, long != 0, amenitysInput.length !== 0, tenantsInput.length !== 0);
         
     // check if all the input fields are filled out 
     if (titleInput.value.trim() !== "" && fileInput.files.length !== 0 
