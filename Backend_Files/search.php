@@ -7,18 +7,14 @@ include_once('database_connect.php');
 $searchQuery = $_GET["query"];
 
 // Prepare and execute the SQL query
-$stmt = $conn->prepare("SELECT property.prop_id,
-                               property.prop_name, property.prop_description, 
-                               location.street_num, location.street_name,
-                               location.city, location.suburb
+$stmt = $conn->prepare("SELECT prop_id,prop_name, prop_description,address
+                               
                         FROM property 
-                        JOIN location ON property.location_id = location.location_id
-                        WHERE property.prop_name LIKE ?
-                        OR property.prop_description LIKE ? 
-                        OR location.street_num LIKE ? OR location.street_name LIKE ? 
-                        OR location.city LIKE ? OR location.suburb LIKE ?");
+        
+                        WHERE prop_name LIKE ? 
+                        OR address LIKE ?");
 $searchParam = "%" . $searchQuery . "%";
-$stmt->bind_param("ssssss", $searchParam, $searchParam, $searchParam, $searchParam, $searchParam, $searchParam);
+$stmt->bind_param("ss", $searchParam, $searchParam);
 $stmt->execute();
 
 // Get the results
@@ -28,7 +24,6 @@ $apartments = array();
 while ($row = $result->fetch_assoc()) {
     $apartments[] = $row;
 }
-
 
 // Close the database connection
 $stmt->close();

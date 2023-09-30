@@ -5,47 +5,12 @@ var backButtonNotAgent = document.getElementById('backButtonNotAgent');
 var savePropertyButtonHideIt = document.getElementById('save-property');
 var submitAgentApplication = document.getElementById('submitAgentApplication');
 var loginButtonCreatePage = document.getElementById('loginButtonCreatePage');
-var addMenityButton = document.getElementById('addAmenities');
-var amenityModal = document.getElementById('ammenityModal');
 var closeLoginButton = document.getElementById('closeButton');
 var notLoggedInModal = document.getElementById('notLoggedInModal');
-var amenityTable = document.getElementById("ammenityTable");
-var submitAmmenityButton = document.getElementById("submitAmmenities");
 
 
-var arr = [];
-var arr2 = [];
-submitAmmenityButton.addEventListener('click', function () {
-    var checkBoxes = amenityTable.getElementsByTagName("INPUT");
-    var names = amenityTable.getElementsByClassName("name");
-    // arr = [];
-    // arr2 = [];
-        for (let i = 0; i < checkBoxes.length; i++) {
-            if(checkBoxes[i].checked){
-                arr.push(i)
-        }
-    }
-    count = 0;
-    for (let i = 0; i < names.length; i++) {
-        if(arr.includes(i)){
-            arr2.push(names[i].textContent);
-        }
-    }
-    // use arr2 in the createPropertyForm.js
-    // console.log(arr2);
-        amenityModal.style.display = 'block';
-    });
 
-if(addMenityButton){
-    addMenityButton.addEventListener('click', function () {
-    amenityModal.style.display = 'block';
-    });
-    window.addEventListener('click', function (event) {
-        if (event.target == amenityModal) {
-            amenityModal.style.display = 'none';
-        }
-    });
-}
+
 if(loginButtonCreatePage){//we are clicking the login button on create page 
     loginButtonCreatePage.addEventListener('mouseenter', function() {
         loginButtonCreatePage.style.backgroundColor = '#d9d9d9'; // Change to the hover color

@@ -9,6 +9,10 @@ var manualEntry = false; //boolean to check if user has manually entered address
 var latitudeGlobal = 0;
 var longitudeGlobal = 0;
 
+//make map visible if a location is found
+document.querySelector(".bottom-container").style.visibility = "visible";
+generateMapDynamic(-32.5, 25, 5.3);
+
 //default function to generate a map dyamically based on which location the user picks
 function generateMapDynamic(latitude, longitude, zoom) {
     console.log("generateMapDynamic");
@@ -81,9 +85,7 @@ document.querySelector("#address").addEventListener("keyup", function(event) {
 function showAddress() {
     results.innerHTML  = ' ';
 
-    //make map visible if a location is found
-    document.querySelector(".bottom-container").style.visibility = "visible";
-    generateMapDynamic(-32.5, 25, 5.3);
+
 
     if (addressArr.length > 0) {
         addressArr.forEach(element => {
