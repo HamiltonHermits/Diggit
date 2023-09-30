@@ -46,7 +46,12 @@ body {
     padding: 0.5em;
     cursor: pointer;
 }
-
+.filledButton:hover{
+    background-color: #29292c;
+}
+.inverseFilledButton:hover{
+    background-color: #ad5511;
+}
 //Login Profile Modal
 #profileModal {
     #closeModalBtn {

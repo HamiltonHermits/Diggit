@@ -44,6 +44,14 @@ body {
   cursor: pointer;
 }
 
+.filledButton:hover {
+  background-color: #29292c;
+}
+
+.inverseFilledButton:hover {
+  background-color: #ad5511;
+}
+
 #profileModal #closeModalBtn {
   top: 10px;
   right: 10px;

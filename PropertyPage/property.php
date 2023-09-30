@@ -251,17 +251,48 @@ $conn->close();
                         </div>
                     </div>
                     <div class="prop-images-container">
+                        <div class="arrowContainer" id="left-arrow-container">
+                            <button class="left-right-arrow-images" id="left-arrow" onclick="currentSlide(1)">
+                                <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <ellipse cx="15.9366" cy="16.8541" rx="15.9366" ry="16.854" transform="rotate(-180 15.9366 16.8541)" fill="#D9D9D9" fill-opacity="0.6" />
+                                    <mask id="mask0_531_53" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="34">
+                                        <rect x="32" y="34" width="31.8733" height="33.708" rx="15" transform="rotate(-180 32 34)" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_531_53)">
+                                        <path d="M22.7769 8.99644L25 11.1747L18.6293 17.4169L25 23.6592L22.7769 25.8374L14.183 17.4169L22.7769 8.99644ZM10.4668 8.83388L10.4668 26H7.34778L7.34778 8.83388H10.4668Z" fill="#202024" />
+                                    </g>
+                                </svg>
+
+                            </button>
+                        </div>
+
                         <div class="prop-images">
                             <?php
                             while ($row = mysqli_fetch_array($resultImages)) {
                                 echo " 
-                                    <div class=\"propertyImage\">
+                                    <div class=\"propertyImage fade\">
                                     <img src= \"images/{$row['image_name']} \" alt=\"property image\">
                                     </div>
                                     ";
                             }
                             ?>
                         </div>
+
+                        <div class="arrowContainer" id="right-arrow-container">
+                            <button class="left-right-arrow-images" id="right-arrow" onclick="currentSlide(-1)">
+                                <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <ellipse cx="16.0634" cy="17.1459" rx="15.9366" ry="16.854" fill="#D9D9D9" fill-opacity="0.6" />
+                                    <mask id="mask0_30_300" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="34">
+                                        <rect width="31.8733" height="33.708" rx="15" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_30_300)">
+                                        <path d="M9.22312 25.0036L7 22.8253L13.3707 16.5831L7 10.3408L9.22312 8.16256L17.817 16.5831L9.22312 25.0036ZM21.5332 25.1661V8H24.6522V25.1661H21.5332Z" fill="#202024" />
+                                    </g>
+                                </svg>
+
+                            </button>
+                        </div>
+
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
@@ -396,8 +427,8 @@ $conn->close();
                         <hr>
                     </div>
                     <div id="picture-name-container">
-                        <?php 
-                        echo "<img src= \"profilepics/{$resultUser['image_name']} \" alt=\"profile image\">";
+                        <?php
+                        echo "<img src= \"profilepics/{$resultUser['profile_pic']} \" alt=\"profile image\">";
                         ?>
                         <div><?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?></div>
                     </div>
@@ -728,7 +759,7 @@ $conn->close();
 
                     <h2>Change Password</h2>
                     <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
-                        <label for="currentPassword" >Current Password:</label>
+                        <label for="currentPassword">Current Password:</label>
                         <input type="password" id="currentPassword" class="modalInput" name="currentPassword" required><br>
 
                         <label for="changeNewPassword">New Password:</label>
