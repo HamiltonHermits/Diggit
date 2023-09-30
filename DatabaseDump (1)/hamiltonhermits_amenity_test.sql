@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
+-- Host: localhost    Database: hamiltonhermits
 -- ------------------------------------------------------
--- Server version	8.0.20
+-- Server version	5.5.5-10.4.28-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,28 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `property_images`
+-- Table structure for table `amenity_test`
 --
 
-DROP TABLE IF EXISTS `property_images`;
+DROP TABLE IF EXISTS `amenity_test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `property_images` (
-  `id_prop_image` int NOT NULL AUTO_INCREMENT,
-  `prop_id` int NOT NULL,
-  `image_name` varchar(500) NOT NULL,
-  PRIMARY KEY (`id_prop_image`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE `amenity_test` (
+  `amenity_id` int(11) NOT NULL AUTO_INCREMENT,
+  `amenity_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`amenity_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Contains every possible amenity on record';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `property_images`
+-- Dumping data for table `amenity_test`
 --
 
-LOCK TABLES `property_images` WRITE;
-/*!40000 ALTER TABLE `property_images` DISABLE KEYS */;
-INSERT INTO `property_images` VALUES (1,17,'16960165863.PNG'),(2,17,'1696016586wqe.PNG'),(3,17,'16960166233.PNG'),(4,17,'1696016623wqe.PNG');
-/*!40000 ALTER TABLE `property_images` ENABLE KEYS */;
+LOCK TABLES `amenity_test` WRITE;
+/*!40000 ALTER TABLE `amenity_test` DISABLE KEYS */;
+INSERT INTO `amenity_test` VALUES (1,'wifi'),(2,'propertyParking'),(3,'waterTank'),(4,'laundry'),(5,'electricStove'),(6,'gasStove'),(7,'fridge'),(8,'microwave');
+/*!40000 ALTER TABLE `amenity_test` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-30 12:01:35
+-- Dump completed on 2023-09-30 23:21:50

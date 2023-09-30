@@ -33,7 +33,7 @@ if (isset($_POST['phoneNumber']) && isset($_POST['companyName']) && isset($_FILE
         is_agent = '1',
         agent_phone = '$phonenum',
         agent_company = '$companyNum',
-        profile_pic = '$destination'
+        profile_pic = '$picture'
         
         WHERE
         user_id = $user_id";

@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
+-- Host: localhost    Database: hamiltonhermits
 -- ------------------------------------------------------
--- Server version	8.0.20
+-- Server version	5.5.5-10.4.28-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,27 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `amenity_test`
+-- Table structure for table `tenants`
 --
 
-DROP TABLE IF EXISTS `amenity_test`;
+DROP TABLE IF EXISTS `tenants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `amenity_test` (
-  `amenity_id` int NOT NULL AUTO_INCREMENT,
-  `amenity_name` varchar(45) NOT NULL,
-  PRIMARY KEY (`amenity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Contains every possible amenity on record';
+CREATE TABLE `tenants` (
+  `id_prop_tenant` int(11) NOT NULL AUTO_INCREMENT,
+  `prop_id` int(11) NOT NULL,
+  `tenant_id` varchar(450) NOT NULL,
+  PRIMARY KEY (`id_prop_tenant`),
+  UNIQUE KEY `id_prop_tenant_UNIQUE` (`id_prop_tenant`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `amenity_test`
+-- Dumping data for table `tenants`
 --
 
-LOCK TABLES `amenity_test` WRITE;
-/*!40000 ALTER TABLE `amenity_test` DISABLE KEYS */;
-INSERT INTO `amenity_test` VALUES (1,'wifi'),(2,'propertyParking'),(3,'waterTank'),(4,'laundry'),(5,'electricStove'),(6,'gasStove'),(7,'fridge'),(8,'microwave');
-/*!40000 ALTER TABLE `amenity_test` ENABLE KEYS */;
+LOCK TABLES `tenants` WRITE;
+/*!40000 ALTER TABLE `tenants` DISABLE KEYS */;
+INSERT INTO `tenants` VALUES (1,17,'hello@gmail.com'),(2,17,'what@gmail.com'),(3,20,'michaelgreen@gmail.com'),(4,20,'nomie@gmail.com'),(5,20,'sandman@gmail.com'),(6,22,'demo1@gmail.com'),(7,22,'demo2@gmail.com'),(8,25,'demo1@gmail.com');
+/*!40000 ALTER TABLE `tenants` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-30 12:01:35
+-- Dump completed on 2023-09-30 23:21:50
