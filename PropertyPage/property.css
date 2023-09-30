@@ -485,6 +485,7 @@ main {
 }
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .ratingLabels {
   display: inline;
+  font-size: calc(5px + 0.8vw);
 }
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .star-rating .star {
   color: var(--orange);
