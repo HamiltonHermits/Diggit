@@ -76,7 +76,7 @@ main {
         width: 80%;
         position: absolute;
         box-sizing: border-box;
-
+        top: 1em;
         .borderSearchBar {
             gap: 0.5em;
             display: flex;
@@ -186,7 +186,6 @@ main {
                         display: grid;
                         height: 100%;
                         padding: 1vw;
-                        font-size: calc(2px + 1vw);
                         flex-wrap: wrap;
                         border-radius: 15px;
                         background-color: var(--main-color);
@@ -194,6 +193,11 @@ main {
                         .agent-text-container {
                             display: inline-flex;
                             gap: 0.5em;
+                            .agent-icon{
+                                display: flex;
+                                height: 50%;
+                                width: 15%;
+                            }
                         }
                     }
                 }
@@ -225,7 +229,6 @@ main {
                                 background: #29292c;
                                 border: none;
                                 font-family: Poppins;
-                                font-size: calc(8px + 0.2vw);
                                 font-style: normal;
                                 font-weight: 250;
                                 line-height: normal;
@@ -239,7 +242,6 @@ main {
                                 background: #29292c;
                                 border: none;
                                 font-family: Poppins;
-                                font-size: calc(8px + 0.2vw);
                                 font-style: normal;
                                 font-weight: 250;
                                 line-height: normal;
@@ -344,7 +346,21 @@ main {
         justify-content: space-between;
 
         #disclaimer {
-            font-size: calc(5px + 0.5vw);
+            font-size: calc(2px + 0.5vw);
+        }
+        #rating-bars-container{
+            height: 60%;
+            .landlord-rating-section{
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                .rating-item{
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
+            }
         }
     }
 
@@ -522,12 +538,10 @@ main {
 
                     .username-date-comment {
                         font-weight: 600;
-                        font-size: calc(10px + 0.5vw);
                         margin: 1em 0 1em 0;
                     }
 
                     .description-comment {
-                        font-size: calc(5px + 0.7vw);
                     }
 
                     .horizontal-line-comment {
@@ -556,7 +570,7 @@ main {
                 }
 
                 .horizontal-line-comment {
-                    font-size: 5px;
+                    
                 }
 
                 .rating-summary-overall-container {}

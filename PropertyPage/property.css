@@ -66,6 +66,7 @@ main {
   width: 80%;
   position: absolute;
   box-sizing: border-box;
+  top: 1em;
 }
 .nav-top .searchbar-container .borderSearchBar {
   gap: 0.5em;
@@ -156,7 +157,6 @@ main {
   display: grid;
   height: 100%;
   padding: 1vw;
-  font-size: calc(2px + 1vw);
   flex-wrap: wrap;
   border-radius: 15px;
   background-color: var(--main-color);
@@ -164,6 +164,11 @@ main {
 #property-parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container .agent-text-container {
   display: inline-flex;
   gap: 0.5em;
+}
+#property-parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container .agent-text-container .agent-icon {
+  display: flex;
+  height: 50%;
+  width: 15%;
 }
 #property-parent-container .boxes-container .right-box .top-container .contact-container {
   display: flex;
@@ -189,7 +194,6 @@ main {
   background: #29292c;
   border: none;
   font-family: Poppins;
-  font-size: calc(8px + 0.2vw);
   font-style: normal;
   font-weight: 250;
   line-height: normal;
@@ -202,7 +206,6 @@ main {
   background: #29292c;
   border: none;
   font-family: Poppins;
-  font-size: calc(8px + 0.2vw);
   font-style: normal;
   font-weight: 250;
   line-height: normal;
@@ -282,7 +285,21 @@ main {
   justify-content: space-between;
 }
 #amenity-parent-container #right-box-amenity #disclaimer {
-  font-size: calc(5px + 0.5vw);
+  font-size: calc(2px + 0.5vw);
+}
+#amenity-parent-container #right-box-amenity #rating-bars-container {
+  height: 60%;
+}
+#amenity-parent-container #right-box-amenity #rating-bars-container .landlord-rating-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#amenity-parent-container #right-box-amenity #rating-bars-container .landlord-rating-section .rating-item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 #amenity-parent-container #picture-name-container {
   display: flex;
@@ -436,11 +453,7 @@ main {
 }
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .username-date-comment {
   font-weight: 600;
-  font-size: calc(10px + 0.5vw);
   margin: 1em 0 1em 0;
-}
-#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .description-comment {
-  font-size: calc(5px + 0.7vw);
 }
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .horizontal-line-comment {
   width: 100%;
@@ -461,9 +474,6 @@ main {
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-}
-#comment-parent-container .boxes-container .right-box .rating-summary-container .horizontal-line-comment {
-  font-size: 5px;
 }
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container {
   background-color: var(--inner-box-color);

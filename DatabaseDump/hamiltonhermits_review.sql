@@ -25,18 +25,19 @@ DROP TABLE IF EXISTS `review`;
 CREATE TABLE `review` (
   `review_id` int NOT NULL,
   `prop_id` int NOT NULL,
-  `politeness_rating` double NOT NULL,
-  `written_review` varchar(300) NOT NULL,
-  `cleanliness_rating` double NOT NULL,
-  `noise_rating` double NOT NULL,
-  `location_rating` double NOT NULL,
-  `saftey_rating` double NOT NULL,
-  `affordability_rating` double NOT NULL,
-  `repair_quality_rating` double NOT NULL,
-  `response_time_rating` double NOT NULL,
+  `politeness_rating` int NOT NULL,
+  `written_review` varchar(300) DEFAULT NULL,
+  `cleanliness_rating` int NOT NULL,
+  `noise_rating` int NOT NULL,
+  `location_rating` int NOT NULL,
+  `saftey_rating` int NOT NULL,
+  `affordability_rating` int NOT NULL,
+  `repair_quality_rating` int NOT NULL,
+  `response_time_rating` int NOT NULL,
   `user_id` int NOT NULL,
-  `avg_prop_review` double NOT NULL,
+  `avg_prop_review` int NOT NULL,
   `date_reviewed` date NOT NULL,
+  `overall_property_rating` int NOT NULL,
   PRIMARY KEY (`review_id`),
   UNIQUE KEY `review_id_UNIQUE` (`review_id`),
   KEY `prop_id_idx` (`prop_id`),
@@ -53,7 +54,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (1,1,5,'THis is a test',5,4,3,5,2,4,5,1,3.7,'2023-10-10'),(2,7,3,'Hello',2,2,2,0,2,2,2,2,2,'2020-03-03');
+INSERT INTO `review` VALUES (1,1,5,'THis is a test',5,4,3,5,2,4,5,1,4,'2023-10-10',0),(2,7,3,'Hello',2,2,2,0,2,2,2,2,2,'2020-03-03',0);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +67,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-28 18:58:28
+-- Dump completed on 2023-09-30 12:01:39

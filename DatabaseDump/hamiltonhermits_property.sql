@@ -28,15 +28,16 @@ CREATE TABLE `property` (
   `created_by` int NOT NULL,
   `prop_description` varchar(5000) NOT NULL,
   `created_on` date NOT NULL,
-  `max_tenants` int NOT NULL,
-  `curr_tenants` int NOT NULL,
-  `location_id` int NOT NULL,
+  `max_tenants` int DEFAULT NULL,
+  `curr_tenants` int DEFAULT NULL,
+  `address` varchar(450) NOT NULL,
+  `lat` varchar(450) NOT NULL,
+  `long` varchar(450) NOT NULL,
   PRIMARY KEY (`prop_id`),
   UNIQUE KEY `propId_UNIQUE` (`prop_id`),
-  UNIQUE KEY `location_id_UNIQUE` (`location_id`),
   KEY `createdBy_idx` (`created_by`),
   CONSTRAINT `createdBy` FOREIGN KEY (`created_by`) REFERENCES `usertbl` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +46,7 @@ CREATE TABLE `property` (
 
 LOCK TABLES `property` WRITE;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
-INSERT INTO `property` VALUES (1,'testPropertyPleaseWork',4,'lool','2023-02-02',2,1,3),(7,'Cozy Apartment',4,'A comfortable apartment with a great view','2023-09-01',4,2,4),(8,'Spacious Loft',4,'An open and airy loft space','2023-09-02',6,3,5),(9,'Downtown Condo',4,'Modern condo in the heart of the city','2023-09-03',2,1,6),(10,'Luxury Penthouse',5,'Elegant penthouse with panoramic views','2023-09-04',4,2,7);
+INSERT INTO `property` VALUES (1,'testPropertyPleaseWork',4,'lool','2023-02-02',2,1,'','',''),(7,'Cozy Apartment',4,'A comfortable apartment with a great view','2023-09-01',4,2,'','',''),(8,'Spacious Loft',4,'An open and airy loft space','2023-09-02',6,3,'','',''),(9,'Downtown Condo',4,'Modern condo in the heart of the city','2023-09-03',2,1,'','',''),(10,'Luxury Penthouse',5,'Elegant penthouse with panoramic views','2023-09-04',4,2,'','',''),(13,'testAgain',2,'Testing to see if this works','2023-09-29',NULL,NULL,'somewhere','-27.731779255000504','30.036654473668158'),(14,'testGsdas',2,'asdsadsadsad','2023-09-29',NULL,1,'dasdsasda','-27.644782233903054','27.861440836411926'),(15,'testGsdas',2,'asdsadsadsad','2023-09-29',NULL,NULL,'dasdsasda','-27.644782233903054','27.861440836411926'),(16,'testGsdas',2,'asdsadsadsad','2023-09-29',NULL,NULL,'dasdsasda','-27.644782233903054','27.861440836411926'),(17,'saveimagetoo table',2,'why dont you save please i beg you','2023-09-29',NULL,2,'somewhere','-29.535914245344994','30.827796248748413'),(18,'saveimagetoo table',2,'why dont you save please i beg you','2023-09-29',NULL,NULL,'somewhere','-29.535914245344994','30.827796248748413'),(19,'saveimagetoo table',2,'why dont you save please i beg you','2023-09-29',NULL,NULL,'somewhere','-29.535914245344994','30.827796248748413');
 /*!40000 ALTER TABLE `property` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-28 18:58:28
+-- Dump completed on 2023-09-30 12:01:36

@@ -265,19 +265,49 @@ $conn->close();
                                 </div>
                                 <!-- <hr> -->
                                 <div class="agent-text-container">
-                                    <div class="agent-icon" id="agent-phone-icon">icon</div>
+                                    <div class="agent-icon" id="agent-phone-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <mask id="mask0_30_290" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                                <rect width="24" height="24" fill="#D9D9D9" />
+                                            </mask>
+                                            <g mask="url(#mask0_30_290)">
+                                                <path d="M19.962 21.2032C17.8543 21.2032 15.772 20.744 13.7149 19.8257C11.6579 18.9074 9.78407 17.604 8.09348 15.9154C6.4029 14.2268 5.09846 12.3533 4.18016 10.295C3.26188 8.23659 2.80273 6.15291 2.80273 4.04393C2.80273 3.68756 2.92095 3.39059 3.15738 3.15301C3.39382 2.91542 3.68937 2.79663 4.04403 2.79663H8.08806C8.41306 2.79663 8.69113 2.89274 8.92228 3.08495C9.15345 3.27717 9.29766 3.52346 9.35491 3.82383L9.99893 7.19828C10.0482 7.52473 10.0409 7.80154 9.97691 8.02871C9.91296 8.25589 9.79041 8.45408 9.60926 8.62328L7.14838 11.0255C7.46577 11.5983 7.84168 12.1562 8.27611 12.6994C8.71053 13.2425 9.19476 13.7727 9.72881 14.2901C10.2256 14.7869 10.7373 15.2421 11.2641 15.6559C11.791 16.0696 12.3431 16.4439 12.9207 16.7787L15.3125 14.4048C15.5063 14.2149 15.744 14.0785 16.0256 13.9956C16.3071 13.9126 16.5944 13.8957 16.8875 13.945L20.1761 14.6271C20.4931 14.7176 20.7436 14.8714 20.9275 15.0882C21.1113 15.3051 21.2033 15.5637 21.2033 15.864V19.9559C21.2033 20.3122 21.0844 20.6092 20.8465 20.8468C20.6086 21.0844 20.3138 21.2032 19.962 21.2032ZM6.06088 8.90426L7.70491 7.30806L7.29186 5.07166H5.10871C5.18408 5.72709 5.29368 6.37407 5.43753 7.01261C5.58138 7.65114 5.78917 8.28169 6.06088 8.90426ZM15.0348 17.8842C15.6609 18.1555 16.3005 18.3725 16.9535 18.5352C17.6066 18.6979 18.2649 18.8082 18.9283 18.8662V16.6961L16.6978 16.2331L15.0348 17.8842Z" fill="#D9D9D9" />
+                                            </g>
+                                        </svg>
+
+                                    </div>
                                     <div class="agent-info-content" id="agent-phonenumber">
                                         <?php echo "{$resultUser['agent_phone']}"; ?>
                                     </div>
                                 </div>
                                 <div class="agent-text-container">
-                                    <div class="agent-icon" id="agent-email-icon">icon</div>
+                                    <div class="agent-icon" id="agent-email-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <mask id="mask0_30_287" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                                <rect width="24" height="24" fill="#D9D9D9" />
+                                            </mask>
+                                            <g mask="url(#mask0_30_287)">
+                                                <path d="M4.275 20.4065C3.64528 20.4065 3.10868 20.1848 2.6652 19.7413C2.22173 19.2978 2 18.7612 2 18.1315V6.27502C2 5.64531 2.22175 5.10871 2.66525 4.66523C3.10872 4.22174 3.64531 4 4.27503 4H20.1315C20.7612 4 21.2978 4.22174 21.7413 4.66523C22.1848 5.10871 22.4066 5.64531 22.4066 6.27502V18.1315C22.4066 18.7612 22.1848 19.2978 21.7413 19.7413C21.2978 20.1848 20.7612 20.4065 20.1315 20.4065H4.275ZM12.2032 13.4603L4.275 8.46035V18.1315H20.1315V8.46035L12.2032 13.4603ZM12.2032 11.275L20.1315 6.27502H4.275L12.2032 11.275ZM4.275 8.46035V6.27502V18.1315V8.46035Z" fill="#D9D9D9" />
+                                            </g>
+                                        </svg>
+
+                                    </div>
                                     <div class="agent-info-content" id="agent-email">
                                         <?php echo $resultUser['email']; ?>
                                     </div>
                                 </div>
                                 <div class="agent-text-container">
-                                    <div class="agent-icon" id="agent-company-icon">icon</div>
+                                    <div class="agent-icon" id="agent-company-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <mask id="mask0_30_284" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                                <rect width="24" height="24" fill="#D9D9D9" />
+                                            </mask>
+                                            <g mask="url(#mask0_30_284)">
+                                                <path d="M3 20.55V6H7V2H17.55V10H21.55V20.55H13.275V16.275H11.275V20.55H3ZM5.275 18.275H7.275V16.275H5.275V18.275ZM5.275 14.275H7.275V12.275H5.275V14.275ZM5.275 10.275H7.275V8.275H5.275V10.275ZM9.275 14.275H11.275V12.275H9.275V14.275ZM9.275 10.275H11.275V8.275H9.275V10.275ZM9.275 6.275H11.275V4.275H9.275V6.275ZM13.275 14.275H15.275V12.275H13.275V14.275ZM13.275 10.275H15.275V8.275H13.275V10.275ZM13.275 6.275H15.275V4.275H13.275V6.275ZM17.275 18.275H19.275V16.275H17.275V18.275ZM17.275 14.275H19.275V12.275H17.275V14.275Z" fill="#D9D9D9" />
+                                            </g>
+                                        </svg>
+
+                                    </div>
                                     <div class="agent-info-content" id="agent-company">
                                         <?php echo $resultUser['agent_company']; ?>
                                     </div>
@@ -287,15 +317,15 @@ $conn->close();
                         <div class="contact-container">
                             <div class="title">Contact</div>
                             <div class="contact-info-container">
-                                <form action="mailto:g21j5408@ru.ac.za.com" method = "get" enctype = "text/plain" class="contact-form">
+                                <form action="mailto:g21j5408@ru.ac.za.com" method="get" enctype="text/plain" class="contact-form">
                                     <label for="details">Your Details</label>
-                                    <input type="text" class="contactTextField" placeholder="name" name = "subject">
-                                    <input type="email" class="contactTextField" placeholder="email" name = "email">
+                                    <input type="text" class="contactTextField" placeholder="name" name="subject">
+                                    <input type="email" class="contactTextField" placeholder="email" name="email">
                                     <input type="text" class="contactTextField" placeholder="phone number">
                                     <label id="message-label" for="body">Message</label>
                                     <textarea name="body" id="message" rows="12" placeholder="Please contact the agent regarding this property."></textarea>
                                     <div class="email-btn-container">
-                                        <input type = "submit" class="email-agent-button" value ="Email Agent">
+                                        <input type="submit" class="email-agent-button" value="Email Agent">
                                     </div>
                                 </form>
                             </div>
@@ -347,28 +377,59 @@ $conn->close();
                     </div>
                     <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
                     <div id="rating-bars-container">
-                        <div class="rating-bar">
-                            <div class="rating-bar-title">
-                                Politeness
+
+                        <div class="landlord-rating-section">
+                            <div class="rating-item">
+                                <p class="ratingLabels">Politeness:</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">left lower - right higher</div>
+                                </div>
+                                <div class="rating-slider" id="politenessRatingDisplay">
+                                    <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
+                                </div>
+
                             </div>
-                            <div class="rating-bar-rect">
-                                [-------------------------]
+
+                            <!-- Quality of Repair Rating -->
+                            <div class="rating-item">
+                                <p class="ratingLabels">Quality of Repair:</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">left lower - right higher</div>
+                                </div>
+                                <div class="rating-slider" id="repairRatingDisplay">
+                                    <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
+
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="rating-bar">
-                            <div class="rating-bar-title">
-                                Quality of repair
+
+                            <!-- Response Time Rating -->
+                            <div class="rating-item">
+                                <p class="ratingLabels">Response Time:</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">left lower - right higher</div>
+                                </div>
+                                <div class="rating-slider" id="responseTimeRatingDisplay">
+                                    <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
+
+                                </div>
+
                             </div>
-                            <div class="rating-bar-rect">
-                                [-------------------------]
-                            </div>
-                        </div>
-                        <div class="rating-bar">
-                            <div class="rating-bar-title">
-                                Response Time
-                            </div>
-                            <div class="rating-bar-rect">
-                                [-------------------------]
+
+                            <!-- Overall Landlord Rating -->
+                            <div class="rating-item">
+                                <p class="ratingLabels">Overall Landlord Rating:</p>
+                                <div class="info-circle">
+                                    <div class="info-icon">i</div>
+                                    <div class="info-tooltip">left lower - right higher</div>
+                                </div>
+                                <div class="rating-slider" id="overallLandlordRatingDisplay">
+                                    <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -556,12 +617,12 @@ $conn->close();
                         <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required><br>
                         <label for="password" class="modalLabel">Password:</label>
                         <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
-                        <input type="submit" id="submitLogin" class = "filledButton" value="Login">
-                        <button id="signupButton" class = "filledButton">Signup</button>
+                        <input type="submit" id="submitLogin" class="filledButton" value="Login">
+                        <button id="signupButton" class="filledButton">Signup</button>
                     </form>
 
                     <!-- Add a button to open the signup modal -->
-                    
+
                 </div>
             </div>
 
@@ -808,7 +869,6 @@ $conn->close();
                                         </div>
                                         <div class="rating-slider" id="politenessRating">
                                             <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
-
                                         </div>
 
                                     </div>

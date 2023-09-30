@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: IS3-dev.ict.ru.ac.za    Database: hamiltonhermits
+-- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
 -- ------------------------------------------------------
 -- Server version	8.0.20
 
@@ -16,27 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `amenity`
+-- Table structure for table `tenants`
 --
 
-DROP TABLE IF EXISTS `amenity`;
+DROP TABLE IF EXISTS `tenants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `amenity` (
-  `amenity_id` int NOT NULL AUTO_INCREMENT,
-  `amenity_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`amenity_id`),
-  CONSTRAINT `amenityID` FOREIGN KEY (`amenity_id`) REFERENCES `property_amenity` (`prop_amenities_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tenants` (
+  `id_prop_tenant` int NOT NULL AUTO_INCREMENT,
+  `prop_id` int NOT NULL,
+  `tenant_id` varchar(450) NOT NULL,
+  PRIMARY KEY (`id_prop_tenant`),
+  UNIQUE KEY `id_prop_tenant_UNIQUE` (`id_prop_tenant`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `amenity`
+-- Dumping data for table `tenants`
 --
 
-LOCK TABLES `amenity` WRITE;
-/*!40000 ALTER TABLE `amenity` DISABLE KEYS */;
-/*!40000 ALTER TABLE `amenity` ENABLE KEYS */;
+LOCK TABLES `tenants` WRITE;
+/*!40000 ALTER TABLE `tenants` DISABLE KEYS */;
+INSERT INTO `tenants` VALUES (1,17,'hello@gmail.com'),(2,17,'what@gmail.com');
+/*!40000 ALTER TABLE `tenants` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-18 17:36:00
+-- Dump completed on 2023-09-30 12:01:35
