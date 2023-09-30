@@ -248,6 +248,8 @@ body {
             flex-direction: column;
             width: 100%;
             justify-content: center;
+            height: 50%;
+            gap: 10%;
             .page-indicator-inner-container {
                 flex-direction: column;
                 display: flex;
@@ -262,6 +264,9 @@ body {
                     left:15%;
                     position: relative;
                     width: 85%;
+
+                    //
+                    target: "someValue";
                     .icon{
                         display: flex;
                         align-items: center;
@@ -291,10 +296,6 @@ body {
 .current-page-bg-effect {
     background: linear-gradient(90deg, rgba(173, 85, 17, 1) 0%, rgba(32, 32, 36, 1) 16.12%);
 }
-
-
-
-
 
 
 .parent-container {

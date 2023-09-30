@@ -221,6 +221,8 @@ body {
   flex-direction: column;
   width: 100%;
   justify-content: center;
+  height: 50%;
+  gap: 10%;
 }
 .background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container {
   flex-direction: column;
@@ -237,6 +239,7 @@ body {
   left: 15%;
   position: relative;
   width: 85%;
+  target: "someValue";
 }
 .background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container .page-indicator .icon {
   display: flex;
