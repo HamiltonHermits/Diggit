@@ -201,7 +201,7 @@ if (isset($_SESSION['profileMessage'])) {
                     <!-- Code from https://majindv.blogspot.com/2021/03/leafleft-get-coordinates-css.html -->
                     <div class="map-search-container">
                         <input type="text" placeholder="Search property address" for="search" id="address">
-                        <button id="search-map-btn">Search</button>
+                        <button id="search-map-btn" class = "filledButton">Search</button>
                     </div>
                     <div id="coord-results"></div>
 
