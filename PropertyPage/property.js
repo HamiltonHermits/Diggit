@@ -145,20 +145,41 @@ document.addEventListener("click", function(event) {
 // Map implementation
 
 var map = L.map('map');
-var latitude = -33.3089706;
-var longitude = 26.5209919;
-var propName = "The Greens";
 
-map.setView([latitude, longitude], 15.5); //coords + zoom level
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+// get property id from query param
+const urlParams = new URLSearchParams(window.location.search);
+const param1Value = urlParams.get('id');
 
-var marker = L.marker([latitude, longitude]).addTo(map); //marker
+let url = 'map.php' + '?id=' + param1Value;
 
-marker.bindPopup(`${propName}`).openPopup();
+// Make a GET request to map.php using fetch
+fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the response as JSON
+    })
+    .then(data => {
+        console.log(data);
+        //data is an associative array
+        let latitude = data[0].lat;
+        let longitude = data[0].long;
+        let propName = data[0].prop_name;
+        
+        map.setView([latitude, longitude], 15.5); //coords + zoom level
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        var marker = L.marker([latitude, longitude]).addTo(map); //marker
+
+        marker.bindPopup(`${propName}`).openPopup();
+    })
+    .catch(error => console.error('Error:', error));
 
 //////////////////////////////////////////////////////////////////////////
 

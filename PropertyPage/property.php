@@ -342,7 +342,7 @@ $conn->close();
 
                     <div class="bottom-container">
                         <div class="map-container" id="map">
-                            MAP
+                            
                         </div>
                     </div>
                 </div>
