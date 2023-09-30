@@ -91,6 +91,9 @@ $stmtAmenity->execute();
 $resultAmenity = $stmtAmenity->get_result();
 $stmtAmenity->close();
 
+// Get image for property
+
+
 // Close the database connection
 $conn->close();
 
