@@ -688,7 +688,7 @@ $conn->close();
                     <button id="deleteProfileBtn" class="inverseFilledButton">Delete Profile</button>
 
                     <form action="../Backend_Files/logout.php?page=property&id=<?php echo $propId; ?>" method="post" id="formProfileBtn">
-                        <button type="submit" class="filledButton loginButton">Logout</button>
+                        <button id="logoutButton" type="submit" class="filledButton loginButton">Logout</button>
                     </form>
                 </div>
             </div>
