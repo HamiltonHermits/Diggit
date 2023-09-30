@@ -180,19 +180,20 @@ if (isset($_SESSION['profileMessage'])) {
                 <div class="left-box">
                     <div class="prop-title-container">
                         <div class="prop-title">
-                            <input id="newPropertyTitle" type="text" class="title-text-field" placeholder="Please add a property title" required>
+                            <input id="newPropertyTitle" maxlength="20" minlength="5" type="text" class="title-text-field" placeholder="Please add a property title" required>
                         </div>
                     </div>
                     <div class="prop-images-container">
                         <div class="select-images-overlay">
-                            <input type="file" id="file" name="file" multiple required accept=".jpg, .png, .jpeg" />
-                            <!-- <input type="file" id="file" class="inputfile" multiple> -->
-                            <!-- <input type="file" id="file" class="inputfile" multiple> -->
+                            <button id="openFileButton" class="filledButton">Choose Images</button>
+                            <input type="file" id="file" name="file" multiple required accept=".jpg, .png, .jpeg" hidden />
+                            <div id="selectedImages"></div>
                         </div>
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
-                            <textarea id="desc-text-field" class="description-text-field" placeholder="Please add a description" required></textarea>
+                            <textarea id="desc-text-field" minlength="10" maxlength="500" class="description-text-field" placeholder="Please add a description" required></textarea>
+                            <p id="char-count">0/500</p>
                         </div>
                     </div>
                 </div>
@@ -201,7 +202,7 @@ if (isset($_SESSION['profileMessage'])) {
                     <!-- Code from https://majindv.blogspot.com/2021/03/leafleft-get-coordinates-css.html -->
                     <div class="map-search-container">
                         <input type="text" placeholder="Search property address" for="search" id="address">
-                        <button id="search-map-btn" class = "filledButton">Search</button>
+                        <button id="search-map-btn" class="filledButton">Search</button>
                     </div>
                     <div id="coord-results"></div>
 
@@ -469,13 +470,15 @@ if (isset($_SESSION['profileMessage'])) {
 
         <!-- Modal For adding a tenant-->
         <div id="addTenantModel" class="modal" style="display: 'none';">
-            <span class="close" id="closeAddTenantButton">&times;</span>
-
             <div class="modal-content">
+                <span class="close" id="closeAddTenantButton">&times;</span>
+
                 <h3>Add Your Tenants Email</h3>
                 <div id="errorDiv"></div> <!-- Error message will be displayed here -->
-                <input type="text" id="emailInput" placeholder="e.g: michael@gmail.com">
-                <button onclick="addEmail()">Add</button>
+                <div style="display: inline-flex; gap: 0.5em;" >
+                <input type="text" class="modalInput" id="emailInput" placeholder="e.g: michael@gmail.com">
+                <button onclick="addEmail()" class="filledButton" id="thisButtonExistsBecauseIsayso" >Add</button>
+                </div>
             </div>
         </div>
 

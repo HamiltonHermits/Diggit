@@ -69,15 +69,15 @@ var logoutButton = document.getElementById('logoutButton');
 // });
 
 
-signupButton.addEventListener('mouseenter', function() {
-    signupButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-    signupButton.style.color = '#202024';
-});
+// signupButton.addEventListener('mouseenter', function() {
+//     signupButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+//     signupButton.style.color = '#202024';
+// });
 
-signupButton.addEventListener('mouseleave', function() {
-    signupButton.style.backgroundColor = '#ad5511'; // Change back to the normal color
-    signupButton.style.color = '#d9d9d9';
-});
+// signupButton.addEventListener('mouseleave', function() {
+//     signupButton.style.backgroundColor = '#ad5511'; // Change back to the normal color
+//     signupButton.style.color = '#d9d9d9';
+// });
 // Event listeners to open and close profile
 if (openModalBtn) {
     openModalBtn.addEventListener('click', function () {
