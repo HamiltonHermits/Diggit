@@ -68,7 +68,7 @@ $result = $result->fetch_assoc();
 $stmt->close();
 
 //Get agent details who created property
-$stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company
+$stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company,usertbl.profile_pic
                                  FROM usertbl
                                  JOIN property ON usertbl.user_id = property.created_by 
                                  WHERE property.prop_id = ?;
@@ -80,7 +80,7 @@ $resultUser = $stmtUser->get_result();
 $resultUser = $resultUser->fetch_assoc();
 $stmtUser->close();
 
-// Get amenities for property
+//Get amenities for property
 $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name
                                     FROM hamiltonhermits.amenity_test
                                     INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
@@ -97,6 +97,8 @@ $stmtImages->bind_param("s", $propId);
 $stmtImages->execute();
 $resultImages = $stmtImages->get_result(); //this is gonna be all the rows the images are in 
 $stmtImages->close();
+
+//
 
 
 
@@ -394,7 +396,9 @@ $conn->close();
                         <hr>
                     </div>
                     <div id="picture-name-container">
-                        <img src="#" alt="">
+                        <?php 
+                        echo "<img src= \"profilepics/{$resultUser['image_name']} \" alt=\"profile image\">";
+                        ?>
                         <div><?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?></div>
                     </div>
                     <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
