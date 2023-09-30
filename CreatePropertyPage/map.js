@@ -1,5 +1,6 @@
 
 var map = L.map('map');
+
 var markerLayer = L.layerGroup();
 markerLayer.addTo(map); // add the marker layer to the map
 var markerAdded = false;
@@ -10,7 +11,7 @@ var latitudeGlobal = 0;
 var longitudeGlobal = 0;
 
 //make map visible if a location is found
-document.querySelector(".bottom-container").style.visibility = "visible";
+// document.querySelector(".bottom-container").style.visibility = "visible";
 generateMapDynamic(-32.5, 25, 5.3);
 
 //default function to generate a map dyamically based on which location the user picks
@@ -146,13 +147,13 @@ function manualAddressEntry() {
     manualEntry = true;
         
     //set map visibility to hidden
-    document.querySelector(".bottom-container").style.visibility = "hidden";
+    // document.querySelector(".bottom-container").style.visibility = "hidden";
     //let user manually type in address and select point on the map
     results.innerHTML  = "<p><span style='color: red;'>Location no present in database</span></p>";
     results.innerHTML  += "<span>If you want a map of your property displayed, please select a point on the map:</span><br>";
 
     //set map visibility to hidden
-    document.querySelector(".bottom-container").style.visibility = "visible";
+    // document.querySelector(".bottom-container").style.visibility = "visible";
     generateMapDynamic(-32.5, 25, 5.3);
 }
 

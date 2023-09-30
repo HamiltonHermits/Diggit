@@ -72,7 +72,7 @@ if (isset($_SESSION['profileMessage'])) {
     <script src="map.js" defer></script>
     <script src="amenities.js" defer></script>
     <script src="createPropertyForm.js" defer></script>
-    
+
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -185,14 +185,14 @@ if (isset($_SESSION['profileMessage'])) {
                     </div>
                     <div class="prop-images-container">
                         <div class="select-images-overlay">
-                            <input type="file" id="file" name="file" multiple required  accept=".jpg, .png, .jpeg"/>
+                            <input type="file" id="file" name="file" multiple required accept=".jpg, .png, .jpeg" />
                             <!-- <input type="file" id="file" class="inputfile" multiple> -->
                             <!-- <input type="file" id="file" class="inputfile" multiple> -->
                         </div>
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
-                            <textarea id="desc-text-field"class="description-text-field" placeholder="Please add a description" required></textarea>
+                            <textarea id="desc-text-field" class="description-text-field" placeholder="Please add a description" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -205,19 +205,6 @@ if (isset($_SESSION['profileMessage'])) {
                     </div>
                     <div id="coord-results"></div>
 
-                    <div class="searchbar-container-container" style="display: none;">
-                        <div class="searchbar-container">
-                            <div class="borderSearchBar" id="borderSearchBar">
-                                <button type="submit" class="searchButton" id="searchButton">
-                                    <svg viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16.6 18.5L10.3 12.2C9.8 12.6 9.225 12.9167 8.575 13.15C7.925 13.3833 7.23333 13.5 6.5 13.5C4.68333 13.5 3.14583 12.8708 1.8875 11.6125C0.629167 10.3542 0 8.81667 0 7C0 5.18333 0.629167 3.64583 1.8875 2.3875C3.14583 1.12917 4.68333 0.5 6.5 0.5C8.31667 0.5 9.85417 1.12917 11.1125 2.3875C12.3708 3.64583 13 5.18333 13 7C13 7.73333 12.8833 8.425 12.65 9.075C12.4167 9.725 12.1 10.3 11.7 10.8L18 17.1L16.6 18.5ZM6.5 11.5C7.75 11.5 8.8125 11.0625 9.6875 10.1875C10.5625 9.3125 11 8.25 11 7C11 5.75 10.5625 4.6875 9.6875 3.8125C8.8125 2.9375 7.75 2.5 6.5 2.5C5.25 2.5 4.1875 2.9375 3.3125 3.8125C2.4375 4.6875 2 5.75 2 7C2 8.25 2.4375 9.3125 3.3125 10.1875C4.1875 11.0625 5.25 11.5 6.5 11.5Z" fill="#D9D9D9" />
-                                    </svg>
-                                </button>
-                                <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find property location.." required>
-                                <div id="dropdown" class="dropdown-content"></div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="bottom-container">
                         <div class="map-container" id="map"></div>
                     </div>
@@ -236,7 +223,7 @@ if (isset($_SESSION['profileMessage'])) {
                     <div class="amenities-container">
                         <div class="add-amenities-overlay">
                             <!-- <form method = "POST"> -->
-                            <button type ="submit" id="addAmenities" class="filledButton" name = "addAmenities">Add your Amenities</button>
+                            <button type="submit" id="addAmenities" class="filledButton" name="addAmenities">Add your Amenities</button>
                         </div>
                     </div>
                     <div class="amen-addmore-container">
@@ -267,40 +254,40 @@ if (isset($_SESSION['profileMessage'])) {
                 <span class="close" id="closeAmenityButton">&times;</span>
                 <h2 class="modalLabel">Amenities</h2>
                 <?php
-                    # code...
-                    include_once('../Backend_Files/config.php');
-                    include_once('../Backend_Files/database_connect.php');
-                    // Create a database connection
-                    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+                # code...
+                include_once('../Backend_Files/config.php');
+                include_once('../Backend_Files/database_connect.php');
+                // Create a database connection
+                $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-                    // Check if the connection was successful
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
-                    $sql = "SELECT amenity_id, amenity_name FROM amenity_test";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        echo "<table id = 'ammenityTable' style='border:none;'>";
+                // Check if the connection was successful
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                $sql = "SELECT amenity_id, amenity_name FROM amenity_test";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    echo "<table id = 'ammenityTable' style='border:none;'>";
 
-                        // Output data of each row
+                    // Output data of each row
 
-                    } else {
-                        echo "No digs found.";
-                    }
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>
+                } else {
+                    echo "No digs found.";
+                }
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>
                             <td class = 'name' id='{$row["amenity_id"]}'>" . $row["amenity_name"] . "</td>
                             <td> <input type='checkbox'> </td>
                         </tr>";
-                    }
+                }
 
-                    echo "</table>";
+                echo "</table>";
                 mysqli_close($conn);
                 ?>
 
                 <!-- Add a button to open the signup modal -->
                 <!-- <button id="submitAmenities">Submit Amenities</button> -->
-                <button id="submitAmenitiesBtn" class="filledButton" >Submit Amenities</button>
+                <button id="submitAmenitiesBtn" class="filledButton">Submit Amenities</button>
             </div>
         </div>
 
@@ -329,7 +316,7 @@ if (isset($_SESSION['profileMessage'])) {
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-                
+
             </div>
         </div>
 
@@ -386,11 +373,11 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn" class = "inverseFilledButton">Change Password</button>
+                <button id="changePasswordBtn" class="inverseFilledButton">Change Password</button>
 
-                <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
+                <button id="deleteProfileBtn" class="inverseFilledButton">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php?page=create" method="post" id = "formProfileBtn">
+                <form action="../Backend_Files/logout.php?page=create" method="post" id="formProfileBtn">
                     <button id="logoutButton" type="submit" class="filledButton loginButton">Logout</button>
                 </form>
             </div>
@@ -411,15 +398,16 @@ if (isset($_SESSION['profileMessage'])) {
                 <h2>Change Password</h2>
                 <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
                     <label for="currentPassword">Current Password:</label>
-                    <input type="password" id="currentPassword" name="currentPassword" required>
+                    <input type="password" id="currentPassword" class="modalInput" name="currentPassword" required><br>
 
                     <label for="changeNewPassword">New Password:</label>
-                    <input type="password" id="changeNewPassword" name="changeNewPassword" required>
+                    <input type="password" id="changeNewPassword" class="modalInput" name="changeNewPassword" required><br>
 
                     <label for="confirmPassword">Confirm New Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <input type="password" id="confirmPassword" class="modalInput" name="confirmPassword" required><br>
+                    <br>
 
-                    <button type="submit">Change Password</button>
+                    <button id="changePasswordButtonFinal" type="submit" class="filledButton" style="display: inline-block;">Change Password</button>
                 </form>
             </div>
         </div>
@@ -431,9 +419,9 @@ if (isset($_SESSION['profileMessage'])) {
                 <h2>Confirm Delete</h2>
                 <p>Are you sure you want to delete your profile?</p>
                 <form action="../Backend_Files/deleteProfile.php" method="post">
-                    <button type="submit" class="deleteButton">Yes, Delete</button>
+                    <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
                 </form>
-                <button id="cancelDeleteBtn">Cancel</button>
+                <button id="cancelDeleteBtn" class="filledButton">Cancel</button>
             </div>
         </div>
         <!-- Check the user's userType and display the first modal if not "agent" -->
@@ -462,7 +450,12 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <span class="back-arrow" style="color:white;" id="backToWhoops">&#8592;</span>
 
-                <form id="applicationForm" action="../Backend_Files/applyAgent.php" method="post">
+                <form id="applicationForm" action="../Backend_Files/applyAgent.php" method="post" enctype="multipart/form-data">
+                    <label for="profilePicture">Profile Picture:</label><br>
+                    <input type="file" id="profilePicture" name="profilePicture" required accept=".jpg, .png, .jpeg" onchange="displayImage(this);" /><br>
+
+                    <img id="selectedImage" src="#" alt="Selected Image" style="display: none; max-width: 100px; max-height: 100px;">
+
                     <label for="phoneNumber" class="modalLabel">Phone Number:</label>
                     <input type="text" id="phoneNumber" class="modalInput" name="phoneNumber" value="<?php echo isset($_SESSION['phoneNumber']) ? htmlspecialchars($_SESSION['phoneNumber']) : ''; ?>" placeholder="e.g: 082 123 4444" minlength="12" maxlength="12" required><br><br>
 

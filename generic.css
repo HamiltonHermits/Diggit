@@ -45,8 +45,8 @@ body {
 }
 
 #profileModal #closeModalBtn {
-  top: -10px;
-  left: 0;
+  top: 10px;
+  right: 10px;
   font-size: 1em;
   position: absolute;
 }
@@ -346,6 +346,9 @@ body {
   cursor: pointer;
   font-size: 20px;
   color: var(--secondary_colour);
+  top: 10px;
+  right: 10px;
+  font-size: 1em;
 }
 .modal .modal-content #loginButton,
 .modal .modal-content #signupButton,
@@ -506,4 +509,7 @@ a {
   .background-sidebar-container {
     display: none;
   }
+}
+.textWhite {
+  color: white;
 }/*# sourceMappingURL=generic.css.map */

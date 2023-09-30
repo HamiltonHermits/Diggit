@@ -68,7 +68,7 @@ $result = $result->fetch_assoc();
 $stmt->close();
 
 //Get agent details who created property
-$stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company
+$stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company,usertbl.profile_pic
                                  FROM usertbl
                                  JOIN property ON usertbl.user_id = property.created_by 
                                  WHERE property.prop_id = ?;
@@ -80,7 +80,7 @@ $resultUser = $stmtUser->get_result();
 $resultUser = $resultUser->fetch_assoc();
 $stmtUser->close();
 
-// Get amenities for property
+//Get amenities for property
 $stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name
                                     FROM hamiltonhermits.amenity_test
                                     INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
@@ -90,6 +90,17 @@ $stmtAmenity->bind_param("s", $propId);
 $stmtAmenity->execute();
 $resultAmenity = $stmtAmenity->get_result();
 $stmtAmenity->close();
+
+// Get image for property
+$stmtImages = $conn->prepare(" SELECT * FROM property_images WHERE prop_id = ?;");
+$stmtImages->bind_param("s", $propId);
+$stmtImages->execute();
+$resultImages = $stmtImages->get_result(); //this is gonna be all the rows the images are in 
+$stmtImages->close();
+
+//
+
+
 
 // Close the database connection
 $conn->close();
@@ -241,7 +252,15 @@ $conn->close();
                     </div>
                     <div class="prop-images-container">
                         <div class="prop-images">
-                            <img src="./propertyImages/<?php echo $result['image']; ?>" alt="property image">
+                            <?php
+                            while ($row = mysqli_fetch_array($resultImages)) {
+                                echo " 
+                                    <div class=\"propertyImage\">
+                                    <img src= \"images/{$row['image_name']} \" alt=\"property image\">
+                                    </div>
+                                    ";
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="prop-desc-container">
@@ -339,7 +358,7 @@ $conn->close();
 
                     <div class="bottom-container">
                         <div class="map-container" id="map">
-                            MAP
+
                         </div>
                     </div>
                 </div>
@@ -377,7 +396,9 @@ $conn->close();
                         <hr>
                     </div>
                     <div id="picture-name-container">
-                        <img src="#" alt="">
+                        <?php 
+                        echo "<img src= \"profilepics/{$resultUser['image_name']} \" alt=\"profile image\">";
+                        ?>
                         <div><?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?></div>
                     </div>
                     <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
@@ -706,17 +727,18 @@ $conn->close();
                     <span class="back-arrow" style="color:white;" id="backToProfile">&#8592;</span>
 
                     <h2>Change Password</h2>
-                    <form id="changePasswordForm" action="../Backend_Files/change_password.php?page=property&id=<?php echo $propId; ?>" method="post">
-                        <label for="currentPassword">Current Password:</label>
-                        <input type="password" id="currentPassword" name="currentPassword" required>
+                    <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
+                        <label for="currentPassword" >Current Password:</label>
+                        <input type="password" id="currentPassword" class="modalInput" name="currentPassword" required><br>
 
                         <label for="changeNewPassword">New Password:</label>
-                        <input type="password" id="changeNewPassword" name="changeNewPassword" required>
+                        <input type="password" id="changeNewPassword" class="modalInput" name="changeNewPassword" required><br>
 
                         <label for="confirmPassword">Confirm New Password:</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <input type="password" id="confirmPassword" class="modalInput" name="confirmPassword" required><br>
+                        <br>
 
-                        <button type="submit">Change Password</button>
+                        <button id="changePasswordButtonFinal" type="submit" class="filledButton" style="display: inline-block;">Change Password</button>
                     </form>
                 </div>
             </div>
