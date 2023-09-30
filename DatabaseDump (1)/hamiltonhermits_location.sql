@@ -16,27 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `amenity_test`
+-- Table structure for table `location`
 --
 
-DROP TABLE IF EXISTS `amenity_test`;
+DROP TABLE IF EXISTS `location`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `amenity_test` (
-  `amenity_id` int(11) NOT NULL AUTO_INCREMENT,
-  `amenity_name` varchar(45) NOT NULL,
-  PRIMARY KEY (`amenity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Contains every possible amenity on record';
+CREATE TABLE `location` (
+  `location_id` int(11) NOT NULL AUTO_INCREMENT,
+  `street_num` int(11) NOT NULL,
+  `street_name` varchar(45) NOT NULL,
+  `city` varchar(45) NOT NULL,
+  `suburb` varchar(45) NOT NULL,
+  `postal_code` int(11) NOT NULL,
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
+  PRIMARY KEY (`location_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `amenity_test`
+-- Dumping data for table `location`
 --
 
-LOCK TABLES `amenity_test` WRITE;
-/*!40000 ALTER TABLE `amenity_test` DISABLE KEYS */;
-INSERT INTO `amenity_test` VALUES (1,'wifi'),(2,'propertyParking'),(3,'waterTank'),(4,'laundry'),(5,'electricStove'),(6,'gasStove'),(7,'fridge'),(8,'microwave');
-/*!40000 ALTER TABLE `amenity_test` ENABLE KEYS */;
+LOCK TABLES `location` WRITE;
+/*!40000 ALTER TABLE `location` DISABLE KEYS */;
+INSERT INTO `location` VALUES (1,43,'Fitzroy Street','Makhanda','Oatlands',6139,11111111,11111111),(2,347,'park road','makhanda','park',6139,236478,3452834),(3,123,'Maple Street','New York','Manhattan',10001,40.742055,-73.987895),(4,456,'Oak Avenue','Los Angeles','Hollywood',90028,34.101244,-118.322624),(5,789,'Pine Drive','Chicago','Loop',60601,41.883229,-87.632398),(6,1011,'Cedar Lane','San Francisco','Nob Hill',94109,37.795138,-122.415588),(7,1213,'Birch Road','Miami','South Beach',33139,25.780833,-80.134931);
+/*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-30 23:11:27
+-- Dump completed on 2023-09-30 23:21:50

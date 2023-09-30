@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
+-- Host: localhost    Database: hamiltonhermits
 -- ------------------------------------------------------
--- Server version	8.0.20
+-- Server version	5.5.5-10.4.28-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,21 +23,21 @@ DROP TABLE IF EXISTS `review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `review` (
-  `review_id` int NOT NULL,
-  `prop_id` int NOT NULL,
-  `politeness_rating` int NOT NULL,
+  `review_id` int(11) NOT NULL,
+  `prop_id` int(11) NOT NULL,
+  `politeness_rating` int(11) NOT NULL,
   `written_review` varchar(300) DEFAULT NULL,
-  `cleanliness_rating` int NOT NULL,
-  `noise_rating` int NOT NULL,
-  `location_rating` int NOT NULL,
-  `saftey_rating` int NOT NULL,
-  `affordability_rating` int NOT NULL,
-  `repair_quality_rating` int NOT NULL,
-  `response_time_rating` int NOT NULL,
-  `user_id` int NOT NULL,
-  `avg_prop_review` int NOT NULL,
+  `cleanliness_rating` int(11) NOT NULL,
+  `noise_rating` int(11) NOT NULL,
+  `location_rating` int(11) NOT NULL,
+  `saftey_rating` int(11) NOT NULL,
+  `affordability_rating` int(11) NOT NULL,
+  `repair_quality_rating` int(11) NOT NULL,
+  `response_time_rating` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `avg_prop_review` int(11) NOT NULL,
   `date_reviewed` date NOT NULL,
-  `overall_property_rating` int NOT NULL,
+  `overall_property_rating` int(11) NOT NULL,
   PRIMARY KEY (`review_id`),
   UNIQUE KEY `review_id_UNIQUE` (`review_id`),
   KEY `prop_id_idx` (`prop_id`),
@@ -67,4 +67,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-30 12:01:39
+-- Dump completed on 2023-09-30 23:21:50

@@ -48,7 +48,7 @@ CREATE TABLE `usertbl` (
 
 LOCK TABLES `usertbl` WRITE;
 /*!40000 ALTER TABLE `usertbl` DISABLE KEYS */;
-INSERT INTO `usertbl` VALUES (1,'s','s','s','s',0,0,'some@gma',0,NULL,NULL,NULL),(2,'demo','$2y$10$KEbA/xrduNcchqhyVPf/0.RGQiIMbKbhLcmnlO.6S0EEaCT9c5uPq','Karen','Klark',0,1,'demo@gmail.com',0,'0121231234','Remax','../PropertyPage/profilepics/1696106801photo-1438761681033-6461ffad8d80.jpeg'),(3,'demo1','$2y$10$zfySZIdu8t0ryBbwJ3yMle2VjceqOl63RQw3T0YVYjAtVm4jDXPVa','Kevin','Daniel',0,0,'demo1@gmail.com',0,NULL,NULL,NULL),(4,'manu','$2y$10$OP2ybDocf4cBGFdvLsp8ouAxZdSsee6Oc0CdIvbVt2ZXMR8joDKxO','Manu','Jourdan',0,1,'manu@gmail.com',0,'1123456789','manu company',NULL),(5,'cameron','$2y$10$R0.SADn6WVp0/.U1YR75YuM8gTJR0N7ncAVj0sDPdKVw5Yha/P0oy','Cameron','Wicks',0,1,'cameron@gmail.com',0,'9987654321','cameron and co.',NULL),(6,'Wynne1','$2y$10$BHqnwkJ0X8j0q9tsJBzdKOZC300RauX5gKYqu9vomEmhKT1BZ9uya','Wynne','Eeeeeee',1,1,'wynne1@gmail.com',0,NULL,NULL,NULL),(7,'demo2','$2y$10$xuk24J5ZySS7bRuwo6xLze1pbv1uGjTVPtZJPMvcTj4huRVO5OgMm','david','Dave',0,0,'demo2@gmail.com',1,NULL,NULL,NULL),(8,'demo5','$2y$10$KUibkqsx2.uYgYpOFnxvuedgIja7CHY656qPzUgduGMR3vf4ISeVK','fasbkjas','as,fskas',0,0,'demo5@gmail.com',0,NULL,NULL,NULL);
+INSERT INTO `usertbl` VALUES (1,'s','s','s','s',0,0,'some@gma',0,NULL,NULL,NULL),(2,'demo','$2y$10$JdIRcAosIOyPoHYdDbjMMedmCRv2.GR0F3pdV4eThQB1dMDTTpwEy','Kevin','Klark',0,1,'demo@gmail.com',0,'0121231234','Remax','1696108761photo-1438761681033-6461ffad8d80.jpeg'),(3,'demo1','$2y$10$zfySZIdu8t0ryBbwJ3yMle2VjceqOl63RQw3T0YVYjAtVm4jDXPVa','Kevin','Daniel',0,0,'demo1@gmail.com',0,NULL,NULL,NULL),(4,'manu','$2y$10$OP2ybDocf4cBGFdvLsp8ouAxZdSsee6Oc0CdIvbVt2ZXMR8joDKxO','Manu','Jourdan',0,1,'manu@gmail.com',0,'1123456789','manu company',NULL),(5,'cameron','$2y$10$R0.SADn6WVp0/.U1YR75YuM8gTJR0N7ncAVj0sDPdKVw5Yha/P0oy','Cameron','Wicks',0,1,'cameron@gmail.com',0,'9987654321','cameron and co.',NULL),(6,'Wynne1','$2y$10$BHqnwkJ0X8j0q9tsJBzdKOZC300RauX5gKYqu9vomEmhKT1BZ9uya','Wynne','Eeeeeee',1,1,'wynne1@gmail.com',0,NULL,NULL,NULL),(7,'demo2','$2y$10$xuk24J5ZySS7bRuwo6xLze1pbv1uGjTVPtZJPMvcTj4huRVO5OgMm','david','Dave',0,0,'demo2@gmail.com',1,NULL,NULL,NULL),(8,'demo5','$2y$10$KUibkqsx2.uYgYpOFnxvuedgIja7CHY656qPzUgduGMR3vf4ISeVK','fasbkjas','as,fskas',0,0,'demo5@gmail.com',0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `usertbl` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-30 23:11:27
+-- Dump completed on 2023-09-30 23:21:50
