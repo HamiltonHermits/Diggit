@@ -7,7 +7,7 @@ var MAX_VIEW = 5;
 var lastval_boolean = false;
 var searchBarCheck = true;
 var dropdownThere = false;
-
+var streetNumName = "";
 
 function redirectToPage(apartID) {
     // Go to property page and pass apartment ID has query parameter
@@ -16,7 +16,7 @@ function redirectToPage(apartID) {
 function handleApartmentClick(apartment) {
     return function () {
         //console.log(apartment.prop_id);
-        searchbar.value = apartment.prop_name + ', ' + streetNumName;
+        searchbar.value = apartment.prop_name;
         redirectToPage(apartment.prop_id);
     };
 }
@@ -59,9 +59,13 @@ searchbar.addEventListener('input', function () {
                     const dropdownItem = document.createElement('div');
                     dropdownItem.className = 'dropdown-item';
                     dropdownItem.id = 'dropdownItem';
-                    streetNumName = apartment.street_num + ' ' + apartment.street_name;
-                    dropdownItem.title = apartment.prop_name + ' ' + streetNumName;
-                    dropdownItem.textContent = apartment.prop_name + '  -  ' + streetNumName; // Display apartment names & locations
+                    var streetNumName = "";
+                    if (apartment.address && apartment.address.trim() !== "") {
+                        streetNumName = apartment.address;
+                    }
+                    dropdownItem.title = apartment.prop_name + (streetNumName ? ' ' + streetNumName : '');
+                    dropdownItem.textContent = apartment.prop_name + (streetNumName ? '  -  ' + streetNumName : '');
+
 
                     // Event listeners for click, mouseover, and mouseout
 

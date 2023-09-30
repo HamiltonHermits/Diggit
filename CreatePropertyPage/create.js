@@ -32,6 +32,24 @@ function updateActivePageIndicator() {
     });
 }
 
+//function to display the image once it has been put through 
+function displayImage(input) {
+    var selectedImage = document.getElementById('selectedImage');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            selectedImage.style.display = 'block';
+            selectedImage.src = e.target.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        selectedImage.style.display = 'none';
+        selectedImage.src = '#';
+    }
+}
+
 
 
 

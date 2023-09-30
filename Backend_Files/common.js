@@ -22,7 +22,19 @@ var deleteProfileBtn = document.getElementById('deleteProfileBtn');
 var closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
 var cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
 
+var changePasswordButtonFinal = document.getElementById('changePasswordButtonFinal');
+
 var logoutButton = document.getElementById('logoutButton');
+
+changePasswordButtonFinal.addEventListener('mouseenter', function() {
+    changePasswordButtonFinal.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+    changePasswordButtonFinal.style.color = '#202024';
+});
+
+changePasswordButtonFinal.addEventListener('mouseleave', function() {
+    changePasswordButtonFinal.style.backgroundColor = '#ad5511'; // Change back to the normal color
+    changePasswordButtonFinal.style.color = '#d9d9d9';
+});
 
 logoutButton.addEventListener('mouseenter', function() {
     logoutButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color

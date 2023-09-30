@@ -203,18 +203,19 @@ if (isset($_SESSION['profileMessage'])) {
                 <span class="close" id="closeChangePasswordModalBtn">&times;</span>
                 <span class="back-arrow" style="color:white;" id="backToProfile">&#8592;</span>
 
-                <h2>Change Password</h2>
+                <h2 class="textWhite" >Change Password</h2>
                 <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
-                    <label for="currentPassword">Current Password:</label>
-                    <input type="password" id="currentPassword" name="currentPassword" required>
+                    <label for="currentPassword" class="textWhite">Current Password:</label>
+                    <input type="password" id="currentPassword" class="modalInput" name="currentPassword" required><br>
 
-                    <label for="changeNewPassword">New Password:</label>
-                    <input type="password" id="changeNewPassword" name="changeNewPassword" required>
+                    <label for="changeNewPassword" class="textWhite">New Password:</label>
+                    <input type="password" id="changeNewPassword" class="modalInput" name="changeNewPassword" required><br>
 
-                    <label for="confirmPassword">Confirm New Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <label for="confirmPassword" class="textWhite">Confirm New Password:</label>
+                    <input type="password" id="confirmPassword" class="modalInput" name="confirmPassword" required><br>
+                    <br>
 
-                    <button type="submit">Change Password</button>
+                    <button id="changePasswordButtonFinal" type="submit" class="filledButton" style="display: inline-block;" >Change Password</button>
                 </form>
             </div>
         </div>

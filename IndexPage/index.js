@@ -67,7 +67,10 @@ searchbar.addEventListener('input', function () {
                     const dropdownItem = document.createElement('div');
                     dropdownItem.className = 'dropdown-item';
                     dropdownItem.id = 'dropdownItem';
-                    streetNumName = apartment.street_num + ' ' + apartment.street_name;
+                    streetNumName = "";
+                    if(apartment.address){
+                        streetNumName = apartment.address;
+                    }
                     dropdownItem.title = apartment.prop_name + ' ' + streetNumName;
                     dropdownItem.textContent = apartment.prop_name + '  -  ' + streetNumName; // Display apartment names & locations
 

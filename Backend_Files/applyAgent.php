@@ -5,7 +5,7 @@ require_once('auth_agent.php');
 session_start();
 
 global $conn;
-if (isset($_POST['phoneNumber']) && isset($_POST['companyName'])) {
+if (isset($_POST['phoneNumber']) && isset($_POST['companyName']) && isset($_FILES["profilePicture"])) {
     $phonenum = $_POST['phoneNumber'];
     $companyNum = $_POST['companyName'];
 
@@ -17,6 +17,12 @@ if (isset($_POST['phoneNumber']) && isset($_POST['companyName'])) {
     if (isset($_SESSION["user_id"])) {
 
         if ($authorized['authenticated']) {
+            
+            $picture = time(). $_FILES['profilePicture']['name'];
+
+            $destination = "../PropertyPage/profilepics/".$picture;
+
+            move_uploaded_file($_FILES['profilePicture']['tmp_name'],$destination);
 
             $phonenum = substr($phonenum,0,3).substr($phonenum,4,3).substr($phonenum,8,4);
 
@@ -26,7 +32,9 @@ if (isset($_POST['phoneNumber']) && isset($_POST['companyName'])) {
         SET 
         is_agent = '1',
         agent_phone = '$phonenum',
-        agent_company = '$companyNum'
+        agent_company = '$companyNum',
+        profile_pic = '$destination'
+        
         WHERE
         user_id = $user_id";
             $_SESSION['userType'] = 'Agent';

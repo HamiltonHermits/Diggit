@@ -50,8 +50,8 @@ body {
 //Login Profile Modal
 #profileModal {
     #closeModalBtn {
-        top: -10px;
-        left: 0;
+        top: 10px;
+        right: 10px;
         font-size: 1em;
         position: absolute;
     }
@@ -215,10 +215,11 @@ body {
             justify-content: center;
             align-items: center;
         }
+
         .logo-container {
             margin-top: 2vh;
             height: 10%;
-        
+
             #logo {
                 display: flex;
                 flex-direction: row;
@@ -228,12 +229,12 @@ body {
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
-        
+
                 #digg {
                     color: var(--global-font-color);
                     font-family: Poppins;
                 }
-        
+
                 #it {
                     color: var(--orange);
                     font-family: Suez One;
@@ -242,7 +243,7 @@ body {
                 }
             }
         }
-        
+
         .page-indicator-container {
             display: flex;
             flex-direction: column;
@@ -250,42 +251,47 @@ body {
             justify-content: center;
             height: 50%;
             gap: 10%;
+
             .page-indicator-inner-container {
                 flex-direction: column;
                 display: flex;
                 gap: 15px;
                 width: 100%;
+
                 .page-indicator {
                     display: inline-flex;
                     flex-direction: row;
                     border-radius: 10px 0 0 10px;
                     justify-content: flex-start;
-                    gap:1em;
-                    left:15%;
+                    gap: 1em;
+                    left: 15%;
                     position: relative;
                     width: 85%;
 
                     //
                     target: "someValue";
-                    .icon{
+
+                    .icon {
                         display: flex;
                         align-items: center;
                     }
                 }
             }
         }
+
         .settings-container {
             display: flex;
             height: 25%;
             justify-content: flex-start;
             align-items: center;
             position: relative;
-            left:15%;
+            left: 15%;
+
             .settings {
                 gap: 0.6em;
                 display: flex;
             }
-        
+
             // justify-content: center;
         }
     }
@@ -389,6 +395,10 @@ body {
             cursor: pointer;
             font-size: 20px;
             color: var(--secondary_colour);
+            top: 10px;
+            right: 10px;
+            font-size: 1em;
+
         }
 
         #loginButton,
@@ -551,6 +561,7 @@ a {
             }
         }
     }
+
     @media screen and (max-width: 800px) {
         .logo-container {
             display: none;
@@ -560,4 +571,8 @@ a {
             display: none;
         }
     }
+}
+//tylers shinanigans
+.textWhite{
+    color: white;
 }

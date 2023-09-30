@@ -61,37 +61,6 @@
     }
 }
 
-#profileModal {
-    #closeModalBtn {
-        top: -10px;
-        left: 0;
-        font-size: 1em;
-        position: absolute;
-    }
-
-    #changePasswordBtn {
-        display: inline-flex;
-        margin-bottom: 2vh;
-    }
-
-    #deleteProfileBtn {
-        display: inline-flex;
-    }
-
-    #formProfileBtn {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-wrap: wrap;
-        height: 10vh;
-
-        .loginButton {
-            display: flex;
-            width: 85%;
-            height: 60%;
-        }
-    }
-}
 #mainContainer {
     position: relative;
     display: grid;
