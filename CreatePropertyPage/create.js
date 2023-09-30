@@ -17,56 +17,56 @@ const addAmenities = document.getElementById('addAmenities');
 const openAddTenantModel = document.getElementById('openAddTenantModel');
 const addMoreButtonListneres = document.getElementById('addMoreButton');
 
-addMoreButtonListneres.addEventListener('mouseenter', function() {
-    addMoreButtonListneres.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-    addMoreButtonListneres.style.color = '#202024';
-});
+// addMoreButtonListneres.addEventListener('mouseenter', function() {
+//     addMoreButtonListneres.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+//     addMoreButtonListneres.style.color = '#202024';
+// });
 
-addMoreButtonListneres.addEventListener('mouseleave', function() {
-    addMoreButtonListneres.style.backgroundColor = '#29292c'; // Change back to the normal color
-    addMoreButtonListneres.style.color = '#d9d9d9';
-});
+// addMoreButtonListneres.addEventListener('mouseleave', function() {
+//     addMoreButtonListneres.style.backgroundColor = '#29292c'; // Change back to the normal color
+//     addMoreButtonListneres.style.color = '#d9d9d9';
+// });
 
-openAddTenantModel.addEventListener('mouseenter', function() {
-    openAddTenantModel.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-    openAddTenantModel.style.color = '#202024';
-});
+// openAddTenantModel.addEventListener('mouseenter', function() {
+//     openAddTenantModel.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+//     openAddTenantModel.style.color = '#202024';
+// });
 
-openAddTenantModel.addEventListener('mouseleave', function() {
-    openAddTenantModel.style.backgroundColor = '#29292c'; // Change back to the normal color
-    openAddTenantModel.style.color = '#d9d9d9';
-});
+// openAddTenantModel.addEventListener('mouseleave', function() {
+//     openAddTenantModel.style.backgroundColor = '#29292c'; // Change back to the normal color
+//     openAddTenantModel.style.color = '#d9d9d9';
+// });
 
-addAmenities.addEventListener('mouseenter', function() {
-    addAmenities.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-    addAmenities.style.color = '#202024';
-});
+// addAmenities.addEventListener('mouseenter', function() {
+//     addAmenities.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+//     addAmenities.style.color = '#202024';
+// });
 
-addAmenities.addEventListener('mouseleave', function() {
-    addAmenities.style.backgroundColor = '#ad5511'; // Change back to the normal color
-    addAmenities.style.color = '#d9d9d9';
-});
+// addAmenities.addEventListener('mouseleave', function() {
+//     addAmenities.style.backgroundColor = '#ad5511'; // Change back to the normal color
+//     addAmenities.style.color = '#d9d9d9';
+// });
 
-searchButtonListeneres.addEventListener('mouseenter', function() {
-    searchButtonListeneres.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-    searchButtonListeneres.style.color = '#202024';
-});
+// searchButtonListeneres.addEventListener('mouseenter', function() {
+//     searchButtonListeneres.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+//     searchButtonListeneres.style.color = '#202024';
+// });
 
-searchButtonListeneres.addEventListener('mouseleave', function() {
-    searchButtonListeneres.style.backgroundColor = '#ad5511'; // Change back to the normal color
-    searchButtonListeneres.style.color = '#d9d9d9';
-});
+// searchButtonListeneres.addEventListener('mouseleave', function() {
+//     searchButtonListeneres.style.backgroundColor = '#ad5511'; // Change back to the normal color
+//     searchButtonListeneres.style.color = '#d9d9d9';
+// });
 
 
-openFileButton.addEventListener('mouseenter', function() {
-    openFileButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-    openFileButton.style.color = '#202024';
-});
+// openFileButton.addEventListener('mouseenter', function() {
+//     openFileButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+//     openFileButton.style.color = '#202024';
+// });
 
-openFileButton.addEventListener('mouseleave', function() {
-    openFileButton.style.backgroundColor = '#ad5511'; // Change back to the normal color
-    openFileButton.style.color = '#d9d9d9';
-});
+// openFileButton.addEventListener('mouseleave', function() {
+//     openFileButton.style.backgroundColor = '#ad5511'; // Change back to the normal color
+//     openFileButton.style.color = '#d9d9d9';
+// });
 
 // Add an input event listener to the textarea
 textarea.addEventListener('input', updateCharCount);
