@@ -7,6 +7,97 @@ var lastval_boolean = false;
  //-----------------------------------Commented Out as there is no search bar----------------------------------------
 // Get allparentContainers
 const parentContainers = document.querySelectorAll(".parent-container");
+const fileInputPics = document.getElementById('file');
+const openFileButton = document.getElementById('openFileButton');
+const selectedImagesDiv = document.getElementById('selectedImages');
+const textarea = document.getElementById('desc-text-field');
+const charCountElement = document.getElementById('char-count');
+const searchButtonListeneres = document.getElementById('search-map-btn');
+const addAmenities = document.getElementById('addAmenities');
+const openAddTenantModel = document.getElementById('openAddTenantModel');
+const addMoreButtonListneres = document.getElementById('addMoreButton');
+
+addMoreButtonListneres.addEventListener('mouseenter', function() {
+    addMoreButtonListneres.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+    addMoreButtonListneres.style.color = '#202024';
+});
+
+addMoreButtonListneres.addEventListener('mouseleave', function() {
+    addMoreButtonListneres.style.backgroundColor = '#29292c'; // Change back to the normal color
+    addMoreButtonListneres.style.color = '#d9d9d9';
+});
+
+openAddTenantModel.addEventListener('mouseenter', function() {
+    openAddTenantModel.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+    openAddTenantModel.style.color = '#202024';
+});
+
+openAddTenantModel.addEventListener('mouseleave', function() {
+    openAddTenantModel.style.backgroundColor = '#29292c'; // Change back to the normal color
+    openAddTenantModel.style.color = '#d9d9d9';
+});
+
+addAmenities.addEventListener('mouseenter', function() {
+    addAmenities.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+    addAmenities.style.color = '#202024';
+});
+
+addAmenities.addEventListener('mouseleave', function() {
+    addAmenities.style.backgroundColor = '#ad5511'; // Change back to the normal color
+    addAmenities.style.color = '#d9d9d9';
+});
+
+searchButtonListeneres.addEventListener('mouseenter', function() {
+    searchButtonListeneres.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+    searchButtonListeneres.style.color = '#202024';
+});
+
+searchButtonListeneres.addEventListener('mouseleave', function() {
+    searchButtonListeneres.style.backgroundColor = '#ad5511'; // Change back to the normal color
+    searchButtonListeneres.style.color = '#d9d9d9';
+});
+
+
+openFileButton.addEventListener('mouseenter', function() {
+    openFileButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+    openFileButton.style.color = '#202024';
+});
+
+openFileButton.addEventListener('mouseleave', function() {
+    openFileButton.style.backgroundColor = '#ad5511'; // Change back to the normal color
+    openFileButton.style.color = '#d9d9d9';
+});
+
+// Add an input event listener to the textarea
+textarea.addEventListener('input', updateCharCount);
+
+// Function to update the character count
+function updateCharCount() {
+    const text = textarea.value;
+    const charCount = text.length;
+    
+    // Display the character count
+    charCountElement.textContent = `${charCount}/500`;
+}
+
+// Call the updateCharCount function initially to display the initial count
+updateCharCount();
+
+openFileButton.addEventListener('click', () => {
+    fileInputPics.click(); // Trigger the file input's click event
+});
+
+fileInputPics.addEventListener('change', () => {
+    // Clear the existing content in the selectedImagesDiv
+    selectedImagesDiv.innerHTML = '';
+
+    // Loop through the selected files and append their names to the div
+    for (const file of fileInputPics.files) {
+        const fileName = document.createElement('p');
+        fileName.textContent = file.name;
+        selectedImagesDiv.appendChild(fileName);
+    }
+});
 
 // Function to check if an element is in the viewport
 function isElementInViewport(el) {
