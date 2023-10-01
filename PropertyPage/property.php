@@ -326,7 +326,7 @@ $conn->close();
                     </div>
                     <div class="prop-images-container">
                         <div class="arrowContainer" id="left-arrow-container">
-                            <button class="left-right-arrow-images" id="left-arrow" onclick="currentSlide(1)">
+                            <button class="left-right-arrow-images" id="left-arrow" onclick="plusSlides(-1)">
                                 <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <ellipse cx="15.9366" cy="16.8541" rx="15.9366" ry="16.854" transform="rotate(-180 15.9366 16.8541)" fill="#D9D9D9" fill-opacity="0.6" />
                                     <mask id="mask0_531_53" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="34">
@@ -353,7 +353,7 @@ $conn->close();
                         </div>
 
                         <div class="arrowContainer" id="right-arrow-container">
-                            <button class="left-right-arrow-images" id="right-arrow" onclick="currentSlide(-1)">
+                            <button class="left-right-arrow-images" id="right-arrow" onclick="plusSlides(1)">
                                 <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <ellipse cx="16.0634" cy="17.1459" rx="15.9366" ry="16.854" fill="#D9D9D9" fill-opacity="0.6" />
                                     <mask id="mask0_30_300" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="34">
@@ -452,9 +452,9 @@ $conn->close();
                                     <input type="email" class="contactTextField" placeholder="email" name="email">
                                     <input type="text" class="contactTextField" placeholder="phone number">
                                     <label id="message-label" for="body">Message</label>
-                                    <textarea name="body" id="message" rows="12" placeholder="Please contact the agent regarding this property."></textarea>
+                                    <textarea name="body" id="message" placeholder="Please contact the agent regarding this property."></textarea>
                                     <div class="email-btn-container">
-                                        <input type="submit" class="email-agent-button" value="Email Agent">
+                                        <input type="submit" class="email-agent-button inverseFilledButton" value="Email Agent">
                                     </div>
                                 </form>
                             </div>
@@ -551,20 +551,20 @@ $conn->close();
         <?php if ($isAuthenticated) : ?>
             <?php if ($isTenant) : ?>
                 <div class="rate-prop-btn-container">
-                    <button class="rate-property" id="openRatingModalBtn">
+                    <button class="rate-property filledButton" id="openRatingModalBtn">
                         Rate Property
                     </button>
                 </div>
             <?php else : ?>
                 <div class="rate-prop-btn-container">
-                    <button class="rate-property" id="openWhoopsNotAllowed">
+                    <button class="rate-property filledButton" id="openWhoopsNotAllowed">
                         Rate Property
                     </button>
                 </div>
             <?php endif; ?>
         <?php else : ?>
             <div class="rate-prop-btn-container">
-                <button class="rate-property" id="openRatingModalBtnButItsNot">
+                <button class="rate-property filledButton" id="openRatingModalBtnButItsNot">
                     Rate Property
                 </button>
             </div>

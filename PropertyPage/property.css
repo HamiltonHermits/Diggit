@@ -119,15 +119,8 @@ main {
   height: 100%;
 }
 #property-parent-container .boxes-container .right-box .email-btn-container .email-agent-button {
-  cursor: pointer;
-  border-radius: 25px;
-  border-color: var(--orange);
-  background: none;
-  height: 100%;
-  font-size: calc(7px + 0.6vw);
-  font-family: "Poppins";
-  font-weight: 600;
-  color: var(--global-font-color);
+  padding: 0;
+  width: 50%;
 }
 #property-parent-container .boxes-container .right-box .bottom-container {
   height: 47.5%;
@@ -204,7 +197,6 @@ main {
 }
 #property-parent-container .boxes-container .right-box .top-container .contact-container .contact-info-container .contact-form #message {
   resize: none;
-  height: 5em;
   border-radius: 15px;
   background: #29292c;
   border: none;
@@ -442,7 +434,7 @@ main {
 #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container {
   display: flex;
   padding: 1em 2em 2em 2em;
-  height: 25%;
+  height: 2em;
 }
 #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .previous-page-container {
   width: 22.25%;
@@ -677,7 +669,7 @@ main {
 }
 
 @media screen and (max-width: 1156px) {
-  #property-parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container {
+  body #property-parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container {
     font-size: 2vw;
   }
   #comment-parent-container .boxes-container {
