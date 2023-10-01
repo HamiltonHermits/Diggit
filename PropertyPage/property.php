@@ -418,9 +418,9 @@ $conn->close();
                                     <input type="email" class="contactTextField" placeholder="email" name="email">
                                     <input type="text" class="contactTextField" placeholder="phone number">
                                     <label id="message-label" for="body">Message</label>
-                                    <textarea name="body" id="message" rows="12" placeholder="Please contact the agent regarding this property."></textarea>
+                                    <textarea name="body" id="message" placeholder="Please contact the agent regarding this property."></textarea>
                                     <div class="email-btn-container">
-                                        <input type="submit" class="email-agent-button" value="Email Agent">
+                                        <input type="submit" class="email-agent-button inverseFilledButton" value="Email Agent">
                                     </div>
                                 </form>
                             </div>
@@ -533,20 +533,20 @@ $conn->close();
         <?php if ($isAuthenticated) : ?>
             <?php if ($isTenant) : ?>
                 <div class="rate-prop-btn-container">
-                    <button class="rate-property" id="openRatingModalBtn">
+                    <button class="rate-property filledButton" id="openRatingModalBtn">
                         Rate Property
                     </button>
                 </div>
             <?php else : ?>
                 <div class="rate-prop-btn-container">
-                    <button class="rate-property" id="openWhoopsNotAllowed">
+                    <button class="rate-property filledButton" id="openWhoopsNotAllowed">
                         Rate Property
                     </button>
                 </div>
             <?php endif; ?>
         <?php else : ?>
             <div class="rate-prop-btn-container">
-                <button class="rate-property" id="openRatingModalBtnButItsNot">
+                <button class="rate-property filledButton" id="openRatingModalBtnButItsNot">
                     Rate Property
                 </button>
             </div>
