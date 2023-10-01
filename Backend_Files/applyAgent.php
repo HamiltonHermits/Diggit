@@ -12,42 +12,44 @@ if (isset($_POST['phoneNumber']) && isset($_POST['companyName']) && isset($_FILE
     $_SESSION['phoneNumber'] = $phonenum;
     $_SESSION['companyName'] = $companyNum;
 
-    $authorized = validatePhoneNumber($phonenum); //by default cause i am tired
+    $authorized = validatePhoneNumber($phonenum); //by default cause I am tired
 
     if (isset($_SESSION["user_id"])) {
 
         if ($authorized['authenticated']) {
-            
-            $picture = time(). $_FILES['profilePicture']['name'];
 
-            $destination = "../PropertyPage/profilepics/".$picture;
+            $picture = time() . $_FILES['profilePicture']['name'];
 
-            move_uploaded_file($_FILES['profilePicture']['tmp_name'],$destination);
+            $destination = "../PropertyPage/profilepics/" . $picture;
 
-            $phonenum = substr($phonenum,0,3).substr($phonenum,4,3).substr($phonenum,8,4);
+            move_uploaded_file($_FILES['profilePicture']['tmp_name'], $destination);
+
+            $phonenum = substr($phonenum, 0, 3) . substr($phonenum, 4, 3) . substr($phonenum, 8, 4);
 
             $user_id = $_SESSION["user_id"];
 
-            $updateQuerry = "UPDATE usertbl
-        SET 
-        is_agent = '1',
-        agent_phone = '$phonenum',
-        agent_company = '$companyNum',
-        profile_pic = '$picture'
-        
-        WHERE
-        user_id = $user_id";
-            $_SESSION['userType'] = 'Agent';
-            $_SESSION['applicationSuccess'] = true;
+            // Use prepared statements to update user information
+            $stmt = mysqli_prepare($conn, "UPDATE usertbl
+                SET 
+                is_agent = '1',
+                agent_phone = ?,
+                agent_company = ?,
+                profile_pic = ?
+                WHERE
+                user_id = ?");
 
-            $result = mysqli_query($conn, $updateQuerry);
+            mysqli_stmt_bind_param($stmt, "sssi", $phonenum, $companyNum, $picture, $user_id);
 
-            if ($result) {
+            if (mysqli_stmt_execute($stmt)) {
+                $_SESSION['userType'] = 'Agent';
+                $_SESSION['applicationSuccess'] = true;
                 header("Location: ../CreatePropertyPage/create.php");
             } else {
-                $_SESSION['applyAgentError'] = "There was an error with executing query: ".mysqli_error($conn);
+                $_SESSION['applyAgentError'] = "There was an error with executing the query: " . mysqli_error($conn);
                 header("Location: ../CreatePropertyPage/create.php");
             }
+
+            mysqli_stmt_close($stmt);
         } else {
             $_SESSION['applyAgentError'] = $authorized['error'];
             header("Location: ../CreatePropertyPage/create.php");

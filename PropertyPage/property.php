@@ -137,14 +137,14 @@ $countFive = 0;
 $countFour = 0;
 $countThree = 0;
 $countTwo = 0;
-$countOne = 0;  
+$countOne = 0;
 //we gonna go through and and grab every review
 while ($row = mysqli_fetch_array($resultReviews)) {
-    if($row['overall_property_rating']==5) $countFive += 1;
-    if($row['overall_property_rating']==4) $countFour += 1;
-    if($row['overall_property_rating']==5) $countThree += 1;
-    if($row['overall_property_rating']==5) $countTwo += 1;
-    if($row['overall_property_rating']==5) $countOne += 1;
+    if ($row['overall_property_rating'] == 5) $countFive += 1;
+    if ($row['overall_property_rating'] == 4) $countFour += 1;
+    if ($row['overall_property_rating'] == 5) $countThree += 1;
+    if ($row['overall_property_rating'] == 5) $countTwo += 1;
+    if ($row['overall_property_rating'] == 5) $countOne += 1;
 
     $cleanliness += $row['cleanliness_rating'];
     $noise += $row['noise_rating'];
@@ -293,7 +293,7 @@ $conn->close();
                     </button>
                     <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
                     <img src="crab/crab.png" alt="" id="crab-logo">
-                    
+
 
                 </div>
                 <div id="dropdown" class="dropdown-content"></div>
@@ -620,11 +620,11 @@ $conn->close();
                         </div>
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-breakdown">
-                            <p style="display: inline;" >5 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFive; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFive</p>" ?><br>
-                            <p style="display: inline;" >4 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFour; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFour</p>" ?><br>
-                            <p style="display: inline;" >3 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countThree; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countThree</p>" ?><br>
-                            <p style="display: inline;" >2 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countTwo; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countTwo</p>" ?><br>
-                            <p style="display: inline;" >1 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countOne; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countOne</p>" ?>
+                            <p style="display: inline;">5 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFive; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFive</p>" ?><br>
+                            <p style="display: inline;">4 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFour; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFour</p>" ?><br>
+                            <p style="display: inline;">3 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countThree; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countThree</p>" ?><br>
+                            <p style="display: inline;">2 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countTwo; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countTwo</p>" ?><br>
+                            <p style="display: inline;">1 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countOne; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countOne</p>" ?>
                         </div>
                     </div>
                     <div class=landlord-rating-summary-container>
@@ -834,9 +834,9 @@ $conn->close();
                 <p>Are you sure you want to delete your profile?</p>
                 <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" class="confirmDeleteForm" method="post">
                     <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
-                    <button id="cancelDeleteBtn" class="filledButton" >Cancel</button>
+                    <button id="cancelDeleteBtn" class="filledButton">Cancel</button>
                 </form>
-                
+
             </div>
         </div>
 
