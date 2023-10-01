@@ -474,12 +474,13 @@ if (isset($_SESSION['profileMessage'])) {
         <div id="addTenantModel" class="modal" style="display: 'none';">
             <div class="modal-content">
                 <span class="close" id="closeAddTenantButton">&times;</span>
-
+                
                 <h3>Add Your Tenants Email</h3>
                 <div id="errorDiv"></div> <!-- Error message will be displayed here -->
                 <div style="display: inline-flex; gap: 0.5em;" >
-                <input type="text" class="modalInput" id="emailInput" placeholder="e.g: michael@gmail.com">
-                <button onclick="addEmail()" class="filledButton" id="thisButtonExistsBecauseIsayso" >Add</button>
+                    <input type="text" class="modalInput" name="emailInput" id="emailInput" placeholder="e.g: michael@gmail.com">
+                    <!-- <input type="submit" name="submit" value="Add" class="filledButton" id="thisButtonExistsBecauseIsayso"> -->
+                    <button onclick="addEmail()" class="filledButton" id="thisButtonExistsBecauseIsayso" >Add</button>
                 </div>
             </div>
         </div>
