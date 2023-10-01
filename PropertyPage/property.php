@@ -458,9 +458,9 @@ $conn->close();
                             ?>
                         </div>
                     </div>
-                    <div id="show-all-container">
+                    <!-- <div id="show-all-container">
                         <input type="button" name="show-all-btn" value="show all (<?php echo $amenityCount ?>)" id="show-all-btn">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="right-box" id="right-box-amenity">
                     <div class="title" id="landlord-title">
