@@ -8,9 +8,34 @@ var openRatingModalBtnButItsNot = document.getElementById('openRatingModalBtnBut
 var notLoggedInModalSomethingElse = document.getElementById('notLoggedInModalSomethingElse');
 var loginButtonPropertyPage = document.getElementById('loginButtonPropertyPage');
 // console.log(userId," ",pageId);
+var closeNotLoggedInModalSomethingElse = document.getElementById('closeNotLoggedInModalSomethingElse');
+var notATenantModal = document.getElementById('notATenantModal');
+var closeNotATenantModal = document.getElementById('closeNotATenantModal');
+var openWhoopsNotAllowed = document.getElementById('openWhoopsNotAllowed');
 
+if(openWhoopsNotAllowed){
+    openWhoopsNotAllowed.addEventListener('click', () => {
+        openWhoopsNotAllowed.style.display = 'none';
+        notATenantModal.style.display = 'block';
+    });
+}
+
+if(notATenantModal){
+    closeNotATenantModal.addEventListener('click', () => {
+        notATenantModal.style.display = 'none';
+    });
+    window.addEventListener('click', (event) => {
+
+        if (event.target == notATenantModal) {
+            notATenantModal.style.display = 'none';
+        }
+    });
+}
 //event listeners for when the user is not logged in 
 if (openRatingModalBtnButItsNot) {
+    closeNotLoggedInModalSomethingElse.addEventListener('click', () => {
+        notLoggedInModalSomethingElse.style.display = 'none';
+    });
     openRatingModalBtnButItsNot.addEventListener('click', () => {
         notLoggedInModalSomethingElse.style.display = 'block';
     });
