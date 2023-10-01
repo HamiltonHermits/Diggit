@@ -147,12 +147,12 @@ starContainers.forEach((container) => {
             const rating = index + 1; // Rating starts from 1, not 0
             container.setAttribute('data-rating', rating); // Update the data-rating attribute
 
-            // Toggle the filled and hollow states
+            // Toggle between filled and not filled stars
             stars.forEach((s, i) => {
                 if (i < rating) {
-                    s.classList.add('filled');
+                    s.innerHTML = '&#9733;'; // Filled star
                 } else {
-                    s.classList.remove('filled');
+                    s.innerHTML = '&#9734;'; // Not filled star
                 }
             });
 
