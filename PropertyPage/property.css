@@ -97,7 +97,8 @@ main {
   border: none;
   border-radius: 50%;
 }
-.nav-top .searchbar-container .borderSearchBar textarea:focus, .nav-top .searchbar-container .borderSearchBar input:focus {
+.nav-top .searchbar-container .borderSearchBar textarea:focus,
+.nav-top .searchbar-container .borderSearchBar input:focus {
   outline: none;
 }
 .nav-top .searchbar-container .borderSearchBar #crab-logo {
@@ -365,6 +366,17 @@ main {
   flex-direction: column;
   justify-content: space-between;
 }
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section .rating-item .rating-progress {
+  width: 100%;
+  height: 1vh;
+  background-color: #ccc;
+  border-radius: 5px;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section .rating-item .rating-progress .progress-bar {
+  height: 100%;
+  background-color: var(--orange);
+  border-radius: 5px;
+}
 #amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section #overall-rating-item {
   display: flex;
   align-items: center;
@@ -555,6 +567,9 @@ main {
   display: flex;
   flex-direction: column;
 }
+#comment-parent-container .boxes-container .right-box .rating-summary-container .star {
+  color: var(--orange);
+}
 #comment-parent-container .boxes-container .right-box .rating-summary-container .horizontal-line-comment {
   width: 100%;
 }
@@ -571,7 +586,34 @@ main {
   height: 75%;
   justify-content: space-around;
 }
-#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown div {
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown .breakdown-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown .breakdown-box .number {
+  padding: 4px;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown .breakdown-box .star {
+  color: var(--orange);
+  padding: 4px;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown .breakdown-box .rating-progress {
+  width: 100%;
+  height: 1vh;
+  background-color: white;
+  border-radius: 5px;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown .breakdown-box .rating-progress .progress-bar {
+  height: 100%;
+  background-color: var(--orange);
+  border-radius: 5px;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown .breakdown-box .amount {
+  padding: 4px;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown .breakdown-box div {
   display: inline-flex;
   justify-content: space-between;
 }
@@ -592,6 +634,9 @@ main {
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .ratingLabels {
   display: inline;
   font-size: calc(5px + 0.8vw);
+}
+#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .info-circle .info-icon {
+  max-height: 15px;
 }
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .star-rating-display {
   font-size: 2em;
@@ -687,6 +732,12 @@ main {
 }
 #ratingModal #ratingModalInner .rating-section-with-submit .rating-section .landlord-rating-section .rating-item .ratingLabels {
   display: unset;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .rating-section .landlord-rating-section .rating-item .ratingLabels .info-circle {
+  height: 15px;
+}
+#ratingModal #ratingModalInner .rating-section-with-submit .rating-section .landlord-rating-section .rating-item .ratingLabels .info-circle .info-icon {
+  height: 15px;
 }
 #ratingModal #ratingModalInner .rating-section-with-submit .modal-footer {
   height: 20%;
@@ -832,4 +883,105 @@ main {
     font-size: 1.5em;
   }
 }
+/* Style for the info circle */
+.info-circle {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  /* Adjust spacing */
+  /* Style for the info icon (i) inside the circle */
+  /* Style for the info tooltip */
+}
+.info-circle .info-icon {
+  display: flex;
+  border: 1px solid var(--orange);
+  border-radius: 50%;
+  width: 100%;
+  font-size: 0.6em;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--orange);
+  height: 15px;
+  /* Icon color */
+}
+.info-circle .info-tooltip {
+  display: none;
+  position: absolute;
+  background-color: var(--orange);
+  /* Tooltip background color */
+  border: 1px solid var(--orange);
+  padding: 10px;
+  /* Adjust padding */
+  border-radius: 5px;
+  width: 200px;
+  /* Adjust width */
+  top: 0;
+  left: 110%;
+  /* Position it to the right of the circle */
+  z-index: 1;
+  /* Ensure it's above other content */
+}
+
+/* Show the tooltip when hovering over the info circle */
+.info-circle:hover .info-tooltip {
+  display: block;
+}
+
+/* Style for the rating sliders */
+.rating-slider {
+  position: relative;
+  width: 70%;
+  display: inline-flex;
+}
+
+/* Adjust the background color and appearance of the slider and thumb */
+.slider {
+  accent-color: var(--orange);
+  border: 0;
+  outline: none;
+  width: 100%;
+  height: 5px;
+  /* Adjust the height of the slider */
+  background: linear-gradient(to right, var(--main_colour) 0%, var(--main_colour) var(--value, 0%), #ccc var(--value, 0%), #ccc 100%);
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  border-radius: 5px;
+  /* Rounded slider track */
+}
+
+/* Style for the slider thumb (dot/selector) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  /* Adjust the width of the thumb */
+  height: 15px;
+  /* Adjust the height of the thumb */
+  background: var(--main_colour);
+  /* Slider thumb color */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px;
+  /* Adjust the width of the thumb */
+  height: 15px;
+  /* Adjust the height of the thumb */
+  background: var(--main_colour);
+  /* Slider thumb color */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Style for the slider value display */
+.slider-value {
+  display: inline-block;
+  margin-left: 5px;
+  /* Adjust spacing */
+}
+
 /*# sourceMappingURL=property.css.map */

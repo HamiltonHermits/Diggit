@@ -139,13 +139,14 @@ $countThree = 0;
 $countTwo = 0;
 $countOne = 0;
 $countOne = 0;
+$countTotal = 0;
 //we gonna go through and and grab every review
 while ($row = mysqli_fetch_array($resultReviews)) {
     if ($row['overall_property_rating'] == 5) $countFive += 1;
     if ($row['overall_property_rating'] == 4) $countFour += 1;
-    if ($row['overall_property_rating'] == 5) $countThree += 1;
-    if ($row['overall_property_rating'] == 5) $countTwo += 1;
-    if ($row['overall_property_rating'] == 5) $countOne += 1;
+    if ($row['overall_property_rating'] == 3) $countThree += 1;
+    if ($row['overall_property_rating'] == 2) $countTwo += 1;
+    if ($row['overall_property_rating'] == 1) $countOne += 1;
 
     $cleanliness += $row['cleanliness_rating'];
     $noise += $row['noise_rating'];
@@ -160,8 +161,18 @@ while ($row = mysqli_fetch_array($resultReviews)) {
     $agentOverall += $row['overall_tenant_rating'];
     $count++;
 }
+$countTotal = $countFive + $countFour + $countThree + $countTwo + $countOne;
+echo "<script>console.log($countTotal);</script>";
+
 //then we are going to average them out
 if ($count > 0) {
+    $countPercentFive = $countFive / $countTotal;
+    $countPercentFour = $countFour / $countTotal;
+    $countPercentThree = $countThree / $countTotal;
+    $countPercentTwo = $countTwo / $countTotal;
+    $countPercentOne = $countOne / $countTotal;
+
+
     $cleanliness /= $count;
     $noise /= $count;
     $location /= $count;
@@ -521,8 +532,8 @@ $conn->close();
                                             <div class="info-tooltip">left lower - right higher</div>
                                         </div>
                                     </div>
-                                    <div class="rating-slider" id="politenessRatingDisplay">
-                                        <input type="range" min="1" max="5" value="<?php echo $agentPolite; ?>" class="sliderDisplay" id="politenessSliderDisplay" readonly>
+                                    <div class="rating-progress" id="politenessRatingDisplay">
+                                        <div class="progress-bar" style="width: <?php echo $agentPolite * 20; ?>%;"></div>
                                     </div>
                                 </div>
 
@@ -535,8 +546,8 @@ $conn->close();
                                             <div class="info-tooltip">left lower - right higher</div>
                                         </div>
                                     </div>
-                                    <div class="rating-slider" id="repairRatingDisplay">
-                                        <input type="range" min="1" max="5" value="<?php echo $agentQuality; ?>" class="sliderDisplay" id="repairSliderDisplay" readonly>
+                                    <div class="rating-progress" id="repairRatingDisplay">
+                                        <div class="progress-bar" style="width: <?php echo $agentQuality * 20; ?>%;"></div>
                                     </div>
                                 </div>
 
@@ -549,8 +560,8 @@ $conn->close();
                                             <div class="info-tooltip">left lower - right higher</div>
                                         </div>
                                     </div>
-                                    <div class="rating-slider" id="responseTimeRatingDisplay">
-                                        <input type="range" min="1" max="5" value="<?php echo $agentResponse; ?>" class="sliderDisplay" id="responseTimeSliderDisplay" readonly>
+                                    <div class="rating-progress" id="responseTimeRatingDisplay">
+                                        <div class="progress-bar" style="width: <?php echo $agentResponse * 20; ?>%;"></div>
                                     </div>
                                 </div>
 
@@ -564,13 +575,14 @@ $conn->close();
                                                 <div class="info-tooltip">left lower - right higher</div>
                                             </div>
                                         </div>
-                                        <div class="rating-slider" id="overallLandlordRatingDisplay">
-                                            <input type="range" min="1" max="5" value="<?php echo $agentOverall; ?>" class="sliderDisplay" id="overallLandlordSliderDisplay" readonly>
+                                        <div class="rating-progress" id="overallLandlordRatingDisplay">
+                                            <div class="progress-bar" style="width: <?php echo $agentOverall * 20; ?>%;"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -643,87 +655,125 @@ $conn->close();
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-overall-container">
                             <?php echo "<div class = 'ratingLabel'>$overallRating" ?>
-                            <span class="star">&#9733; - <?php echo " $count Reviews</div>" ?> </span>
+                            <span class="star">&#9733;</span> - <?php echo " $count Reviews</div>" ?>
                         </div>
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-breakdown">
-                            <div>5 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFive; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFive</div>" ?>
-                            <div>4 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFour; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFour</div>" ?>
-                            <div>3 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countThree; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countThree</div>" ?>
-                            <div>2 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countTwo; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countTwo</div>" ?>
-                            <div>1 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countOne; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countOne</div>" ?>
+                            <div class="breakdown-box">
+                                <div class="number">5</div> <span class="star">&#9733;</span>
+                                <div class="rating-progress">
+                                    <div class="progress-bar" style="width: <?php echo $countPercentFive * 100; ?>%;"></div>
+                                </div>
+                                <div class="amount"><?php echo " $countFive"; ?></div>
+                            </div>
+
+                            <!-- 4-star Rating -->
+                            <div class="breakdown-box">
+                                <div class="number">4</div> <span class="star">&#9733;</span>
+                                <div class="rating-progress">
+                                    <div class="progress-bar" style="width: <?php echo $countPercentFour * 100; ?>%;"></div>
+                                </div>
+                                <div class="amount"><?php echo " $countFive"; ?></div>
+                            </div>
+
+                            <!-- 3-star Rating -->
+                            <div class="breakdown-box">
+                                <div class="number">3</div> <span class="star">&#9733;</span>
+                                <div class="rating-progress">
+                                    <div class="progress-bar" style="width: <?php echo $countPercentThree * 100; ?>%;"></div>
+                                </div>
+                                <div class="amount"><?php echo " $countThree"; ?></div>
+                            </div>
+
+                            <!-- 2-star Rating -->
+                            <div class="breakdown-box">
+                                <div class="number">2</div> <span class="star">&#9733;</span>
+                                <div class="rating-progress">
+                                    <div class="progress-bar" style="width: <?php echo $countPercentTwo * 100; ?>%;"></div>
+                                </div>
+                                <div class="amount"><?php echo " $countTwo"; ?></div>
+                            </div>
+
+                            <!-- 1-star Rating -->
+                            <div class="breakdown-box">
+                                <div class="number">1</div> <span class="star">&#9733;</span>
+                                <div class="rating-progress">
+                                    <div class="progress-bar" style="width: <?php echo $countPercentOne * 100; ?>%;"></div>
+                                </div>
+                                <div class="amount"><?php echo " $countOne"; ?></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class=landlord-rating-summary-container>
-                        <div class="star-rating-section">
-                            <!-- Cleanliness Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <div>Cleanliness</div>
-                                </div>
-                                <div class="star-rating-display" data-category="cleanliness" data-rating=<?php echo $cleanliness; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
-
-                            <!-- Noise Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <div>Noise</div>
-                                </div>
-                                <div class="star-rating-display" data-category="noise" data-rating=<?php echo $noise; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
-
-                            <!-- Location Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <div>Location</div>
-                                </div>
-                                <div class="star-rating-display" data-category="location" data-rating=<?php echo $location; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
+                        <div class=landlord-rating-summary-container>
+                            <div class="star-rating-section">
+                                <!-- Cleanliness Rating -->
+                                <div class="rating-item">
+                                    <div class="ratingLabels">
+                                        <div>Cleanliness</div>
+                                    </div>
+                                    <div class="star-rating-display" data-category="cleanliness" data-rating=<?php echo $cleanliness; ?>>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
                                 </div>
 
-                            </div>
+                                <!-- Noise Rating -->
+                                <div class="rating-item">
+                                    <div class="ratingLabels">
+                                        <div>Noise</div>
+                                    </div>
+                                    <div class="star-rating-display" data-category="noise" data-rating=<?php echo $noise; ?>>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
+                                </div>
 
-                            <!-- Safety Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <div>Safety</div>
-                                </div>
-                                <div class="star-rating-display" data-category="safety" data-rating=<?php echo $safety; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
+                                <!-- Location Rating -->
+                                <div class="rating-item">
+                                    <div class="ratingLabels">
+                                        <div>Location</div>
+                                    </div>
+                                    <div class="star-rating-display" data-category="location" data-rating=<?php echo $location; ?>>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
 
-                            <!-- Affordability Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <div>Affordability</div>
                                 </div>
-                                <div class="star-rating-display" data-category="affordability" data-rating=<?php echo $affordability; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
+
+                                <!-- Safety Rating -->
+                                <div class="rating-item">
+                                    <div class="ratingLabels">
+                                        <div>Safety</div>
+                                    </div>
+                                    <div class="star-rating-display" data-category="safety" data-rating=<?php echo $safety; ?>>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
+                                </div>
+
+                                <!-- Affordability Rating -->
+                                <div class="rating-item">
+                                    <div class="ratingLabels">
+                                        <div>Affordability</div>
+                                    </div>
+                                    <div class="star-rating-display" data-category="affordability" data-rating=<?php echo $affordability; ?>>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -731,6 +781,7 @@ $conn->close();
                 </div>
             </div>
         </div>
+
 
 
 

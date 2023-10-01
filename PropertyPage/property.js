@@ -6,9 +6,9 @@ var lastval_boolean = false;
 //to disable the sliders
 var sliderDisplay = document.getElementsByClassName("sliderDisplay");
 
-for (var i = 0; i < sliderDisplay.length; i++) {
-  sliderDisplay[i].disabled = true;
-}
+// for (var i = 0; i < sliderDisplay.length; i++) {
+//   sliderDisplay[i].disabled = true;
+// }
 
 
 // Function to populate stars based on data-rating
