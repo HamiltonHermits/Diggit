@@ -98,7 +98,33 @@ $stmtImages->execute();
 $resultImages = $stmtImages->get_result(); //this is gonna be all the rows the images are in 
 $stmtImages->close();
 
-//
+// //get reviews for agent
+// $stmtReviews = $conn->prepare("SELECT * FROM review WHERE prop_id = ?;");
+// $stmtReviews->bind_param("s", $propId);
+// $stmtReviews->execute();
+// $resultReviews = $stmtReviews->get_result(); // Fetch the results
+// $stmtReviews->close();
+
+// $count = 0;
+// $agentPolite = 0;
+// $agentQuality = 0;
+// $agentResponse = 0;
+// $agentOverall = 0;
+// //we gonna go through and and grab every review
+// while ($row = mysqli_fetch_array($resultReviews)) {
+//     $agentPolite += $row['politeness_rating'];
+//     $agentQuality += $row['repair_quality_rating'];
+//     $agentResponse += $row['response_time_rating'];
+//     $agentOverall += $row['overall_tenant_rating'];
+//     $count++;
+// }
+// //then we are going to average them out
+// if ($count > 0) {
+//     $agentPolite /= $count;
+//     $agentQuality /= $count;
+//     $agentResponse /= $count;
+//     $agentOverall /= $count;
+// }
 
 
 

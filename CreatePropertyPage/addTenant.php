@@ -1,27 +1,30 @@
 <?php
     include_once('../Backend_Files/database_connect.php');
 
-    // get email from the request
+    // Get email from the request (sanitize or validate input as needed)
     $email = $_GET["email"];
 
-    // check if the provided email belongs to a existing tenant in the db
-    $query = "SELECT * FROM tenants WHERE tenant_id = '$email'";
-
-    $result = mysqli_query($conn, $query);
-
-    if (!$result) { //if query fails, return error, check network packets in dev tools
+    // Check if the provided email belongs to an existing tenant in the db
+    $query = "SELECT * FROM usertbl WHERE email = ?";
+    
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $email);
+    
+    if (!$stmt->execute()) {
         http_response_code(400); // Bad Request
-        echo json_encode(["error" => "Query error: " . $conn->error]);
+        echo json_encode(["error" => "Query error: " . $stmt->error]);
         exit;
     }
 
-    // if query returns no rows, return false
-    // else return true
-    if (mysqli_num_rows($result) == 0) {
+    $result = $stmt->get_result();
+
+    // If query returns no rows, return false; otherwise, return true
+    if ($result->num_rows == 0) {
         echo json_encode(false);
-        exit;
     } else {
         echo json_encode(true);
-        exit;
     }
+
+    // Close the database connection
+    $stmt->close();
 ?>

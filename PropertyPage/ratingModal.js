@@ -2,8 +2,8 @@
 var openRatingModalBtn = document.getElementById('openRatingModalBtn');
 var ratingModal = document.getElementById('ratingModal');
 var closeRatingModalBtn = document.getElementById('closeRatingModalBtn');
-var userId = ratingModal.getAttribute('data-user-id');
-var pageId = ratingModal.getAttribute('data-page-id');
+// var userId = ratingModal.getAttribute('data-user-id');
+// var pageId = ratingModal.getAttribute('data-page-id');
 var openRatingModalBtnButItsNot = document.getElementById('openRatingModalBtnButItsNot');
 var notLoggedInModalSomethingElse = document.getElementById('notLoggedInModalSomethingElse');
 var loginButtonPropertyPage = document.getElementById('loginButtonPropertyPage');

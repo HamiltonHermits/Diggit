@@ -18,7 +18,7 @@ function isValidEmail(email) {
     return emailPattern.test(email);
 }
 
-function tenantExists(email) {
+function tenantExists(email) {//this doesnt make sense as the tenant might not be signed up yet, we should just add them irrespective
     return new Promise((resolve, reject) => {
         let url = "addTenant.php?email=" + email;
 
