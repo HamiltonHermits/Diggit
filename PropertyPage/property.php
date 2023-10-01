@@ -97,12 +97,11 @@ $stmtAllowedUsers->execute();
 $stmtAllowedUsers = $stmtAllowedUsers->get_result();
 $isTenant = false;
 while ($row = mysqli_fetch_array($stmtAllowedUsers)) {
-    if(isset($_SESSION['email'])){
+    if (isset($_SESSION['email'])) {
         if ($_SESSION['email'] == $row['tenant_id']) {
             $isTenant = true;
         }
     }
-
 }
 
 // Get image for property
@@ -119,13 +118,41 @@ $stmtReviews->execute();
 $resultReviews = $stmtReviews->get_result(); // Fetch the results
 $stmtReviews->close();
 
+//reviews for the property
+$cleanliness = 1.0;
+$noise = 1.0;
+$location = 1.0;
+$safety = 1.0;
+$affordability = 1.0;
+$overallRating = 1.0;
+
+//reviews for the agent 
 $count = 0;
 $agentPolite = 1;
 $agentQuality = 1;
 $agentResponse = 1;
 $agentOverall = 1;
+
+$countFive = 0;
+$countFour = 0;
+$countThree = 0;
+$countTwo = 0;
+$countOne = 0;  
 //we gonna go through and and grab every review
 while ($row = mysqli_fetch_array($resultReviews)) {
+    if($row['overall_property_rating']==5) $countFive += 1;
+    if($row['overall_property_rating']==4) $countFour += 1;
+    if($row['overall_property_rating']==5) $countThree += 1;
+    if($row['overall_property_rating']==5) $countTwo += 1;
+    if($row['overall_property_rating']==5) $countOne += 1;
+
+    $cleanliness += $row['cleanliness_rating'];
+    $noise += $row['noise_rating'];
+    $location += $row['location_rating'];
+    $safety += $row['saftey_rating'];
+    $affordability += $row['affordability_rating'];
+    $overallRating += $row['overall_property_rating'];
+
     $agentPolite += $row['politeness_rating'];
     $agentQuality += $row['repair_quality_rating'];
     $agentResponse += $row['response_time_rating'];
@@ -134,6 +161,13 @@ while ($row = mysqli_fetch_array($resultReviews)) {
 }
 //then we are going to average them out
 if ($count > 0) {
+    $cleanliness /= $count;
+    $noise /= $count;
+    $location /= $count;
+    $safety /= $count;
+    $affordability /= $count;
+    $overallRating /= $count;
+
     $agentPolite /= $count;
     $agentQuality /= $count;
     $agentResponse /= $count;
@@ -483,7 +517,7 @@ $conn->close();
                                     <div class="info-tooltip">left lower - right higher</div>
                                 </div>
                                 <div class="" id="politenessRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentPolite; ?>" class="sliderDisplay" id="politenessSlider" readonly>
+                                    <input type="range" min="1" max="5" value="<?php echo $agentPolite; ?>" class="sliderDisplay" id="politenessSliderDisplay" readonly>
                                 </div>
                             </div>
 
@@ -495,7 +529,7 @@ $conn->close();
                                     <div class="info-tooltip">left lower - right higher</div>
                                 </div>
                                 <div class="rating-slider" id="repairRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentQuality; ?>" class="sliderDisplay" id="repairSlider" readonly>
+                                    <input type="range" min="1" max="5" value="<?php echo $agentQuality; ?>" class="sliderDisplay" id="repairSliderDisplay" readonly>
                                 </div>
                             </div>
 
@@ -507,7 +541,7 @@ $conn->close();
                                     <div class="info-tooltip">left lower - right higher</div>
                                 </div>
                                 <div class="rating-slider" id="responseTimeRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentResponse; ?>" class="sliderDisplay" id="responseTimeSlider" readonly>
+                                    <input type="range" min="1" max="5" value="<?php echo $agentResponse; ?>" class="sliderDisplay" id="responseTimeSliderDisplay" readonly>
                                 </div>
                             </div>
 
@@ -519,7 +553,7 @@ $conn->close();
                                     <div class="info-tooltip">left lower - right higher</div>
                                 </div>
                                 <div class="rating-slider" id="overallLandlordRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentOverall; ?>" class="sliderDisplay" id="overallLandlordSlider" readonly>
+                                    <input type="range" min="1" max="5" value="<?php echo $agentOverall; ?>" class="sliderDisplay" id="overallLandlordSliderDisplay" readonly>
                                 </div>
                             </div>
                         </div>
@@ -596,27 +630,26 @@ $conn->close();
                         <div class="commentLabel">Overall</div>
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-overall-container">
-                            breakdown with review
+                            <?php echo "<p>$overallRating" ?>
+                            <span class="star">&#9733; - <?php echo " $count Reviews</p>" ?> </span>
                         </div>
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-breakdown">
-                            breakdown <br>
-                            breakdown <br>
-                            breakdown <br>
-                            breakdown <br>
-                            breakdown
+                            <p style="display: inline;" >5 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFive; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFive</p>" ?><br>
+                            <p style="display: inline;" >4 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFour; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFour</p>" ?><br>
+                            <p style="display: inline;" >3 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countThree; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countThree</p>" ?><br>
+                            <p style="display: inline;" >2 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countTwo; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countTwo</p>" ?><br>
+                            <p style="display: inline;" >1 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countOne; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countOne</p>" ?>
                         </div>
                     </div>
                     <div class=landlord-rating-summary-container>
                         <div class="star-rating-section">
                             <!-- Cleanliness Rating -->
                             <div class="rating-item">
-                                <div class="ratingLabels">Cleanliness</div>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = cleaner digs</div>
+                                <div class="ratingLabels">
+                                    <h3>Cleanliness</h3>
                                 </div>
-                                <div class="star-rating" data-category="cleanliness" data-rating="0">
+                                <div class="star-rating-display" data-category="cleanliness" data-rating=<?php echo $cleanliness; ?>>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
@@ -627,12 +660,10 @@ $conn->close();
 
                             <!-- Noise Rating -->
                             <div class="rating-item">
-                                <div class="ratingLabels">Noise</div>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = lower noise levels</div>
+                                <div class="ratingLabels">
+                                    <h3>Noise<h3>
                                 </div>
-                                <div class="star-rating" data-category="noise" data-rating="0">
+                                <div class="star-rating-display" data-category="noise" data-rating=<?php echo $noise; ?>>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
@@ -643,12 +674,10 @@ $conn->close();
 
                             <!-- Location Rating -->
                             <div class="rating-item">
-                                <div class="ratingLabels">Location</div>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = better location</div>
+                                <div class="ratingLabels">
+                                    <h3>Location<h3>
                                 </div>
-                                <div class="star-rating" data-category="location" data-rating="0">
+                                <div class="star-rating-display" data-category="location" data-rating=<?php echo $location; ?>>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
@@ -660,12 +689,10 @@ $conn->close();
 
                             <!-- Safety Rating -->
                             <div class="rating-item">
-                                <div class="ratingLabels">Safety</div>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = higher safety</div>
+                                <div class="ratingLabels">
+                                    <h3>Safety<h3>
                                 </div>
-                                <div class="star-rating" data-category="safety" data-rating="0">
+                                <div class="star-rating-display" data-category="safety" data-rating=<?php echo $safety; ?>>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
@@ -676,12 +703,10 @@ $conn->close();
 
                             <!-- Affordability Rating -->
                             <div class="rating-item">
-                                <div class="ratingLabels">Affordability</div>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">More stars = better affordability</div>
+                                <div class="ratingLabels">
+                                    <h3>Affordability<h3>
                                 </div>
-                                <div class="star-rating" data-category="affordability" data-rating="0">
+                                <div class="star-rating-display" data-category="affordability" data-rating=<?php echo $affordability; ?>>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
                                     <span class="star">&#9734;</span>
