@@ -98,9 +98,12 @@ $stmtAllowedUsers->execute();
 $stmtAllowedUsers = $stmtAllowedUsers->get_result();
 $isTenant = false;
 while ($row = mysqli_fetch_array($stmtAllowedUsers)) {
-    if ($_SESSION['email'] == $row['tenant_id']) {
-        $isTenant = true;
+    if(isset($_SESSION['email'])){
+        if ($_SESSION['email'] == $row['tenant_id']) {
+            $isTenant = true;
+        }
     }
+
 }
 
 // Get image for property
@@ -945,8 +948,8 @@ $conn->close();
                             <div class="review-section">
                                 <div id="writeAReview">Please write a review (optional)</div>
                                 <div class="reviewTextarea">
-                                    <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
-                                    <div id="wordCount">0/250</div>
+                                    <textarea id="reviewTextarea" name="property_review" maxlength="500" rows="4" cols="50"></textarea>
+                                    <div id="wordCount">0/500</div>
                                 </div>
                             </div>
                         </div>
