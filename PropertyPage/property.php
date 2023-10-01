@@ -137,14 +137,14 @@ $countFive = 0;
 $countFour = 0;
 $countThree = 0;
 $countTwo = 0;
-$countOne = 0;  
+$countOne = 0;
 //we gonna go through and and grab every review
 while ($row = mysqli_fetch_array($resultReviews)) {
-    if($row['overall_property_rating']==5) $countFive += 1;
-    if($row['overall_property_rating']==4) $countFour += 1;
-    if($row['overall_property_rating']==5) $countThree += 1;
-    if($row['overall_property_rating']==5) $countTwo += 1;
-    if($row['overall_property_rating']==5) $countOne += 1;
+    if ($row['overall_property_rating'] == 5) $countFive += 1;
+    if ($row['overall_property_rating'] == 4) $countFour += 1;
+    if ($row['overall_property_rating'] == 5) $countThree += 1;
+    if ($row['overall_property_rating'] == 5) $countTwo += 1;
+    if ($row['overall_property_rating'] == 5) $countOne += 1;
 
     $cleanliness += $row['cleanliness_rating'];
     $noise += $row['noise_rating'];
@@ -500,65 +500,75 @@ $conn->close();
                         Landlord
                         <hr>
                     </div>
-                    <div id="picture-name-container">
-                        <?php
-                        echo "<img src= \"profilepics/{$resultUser['profile_pic']} \" alt=\"profile image\">";
-                        ?>
-                        <div><?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?></div>
-                    </div>
-                    <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
-                    <div id="rating-bars-container">
-                        <div class="landlord-rating-section">
-                            <!-- Politeness Rating -->
-                            <div class="rating-item">
-                                <p class="ratingLabels">Politeness:</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">left lower - right higher</div>
+                    <div class="main-content-landord-container">
+                        <div id="picture-name-container">
+                            <?php
+                            echo "<img src= \"profilepics/{$resultUser['profile_pic']} \" alt=\"profile image\">";
+                            ?>
+                            <div><?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?></div>
+                        </div>
+                        <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
+                        <div id="rating-bars-container">
+                            <div class="landlord-rating-section">
+                                <!-- Politeness Rating -->
+                                <div class="rating-item">
+                                    <div class="rating-label-container">
+                                        <div class="ratingLabels">Politeness:</div>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">left lower - right higher</div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-slider" id="politenessRatingDisplay">
+                                        <input type="range" min="1" max="5" value="<?php echo $agentPolite; ?>" class="sliderDisplay" id="politenessSliderDisplay" readonly>
+                                    </div>
                                 </div>
-                                <div class="" id="politenessRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentPolite; ?>" class="sliderDisplay" id="politenessSliderDisplay" readonly>
-                                </div>
-                            </div>
 
-                            <!-- Quality of Repair Rating -->
-                            <div class="rating-item">
-                                <p class="ratingLabels">Quality of Repair:</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">left lower - right higher</div>
+                                <!-- Quality of Repair Rating -->
+                                <div class="rating-item">
+                                    <div class="rating-label-container">
+                                        <div class="ratingLabels">Quality of Repair:</div>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">left lower - right higher</div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-slider" id="repairRatingDisplay">
+                                        <input type="range" min="1" max="5" value="<?php echo $agentQuality; ?>" class="sliderDisplay" id="repairSliderDisplay" readonly>
+                                    </div>
                                 </div>
-                                <div class="rating-slider" id="repairRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentQuality; ?>" class="sliderDisplay" id="repairSliderDisplay" readonly>
-                                </div>
-                            </div>
 
-                            <!-- Response Time Rating -->
-                            <div class="rating-item">
-                                <p class="ratingLabels">Response Time:</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">left lower - right higher</div>
+                                <!-- Response Time Rating -->
+                                <div class="rating-item">
+                                    <div class="rating-label-container">
+                                        <div class="ratingLabels">Response Time:</div>
+                                        <div class="info-circle">
+                                            <div class="info-icon">i</div>
+                                            <div class="info-tooltip">left lower - right higher</div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-slider" id="responseTimeRatingDisplay">
+                                        <input type="range" min="1" max="5" value="<?php echo $agentResponse; ?>" class="sliderDisplay" id="responseTimeSliderDisplay" readonly>
+                                    </div>
                                 </div>
-                                <div class="rating-slider" id="responseTimeRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentResponse; ?>" class="sliderDisplay" id="responseTimeSliderDisplay" readonly>
-                                </div>
-                            </div>
 
-                            <!-- Overall Landlord Rating -->
-                            <div class="rating-item">
-                                <p class="ratingLabels">Overall Landlord Rating:</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">left lower - right higher</div>
-                                </div>
-                                <div class="rating-slider" id="overallLandlordRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentOverall; ?>" class="sliderDisplay" id="overallLandlordSliderDisplay" readonly>
+                                <!-- Overall Landlord Rating -->
+                                <div class="rating-item" id="overall-rating-item">
+                                    <div class="inner-rating-item">
+                                        <div class="rating-label-container">
+                                            <div class="ratingLabels">Overall Landlord Rating:</div>
+                                            <div class="info-circle">
+                                                <div class="info-icon">i</div>
+                                                <div class="info-tooltip">left lower - right higher</div>
+                                            </div>
+                                        </div>
+                                        <div class="rating-slider" id="overallLandlordRatingDisplay">
+                                            <input type="range" min="1" max="5" value="<?php echo $agentOverall; ?>" class="sliderDisplay" id="overallLandlordSliderDisplay" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="overall-rating-container">
                     </div>
                 </div>
             </div>
@@ -630,16 +640,16 @@ $conn->close();
                         <div class="commentLabel">Overall</div>
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-overall-container">
-                            <?php echo "<p>$overallRating" ?>
-                            <span class="star">&#9733; - <?php echo " $count Reviews</p>" ?> </span>
+                            <?php echo "<div class = 'ratingLabel'>$overallRating" ?>
+                            <span class="star">&#9733; - <?php echo " $count Reviews</div>" ?> </span>
                         </div>
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-breakdown">
-                            <p style="display: inline;" >5 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFive; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFive</p>" ?><br>
-                            <p style="display: inline;" >4 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFour; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFour</p>" ?><br>
-                            <p style="display: inline;" >3 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countThree; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countThree</p>" ?><br>
-                            <p style="display: inline;" >2 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countTwo; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countTwo</p>" ?><br>
-                            <p style="display: inline;" >1 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countOne; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countOne</p>" ?>
+                            <div>5 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFive; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFive</div>" ?>
+                            <div>4 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFour; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFour</div>" ?>
+                            <div>3 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countThree; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countThree</div>" ?>
+                            <div>2 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countTwo; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countTwo</div>" ?>
+                            <div>1 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countOne; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countOne</div>" ?>
                         </div>
                     </div>
                     <div class=landlord-rating-summary-container>
@@ -647,7 +657,7 @@ $conn->close();
                             <!-- Cleanliness Rating -->
                             <div class="rating-item">
                                 <div class="ratingLabels">
-                                    <h3>Cleanliness</h3>
+                                    <div>Cleanliness</div>
                                 </div>
                                 <div class="star-rating-display" data-category="cleanliness" data-rating=<?php echo $cleanliness; ?>>
                                     <span class="star">&#9734;</span>
@@ -661,7 +671,7 @@ $conn->close();
                             <!-- Noise Rating -->
                             <div class="rating-item">
                                 <div class="ratingLabels">
-                                    <h3>Noise<h3>
+                                    <div>Noise</div>
                                 </div>
                                 <div class="star-rating-display" data-category="noise" data-rating=<?php echo $noise; ?>>
                                     <span class="star">&#9734;</span>
@@ -675,7 +685,7 @@ $conn->close();
                             <!-- Location Rating -->
                             <div class="rating-item">
                                 <div class="ratingLabels">
-                                    <h3>Location<h3>
+                                    <div>Location</div>
                                 </div>
                                 <div class="star-rating-display" data-category="location" data-rating=<?php echo $location; ?>>
                                     <span class="star">&#9734;</span>
@@ -690,7 +700,7 @@ $conn->close();
                             <!-- Safety Rating -->
                             <div class="rating-item">
                                 <div class="ratingLabels">
-                                    <h3>Safety<h3>
+                                    <div>Safety</div>
                                 </div>
                                 <div class="star-rating-display" data-category="safety" data-rating=<?php echo $safety; ?>>
                                     <span class="star">&#9734;</span>
@@ -704,7 +714,7 @@ $conn->close();
                             <!-- Affordability Rating -->
                             <div class="rating-item">
                                 <div class="ratingLabels">
-                                    <h3>Affordability<h3>
+                                    <div>Affordability</div>
                                 </div>
                                 <div class="star-rating-display" data-category="affordability" data-rating=<?php echo $affordability; ?>>
                                     <span class="star">&#9734;</span>
