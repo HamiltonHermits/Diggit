@@ -100,6 +100,9 @@ main {
   word-wrap: break-word;
   font-size: calc(8px + 0.6vw);
 }
+#property-parent-container .boxes-container .left-box .prop-desc-container .prop-desc #char-count {
+  font-size: calc(5px + 0.9vw);
+}
 #property-parent-container .boxes-container .left-box .prop-images-container {
   display: flex;
   justify-content: center;
