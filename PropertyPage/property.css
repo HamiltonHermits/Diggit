@@ -275,17 +275,12 @@ main {
   border-radius: 15px;
 }
 #property-parent-container .boxes-container .left-box .prop-desc-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
+  display: grid;
   height: 65%;
 }
 #property-parent-container .boxes-container .left-box .prop-desc-container .prop-desc {
-  width: 90%;
+  width: 100%;
   height: 75%;
-  width: 90%;
-  max-height: 90%;
   overflow-wrap: break-word;
   /* Set the maximum height at which scrolling will occur */
   overflow-y: auto;
