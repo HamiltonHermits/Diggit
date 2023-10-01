@@ -154,7 +154,7 @@ main {
                 height: 100%;
 
                 .email-agent-button {
-                    padding:0;
+                    padding: 0;
                     width: 50%;
                 }
             }
@@ -398,7 +398,7 @@ main {
                     border-radius: 15px;
                     width: 100%;
                     text-align: center;
-                    
+
                     #amenity-img {
                         width: 20%;
                         // height: 10%;
@@ -411,42 +411,90 @@ main {
     #right-box-amenity {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
 
-        #disclaimer {
-            font-size: calc(2px + 0.5vw);
-        }
+        .main-content-landord-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
 
-        #rating-bars-container {
-            height: 60%;
+            #picture-name-container {
+                display: flex;
+                align-items: center;
+                gap: 3em;
+                height: 30%;
 
-            .landlord-rating-section {
+                img {
+                    width: 50%;
+                    height: 100%;
+                    border-radius: 9px;
+                    background-color: var(--main-color);
+                }
+            }
+
+            #disclaimer {
+                font-size: 0.5em;
+                height: 5%;
+            }
+
+            #rating-bars-container {
                 height: 100%;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
+                justify-content: flex-start;
 
-                .rating-item {
+                .landlord-rating-section {
+                    height: 100%;
                     display: flex;
-                    align-items: center;
-                    flex-wrap: wrap;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    #overall-rating-item {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        justify-content: center;
+
+                        .inner-rating-item {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            background-color: var(--main-color);
+                            padding: 1em;
+                            border-radius: 15px;
+
+                            .rating-slider {
+                                width: 100%;
+                                // background-color: var(--global-font-color);
+                            }
+                        }
+                    }
+
+                    .rating-item {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        width: 100%;
+
+                        .rating-slider {
+                            width: 50%;
+                            // background-color: var(--global-font-color);
+                        }
+
+                        .rating-label-container {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 6px;
+
+                        }
+
+
+                    }
                 }
             }
         }
+
     }
 
-    #picture-name-container {
-        display: flex;
-        align-items: center;
-        gap: 3em;
-
-        img {
-            width: 50%;
-            height: 100%;
-            border-radius: 9px;
-            background-color: var(--main-color);
-        }
-    }
 
     #show-all-container {
         display: flex;
@@ -604,18 +652,18 @@ main {
                     margin-top: 1em;
                     display: grid;
 
-                    .star-rating-comment {
+                    .star-rating-display {
                         color: var(--orange)
                     }
 
-                    .username-date-comment {
+                    .username-date-display {
                         font-weight: 600;
                         margin: 1em 0 1em 0;
                     }
 
-                    .description-comment {}
+                    .description-display {}
 
-                    .horizontal-line-comment {
+                    .horizontal-line-display {
                         width: 100%;
                     }
                 }
@@ -631,6 +679,12 @@ main {
                 background-color: var(--inner-box-color);
                 padding: 1em 2em 2em 2em;
                 border-radius: 15px;
+                display: flex;
+                flex-direction: column;
+
+                .horizontal-line-comment {
+                    width: 100%;
+                }
 
                 .commentLabel {
                     font-size: 30px;
@@ -644,7 +698,17 @@ main {
 
                 .rating-summary-overall-container {}
 
-                .rating-summary-breakdown {}
+                .rating-summary-breakdown {
+                    display: flex;
+                    flex-direction: column;
+                    height: 75%;
+                    justify-content: space-around;
+
+                    div {
+                        display: inline-flex;
+                        justify-content: space-between;
+                    }
+                }
 
             }
 
@@ -655,8 +719,13 @@ main {
 
                 .star-rating-section {
                     text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
 
                     .rating-item {
+                        height: 20%;
+
                         .ratingLabels {
                             display: inline;
                             font-size: calc(5px + 0.8vw);
@@ -668,7 +737,9 @@ main {
                             .info-tooltip {}
                         }
 
-                        .star-rating {
+                        .star-rating-display {
+                            font-size: 2em;
+
                             .star {
                                 color: var(--orange);
                             }
@@ -868,7 +939,7 @@ main {
                 display: flex;
                 flex-direction: row;
                 width: 100%;
-                height: 50%;
+                height: 30%;
 
                 .rating-summary-container {
                     width: 50%;
@@ -877,16 +948,25 @@ main {
                         font-size: 2.5vw;
                     }
 
-                    .rating-summary-breakdown {
-                        font-size: calc(10px + 2.5vw);
-                    }
+                    .rating-summary-breakdown {}
                 }
 
                 .landlord-rating-summary-container {
                     width: 50%;
+                    display: flex;
+                    align-items: center;
 
                     .star-rating-section {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        flex-wrap: wrap;
+
                         .rating-item {
+                            display: flex;
+                            gap: 1em;
+                            width: 100%;
+                            justify-content: space-between;
+
                             .star-rating {
                                 font-size: calc(15px + 1.5vw);
                             }
@@ -983,6 +1063,39 @@ main {
 
                         .next-page-container {
                             width: auto;
+                        }
+                    }
+                }
+            }
+
+            .right-box {
+
+
+                .rating-summary-container {
+
+
+                    .rating-summary-overall-container {}
+
+                    .rating-summary-breakdown {
+                        input{
+                            width: 75%;
+                        }
+                    }
+                }
+
+                .landlord-rating-summary-container {
+
+
+                    .star-rating-section {
+
+
+                        .rating-item {
+                            gap:0;
+                            flex-direction: column;
+
+                            .star-rating-display {
+                                font-size: 1.5em;
+                            }
                         }
                     }
                 }

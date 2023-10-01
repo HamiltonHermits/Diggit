@@ -331,35 +331,70 @@ main {
 #amenity-parent-container #right-box-amenity {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
-#amenity-parent-container #right-box-amenity #disclaimer {
-  font-size: calc(2px + 0.5vw);
-}
-#amenity-parent-container #right-box-amenity #rating-bars-container {
-  height: 60%;
-}
-#amenity-parent-container #right-box-amenity #rating-bars-container .landlord-rating-section {
+#amenity-parent-container #right-box-amenity .main-content-landord-container {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
-#amenity-parent-container #right-box-amenity #rating-bars-container .landlord-rating-section .rating-item {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-#amenity-parent-container #picture-name-container {
+#amenity-parent-container #right-box-amenity .main-content-landord-container #picture-name-container {
   display: flex;
   align-items: center;
   gap: 3em;
+  height: 30%;
 }
-#amenity-parent-container #picture-name-container img {
+#amenity-parent-container #right-box-amenity .main-content-landord-container #picture-name-container img {
   width: 50%;
   height: 100%;
   border-radius: 9px;
   background-color: var(--main-color);
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #disclaimer {
+  font-size: 0.5em;
+  height: 5%;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section #overall-rating-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section #overall-rating-item .inner-rating-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-color);
+  padding: 1em;
+  border-radius: 15px;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section #overall-rating-item .inner-rating-item .rating-slider {
+  width: 100%;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section .rating-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section .rating-item .rating-slider {
+  width: 50%;
+}
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section .rating-item .rating-label-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 #amenity-parent-container #show-all-container {
   display: flex;
@@ -498,14 +533,14 @@ main {
   margin-top: 1em;
   display: grid;
 }
-#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .star-rating-comment {
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .star-rating-display {
   color: var(--orange);
 }
-#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .username-date-comment {
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .username-date-display {
   font-weight: 600;
   margin: 1em 0 1em 0;
 }
-#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .horizontal-line-comment {
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .horizontal-line-display {
   width: 100%;
 }
 #comment-parent-container .boxes-container .right-box {
@@ -517,6 +552,11 @@ main {
   background-color: var(--inner-box-color);
   padding: 1em 2em 2em 2em;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .horizontal-line-comment {
+  width: 100%;
 }
 #comment-parent-container .boxes-container .right-box .rating-summary-container .commentLabel {
   font-size: 30px;
@@ -525,6 +565,16 @@ main {
   align-content: center;
   flex-wrap: wrap;
 }
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown {
+  display: flex;
+  flex-direction: column;
+  height: 75%;
+  justify-content: space-around;
+}
+#comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown div {
+  display: inline-flex;
+  justify-content: space-between;
+}
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container {
   background-color: var(--inner-box-color);
   padding: 2em 2em 2em 2em;
@@ -532,12 +582,21 @@ main {
 }
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item {
+  height: 20%;
 }
 #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .ratingLabels {
   display: inline;
   font-size: calc(5px + 0.8vw);
 }
-#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .star-rating .star {
+#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .star-rating-display {
+  font-size: 2em;
+}
+#comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .star-rating-display .star {
   color: var(--orange);
 }
 
@@ -687,7 +746,7 @@ main {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 50%;
+    height: 30%;
   }
   #comment-parent-container .boxes-container .right-box .rating-summary-container {
     width: 50%;
@@ -695,11 +754,21 @@ main {
   #comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-overall-container {
     font-size: 2.5vw;
   }
-  #comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown {
-    font-size: calc(10px + 2.5vw);
-  }
   #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container {
     width: 50%;
+    display: flex;
+    align-items: center;
+  }
+  #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+  }
+  #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item {
+    display: flex;
+    gap: 1em;
+    width: 100%;
+    justify-content: space-between;
   }
   #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .star-rating {
     font-size: calc(15px + 1.5vw);
@@ -751,6 +820,16 @@ main {
   }
   #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .next-page-container {
     width: auto;
+  }
+  #comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown input {
+    width: 75%;
+  }
+  #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item {
+    gap: 0;
+    flex-direction: column;
+  }
+  #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item .star-rating-display {
+    font-size: 1.5em;
   }
 }
 /*# sourceMappingURL=property.css.map */
