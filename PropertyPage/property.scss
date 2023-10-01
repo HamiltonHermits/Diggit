@@ -378,8 +378,13 @@ main {
                     justify-content: center;
                     align-items: center;
                     font-size: calc(10px + 0.5vw);
-                    border: var(--global-font-color) 1px solid;
+                    // border: var(--global-font-color) 1px solid;
                     border-radius: 15px;
+                    
+                    #amenity-img {
+                        width: 11.5%;
+                        height: 10%;
+                    }
                 }
             }
         }

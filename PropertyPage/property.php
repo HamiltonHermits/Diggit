@@ -81,11 +81,10 @@ $resultUser = $resultUser->fetch_assoc();
 $stmtUser->close();
 
 //Get amenities for property
-$stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name
-                                    FROM hamiltonhermits.amenity_test
-                                    INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
-                                    WHERE property_amenity.prop_id = ?;
-                                  ");
+$stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name, amenity_test.amenity_image
+                                FROM hamiltonhermits.amenity_test
+                                INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
+                                WHERE property_amenity.prop_id = ?;");
 $stmtAmenity->bind_param("s", $propId);
 $stmtAmenity->execute();
 $resultAmenity = $stmtAmenity->get_result();
@@ -451,7 +450,7 @@ $conn->close();
                             $amenityCount = 0;
                             while ($row = mysqli_fetch_array($resultAmenity)) {
                                 echo " <div class=\"amenity-item\">
-                                                <img src=\"#\" alt=\"\">[] {$row['amenity_name']}
+                                                <img id=\"amenity-img\" src=\"amenityImages/{$row['amenity_image']}\" alt=\"\"> {$row['amenity_name']}
                                            </div>";
                                 $amenityCount++;
                             }

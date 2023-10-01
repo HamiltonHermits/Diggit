@@ -324,8 +324,11 @@ main {
   justify-content: center;
   align-items: center;
   font-size: calc(10px + 0.5vw);
-  border: var(--global-font-color) 1px solid;
   border-radius: 15px;
+}
+#amenity-parent-container #left-box-amenity #amenity-item-container #amenity-item-inner-container .amenity-item #amenity-img {
+  width: 11.5%;
+  height: 10%;
 }
 #amenity-parent-container #right-box-amenity {
   display: flex;
