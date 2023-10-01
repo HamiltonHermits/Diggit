@@ -28,6 +28,7 @@ if(notATenantModal){
 
         if (event.target == notATenantModal) {
             notATenantModal.style.display = 'none';
+            openWhoopsNotAllowed.style.display = 'block';
         }
     });
 }

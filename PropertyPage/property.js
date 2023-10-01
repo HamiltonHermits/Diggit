@@ -10,6 +10,29 @@ for (var i = 0; i < sliderDisplay.length; i++) {
   sliderDisplay[i].disabled = true;
 }
 
+
+// Function to populate stars based on data-rating
+function populateStars() {
+  const starContainers = document.querySelectorAll('.star-rating-display');
+
+  starContainers.forEach((container) => {
+    const rating = parseInt(container.getAttribute('data-rating'));
+
+    // Get all the stars in the container
+    const stars = container.querySelectorAll('.star');
+
+    // Loop through the stars and set them based on the rating
+    stars.forEach((star, index) => {
+      if (index < rating) {
+        star.innerHTML = '&#9733;'; // Filled star
+      } else {
+        star.innerHTML = '&#9734;'; // Not filled star
+      }
+    });
+  });
+}
+// Call the function to populate stars on page load
+window.addEventListener('load', populateStars);
 // Get allparentContainers
 // const parentContainers = document.querySelectorAll(".parent-container");
 document.getElementById("sort-comments").addEventListener("change", function () {
