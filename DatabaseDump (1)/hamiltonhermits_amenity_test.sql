@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: hamiltonhermits
+-- Host: 127.0.0.1    Database: hamiltonhermits
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.28-MariaDB
 
@@ -25,8 +25,9 @@ DROP TABLE IF EXISTS `amenity_test`;
 CREATE TABLE `amenity_test` (
   `amenity_id` int(11) NOT NULL AUTO_INCREMENT,
   `amenity_name` varchar(45) NOT NULL,
+  `amenity_image` varchar(300) NOT NULL,
   PRIMARY KEY (`amenity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Contains every possible amenity on record';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Contains every possible amenity on record';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +36,7 @@ CREATE TABLE `amenity_test` (
 
 LOCK TABLES `amenity_test` WRITE;
 /*!40000 ALTER TABLE `amenity_test` DISABLE KEYS */;
-INSERT INTO `amenity_test` VALUES (1,'wifi'),(2,'propertyParking'),(3,'waterTank'),(4,'laundry'),(5,'electricStove'),(6,'gasStove'),(7,'fridge'),(8,'microwave');
+INSERT INTO `amenity_test` VALUES (1,'Wifi','wifi.png'),(2,'Car parking','car.png'),(3,'Grey water tank','grey_water.png'),(4,'Drinking water tank','water_drink.png'),(5,'Kitchen appliances','kitchen.png'),(6,'Gas stove','gas.png'),(7,'Fridge','fridge.png'),(8,'Laundry','laundry.png'),(9,'Furnished','furniture.png'),(10,'24/7 Security','secure.png'),(11,'Cleaning service','mop.png'),(12,'Pet friendly','pet.png');
 /*!40000 ALTER TABLE `amenity_test` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-01 14:24:01
+-- Dump completed on 2023-10-01 19:36:29

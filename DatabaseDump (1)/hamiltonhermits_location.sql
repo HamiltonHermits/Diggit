@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: hamiltonhermits
+-- Host: 127.0.0.1    Database: hamiltonhermits
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.28-MariaDB
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-01 14:24:01
+-- Dump completed on 2023-10-01 19:36:29
