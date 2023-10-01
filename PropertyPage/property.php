@@ -512,10 +512,6 @@ $conn->close();
                             <!-- Politeness Rating -->
                             <div class="rating-item">
                                 <p class="ratingLabels">Politeness:</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">left lower - right higher</div>
-                                </div>
                                 <div class="" id="politenessRatingDisplay">
                                     <input type="range" min="1" max="5" value="<?php echo $agentPolite; ?>" class="sliderDisplay" id="politenessSliderDisplay" readonly>
                                 </div>
@@ -524,10 +520,6 @@ $conn->close();
                             <!-- Quality of Repair Rating -->
                             <div class="rating-item">
                                 <p class="ratingLabels">Quality of Repair:</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">left lower - right higher</div>
-                                </div>
                                 <div class="rating-slider" id="repairRatingDisplay">
                                     <input type="range" min="1" max="5" value="<?php echo $agentQuality; ?>" class="sliderDisplay" id="repairSliderDisplay" readonly>
                                 </div>
@@ -536,10 +528,6 @@ $conn->close();
                             <!-- Response Time Rating -->
                             <div class="rating-item">
                                 <p class="ratingLabels">Response Time:</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">left lower - right higher</div>
-                                </div>
                                 <div class="rating-slider" id="responseTimeRatingDisplay">
                                     <input type="range" min="1" max="5" value="<?php echo $agentResponse; ?>" class="sliderDisplay" id="responseTimeSliderDisplay" readonly>
                                 </div>
@@ -548,10 +536,6 @@ $conn->close();
                             <!-- Overall Landlord Rating -->
                             <div class="rating-item">
                                 <p class="ratingLabels">Overall Landlord Rating:</p>
-                                <div class="info-circle">
-                                    <div class="info-icon">i</div>
-                                    <div class="info-tooltip">left lower - right higher</div>
-                                </div>
                                 <div class="rating-slider" id="overallLandlordRatingDisplay">
                                     <input type="range" min="1" max="5" value="<?php echo $agentOverall; ?>" class="sliderDisplay" id="overallLandlordSliderDisplay" readonly>
                                 </div>
