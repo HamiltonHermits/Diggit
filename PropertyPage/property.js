@@ -3,11 +3,18 @@ var counter;
 var MAX_VIEW = 5;
 var lastval_boolean = false;
 
+//to disable the sliders
+var sliderDisplay = document.getElementsByClassName("sliderDisplay");
+
+for (var i = 0; i < sliderDisplay.length; i++) {
+  sliderDisplay[i].disabled = true;
+}
+
 // Get allparentContainers
 // const parentContainers = document.querySelectorAll(".parent-container");
-document.getElementById("sort-comments").addEventListener("change", function() {
-    var selectedValue = this.value;
-    window.location.href = "property.php?sort=" + selectedValue;
+document.getElementById("sort-comments").addEventListener("change", function () {
+  var selectedValue = this.value;
+  window.location.href = "property.php?sort=" + selectedValue;
 });
 
 //////////////////////////////////////////////////////////////////////////
@@ -24,31 +31,31 @@ let url = 'map.php' + '?id=' + param1Value;
 
 // Make a GET request to map.php using fetch
 fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json(); // Parse the response as JSON
-    })
-    .then(data => {
-        console.log(data);
-        //data is an associative array
-        let latitude = data[0].lat;
-        let longitude = data[0].long;
-        let propName = data[0].prop_name;
-        
-        map.setView([latitude, longitude], 15.5); //coords + zoom level
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); // Parse the response as JSON
+  })
+  .then(data => {
+    console.log(data);
+    //data is an associative array
+    let latitude = data[0].lat;
+    let longitude = data[0].long;
+    let propName = data[0].prop_name;
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+    map.setView([latitude, longitude], 15.5); //coords + zoom level
 
-        var marker = L.marker([latitude, longitude]).addTo(map); //marker
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 
-        marker.bindPopup(`${propName}`).openPopup();
-    })
-    .catch(error => console.error('Error:', error));
+    var marker = L.marker([latitude, longitude]).addTo(map); //marker
+
+    marker.bindPopup(`${propName}`).openPopup();
+  })
+  .catch(error => console.error('Error:', error));
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -69,11 +76,11 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("propertyImage");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
+  if (n > slides.length) { slideIndex = 1 }
+  if (n < 1) { slideIndex = slides.length }
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
-  slides[slideIndex-1].style.display = "block";
+  slides[slideIndex - 1].style.display = "block";
 
 }

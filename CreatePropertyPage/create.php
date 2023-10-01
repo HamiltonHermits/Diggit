@@ -91,8 +91,8 @@ if (isset($_SESSION['profileMessage'])) {
 
             </div>
             <div class="page-indicator-container">
-                <div class="page-indicator-inner-container">
-                    <a class="page-indicator" id="prop-indicator" href="#">
+                <div class="page-indicator-inner-container" id="prop-indicator">
+                    <a class="page-indicator" href="#property-parent-container">
                         <div class="icon">
                             <svg width="30" height="30" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_30_336" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="42">
@@ -105,7 +105,9 @@ if (isset($_SESSION['profileMessage'])) {
                         </div>
                         Property
                     </a>
-                    <a class="page-indicator" id="amenity-indicator" href="#">
+                </div>
+                <div class="page-indicator-inner-container" id="amenity-indicator">
+                    <a class="page-indicator" href="#ammenities-parent-container">
                         <div class="icon">
                             <svg width="25" height="25" viewBox="0 0 29 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.51611 34C2.55361 34 1.72966 33.6671 1.04424 33.0013C0.358822 32.3354 0.0161133 31.535 0.0161133 30.6V3.4C0.0161133 2.465 0.358822 1.66458 1.04424 0.99875C1.72966 0.332917 2.55361 0 3.51611 0H24.5161C25.4786 0 26.3026 0.332917 26.988 0.99875C27.6734 1.66458 28.0161 2.465 28.0161 3.4V30.6C28.0161 31.535 27.6734 32.3354 26.988 33.0013C26.3026 33.6671 25.4786 34 24.5161 34H3.51611ZM3.51611 30.6H24.5161V3.4H3.51611V30.6ZM14.0161 28.9C16.4369 28.9 18.5005 28.0713 20.2067 26.4138C21.913 24.7563 22.7661 22.7517 22.7661 20.4C22.7661 18.0483 21.913 16.0438 20.2067 14.3863C18.5005 12.7288 16.4369 11.9 14.0161 11.9C11.5953 11.9 9.53174 12.7288 7.82549 14.3863C6.11924 16.0438 5.26611 18.0483 5.26611 20.4C5.26611 22.7517 6.11924 24.7563 7.82549 26.4138C9.53174 28.0713 11.5953 28.9 14.0161 28.9ZM14.0161 26.01C13.2578 26.01 12.5213 25.8754 11.8067 25.6063C11.0922 25.3371 10.4578 24.9333 9.90361 24.395L18.1286 16.405C18.6828 16.9433 19.0984 17.5596 19.3755 18.2538C19.6526 18.9479 19.7911 19.6633 19.7911 20.4C19.7911 21.9583 19.2297 23.2829 18.1067 24.3738C16.9838 25.4646 15.6203 26.01 14.0161 26.01ZM7.01611 8.5C7.51195 8.5 7.92757 8.33708 8.26299 8.01125C8.5984 7.68542 8.76611 7.28167 8.76611 6.8C8.76611 6.31833 8.5984 5.91458 8.26299 5.58875C7.92757 5.26292 7.51195 5.1 7.01611 5.1C6.52028 5.1 6.10466 5.26292 5.76924 5.58875C5.43382 5.91458 5.26611 6.31833 5.26611 6.8C5.26611 7.28167 5.43382 7.68542 5.76924 8.01125C6.10466 8.33708 6.52028 8.5 7.01611 8.5ZM12.2661 8.5C12.7619 8.5 13.1776 8.33708 13.513 8.01125C13.8484 7.68542 14.0161 7.28167 14.0161 6.8C14.0161 6.31833 13.8484 5.91458 13.513 5.58875C13.1776 5.26292 12.7619 5.1 12.2661 5.1C11.7703 5.1 11.3547 5.26292 11.0192 5.58875C10.6838 5.91458 10.5161 6.31833 10.5161 6.8C10.5161 7.28167 10.6838 7.68542 11.0192 8.01125C11.3547 8.33708 11.7703 8.5 12.2661 8.5Z" fill="#D9D9D9" />
@@ -114,6 +116,7 @@ if (isset($_SESSION['profileMessage'])) {
                         </div>
                         Amenities
                     </a>
+                </div>
                     <!-- <a class="page-indicator" id="review-indicator" href="#">
                         <div class="icon">
                             <svg width="25" height="25" viewBox="0 0 34 34" fill="none"
@@ -126,7 +129,6 @@ if (isset($_SESSION['profileMessage'])) {
                         </div>
                         Reviews
                     </a> -->
-                </div>
             </div>
             <div class="settings-container">
                 <svg width="30" height="30" viewBox="0 0 45 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,7 +215,7 @@ if (isset($_SESSION['profileMessage'])) {
             </div>
         </div>
 
-        <div class="parent-container" id="ammenities-parent-container" data-target="prop-indicator">
+        <div class="parent-container" id="ammenities-parent-container" data-target="amenity-indicator">
             <div class="boxes-container">
                 <div class="left-box">
                     <div class="title-container">
@@ -277,7 +279,7 @@ if (isset($_SESSION['profileMessage'])) {
                 }
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
-                            <td class = 'name' id='{$row["amenity_id"]}'>" . $row["amenity_name"] . "</td>
+                            <td class = 'name' id='{$row["amenity_id"]}' style=\"text-align: left\">" . $row["amenity_name"] . "</td>
                             <td> <input type='checkbox'> </td>
                         </tr>";
                 }
@@ -288,7 +290,7 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <!-- Add a button to open the signup modal -->
                 <!-- <button id="submitAmenities">Submit Amenities</button> -->
-                <button id="submitAmenitiesBtn" class="filledButton">Submit Amenities</button>
+                <button id="submitAmenitiesBtn" class="filledButton" style="margin-top: 5%">Submit Amenities</button>
             </div>
         </div>
 
@@ -472,12 +474,13 @@ if (isset($_SESSION['profileMessage'])) {
         <div id="addTenantModel" class="modal" style="display: 'none';">
             <div class="modal-content">
                 <span class="close" id="closeAddTenantButton">&times;</span>
-
+                
                 <h3>Add Your Tenants Email</h3>
                 <div id="errorDiv"></div> <!-- Error message will be displayed here -->
                 <div style="display: inline-flex; gap: 0.5em;" >
-                <input type="text" class="modalInput" id="emailInput" placeholder="e.g: michael@gmail.com">
-                <button onclick="addEmail()" class="filledButton" id="thisButtonExistsBecauseIsayso" >Add</button>
+                    <input type="text" class="modalInput" name="emailInput" id="emailInput" placeholder="e.g: michael@gmail.com">
+                    <!-- <input type="submit" name="submit" value="Add" class="filledButton" id="thisButtonExistsBecauseIsayso"> -->
+                    <button onclick="addEmail()" class="filledButton" id="thisButtonExistsBecauseIsayso" >Add</button>
                 </div>
             </div>
         </div>

@@ -44,18 +44,8 @@ function scrollToPointOnPage(e) {
     document.getElementById(target).scrollIntoView({behavior: 'smooth'});
 }
 
-
-
-
 // Initial check (in case user starts midway down the page)
 updateActivePageIndicator();
 
 // Listen for scroll events
 window.addEventListener("scroll", updateActivePageIndicator);
-
-// Listen for click on sidebar elements
-// sidebarElements.forEach(function(element) {
-//     element.addEventListener("click", function() {
-//         scrollToPointOnPage(element);
-//     });
-// });

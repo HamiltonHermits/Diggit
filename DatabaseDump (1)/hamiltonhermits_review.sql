@@ -35,7 +35,7 @@ CREATE TABLE `review` (
   `repair_quality_rating` int(11) NOT NULL,
   `response_time_rating` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `avg_prop_review` int(11) NOT NULL,
+  `overall_tenant_rating` int(11) NOT NULL,
   `date_reviewed` date NOT NULL,
   `overall_property_rating` int(11) NOT NULL,
   PRIMARY KEY (`review_id`),
@@ -67,4 +67,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-30 23:21:50
+-- Dump completed on 2023-10-01 14:24:01
