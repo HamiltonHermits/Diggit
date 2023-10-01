@@ -29,6 +29,23 @@ main {
   background-color: var(--main-color);
 }
 
+table {
+  border-collapse: collapse;
+}
+
+table td {
+  word-wrap: break-word;
+  border: 1px solid black;
+}
+
+table td + td {
+  border-left: 2px solid rgb(0, 0, 0);
+}
+
+th {
+  text-align: left;
+}
+
 .nav-top {
   display: flex;
   justify-content: space-between;
