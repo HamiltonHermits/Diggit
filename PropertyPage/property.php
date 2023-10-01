@@ -395,7 +395,7 @@ $conn->close();
                                 </div>
                             </div>
                         </div>
-                        <div class=" -container">
+                        <div class="contact-container">
                             <div class="title">Contact</div>
                             <div class="contact-info-container">
                                 <form action="mailto:g21j5408@ru.ac.za.com" method="get" enctype="text/plain" class="contact-form">
