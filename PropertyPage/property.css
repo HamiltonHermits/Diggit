@@ -82,6 +82,7 @@ main {
   border-radius: 25px 15px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: var(--orange);
+  border: 2px var(--orange) solid;
 }
 .nav-top .searchbar-container .borderSearchBar #searchbar {
   width: 80%;
@@ -94,15 +95,21 @@ main {
   background: none;
   width: 5%;
   border: none;
+  border-radius: 50%;
+}
+.nav-top .searchbar-container .borderSearchBar textarea:focus, .nav-top .searchbar-container .borderSearchBar input:focus {
+  outline: none;
 }
 .nav-top .searchbar-container .borderSearchBar #crab-logo {
-  width: 15%;
+  width: 5%;
 }
 .nav-top .searchbar-container #dropdown {
   position: relative;
   display: grid;
   width: 50%;
-  background-color: var(--light-secondary-colour);
+  background-color: var(--inner-box-color);
+  border-left: 2px solid var(--orange);
+  border-right: 2px solid var(--orange);
   height: 100%;
   min-width: 200px;
   border-radius: 0px 0px 27px 27px;

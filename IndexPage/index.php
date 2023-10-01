@@ -110,7 +110,7 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <?php if (isset($login_error_message)) { ?>
                     <p><?php echo $login_error_message; ?></p>
-                    <?php echo '<script>loginModal.style.display = "block";</script>'; ?>
+                    <?php echo '<script>loginModal.style.display = "block";</script>'; unset($_SESSION['$login_error_message;'])?>
                 <?php } ?>
 
                 <form id="loginForm" action="../Backend_Files/login.php" method="POST">
@@ -120,7 +120,7 @@ if (isset($_SESSION['profileMessage'])) {
                     <label for="password" class="modalLabel">Password:</label>
                     <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
                     <input type="submit" id="submitLogin" value="Login">
-                    <button id="signupButton">Signup</button>
+                    <button type="button" id="signupButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
@@ -224,12 +224,12 @@ if (isset($_SESSION['profileMessage'])) {
             <div class="modal-content">
                 <span class="close" id="closeDeleteModalBtn">&times;</span>
 
-                <h2>Confirm Delete</h2>
-                <p>Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php" method="post">
-                    <button type="submit" class="deleteButton">Yes, Delete</button>
+                <h2 class="modalLabel" >Confirm Delete</h2>
+                <p class="modalLabel">Are you sure you want to delete your profile?</p>
+                <form action="../Backend_Files/deleteProfile.php" class="confirmDeleteForm"  method="post">
+                    <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
+                    <button id="cancelDeleteBtn" class="filledButton" style="right: 0;" >Cancel</button>
                 </form>
-                <button id="cancelDeleteBtn">Cancel</button>
             </div>
         </div>
 

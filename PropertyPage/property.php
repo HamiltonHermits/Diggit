@@ -138,6 +138,7 @@ $countFour = 0;
 $countThree = 0;
 $countTwo = 0;
 $countOne = 0;
+$countOne = 0;
 //we gonna go through and and grab every review
 while ($row = mysqli_fetch_array($resultReviews)) {
     if ($row['overall_property_rating'] == 5) $countFive += 1;
@@ -288,11 +289,12 @@ $conn->close();
                 <div class="borderSearchBar" id="borderSearchBar">
                     <button type="submit" class="searchButton" id="searchButton">
                         <svg class="svgSearch" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19.6705 16.5218L19.6773 16.5121L19.6837 16.5021C20.709 14.8889 21.3112 12.9735 21.3112 10.9149C21.3112 5.16412 16.6544 0.499512 10.9089 0.499512C5.15702 0.499512 0.5 5.1639 0.5 10.9149C0.5 16.6656 5.15681 21.3302 10.9023 21.3302C12.9878 21.3302 14.9306 20.7146 16.5581 19.6615L16.5651 19.6569L16.572 19.6522L16.6779 19.5785L23.4524 26.3531L23.8091 26.7098L24.1626 26.3499L26.3567 24.1169L26.7038 23.7635L26.3537 23.413L19.5871 16.6402L19.6705 16.5218ZM16.1022 5.72806C17.4862 7.1121 18.2474 8.95104 18.2474 10.9084C18.2474 12.8657 17.4862 14.7046 16.1022 16.0887C14.7181 17.4727 12.8792 18.2339 10.9219 18.2339C8.96454 18.2339 7.1256 17.4727 5.74157 16.0887C4.35754 14.7046 3.59635 12.8657 3.59635 10.9084C3.59635 8.95104 4.35754 7.1121 5.74157 5.72806C7.1256 4.34403 8.96455 3.58284 10.9219 3.58284C12.8792 3.58284 14.7181 4.34403 16.1022 5.72806Z" fill="#AD5511" stroke="#AD5511" />
+                            <path d="M19.6705 16.5218L19.6773 16.5121L19.6837 16.5021C20.709 14.8889 21.3112 12.9735 21.3112 10.9149C21.3112 5.16412 16.6544 0.499512 10.9089 0.499512C5.15702 0.499512 0.5 5.1639 0.5 10.9149C0.5 16.6656 5.15681 21.3302 10.9023 21.3302C12.9878 21.3302 14.9306 20.7146 16.5581 19.6615L16.5651 19.6569L16.572 19.6522L16.6779 19.5785L23.4524 26.3531L23.8091 26.7098L24.1626 26.3499L26.3567 24.1169L26.7038 23.7635L26.3537 23.413L19.5871 16.6402L19.6705 16.5218ZM16.1022 5.72806C17.4862 7.1121 18.2474 8.95104 18.2474 10.9084C18.2474 12.8657 17.4862 14.7046 16.1022 16.0887C14.7181 17.4727 12.8792 18.2339 10.9219 18.2339C8.96454 18.2339 7.1256 17.4727 5.74157 16.0887C4.35754 14.7046 3.59635 12.8657 3.59635 10.9084C3.59635 8.95104 4.35754 7.1121 5.74157 5.72806C7.1256 4.34403 8.96455 3.58284 10.9219 3.58284C12.8792 3.58284 14.7181 4.34403 16.1022 5.72806Z" fill="#d9d9d9" stroke="#d9d9d9" />
                         </svg>
                     </button>
                     <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
-                    <div id="crab-logo">crab</div>
+                    <img src="crab/crab.png" alt="" id="crab-logo">
+
 
                 </div>
                 <div id="dropdown" class="dropdown-content"></div>
@@ -752,7 +754,7 @@ $conn->close();
                     <label for="password" class="modalLabel">Password:</label>
                     <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
                     <input type="submit" id="submitLogin" class="filledButton" value="Login">
-                    <button id="signupButton" class="filledButton">Signup</button>
+                    <button type="button" id="signupButton" class="filledButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
@@ -857,10 +859,11 @@ $conn->close();
 
                 <h2>Confirm Delete</h2>
                 <p>Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" method="post">
-                    <button type="submit" class="deleteButton">Yes, Delete</button>
+                <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" class="confirmDeleteForm" method="post">
+                    <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
+                    <button id="cancelDeleteBtn" class="filledButton">Cancel</button>
                 </form>
-                <button id="cancelDeleteBtn">Cancel</button>
+
             </div>
         </div>
 

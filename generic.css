@@ -519,4 +519,9 @@ a {
 }
 .textWhite {
   color: white;
+}
+
+.confirmDeleteForm {
+  display: flex;
+  justify-content: space-evenly;
 }/*# sourceMappingURL=generic.css.map */

@@ -69,7 +69,7 @@ body {
     #deleteProfileBtn {
         display: inline-flex;
     }
-
+    
     #formProfileBtn {
         display: flex;
         justify-content: center;
@@ -580,4 +580,8 @@ a {
 //tylers shinanigans
 .textWhite{
     color: white;
+}
+.confirmDeleteForm{
+    display: flex;
+    justify-content: space-evenly;
 }
