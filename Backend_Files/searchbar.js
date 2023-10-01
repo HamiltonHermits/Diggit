@@ -34,6 +34,7 @@ searchbar.addEventListener('input', function () {
     var query = searchbar.value;
     dropdown.style.borderBottom = '2px solid #564B40';
     borderSearchBar.style.borderRadius = '30px 30px 0px 0px';
+    borderSearchBar.style.backgroundColor = '#202024';
     dropdownThere = true;
 
     // Make an AJAX request to the server-side script
@@ -79,7 +80,7 @@ searchbar.addEventListener('input', function () {
                     });
 
                     dropdownItem.addEventListener('mouseout', function () {
-                        dropdownItem.style.backgroundColor = '#564B40';
+                        dropdownItem.style.backgroundColor = "#202024";
                         dropdownItem.style.color = '#D9D9D9';
                     });
 
