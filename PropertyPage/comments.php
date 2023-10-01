@@ -2,7 +2,7 @@
 include('../Backend_Files/database_connect.php');
 // Define your SQL query based on the sorting option
 $propId = $_GET["id"];
-$sort_option = isset($_GET['sort-comments']) ? $_GET['sort-comments'] : 'desc';
+$sort_option = isset($_GET['sort']) ? $_GET['sort'] : 'desc';
 
 switch ($sort_option) {
     case 'asc':

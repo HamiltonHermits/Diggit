@@ -37,7 +37,7 @@ window.addEventListener('load', populateStars);
 // const parentContainers = document.querySelectorAll(".parent-container");
 document.getElementById("sort-comments").addEventListener("change", function () {
   var selectedValue = this.value;
-  window.location.href = "property.php?sort=" + selectedValue;
+  window.location.href = "property.php?id="+pageId+"&sort=" + selectedValue;
 });
 
 //////////////////////////////////////////////////////////////////////////
