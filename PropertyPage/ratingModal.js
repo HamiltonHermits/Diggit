@@ -116,17 +116,17 @@ const wordCountDisplay = document.getElementById('wordCount');
 // Add an input event listener to the textarea
 reviewTextarea.addEventListener('input', () => {
     const text = reviewTextarea.value;
-    const words = text.trim().split(/\s+/); // Split text into words
-    const wordCount = words.length;
+    
+    const wordCount = text.length;
 
     // Update the word count display
-    wordCountDisplay.textContent = `${wordCount}/250`;
+    wordCountDisplay.textContent = `${wordCount}/500`;
 
     // Limit the textarea to 250 words
-    if (wordCount > 250) {
+    if (wordCount > 500) {
         const truncatedText = words.slice(0, 250).join(' ');
         reviewTextarea.value = truncatedText;
-        wordCountDisplay.textContent = `250/250`;
+        wordCountDisplay.textContent = `500/250`;
     }
 });
 
