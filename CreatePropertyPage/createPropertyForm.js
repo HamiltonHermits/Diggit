@@ -47,7 +47,7 @@ document.getElementById('save-property').addEventListener('click', function () {
                 if (response.ok) {
                     return response.json(); // Parse the JSON response
                 } else {
-                    // Handle errors (e.g., show an error message)
+                    // Handle errors
                     return response.json().then(errorData => {
                         console.error("Error from server:", errorData.error); // Log the error message from the server
                         throw new Error("Problem with response");

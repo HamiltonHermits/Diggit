@@ -206,17 +206,19 @@ ratingForm.addEventListener('submit', (event) => {
         })
             .then(response => {
                 if (response.ok) {
-                    // Handle a successful response (e.g., show a success message)
                     return response.json(); // Parse the JSON response
                 } else {
-                    // Handle errors (e.g., show an error message)
-                    console.error("Error submitting rating");
-                    throw new Error("Problem with response");
+                    // Handle errors
+                    return response.json().then(errorData => {
+                        console.error("Error from server:", errorData.error); // Log the error message from the server
+                        throw new Error("Problem with response");
+                    });
                 }
             })
             .then(data => {
                 if (data && data.message) {
-                    console.log("Message from server:", data.message); // Log the specific message from the JSON response
+                    alert("Form submitted successfully");
+                    location.reload();
                 } else {
                     console.error("No message found in the JSON response");
                 }
