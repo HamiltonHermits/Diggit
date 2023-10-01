@@ -45,7 +45,6 @@ document.getElementById('save-property').addEventListener('click', function () {
             })
             .then(response => {
                 if (response.ok) {
-                    // Handle a successful response (e.g., show a success message)
                     return response.json(); // Parse the JSON response
                 } else {
                     // Handle errors (e.g., show an error message)
@@ -57,7 +56,9 @@ document.getElementById('save-property').addEventListener('click', function () {
             })
             .then(data => {
                 if (data && data.message) {
-                    console.log("Message from server:", data.message); // Log the specific message from the JSON response
+                    alert("Form submitted successfully");
+
+                     window.location.href = '../PropertyPage/property.php?id='+data.prop_id;
                 } else {
                     console.error("No message found in the JSON response");
                 }

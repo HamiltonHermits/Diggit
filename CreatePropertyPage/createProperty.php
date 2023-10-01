@@ -14,32 +14,20 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Initialize a response array
         $response = array();
-    
+    //Connect to database
+    require_once('../Backend_Files/database_connect.php');
         // Get the data sent via POST
-        $propTitle = isset($_POST['title']) ? $_POST['title'] : '';
+        //grab all the data and escape it to stop sql injection
+        $propTitle = isset($_POST['title']) ? mysqli_real_escape_string($conn, $_POST['title']) : '';
+        $propDescription = isset($_POST['desc']) ? mysqli_real_escape_string($conn, $_POST['desc']) : '';
+        $propAddress = isset($_POST['address']) ? mysqli_real_escape_string($conn, $_POST['address']) : '';
+        $propLat = isset($_POST['lat']) ? mysqli_real_escape_string($conn, $_POST['lat']) : '';
+        $propLong = isset($_POST['long']) ? mysqli_real_escape_string($conn, $_POST['long']) : '';
+        $propAmenities = isset($_POST['amenities']) ? mysqli_real_escape_string($conn, $_POST['amenities']) : '';
+        $propTenants = isset($_POST['tenants']) ? mysqli_real_escape_string($conn, $_POST['tenants']) : '';
     
-
-        // Get description
-        $propDescription = isset($_POST['desc']) ? $_POST['desc'] : '';
-        // Get searchbar text
-        $propAddress= isset($_POST['address']) ? $_POST['address'] : '';
-
-        //Get lat and long
-        $propLat = isset($_POST['lat']) ? $_POST['lat'] : '';
-        // $propLat = floatval($propLat);
-        $propLong = isset($_POST['long']) ? $_POST['long'] : '';
-        // $propLong = floatval($propLong);
-
-        // Get amenities array
-        $propAmenities = isset($_POST['amenities']) ? $_POST['amenities'] : '';
-        // Get tenants array
-        $propTenants = isset($_POST['tenants']) ? $_POST['tenants'] : '';
-        
         // Get the date
         $currentDate = date("Y-m-d");
-
-        //Connect to database
-        require_once('../Backend_Files/database_connect.php');
 
         //insert prop title
         $query = "INSERT INTO property (prop_name, created_by, prop_description,created_on, address, lat, `long`) 
@@ -122,10 +110,9 @@
         }
 
         
-        // You can now process the data as needed, e.g., insert it into a database
-    
-        // For demonstration purposes, we'll just create a response array
+
         $response['success'] = true;
+        $response['prop_id'] = $prop_id;
         $response['message'] = 'this ran succesfully ' . $propTenants;
     
         // Send the JSON response
