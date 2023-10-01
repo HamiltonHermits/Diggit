@@ -326,7 +326,7 @@ $conn->close();
                     </div>
                     <div class="prop-images-container">
                         <div class="arrowContainer" id="left-arrow-container">
-                            <button class="left-right-arrow-images" id="left-arrow" onclick="currentSlide(1)">
+                            <button class="left-right-arrow-images" id="left-arrow" onclick="plusSlides(-1)">
                                 <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <ellipse cx="15.9366" cy="16.8541" rx="15.9366" ry="16.854" transform="rotate(-180 15.9366 16.8541)" fill="#D9D9D9" fill-opacity="0.6" />
                                     <mask id="mask0_531_53" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="34">
@@ -353,7 +353,7 @@ $conn->close();
                         </div>
 
                         <div class="arrowContainer" id="right-arrow-container">
-                            <button class="left-right-arrow-images" id="right-arrow" onclick="currentSlide(-1)">
+                            <button class="left-right-arrow-images" id="right-arrow" onclick="plusSlides(1)">
                                 <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <ellipse cx="16.0634" cy="17.1459" rx="15.9366" ry="16.854" fill="#D9D9D9" fill-opacity="0.6" />
                                     <mask id="mask0_30_300" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="34">

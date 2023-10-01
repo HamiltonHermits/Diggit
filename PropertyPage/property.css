@@ -434,7 +434,7 @@ main {
 #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container {
   display: flex;
   padding: 1em 2em 2em 2em;
-  height: 25%;
+  height: 2em;
 }
 #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .previous-page-container {
   width: 22.25%;
