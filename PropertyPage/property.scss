@@ -384,22 +384,25 @@ main {
             #amenity-item-inner-container {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(6, 1fr);
+                grid-template-rows: repeat(autofill, 1fr);
                 /* Default of seven rows */
                 grid-gap: 10px;
                 height: 100%;
 
                 .amenity-item {
                     display: flex;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
                     font-size: calc(10px + 0.5vw);
                     // border: var(--global-font-color) 1px solid;
                     border-radius: 15px;
+                    width: 100%;
+                    text-align: center;
                     
                     #amenity-img {
-                        width: 11.5%;
-                        height: 10%;
+                        width: 20%;
+                        // height: 10%;
                     }
                 }
             }
