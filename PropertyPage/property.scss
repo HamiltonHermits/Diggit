@@ -389,8 +389,12 @@ main {
                 height: 100%;
 
                 .amenity-item {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     font-size: calc(10px + 0.5vw);
-                    border: blue 1px solid;
+                    border: var(--global-font-color) 1px solid;
+                    border-radius: 15px;
                 }
             }
         }

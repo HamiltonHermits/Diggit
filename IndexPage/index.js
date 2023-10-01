@@ -14,6 +14,13 @@ function redirectToPage(apartID) {
     window.location.href = `../PropertyPage/property.php?id=${apartID}`;
 }
 
+function handleApartmentClick(apartment) {
+    return function () {
+        //console.log(apartment.prop_id);
+        searchbar.value = apartment.prop_name;
+        redirectToPage(apartment.prop_id);
+    };
+}
 // Event listener to handle clicks in the search bar
 searchbar.addEventListener('click', function () {
     searchbar.placeholder = '';
@@ -63,22 +70,23 @@ searchbar.addEventListener('input', function () {
                 // Limit the loop to iterate only three times or up to the number of search results
                 for (var i = 0; i < Math.min(data.length, MAX_VIEW); i++) {
                     var apartment = data[i];
+                    //console.log(apartment.prop_id);
                     // Create a new dropdown item element
                     const dropdownItem = document.createElement('div');
                     dropdownItem.className = 'dropdown-item';
                     dropdownItem.id = 'dropdownItem';
-                    streetNumName = "";
-                    if(apartment.address){
+                    var streetNumName = "";
+                    if (apartment.address && apartment.address.trim() !== "") {
                         streetNumName = apartment.address;
                     }
-                    dropdownItem.title = apartment.prop_name + ' ' + streetNumName;
-                    dropdownItem.textContent = apartment.prop_name + '  -  ' + streetNumName; // Display apartment names & locations
+                    dropdownItem.title = apartment.prop_name + (streetNumName ? ' ' + streetNumName : '');
+                    dropdownItem.textContent = apartment.prop_name + (streetNumName ? '  -  ' + streetNumName : '');
+
 
                     // Event listeners for click, mouseover, and mouseout
-                    dropdownItem.addEventListener('click', function () {
-                        searchbar.value = apartment.prop_name + ', ' + streetNumName;
-                        redirectToPage(apartment.prop_id);
-                    });
+
+                    dropdownItem.addEventListener('click', handleApartmentClick(apartment));
+
 
                     dropdownItem.addEventListener('mouseover', function () {
                         dropdownItem.style.backgroundColor = '#D9D9D9';
@@ -131,6 +139,7 @@ searchbar.addEventListener('input', function () {
         .catch((error) => {
             console.error('Error:', error);
         });
+
 });
 
 // Event listener to hide the dropdown when clicking outside of it

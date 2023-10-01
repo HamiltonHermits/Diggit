@@ -8,9 +8,34 @@ var openRatingModalBtnButItsNot = document.getElementById('openRatingModalBtnBut
 var notLoggedInModalSomethingElse = document.getElementById('notLoggedInModalSomethingElse');
 var loginButtonPropertyPage = document.getElementById('loginButtonPropertyPage');
 // console.log(userId," ",pageId);
+var closeNotLoggedInModalSomethingElse = document.getElementById('closeNotLoggedInModalSomethingElse');
+var notATenantModal = document.getElementById('notATenantModal');
+var closeNotATenantModal = document.getElementById('closeNotATenantModal');
+var openWhoopsNotAllowed = document.getElementById('openWhoopsNotAllowed');
 
+if(openWhoopsNotAllowed){
+    openWhoopsNotAllowed.addEventListener('click', () => {
+        openWhoopsNotAllowed.style.display = 'none';
+        notATenantModal.style.display = 'block';
+    });
+}
+
+if(notATenantModal){
+    closeNotATenantModal.addEventListener('click', () => {
+        notATenantModal.style.display = 'none';
+    });
+    window.addEventListener('click', (event) => {
+
+        if (event.target == notATenantModal) {
+            notATenantModal.style.display = 'none';
+        }
+    });
+}
 //event listeners for when the user is not logged in 
 if (openRatingModalBtnButItsNot) {
+    closeNotLoggedInModalSomethingElse.addEventListener('click', () => {
+        notLoggedInModalSomethingElse.style.display = 'none';
+    });
     openRatingModalBtnButItsNot.addEventListener('click', () => {
         notLoggedInModalSomethingElse.style.display = 'block';
     });
@@ -91,17 +116,17 @@ const wordCountDisplay = document.getElementById('wordCount');
 // Add an input event listener to the textarea
 reviewTextarea.addEventListener('input', () => {
     const text = reviewTextarea.value;
-    const words = text.trim().split(/\s+/); // Split text into words
-    const wordCount = words.length;
+    
+    const wordCount = text.length;
 
     // Update the word count display
-    wordCountDisplay.textContent = `${wordCount}/250`;
+    wordCountDisplay.textContent = `${wordCount}/500`;
 
     // Limit the textarea to 250 words
-    if (wordCount > 250) {
+    if (wordCount > 500) {
         const truncatedText = words.slice(0, 250).join(' ');
         reviewTextarea.value = truncatedText;
-        wordCountDisplay.textContent = `250/250`;
+        wordCountDisplay.textContent = `500/250`;
     }
 });
 
@@ -122,12 +147,12 @@ starContainers.forEach((container) => {
             const rating = index + 1; // Rating starts from 1, not 0
             container.setAttribute('data-rating', rating); // Update the data-rating attribute
 
-            // Toggle the filled and hollow states
+            // Toggle between filled and not filled stars
             stars.forEach((s, i) => {
                 if (i < rating) {
-                    s.classList.add('filled');
+                    s.innerHTML = '&#9733;'; // Filled star
                 } else {
-                    s.classList.remove('filled');
+                    s.innerHTML = '&#9734;'; // Not filled star
                 }
             });
 
@@ -206,17 +231,19 @@ ratingForm.addEventListener('submit', (event) => {
         })
             .then(response => {
                 if (response.ok) {
-                    // Handle a successful response (e.g., show a success message)
                     return response.json(); // Parse the JSON response
                 } else {
-                    // Handle errors (e.g., show an error message)
-                    console.error("Error submitting rating");
-                    throw new Error("Problem with response");
+                    // Handle errors
+                    return response.json().then(errorData => {
+                        console.error("Error from server:", errorData.error); // Log the error message from the server
+                        throw new Error("Problem with response");
+                    });
                 }
             })
             .then(data => {
                 if (data && data.message) {
-                    console.log("Message from server:", data.message); // Log the specific message from the JSON response
+                    alert("Form submitted successfully");
+                    location.reload();
                 } else {
                     console.error("No message found in the JSON response");
                 }

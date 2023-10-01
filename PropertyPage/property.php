@@ -91,6 +91,21 @@ $stmtAmenity->execute();
 $resultAmenity = $stmtAmenity->get_result();
 $stmtAmenity->close();
 
+//get users that can comment
+$stmtAllowedUsers = $conn->prepare(" SELECT * FROM tenants WHERE prop_id = ?;");
+$stmtAllowedUsers->bind_param("s", $propId);
+$stmtAllowedUsers->execute();
+$stmtAllowedUsers = $stmtAllowedUsers->get_result();
+$isTenant = false;
+while ($row = mysqli_fetch_array($stmtAllowedUsers)) {
+    if(isset($_SESSION['email'])){
+        if ($_SESSION['email'] == $row['tenant_id']) {
+            $isTenant = true;
+        }
+    }
+
+}
+
 // Get image for property
 $stmtImages = $conn->prepare(" SELECT * FROM property_images WHERE prop_id = ?;");
 $stmtImages->bind_param("s", $propId);
@@ -443,9 +458,9 @@ $conn->close();
                             ?>
                         </div>
                     </div>
-                    <div id="show-all-container">
+                    <!-- <div id="show-all-container">
                         <input type="button" name="show-all-btn" value="show all (<?php echo $amenityCount ?>)" id="show-all-btn">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="right-box" id="right-box-amenity">
                     <div class="title" id="landlord-title">
@@ -515,13 +530,21 @@ $conn->close();
                 </div>
             </div>
         </div>
-
+        <!-- changes the button based off if you are logged in and can comment -->
         <?php if ($isAuthenticated) : ?>
-            <div class="rate-prop-btn-container">
-                <button class="rate-property" id="openRatingModalBtn">
-                    Rate Property
-                </button>
-            </div>
+            <?php if ($isTenant) : ?>
+                <div class="rate-prop-btn-container">
+                    <button class="rate-property" id="openRatingModalBtn">
+                        Rate Property
+                    </button>
+                </div>
+            <?php else : ?>
+                <div class="rate-prop-btn-container">
+                    <button class="rate-property" id="openWhoopsNotAllowed">
+                        Rate Property
+                    </button>
+                </div>
+            <?php endif; ?>
         <?php else : ?>
             <div class="rate-prop-btn-container">
                 <button class="rate-property" id="openRatingModalBtnButItsNot">
@@ -550,8 +573,7 @@ $conn->close();
                             </div>
                         </div>
                         <div class="comments-list-container">
-                            <!-- <?php //include('comments.php'); 
-                                    ?> -->
+                            <?php include('comments.php'); ?>
                         </div>
                         <div class="comment-page-container">
                             <div class="previous-page-container">
@@ -926,8 +948,8 @@ $conn->close();
                             <div class="review-section">
                                 <div id="writeAReview">Please write a review (optional)</div>
                                 <div class="reviewTextarea">
-                                    <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
-                                    <div id="wordCount">0/250</div>
+                                    <textarea id="reviewTextarea" name="property_review" maxlength="500" rows="4" cols="50"></textarea>
+                                    <div id="wordCount">0/500</div>
                                 </div>
                             </div>
                         </div>
@@ -1003,10 +1025,16 @@ $conn->close();
             </div>
         </div>
         <div id="notLoggedInModalSomethingElse" class="modal" style="display: none;">
+            <span class="modal-close" id="closeNotLoggedInModalSomethingElse">&times;</span>
             <div class="modal-content">
                 <p>Please login to make a review</p>
                 <button type="menu" class="filledButton loginButton" id="loginButtonPropertyPage">Log in</button>
-
+            </div>
+        </div>
+        <div id="notATenantModal" class="modal" style="display: none;">
+            <span class="modal-close" id="closeNotATenantModal">&times;</span>
+            <div class="modal-content">
+                <p>Whoops sorry your not allowed to make a review. Contact your agent so they can add you</p>
             </div>
         </div>
     </main>

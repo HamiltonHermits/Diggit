@@ -113,7 +113,7 @@
 
         $response['success'] = true;
         $response['prop_id'] = $prop_id;
-        $response['message'] = 'this ran succesfully ' . $propTenants;
+        $response['message'] = 'this ran succesfully ';
     
         // Send the JSON response
         header('Content-Type: application/json');
