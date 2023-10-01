@@ -315,7 +315,7 @@ if (isset($_SESSION['profileMessage'])) {
                     <!-- do this to stay logged in on the current page -->
                     <input type="hidden" name="loginPage" value="create.php">
                     <input type="submit" id="submitLogin" value="Login">
-                    <button id="signupButton">Signup</button>
+                    <button type="button" id="signupButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
@@ -421,10 +421,10 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <h2>Confirm Delete</h2>
                 <p>Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php" method="post">
+                <form action="../Backend_Files/deleteProfile.php" class="confirmDeleteForm" method="post">
                     <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
+                    <button id="cancelDeleteBtn" class="filledButton">Cancel</button>
                 </form>
-                <button id="cancelDeleteBtn" class="filledButton">Cancel</button>
             </div>
         </div>
         <!-- Check the user's userType and display the first modal if not "agent" -->

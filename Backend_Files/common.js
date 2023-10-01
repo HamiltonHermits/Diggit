@@ -26,58 +26,7 @@ var changePasswordButtonFinal = document.getElementById('changePasswordButtonFin
 
 var logoutButton = document.getElementById('logoutButton');
 
-// changePasswordButtonFinal.addEventListener('mouseenter', function() {
-//     changePasswordButtonFinal.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-//     changePasswordButtonFinal.style.color = '#202024';
-// });
 
-// changePasswordButtonFinal.addEventListener('mouseleave', function() {
-//     changePasswordButtonFinal.style.backgroundColor = '#ad5511'; // Change back to the normal color
-//     changePasswordButtonFinal.style.color = '#d9d9d9';
-// });
-
-// logoutButton.addEventListener('mouseenter', function() {
-//     logoutButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-//     logoutButton.style.color = '#202024';
-// });
-
-// logoutButton.addEventListener('mouseleave', function() {
-//     logoutButton.style.backgroundColor = '#ad5511'; // Change back to the normal color
-//     logoutButton.style.color = '#d9d9d9';
-// });
-
-// //mouse over and mouse enter
-// deleteProfileBtn.addEventListener('mouseenter', function() {
-//     deleteProfileBtn.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-//     deleteProfileBtn.style.color = '#202024';
-// });
-
-// deleteProfileBtn.addEventListener('mouseleave', function() {
-//     deleteProfileBtn.style.backgroundColor = '#29292c'; // Change back to the normal color
-//     deleteProfileBtn.style.color = '#d9d9d9';
-// });
-
-
-// openChangePasswordModalBtn.addEventListener('mouseenter', function() {
-//     openChangePasswordModalBtn.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-//     openChangePasswordModalBtn.style.color = '#202024';
-// });
-
-// openChangePasswordModalBtn.addEventListener('mouseleave', function() {
-//     openChangePasswordModalBtn.style.backgroundColor = '#29292c'; // Change back to the normal color
-//     openChangePasswordModalBtn.style.color = '#d9d9d9';
-// });
-
-
-// signupButton.addEventListener('mouseenter', function() {
-//     signupButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color
-//     signupButton.style.color = '#202024';
-// });
-
-// signupButton.addEventListener('mouseleave', function() {
-//     signupButton.style.backgroundColor = '#ad5511'; // Change back to the normal color
-//     signupButton.style.color = '#d9d9d9';
-// });
 // Event listeners to open and close profile
 if (openModalBtn) {
     openModalBtn.addEventListener('click', function () {

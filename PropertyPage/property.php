@@ -726,7 +726,7 @@ $conn->close();
                     <label for="password" class="modalLabel">Password:</label>
                     <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
                     <input type="submit" id="submitLogin" class="filledButton" value="Login">
-                    <button id="signupButton" class="filledButton">Signup</button>
+                    <button type="button" id="signupButton" class="filledButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
@@ -831,10 +831,11 @@ $conn->close();
 
                 <h2>Confirm Delete</h2>
                 <p>Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" method="post">
-                    <button type="submit" class="deleteButton">Yes, Delete</button>
+                <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" class="confirmDeleteForm" method="post">
+                    <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
+                    <button id="cancelDeleteBtn" class="filledButton" >Cancel</button>
                 </form>
-                <button id="cancelDeleteBtn">Cancel</button>
+                
             </div>
         </div>
 
