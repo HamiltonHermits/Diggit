@@ -48,7 +48,6 @@ if (isset($_SESSION['profileMessage'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiggIt</title>
     <link rel="stylesheet" href="stylesIndex.css">
-    <link rel="stylesheet" href="../generic.css" />
     <script src="index.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
     
@@ -110,7 +109,7 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <?php if (isset($login_error_message)) { ?>
                     <p><?php echo $login_error_message; ?></p>
-                    <?php echo '<script>loginModal.style.display = "block";</script>'; unset($_SESSION['$login_error_message;'])?>
+                    <?php echo '<script>loginModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
                 <form id="loginForm" action="../Backend_Files/login.php" method="POST">
@@ -120,11 +119,10 @@ if (isset($_SESSION['profileMessage'])) {
                     <label for="password" class="modalLabel">Password:</label>
                     <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
                     <input type="submit" id="submitLogin" value="Login">
-                    <button type="button" id="signupButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-                
+                <button id="signupButton">Signup</button>
             </div>
         </div>
 
@@ -181,12 +179,12 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn" class = "inverseFilledButton">Change Password</button>
+                <button id="changePasswordBtn">Change Password</button>
 
-                <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
+                <button id="deleteProfileBtn">Delete Profile</button>
 
                 <form action="../Backend_Files/logout.php" method="post">
-                    <button id = "logoutButton" type="submit" class="filledButton loginButton" >Logout</button>
+                    <button type="submit" class="loginButton">Logout</button>
                 </form>
             </div>
         </div>
@@ -203,19 +201,18 @@ if (isset($_SESSION['profileMessage'])) {
                 <span class="close" id="closeChangePasswordModalBtn">&times;</span>
                 <span class="back-arrow" style="color:white;" id="backToProfile">&#8592;</span>
 
-                <h2 class="textWhite" >Change Password</h2>
+                <h2>Change Password</h2>
                 <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
-                    <label for="currentPassword" class="textWhite">Current Password:</label>
-                    <input type="password" id="currentPassword" class="modalInput" name="currentPassword" required><br>
+                    <label for="currentPassword">Current Password:</label>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
 
-                    <label for="changeNewPassword" class="textWhite">New Password:</label>
-                    <input type="password" id="changeNewPassword" class="modalInput" name="changeNewPassword" required><br>
+                    <label for="changeNewPassword">New Password:</label>
+                    <input type="password" id="changeNewPassword" name="changeNewPassword" required>
 
-                    <label for="confirmPassword" class="textWhite">Confirm New Password:</label>
-                    <input type="password" id="confirmPassword" class="modalInput" name="confirmPassword" required><br>
-                    <br>
+                    <label for="confirmPassword">Confirm New Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-                    <button id="changePasswordButtonFinal" type="submit" class="filledButton" style="display: inline-block;" >Change Password</button>
+                    <button type="submit">Change Password</button>
                 </form>
             </div>
         </div>
@@ -224,12 +221,12 @@ if (isset($_SESSION['profileMessage'])) {
             <div class="modal-content">
                 <span class="close" id="closeDeleteModalBtn">&times;</span>
 
-                <h2 class="modalLabel" >Confirm Delete</h2>
-                <p class="modalLabel">Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php" class="confirmDeleteForm"  method="post">
-                    <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
-                    <button id="cancelDeleteBtn" class="filledButton" style="right: 0;" >Cancel</button>
+                <h2>Confirm Delete</h2>
+                <p>Are you sure you want to delete your profile?</p>
+                <form action="../Backend_Files/deleteProfile.php" method="post">
+                    <button type="submit" class="deleteButton">Yes, Delete</button>
                 </form>
+                <button id="cancelDeleteBtn">Cancel</button>
             </div>
         </div>
 

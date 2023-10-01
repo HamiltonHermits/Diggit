@@ -14,48 +14,21 @@ function openAddTenantModal(){
 
 function isValidEmail(email) {
     // A simple regular expression to check if the email is valid
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(email);
 }
 
-// function tenantExists(email) {//this doesnt make sense as the tenant might not be signed up yet, we should just add them irrespective
-//     return new Promise((resolve, reject) => {
-//         let url = "addTenant.php?email=" + email;
-
-//         // Make a GET request to map.php using fetch
-//         fetch(url)
-//             .then(response => {
-//                 if (!response.ok) {
-//                     throw new Error('Network response was not ok');
-//                 }
-//                 return response.json(); // Parse the response as JSON
-//             })
-//             .then(data => {
-//                 console.log("tenant exists = " + data);
-//                 // Resolve with true if tenant exists, and false if tenant does not exist
-//                 resolve(data);
-//             })
-//             .catch(error => {
-//                 console.error('Error:', error);
-//                 reject(error);
-//             });
-//     });
-// }
-
 function addEmail() {
-    const email = emailInput.value.trim();
-    if (email && !emailArray.includes(email)) {
+    var email = emailInput.value.trim();
+    if (email) {
         if (isValidEmail(email)) {
-            // console.log("inside add email, tenant exists = " + tenantExists(email));
             const listItem = document.createElement('li');
             listItem.textContent = email;
             listItem.id = 'item-' + nextUniqueId++; // Assign a unique ID
             tenantList.appendChild(listItem); // Append the list item to the ul
             emailArray.push(email); // Add email to the array
             emailInput.value = ''; // Clear the input field
-
-                // errorDiv.textContent = 'This tenant does not exist. Please enter a valid email address.';
-            
+            errorDiv.textContent = ''; // Clear any previous error message
         } else {
             errorDiv.textContent = 'Invalid email format. Please enter a valid email address.';
         }

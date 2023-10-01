@@ -55,10 +55,8 @@ if (isset($_SESSION['profileMessage'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diggit</title>
     <link rel="stylesheet" href="styleCreate.css">
-    <link rel="stylesheet" href="../generic.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
-    <link rel="stylesheet" href="map.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -68,14 +66,8 @@ if (isset($_SESSION['profileMessage'])) {
     <script src="create.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
     <script src="applyAgent.js" defer></script>
-    <script src="addTenantsInfo.js" defer></script>
-    <script src="map.js" defer></script>
-    <script src="amenities.js" defer></script>
     <script src="createPropertyForm.js" defer></script>
-
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="addTenantsInfo.js" defer></script>
 
 </head>
 
@@ -91,8 +83,8 @@ if (isset($_SESSION['profileMessage'])) {
 
             </div>
             <div class="page-indicator-container">
-                <div class="page-indicator-inner-container" id="prop-indicator">
-                    <a class="page-indicator" href="#property-parent-container">
+                <div class="page-indicator-inner-container">
+                    <a class="page-indicator" id="prop-indicator" href="#">
                         <div class="icon">
                             <svg width="30" height="30" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_30_336" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="42">
@@ -105,9 +97,7 @@ if (isset($_SESSION['profileMessage'])) {
                         </div>
                         Property
                     </a>
-                </div>
-                <div class="page-indicator-inner-container" id="amenity-indicator">
-                    <a class="page-indicator" href="#ammenities-parent-container">
+                    <a class="page-indicator" id="amenity-indicator" href="#">
                         <div class="icon">
                             <svg width="25" height="25" viewBox="0 0 29 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.51611 34C2.55361 34 1.72966 33.6671 1.04424 33.0013C0.358822 32.3354 0.0161133 31.535 0.0161133 30.6V3.4C0.0161133 2.465 0.358822 1.66458 1.04424 0.99875C1.72966 0.332917 2.55361 0 3.51611 0H24.5161C25.4786 0 26.3026 0.332917 26.988 0.99875C27.6734 1.66458 28.0161 2.465 28.0161 3.4V30.6C28.0161 31.535 27.6734 32.3354 26.988 33.0013C26.3026 33.6671 25.4786 34 24.5161 34H3.51611ZM3.51611 30.6H24.5161V3.4H3.51611V30.6ZM14.0161 28.9C16.4369 28.9 18.5005 28.0713 20.2067 26.4138C21.913 24.7563 22.7661 22.7517 22.7661 20.4C22.7661 18.0483 21.913 16.0438 20.2067 14.3863C18.5005 12.7288 16.4369 11.9 14.0161 11.9C11.5953 11.9 9.53174 12.7288 7.82549 14.3863C6.11924 16.0438 5.26611 18.0483 5.26611 20.4C5.26611 22.7517 6.11924 24.7563 7.82549 26.4138C9.53174 28.0713 11.5953 28.9 14.0161 28.9ZM14.0161 26.01C13.2578 26.01 12.5213 25.8754 11.8067 25.6063C11.0922 25.3371 10.4578 24.9333 9.90361 24.395L18.1286 16.405C18.6828 16.9433 19.0984 17.5596 19.3755 18.2538C19.6526 18.9479 19.7911 19.6633 19.7911 20.4C19.7911 21.9583 19.2297 23.2829 18.1067 24.3738C16.9838 25.4646 15.6203 26.01 14.0161 26.01ZM7.01611 8.5C7.51195 8.5 7.92757 8.33708 8.26299 8.01125C8.5984 7.68542 8.76611 7.28167 8.76611 6.8C8.76611 6.31833 8.5984 5.91458 8.26299 5.58875C7.92757 5.26292 7.51195 5.1 7.01611 5.1C6.52028 5.1 6.10466 5.26292 5.76924 5.58875C5.43382 5.91458 5.26611 6.31833 5.26611 6.8C5.26611 7.28167 5.43382 7.68542 5.76924 8.01125C6.10466 8.33708 6.52028 8.5 7.01611 8.5ZM12.2661 8.5C12.7619 8.5 13.1776 8.33708 13.513 8.01125C13.8484 7.68542 14.0161 7.28167 14.0161 6.8C14.0161 6.31833 13.8484 5.91458 13.513 5.58875C13.1776 5.26292 12.7619 5.1 12.2661 5.1C11.7703 5.1 11.3547 5.26292 11.0192 5.58875C10.6838 5.91458 10.5161 6.31833 10.5161 6.8C10.5161 7.28167 10.6838 7.68542 11.0192 8.01125C11.3547 8.33708 11.7703 8.5 12.2661 8.5Z" fill="#D9D9D9" />
@@ -116,7 +106,6 @@ if (isset($_SESSION['profileMessage'])) {
                         </div>
                         Amenities
                     </a>
-                </div>
                     <!-- <a class="page-indicator" id="review-indicator" href="#">
                         <div class="icon">
                             <svg width="25" height="25" viewBox="0 0 34 34" fill="none"
@@ -129,6 +118,7 @@ if (isset($_SESSION['profileMessage'])) {
                         </div>
                         Reviews
                     </a> -->
+                </div>
             </div>
             <div class="settings-container">
                 <svg width="30" height="30" viewBox="0 0 45 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,40 +172,46 @@ if (isset($_SESSION['profileMessage'])) {
                 <div class="left-box">
                     <div class="prop-title-container">
                         <div class="prop-title">
-                            <input id="newPropertyTitle" maxlength="20" minlength="5" type="text" class="title-text-field" placeholder="Please add a property title" required>
+                            <input id="newPropertyTitle" type="text" class="title-text-field" placeholder="Please add a property title">
                         </div>
                     </div>
                     <div class="prop-images-container">
                         <div class="select-images-overlay">
-                            <button id="openFileButton" class="filledButton">Choose Images</button>
-                            <input type="file" id="file" name="file" multiple required accept=".jpg, .png, .jpeg" hidden />
-                            <div id="selectedImages"></div>
+                            <input type="file" id="file" class="inputfile" multiple>
+                            <label id="addImage" for="files" class="inverseFilledButton">Add images</label>
                         </div>
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
-                            <textarea id="desc-text-field" minlength="10" maxlength="500" class="description-text-field" placeholder="Please add a description" required></textarea>
-                            <p id="char-count">0/500</p>
+                            <textarea class="description-text-field" placeholder="Please add a description"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="right-box">
+                    <div class="searchbar-container-container">
+                        <div class="searchbar-container">
 
-                    <!-- Code from https://majindv.blogspot.com/2021/03/leafleft-get-coordinates-css.html -->
-                    <div class="map-search-container">
-                        <input type="text" placeholder="Search property address" for="search" id="address">
-                        <button id="search-map-btn" class="filledButton">Search</button>
+                            <div class="borderSearchBar" id="borderSearchBar">
+                                <button type="submit" class="searchButton" id="searchButton">
+                                    <svg viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.6 18.5L10.3 12.2C9.8 12.6 9.225 12.9167 8.575 13.15C7.925 13.3833 7.23333 13.5 6.5 13.5C4.68333 13.5 3.14583 12.8708 1.8875 11.6125C0.629167 10.3542 0 8.81667 0 7C0 5.18333 0.629167 3.64583 1.8875 2.3875C3.14583 1.12917 4.68333 0.5 6.5 0.5C8.31667 0.5 9.85417 1.12917 11.1125 2.3875C12.3708 3.64583 13 5.18333 13 7C13 7.73333 12.8833 8.425 12.65 9.075C12.4167 9.725 12.1 10.3 11.7 10.8L18 17.1L16.6 18.5ZM6.5 11.5C7.75 11.5 8.8125 11.0625 9.6875 10.1875C10.5625 9.3125 11 8.25 11 7C11 5.75 10.5625 4.6875 9.6875 3.8125C8.8125 2.9375 7.75 2.5 6.5 2.5C5.25 2.5 4.1875 2.9375 3.3125 3.8125C2.4375 4.6875 2 5.75 2 7C2 8.25 2.4375 9.3125 3.3125 10.1875C4.1875 11.0625 5.25 11.5 6.5 11.5Z" fill="#D9D9D9" />
+                                    </svg>
+                                </button>
+                                <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find property location..">
+                                <div id="dropdown" class="dropdown-content"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="coord-results"></div>
-
                     <div class="bottom-container">
-                        <div class="map-container" id="map"></div>
+                        <div class="map-container" id="map">
+                            MAP
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="parent-container" id="ammenities-parent-container" data-target="amenity-indicator">
+        <div class="parent-container" id="ammenities-parent-container" data-target="prop-indicator">
             <div class="boxes-container">
                 <div class="left-box">
                     <div class="title-container">
@@ -226,7 +222,7 @@ if (isset($_SESSION['profileMessage'])) {
                     <div class="amenities-container">
                         <div class="add-amenities-overlay">
                             <!-- <form method = "POST"> -->
-                            <button type="submit" id="addAmenities" class="filledButton" name="addAmenities">Add your Amenities</button>
+                            <button type ="submit" id="addAmenities" class="filledButton" name = "addAmenities">Add your Amenities</button>
                         </div>
                     </div>
                     <div class="amen-addmore-container">
@@ -254,43 +250,42 @@ if (isset($_SESSION['profileMessage'])) {
 
         <div id="ammenityModal" class="modal" style="display:none;">
             <div class="modal-content">
-                <span class="close" id="closeAmenityButton">&times;</span>
+                <span class="close" id="closeButton">&times;</span>
                 <h2 class="modalLabel">Amenities</h2>
                 <?php
-                # code...
-                include_once('../Backend_Files/config.php');
-                include_once('../Backend_Files/database_connect.php');
-                // Create a database connection
-                $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+                    # code...
+                    include_once('../Backend_Files/config.php');
+                    include_once('../Backend_Files/database_connect.php');
+                    // Create a database connection
+                    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-                // Check if the connection was successful
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-                $sql = "SELECT amenity_id, amenity_name FROM amenity_test";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    echo "<table id = 'ammenityTable' style='border:none;'>";
+                    // Check if the connection was successful
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "SELECT amenity_name FROM amenity_test";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        echo "<table id = 'ammenityTable' style='border:none;'>";
 
-                    // Output data of each row
+                        // Output data of each row
 
-                } else {
-                    echo "No digs found.";
-                }
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                            <td class = 'name' id='{$row["amenity_id"]}' style=\"text-align: left\">" . $row["amenity_name"] . "</td>
+                    } else {
+                        echo "No digs found.";
+                    }
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                            <td class = 'name'>" . $row["amenity_name"] . "</td>
                             <td> <input type='checkbox'> </td>
                         </tr>";
-                }
+                    }
 
-                echo "</table>";
+                    echo "</table>";
                 mysqli_close($conn);
                 ?>
 
                 <!-- Add a button to open the signup modal -->
-                <!-- <button id="submitAmenities">Submit Amenities</button> -->
-                <button id="submitAmenitiesBtn" class="filledButton" style="margin-top: 5%">Submit Amenities</button>
+                <button id="submitAmmenities" class = "filledButton">Submit Amenities</button>
             </div>
         </div>
 
@@ -315,11 +310,10 @@ if (isset($_SESSION['profileMessage'])) {
                     <!-- do this to stay logged in on the current page -->
                     <input type="hidden" name="loginPage" value="create.php">
                     <input type="submit" id="submitLogin" value="Login">
-                    <button type="button" id="signupButton">Signup</button>
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-
+                <button id="signupButton">Signup</button>
             </div>
         </div>
 
@@ -376,12 +370,12 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn" class="inverseFilledButton">Change Password</button>
+                <button id="changePasswordBtn">Change Password</button>
 
-                <button id="deleteProfileBtn" class="inverseFilledButton">Delete Profile</button>
+                <button id="deleteProfileBtn">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php?page=create" method="post" id="formProfileBtn">
-                    <button id="logoutButton" type="submit" class="filledButton loginButton">Logout</button>
+                <form action="../Backend_Files/logout.php?page=create" method="post">
+                    <button type="submit" class="loginButton">Logout</button>
                 </form>
             </div>
         </div>
@@ -401,16 +395,15 @@ if (isset($_SESSION['profileMessage'])) {
                 <h2>Change Password</h2>
                 <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
                     <label for="currentPassword">Current Password:</label>
-                    <input type="password" id="currentPassword" class="modalInput" name="currentPassword" required><br>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
 
                     <label for="changeNewPassword">New Password:</label>
-                    <input type="password" id="changeNewPassword" class="modalInput" name="changeNewPassword" required><br>
+                    <input type="password" id="changeNewPassword" name="changeNewPassword" required>
 
                     <label for="confirmPassword">Confirm New Password:</label>
-                    <input type="password" id="confirmPassword" class="modalInput" name="confirmPassword" required><br>
-                    <br>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-                    <button id="changePasswordButtonFinal" type="submit" class="filledButton" style="display: inline-block;">Change Password</button>
+                    <button type="submit">Change Password</button>
                 </form>
             </div>
         </div>
@@ -421,10 +414,10 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <h2>Confirm Delete</h2>
                 <p>Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php" class="confirmDeleteForm" method="post">
-                    <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
-                    <button id="cancelDeleteBtn" class="filledButton">Cancel</button>
+                <form action="../Backend_Files/deleteProfile.php" method="post">
+                    <button type="submit" class="deleteButton">Yes, Delete</button>
                 </form>
+                <button id="cancelDeleteBtn">Cancel</button>
             </div>
         </div>
         <!-- Check the user's userType and display the first modal if not "agent" -->
@@ -453,12 +446,7 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <span class="back-arrow" style="color:white;" id="backToWhoops">&#8592;</span>
 
-                <form id="applicationForm" action="../Backend_Files/applyAgent.php" method="post" enctype="multipart/form-data">
-                    <label for="profilePicture">Profile Picture:</label><br>
-                    <input type="file" id="profilePicture" name="profilePicture" required accept=".jpg, .png, .jpeg" onchange="displayImage(this);" /><br>
-
-                    <img id="selectedImage" src="#" alt="Selected Image" style="display: none; max-width: 100px; max-height: 100px;">
-
+                <form id="applicationForm" action="../Backend_Files/applyAgent.php" method="post">
                     <label for="phoneNumber" class="modalLabel">Phone Number:</label>
                     <input type="text" id="phoneNumber" class="modalInput" name="phoneNumber" value="<?php echo isset($_SESSION['phoneNumber']) ? htmlspecialchars($_SESSION['phoneNumber']) : ''; ?>" placeholder="e.g: 082 123 4444" minlength="12" maxlength="12" required><br><br>
 
@@ -472,16 +460,13 @@ if (isset($_SESSION['profileMessage'])) {
 
         <!-- Modal For adding a tenant-->
         <div id="addTenantModel" class="modal" style="display: 'none';">
+            <span class="close" id="closeAddTenantButton">&times;</span>
+
             <div class="modal-content">
-                <span class="close" id="closeAddTenantButton">&times;</span>
-                
                 <h3>Add Your Tenants Email</h3>
                 <div id="errorDiv"></div> <!-- Error message will be displayed here -->
-                <div style="display: inline-flex; gap: 0.5em;" >
-                    <input type="text" class="modalInput" name="emailInput" id="emailInput" placeholder="e.g: michael@gmail.com">
-                    <!-- <input type="submit" name="submit" value="Add" class="filledButton" id="thisButtonExistsBecauseIsayso"> -->
-                    <button onclick="addEmail()" class="filledButton" id="thisButtonExistsBecauseIsayso" >Add</button>
-                </div>
+                <input type="text" id="emailInput" placeholder="e.g: michael@gmail.com">
+                <button onclick="addEmail()">Add</button>
             </div>
         </div>
 

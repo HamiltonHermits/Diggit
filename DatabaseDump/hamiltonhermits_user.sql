@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hamiltonhermits
+-- Host: IS3-dev.ict.ru.ac.za    Database: hamiltonhermits
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.28-MariaDB
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,28 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `amenity_test`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `amenity_test`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `amenity_test` (
-  `amenity_id` int(11) NOT NULL AUTO_INCREMENT,
-  `amenity_name` varchar(45) NOT NULL,
-  `amenity_image` varchar(300) NOT NULL,
-  PRIMARY KEY (`amenity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Contains every possible amenity on record';
+CREATE TABLE `user` (
+  `user_id` int NOT NULL,
+  `user_name` varchar(25) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `is_admin` tinyint NOT NULL,
+  `is_agent` tinyint NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
+  UNIQUE KEY `user_name_UNIQUE` (`user_name`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `amenity_test`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `amenity_test` WRITE;
-/*!40000 ALTER TABLE `amenity_test` DISABLE KEYS */;
-INSERT INTO `amenity_test` VALUES (1,'Wifi','wifi.png'),(2,'Car parking','car.png'),(3,'Grey water tank','grey_water.png'),(4,'Drinking water tank','water_drink.png'),(5,'Kitchen appliances','kitchen.png'),(6,'Gas stove','gas.png'),(7,'Fridge','fridge.png'),(8,'Laundry','laundry.png'),(9,'Furnished','furniture.png'),(10,'24/7 Security','secure.png'),(11,'Cleaning service','mop.png'),(12,'Pet friendly','pet.png');
-/*!40000 ALTER TABLE `amenity_test` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-01 19:36:29
+-- Dump completed on 2023-09-18 17:35:59

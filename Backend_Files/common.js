@@ -22,11 +22,16 @@ var deleteProfileBtn = document.getElementById('deleteProfileBtn');
 var closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
 var cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
 
-var changePasswordButtonFinal = document.getElementById('changePasswordButtonFinal');
 
-var logoutButton = document.getElementById('logoutButton');
+signupButton.addEventListener('mouseenter', function() {
+    signupButton.style.backgroundColor = '#d9d9d9'; // Change to the hover color
+    signupButton.style.color = '#202024';
+});
 
-
+signupButton.addEventListener('mouseleave', function() {
+    signupButton.style.backgroundColor = '#ad5511'; // Change back to the normal color
+    signupButton.style.color = '#d9d9d9';
+});
 // Event listeners to open and close profile
 if (openModalBtn) {
     openModalBtn.addEventListener('click', function () {
@@ -54,7 +59,6 @@ openChangePasswordModalBtn.addEventListener('click', function () {
     changePasswordModal.style.display = 'block';
     profileModal.style.display = 'none';
 });
-
 
 closeChangePasswordModalBtn.addEventListener('click', function () {
     changePasswordModal.style.display = 'none';

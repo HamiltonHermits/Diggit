@@ -38,37 +38,28 @@ if (isset($_SESSION['profileMessage'])) {
     $profileMessage = $_SESSION['profileMessage'];
     unset($_SESSION['changePasswordError']);
 }
-// if (isset($_GET['id'])) {
-//     // Escape and format the data before embedding it in JavaScript
-//     $pageId = $_GET['id'];
-//     echo "<div style='display: none;' id = pageIdDiv>$pageId</div>";
-// }
-// if (isset($_SESSION['user_id'])) {
-//     // Escape and format the data before embedding it in JavaScript
-//     $userId = $_SESSION['user_id'];
-//     echo "<div style='display: none;' id = userIdDiv>$userId</div>";
-// }
 
 
 //Connect to database
-// require_once('../Backend_Files/config.php');
-require_once('../Backend_Files/database_connect.php');
+include_once('../Backend_Files/config.php');
+include_once('../Backend_Files/database_connect.php');
 
-//Get property id
-$propId = $_GET["id"];
-// $propId = "1";
+    //Get property id
+    $propId = $_GET["id"];
 
-// Get property
-$stmt = $conn->prepare("SELECT * from property WHERE prop_id = ?");
-$stmt->bind_param("s", $propId);
-$stmt->execute();
+    // $propId = "1";
+
+    // Get property
+    $stmt = $conn->prepare("SELECT * from property WHERE prop_id = ?");
+    $stmt->bind_param("s", $propId);
+    $stmt->execute();
 
 $result = $stmt->get_result();
 $result = $result->fetch_assoc();
 $stmt->close();
 
 //Get agent details who created property
-$stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company,usertbl.profile_pic
+$stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company
                                  FROM usertbl
                                  JOIN property ON usertbl.user_id = property.created_by 
                                  WHERE property.prop_id = ?;
@@ -80,104 +71,45 @@ $resultUser = $stmtUser->get_result();
 $resultUser = $resultUser->fetch_assoc();
 $stmtUser->close();
 
-//Get amenities for property
-$stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name, amenity_test.amenity_image
-                                FROM hamiltonhermits.amenity_test
-                                INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
-                                WHERE property_amenity.prop_id = ?;");
+// Get amenities for property
+$stmtAmenity = $conn->prepare(" SELECT amenity_test.amenity_name
+                                    FROM hamiltonhermits.amenity_test
+                                    INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
+                                    WHERE property_amenity.prop_id = ?;
+                                    INNER JOIN property_amenity ON amenity_test.amenity_id = property_amenity.amenity_id
+                                    WHERE property_amenity.prop_id = ?;
+                                  ");
 $stmtAmenity->bind_param("s", $propId);
 $stmtAmenity->execute();
 $resultAmenity = $stmtAmenity->get_result();
 $stmtAmenity->close();
 
-//get users that can comment
-$stmtAllowedUsers = $conn->prepare(" SELECT * FROM tenants WHERE prop_id = ?;");
-$stmtAllowedUsers->bind_param("s", $propId);
-$stmtAllowedUsers->execute();
-$stmtAllowedUsers = $stmtAllowedUsers->get_result();
-$isTenant = false;
-while ($row = mysqli_fetch_array($stmtAllowedUsers)) {
-    if (isset($_SESSION['email'])) {
-        if ($_SESSION['email'] == $row['tenant_id']) {
-            $isTenant = true;
-        }
-    }
-}
 
-// Get image for property
-$stmtImages = $conn->prepare(" SELECT * FROM property_images WHERE prop_id = ?;");
-$stmtImages->bind_param("s", $propId);
-$stmtImages->execute();
-$resultImages = $stmtImages->get_result(); //this is gonna be all the rows the images are in 
-$stmtImages->close();
+    // Get reviews for property
+    $stmtReview = $conn->prepare(" SELECT review.written_review
+                                   FROM hamiltonhermits.review
+                                   JOIN hamiltonhermits.usertbl ON review.user_id=usertbl.user_id
+                                   WHERE usertbl.user_id = ?;
+                                 ");
+     $stmtReview->bind_param("s", $propId);
+     $stmtReview->execute();
+     $resultReview = $stmtReview->get_result();
+     $stmtReview->close();
 
-//get reviews for agent
-$stmtReviews = $conn->prepare("SELECT * FROM review WHERE prop_id = ?;");
-$stmtReviews->bind_param("s", $propId);
-$stmtReviews->execute();
-$resultReviews = $stmtReviews->get_result(); // Fetch the results
-$stmtReviews->close();
+     // Get reviewer's name for property
+    $stmtReviewerName = $conn->prepare(" SELECT usertbl.username
+                                   FROM hamiltonhermits.usertbl
+                                   JOIN hamiltonhermits.review ON usertbl.user_id=review.user_id
+                                   WHERE review.user_id= ?;
+                                ");
+    $stmtReviewerName->bind_param("s", $propId);
+    $stmtReviewerName->execute();
+    $resultReviewerName = $stmtReviewerName->get_result();
+    $stmtReviewerName->close();
+ 
 
-//reviews for the property
-$cleanliness = 1.0;
-$noise = 1.0;
-$location = 1.0;
-$safety = 1.0;
-$affordability = 1.0;
-$overallRating = 1.0;
-
-//reviews for the agent 
-$count = 0;
-$agentPolite = 1;
-$agentQuality = 1;
-$agentResponse = 1;
-$agentOverall = 1;
-
-$countFive = 0;
-$countFour = 0;
-$countThree = 0;
-$countTwo = 0;
-$countOne = 0;  
-//we gonna go through and and grab every review
-while ($row = mysqli_fetch_array($resultReviews)) {
-    if($row['overall_property_rating']==5) $countFive += 1;
-    if($row['overall_property_rating']==4) $countFour += 1;
-    if($row['overall_property_rating']==5) $countThree += 1;
-    if($row['overall_property_rating']==5) $countTwo += 1;
-    if($row['overall_property_rating']==5) $countOne += 1;
-
-    $cleanliness += $row['cleanliness_rating'];
-    $noise += $row['noise_rating'];
-    $location += $row['location_rating'];
-    $safety += $row['saftey_rating'];
-    $affordability += $row['affordability_rating'];
-    $overallRating += $row['overall_property_rating'];
-
-    $agentPolite += $row['politeness_rating'];
-    $agentQuality += $row['repair_quality_rating'];
-    $agentResponse += $row['response_time_rating'];
-    $agentOverall += $row['overall_tenant_rating'];
-    $count++;
-}
-//then we are going to average them out
-if ($count > 0) {
-    $cleanliness /= $count;
-    $noise /= $count;
-    $location /= $count;
-    $safety /= $count;
-    $affordability /= $count;
-    $overallRating /= $count;
-
-    $agentPolite /= $count;
-    $agentQuality /= $count;
-    $agentResponse /= $count;
-    $agentOverall /= $count;
-}
-
-
-
-// Close the database connection
-$conn->close();
+    // Close the database connection
+    $conn->close();
 
 ?>
 
@@ -186,22 +118,19 @@ $conn->close();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diggit</title>
-    <link rel="stylesheet" href="property.css" />
-    <link rel="stylesheet" href="../generic.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One" />
+    <link rel="stylesheet" href="property.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez One">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="../Backend_Files/searchbar.js" defer></script>
     <script src="property.js" defer></script>
     <script src="ratingModal.js" defer></script>
-    <script src="visualElements.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
 </head>
 
@@ -216,8 +145,8 @@ $conn->close();
 
             </div>
             <div class="page-indicator-container">
-                <div class="page-indicator-inner-container" id="prop-indicator">
-                    <a class="page-indicator" href="#property-parent-container">
+                <div class="page-indicator-inner-container">
+                    <a class="page-indicator" id="prop-indicator" href="#">
                         <div class="icon">
                             <svg width="30" height="30" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_30_336" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="42">
@@ -230,9 +159,7 @@ $conn->close();
                         </div>
                         Property
                     </a>
-                </div>
-                <div class="page-indicator-inner-container" id="amenity-indicator">
-                    <a class="page-indicator" href="#amenity-parent-container">
+                    <a class="page-indicator" id="amenity-indicator" href="#">
                         <div class="icon">
                             <svg width="25" height="25" viewBox="0 0 29 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.51611 34C2.55361 34 1.72966 33.6671 1.04424 33.0013C0.358822 32.3354 0.0161133 31.535 0.0161133 30.6V3.4C0.0161133 2.465 0.358822 1.66458 1.04424 0.99875C1.72966 0.332917 2.55361 0 3.51611 0H24.5161C25.4786 0 26.3026 0.332917 26.988 0.99875C27.6734 1.66458 28.0161 2.465 28.0161 3.4V30.6C28.0161 31.535 27.6734 32.3354 26.988 33.0013C26.3026 33.6671 25.4786 34 24.5161 34H3.51611ZM3.51611 30.6H24.5161V3.4H3.51611V30.6ZM14.0161 28.9C16.4369 28.9 18.5005 28.0713 20.2067 26.4138C21.913 24.7563 22.7661 22.7517 22.7661 20.4C22.7661 18.0483 21.913 16.0438 20.2067 14.3863C18.5005 12.7288 16.4369 11.9 14.0161 11.9C11.5953 11.9 9.53174 12.7288 7.82549 14.3863C6.11924 16.0438 5.26611 18.0483 5.26611 20.4C5.26611 22.7517 6.11924 24.7563 7.82549 26.4138C9.53174 28.0713 11.5953 28.9 14.0161 28.9ZM14.0161 26.01C13.2578 26.01 12.5213 25.8754 11.8067 25.6063C11.0922 25.3371 10.4578 24.9333 9.90361 24.395L18.1286 16.405C18.6828 16.9433 19.0984 17.5596 19.3755 18.2538C19.6526 18.9479 19.7911 19.6633 19.7911 20.4C19.7911 21.9583 19.2297 23.2829 18.1067 24.3738C16.9838 25.4646 15.6203 26.01 14.0161 26.01ZM7.01611 8.5C7.51195 8.5 7.92757 8.33708 8.26299 8.01125C8.5984 7.68542 8.76611 7.28167 8.76611 6.8C8.76611 6.31833 8.5984 5.91458 8.26299 5.58875C7.92757 5.26292 7.51195 5.1 7.01611 5.1C6.52028 5.1 6.10466 5.26292 5.76924 5.58875C5.43382 5.91458 5.26611 6.31833 5.26611 6.8C5.26611 7.28167 5.43382 7.68542 5.76924 8.01125C6.10466 8.33708 6.52028 8.5 7.01611 8.5ZM12.2661 8.5C12.7619 8.5 13.1776 8.33708 13.513 8.01125C13.8484 7.68542 14.0161 7.28167 14.0161 6.8C14.0161 6.31833 13.8484 5.91458 13.513 5.58875C13.1776 5.26292 12.7619 5.1 12.2661 5.1C11.7703 5.1 11.3547 5.26292 11.0192 5.58875C10.6838 5.91458 10.5161 6.31833 10.5161 6.8C10.5161 7.28167 10.6838 7.68542 11.0192 8.01125C11.3547 8.33708 11.7703 8.5 12.2661 8.5Z" fill="#D9D9D9" />
@@ -241,9 +168,7 @@ $conn->close();
                         </div>
                         Amenities
                     </a>
-                </div>
-                <div class="page-indicator-inner-container" id="review-indicator">
-                    <a class="page-indicator" href="#comment-parent-container">
+                    <a class="page-indicator" id="review-indicator" href="#">
                         <div class="icon">
                             <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.7142 20.5463L16.5505 17.6464L21.3868 20.5463L20.1054 15.1142L24.4043 11.4383L18.7413 10.989L16.5505 5.84279L14.3597 10.989L8.69667 11.4383L12.9956 15.1142L11.7142 20.5463ZM0.0161133 33.2076V3.80064C0.0161133 2.9021 0.339912 2.13289 0.987509 1.49301C1.63511 0.85314 2.4136 0.533203 3.32299 0.533203H29.778C30.6874 0.533203 31.4659 0.85314 32.1135 1.49301C32.7611 2.13289 33.0849 2.9021 33.0849 3.80064V23.4053C33.0849 24.3038 32.7611 25.073 32.1135 25.7129C31.4659 26.3528 30.6874 26.6727 29.778 26.6727H6.62987L0.0161133 33.2076ZM5.22445 23.4053H29.778V3.80064H3.32299V25.2432L5.22445 23.4053Z" fill="#D9D9D9" />
@@ -270,34 +195,19 @@ $conn->close();
     </div>
     <main>
         <div class="nav-top">
-            <div class="profileContainer" id="dashboardContainer">
-                <button id="openModalBtnDashboard">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0_486_85" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-                            <rect width="30" height="30" fill="#D9D9D9" />
-                        </mask>
-                        <g mask="url(#mask0_486_85)">
-                            <path d="M6 19H9V13H15V19H18V10L12 5.5L6 10V19ZM4 21V9L12 3L20 9V21H13V15H11V21H4Z" fill="#ad5511" />
-                        </g>
-                    </svg>
-
-                </button>
-            </div>
+            <div class="empty-div"></div>
             <div class="searchbar-container">
 
                 <div class="borderSearchBar" id="borderSearchBar">
                     <button type="submit" class="searchButton" id="searchButton">
                         <svg class="svgSearch" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19.6705 16.5218L19.6773 16.5121L19.6837 16.5021C20.709 14.8889 21.3112 12.9735 21.3112 10.9149C21.3112 5.16412 16.6544 0.499512 10.9089 0.499512C5.15702 0.499512 0.5 5.1639 0.5 10.9149C0.5 16.6656 5.15681 21.3302 10.9023 21.3302C12.9878 21.3302 14.9306 20.7146 16.5581 19.6615L16.5651 19.6569L16.572 19.6522L16.6779 19.5785L23.4524 26.3531L23.8091 26.7098L24.1626 26.3499L26.3567 24.1169L26.7038 23.7635L26.3537 23.413L19.5871 16.6402L19.6705 16.5218ZM16.1022 5.72806C17.4862 7.1121 18.2474 8.95104 18.2474 10.9084C18.2474 12.8657 17.4862 14.7046 16.1022 16.0887C14.7181 17.4727 12.8792 18.2339 10.9219 18.2339C8.96454 18.2339 7.1256 17.4727 5.74157 16.0887C4.35754 14.7046 3.59635 12.8657 3.59635 10.9084C3.59635 8.95104 4.35754 7.1121 5.74157 5.72806C7.1256 4.34403 8.96455 3.58284 10.9219 3.58284C12.8792 3.58284 14.7181 4.34403 16.1022 5.72806Z" fill="#d9d9d9" stroke="#d9d9d9" />
+                            <path d="M19.6705 16.5218L19.6773 16.5121L19.6837 16.5021C20.709 14.8889 21.3112 12.9735 21.3112 10.9149C21.3112 5.16412 16.6544 0.499512 10.9089 0.499512C5.15702 0.499512 0.5 5.1639 0.5 10.9149C0.5 16.6656 5.15681 21.3302 10.9023 21.3302C12.9878 21.3302 14.9306 20.7146 16.5581 19.6615L16.5651 19.6569L16.572 19.6522L16.6779 19.5785L23.4524 26.3531L23.8091 26.7098L24.1626 26.3499L26.3567 24.1169L26.7038 23.7635L26.3537 23.413L19.5871 16.6402L19.6705 16.5218ZM16.1022 5.72806C17.4862 7.1121 18.2474 8.95104 18.2474 10.9084C18.2474 12.8657 17.4862 14.7046 16.1022 16.0887C14.7181 17.4727 12.8792 18.2339 10.9219 18.2339C8.96454 18.2339 7.1256 17.4727 5.74157 16.0887C4.35754 14.7046 3.59635 12.8657 3.59635 10.9084C3.59635 8.95104 4.35754 7.1121 5.74157 5.72806C7.1256 4.34403 8.96455 3.58284 10.9219 3.58284C12.8792 3.58284 14.7181 4.34403 16.1022 5.72806Z" fill="#AD5511" stroke="#AD5511" />
                         </svg>
                     </button>
                     <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
-                    <img src="crab/crab.png" alt="" id="crab-logo">
-                    
-
+                    <div id="dropdown" class="dropdown-content"></div>
                 </div>
-                <div id="dropdown" class="dropdown-content"></div>
-
+                <div class="crab-logo">crab</div>
             </div>
             <!-- Personalised Search page if authenticated-->
             <?php if ($isAuthenticated) : ?>
@@ -311,7 +221,7 @@ $conn->close();
             <?php else : ?>
 
                 <div class="loginContainer" id="login">
-                    <button type="menu" class="inverseFilledButton loginButton" id="loginButton">Log in</button>
+                    <button type="menu" class="loginButton" id="loginButton">Log in</button>
                 </div>
 
             <?php endif; ?>
@@ -326,48 +236,9 @@ $conn->close();
                         </div>
                     </div>
                     <div class="prop-images-container">
-                        <div class="arrowContainer" id="left-arrow-container">
-                            <button class="left-right-arrow-images" id="left-arrow" onclick="plusSlides(-1)">
-                                <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <ellipse cx="15.9366" cy="16.8541" rx="15.9366" ry="16.854" transform="rotate(-180 15.9366 16.8541)" fill="#D9D9D9" fill-opacity="0.6" />
-                                    <mask id="mask0_531_53" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="34">
-                                        <rect x="32" y="34" width="31.8733" height="33.708" rx="15" transform="rotate(-180 32 34)" fill="#D9D9D9" />
-                                    </mask>
-                                    <g mask="url(#mask0_531_53)">
-                                        <path d="M22.7769 8.99644L25 11.1747L18.6293 17.4169L25 23.6592L22.7769 25.8374L14.183 17.4169L22.7769 8.99644ZM10.4668 8.83388L10.4668 26H7.34778L7.34778 8.83388H10.4668Z" fill="#202024" />
-                                    </g>
-                                </svg>
-
-                            </button>
-                        </div>
-
                         <div class="prop-images">
-                            <?php
-                            while ($row = mysqli_fetch_array($resultImages)) {
-                                echo " 
-                                    <div class=\"propertyImage fade\">
-                                    <img src= \"images/{$row['image_name']} \" alt=\"property image\">
-                                    </div>
-                                    ";
-                            }
-                            ?>
+                            <img src="./propertyImages/<?php echo $result['image']; ?>" alt="property image">
                         </div>
-
-                        <div class="arrowContainer" id="right-arrow-container">
-                            <button class="left-right-arrow-images" id="right-arrow" onclick="plusSlides(1)">
-                                <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <ellipse cx="16.0634" cy="17.1459" rx="15.9366" ry="16.854" fill="#D9D9D9" fill-opacity="0.6" />
-                                    <mask id="mask0_30_300" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="34">
-                                        <rect width="31.8733" height="33.708" rx="15" fill="#D9D9D9" />
-                                    </mask>
-                                    <g mask="url(#mask0_30_300)">
-                                        <path d="M9.22312 25.0036L7 22.8253L13.3707 16.5831L7 10.3408L9.22312 8.16256L17.817 16.5831L9.22312 25.0036ZM21.5332 25.1661V8H24.6522V25.1661H21.5332Z" fill="#202024" />
-                                    </g>
-                                </svg>
-
-                            </button>
-                        </div>
-
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
@@ -395,49 +266,19 @@ $conn->close();
                                 </div>
                                 <!-- <hr> -->
                                 <div class="agent-text-container">
-                                    <div class="agent-icon" id="agent-phone-icon">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <mask id="mask0_30_290" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-                                                <rect width="24" height="24" fill="#D9D9D9" />
-                                            </mask>
-                                            <g mask="url(#mask0_30_290)">
-                                                <path d="M19.962 21.2032C17.8543 21.2032 15.772 20.744 13.7149 19.8257C11.6579 18.9074 9.78407 17.604 8.09348 15.9154C6.4029 14.2268 5.09846 12.3533 4.18016 10.295C3.26188 8.23659 2.80273 6.15291 2.80273 4.04393C2.80273 3.68756 2.92095 3.39059 3.15738 3.15301C3.39382 2.91542 3.68937 2.79663 4.04403 2.79663H8.08806C8.41306 2.79663 8.69113 2.89274 8.92228 3.08495C9.15345 3.27717 9.29766 3.52346 9.35491 3.82383L9.99893 7.19828C10.0482 7.52473 10.0409 7.80154 9.97691 8.02871C9.91296 8.25589 9.79041 8.45408 9.60926 8.62328L7.14838 11.0255C7.46577 11.5983 7.84168 12.1562 8.27611 12.6994C8.71053 13.2425 9.19476 13.7727 9.72881 14.2901C10.2256 14.7869 10.7373 15.2421 11.2641 15.6559C11.791 16.0696 12.3431 16.4439 12.9207 16.7787L15.3125 14.4048C15.5063 14.2149 15.744 14.0785 16.0256 13.9956C16.3071 13.9126 16.5944 13.8957 16.8875 13.945L20.1761 14.6271C20.4931 14.7176 20.7436 14.8714 20.9275 15.0882C21.1113 15.3051 21.2033 15.5637 21.2033 15.864V19.9559C21.2033 20.3122 21.0844 20.6092 20.8465 20.8468C20.6086 21.0844 20.3138 21.2032 19.962 21.2032ZM6.06088 8.90426L7.70491 7.30806L7.29186 5.07166H5.10871C5.18408 5.72709 5.29368 6.37407 5.43753 7.01261C5.58138 7.65114 5.78917 8.28169 6.06088 8.90426ZM15.0348 17.8842C15.6609 18.1555 16.3005 18.3725 16.9535 18.5352C17.6066 18.6979 18.2649 18.8082 18.9283 18.8662V16.6961L16.6978 16.2331L15.0348 17.8842Z" fill="#D9D9D9" />
-                                            </g>
-                                        </svg>
-
-                                    </div>
+                                    <div class="agent-icon" id="agent-phone-icon">icon</div>
                                     <div class="agent-info-content" id="agent-phonenumber">
                                         <?php echo "{$resultUser['agent_phone']}"; ?>
                                     </div>
                                 </div>
                                 <div class="agent-text-container">
-                                    <div class="agent-icon" id="agent-email-icon">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <mask id="mask0_30_287" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-                                                <rect width="24" height="24" fill="#D9D9D9" />
-                                            </mask>
-                                            <g mask="url(#mask0_30_287)">
-                                                <path d="M4.275 20.4065C3.64528 20.4065 3.10868 20.1848 2.6652 19.7413C2.22173 19.2978 2 18.7612 2 18.1315V6.27502C2 5.64531 2.22175 5.10871 2.66525 4.66523C3.10872 4.22174 3.64531 4 4.27503 4H20.1315C20.7612 4 21.2978 4.22174 21.7413 4.66523C22.1848 5.10871 22.4066 5.64531 22.4066 6.27502V18.1315C22.4066 18.7612 22.1848 19.2978 21.7413 19.7413C21.2978 20.1848 20.7612 20.4065 20.1315 20.4065H4.275ZM12.2032 13.4603L4.275 8.46035V18.1315H20.1315V8.46035L12.2032 13.4603ZM12.2032 11.275L20.1315 6.27502H4.275L12.2032 11.275ZM4.275 8.46035V6.27502V18.1315V8.46035Z" fill="#D9D9D9" />
-                                            </g>
-                                        </svg>
-
-                                    </div>
+                                    <div class="agent-icon" id="agent-email-icon">icon</div>
                                     <div class="agent-info-content" id="agent-email">
                                         <?php echo $resultUser['email']; ?>
                                     </div>
                                 </div>
                                 <div class="agent-text-container">
-                                    <div class="agent-icon" id="agent-company-icon">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <mask id="mask0_30_284" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-                                                <rect width="24" height="24" fill="#D9D9D9" />
-                                            </mask>
-                                            <g mask="url(#mask0_30_284)">
-                                                <path d="M3 20.55V6H7V2H17.55V10H21.55V20.55H13.275V16.275H11.275V20.55H3ZM5.275 18.275H7.275V16.275H5.275V18.275ZM5.275 14.275H7.275V12.275H5.275V14.275ZM5.275 10.275H7.275V8.275H5.275V10.275ZM9.275 14.275H11.275V12.275H9.275V14.275ZM9.275 10.275H11.275V8.275H9.275V10.275ZM9.275 6.275H11.275V4.275H9.275V6.275ZM13.275 14.275H15.275V12.275H13.275V14.275ZM13.275 10.275H15.275V8.275H13.275V10.275ZM13.275 6.275H15.275V4.275H13.275V6.275ZM17.275 18.275H19.275V16.275H17.275V18.275ZM17.275 14.275H19.275V12.275H17.275V14.275Z" fill="#D9D9D9" />
-                                            </g>
-                                        </svg>
-
-                                    </div>
+                                    <div class="agent-icon" id="agent-company-icon">icon</div>
                                     <div class="agent-info-content" id="agent-company">
                                         <?php echo $resultUser['agent_company']; ?>
                                     </div>
@@ -447,31 +288,30 @@ $conn->close();
                         <div class="contact-container">
                             <div class="title">Contact</div>
                             <div class="contact-info-container">
-                                <form action="mailto:g21j5408@ru.ac.za.com" method="get" enctype="text/plain" class="contact-form">
+                                <form action="" class="contact-form">
                                     <label for="details">Your Details</label>
-                                    <input type="text" class="contactTextField" placeholder="name" name="subject">
-                                    <input type="email" class="contactTextField" placeholder="email" name="email">
+                                    <input type="text" class="contactTextField" placeholder="name">
+                                    <input type="text" class="contactTextField" placeholder="email">
                                     <input type="text" class="contactTextField" placeholder="phone number">
-                                    <label id="message-label" for="body">Message</label>
-                                    <textarea name="body" id="message" placeholder="Please contact the agent regarding this property."></textarea>
-                                    <div class="email-btn-container">
-                                        <input type="submit" class="email-agent-button inverseFilledButton" value="Email Agent">
-                                    </div>
+                                    <label id="message-label" for="message">Message</label>
+                                    <textarea name="message" id="message" rows="12" placeholder="Please contact the agent regarding this property."></textarea>
                                 </form>
                             </div>
                         </div>
                     </div>
-
+                    <div class="email-btn-container">
+                        <button class="email-agent-button">Email Agent</button>
+                    </div>
                     <div class="bottom-container">
                         <div class="map-container" id="map">
-
+                            MAP
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="parent-container" id="amenity-parent-container" data-target="amenity-indicator">
+        <div class="parent-container" id="amenity-parent-container">
             <div class="boxes-container">
                 <div class="left-box" id="left-box-amenity">
                     <div class="title" id="amenity-title">
@@ -485,16 +325,16 @@ $conn->close();
                             $amenityCount = 0;
                             while ($row = mysqli_fetch_array($resultAmenity)) {
                                 echo " <div class=\"amenity-item\">
-                                                <img id=\"amenity-img\" src=\"amenityImages/{$row['amenity_image']}\" alt=\"\"> {$row['amenity_name']}
+                                                <img src=\"#\" alt=\"\">[] {$row['amenity_name']}
                                            </div>";
                                 $amenityCount++;
                             }
                             ?>
                         </div>
                     </div>
-                    <!-- <div id="show-all-container">
+                    <div id="show-all-container">
                         <input type="button" name="show-all-btn" value="show all (<?php echo $amenityCount ?>)" id="show-all-btn">
-                    </div> -->
+                    </div>
                 </div>
                 <div class="right-box" id="right-box-amenity">
                     <div class="title" id="landlord-title">
@@ -502,44 +342,33 @@ $conn->close();
                         <hr>
                     </div>
                     <div id="picture-name-container">
-                        <?php
-                        echo "<img src= \"profilepics/{$resultUser['profile_pic']} \" alt=\"profile image\">";
-                        ?>
+                        <img src="#" alt="">
                         <div><?php echo "{$resultUser['first_name']} {$resultUser['last_name']}"; ?></div>
                     </div>
                     <div id="disclaimer">The following information is based on reviews and may not be accurate *</div>
                     <div id="rating-bars-container">
-                        <div class="landlord-rating-section">
-                            <!-- Politeness Rating -->
-                            <div class="rating-item">
-                                <p class="ratingLabels">Politeness:</p>
-                                <div class="" id="politenessRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentPolite; ?>" class="sliderDisplay" id="politenessSliderDisplay" readonly>
-                                </div>
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Politeness
                             </div>
-
-                            <!-- Quality of Repair Rating -->
-                            <div class="rating-item">
-                                <p class="ratingLabels">Quality of Repair:</p>
-                                <div class="rating-slider" id="repairRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentQuality; ?>" class="sliderDisplay" id="repairSliderDisplay" readonly>
-                                </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
                             </div>
-
-                            <!-- Response Time Rating -->
-                            <div class="rating-item">
-                                <p class="ratingLabels">Response Time:</p>
-                                <div class="rating-slider" id="responseTimeRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentResponse; ?>" class="sliderDisplay" id="responseTimeSliderDisplay" readonly>
-                                </div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Quality of repair
                             </div>
-
-                            <!-- Overall Landlord Rating -->
-                            <div class="rating-item">
-                                <p class="ratingLabels">Overall Landlord Rating:</p>
-                                <div class="rating-slider" id="overallLandlordRatingDisplay">
-                                    <input type="range" min="1" max="5" value="<?php echo $agentOverall; ?>" class="sliderDisplay" id="overallLandlordSliderDisplay" readonly>
-                                </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="rating-bar-title">
+                                Response Time
+                            </div>
+                            <div class="rating-bar-rect">
+                                [-------------------------]
                             </div>
                         </div>
                     </div>
@@ -548,164 +377,156 @@ $conn->close();
                 </div>
             </div>
         </div>
-        <!-- changes the button based off if you are logged in and can comment -->
-        <?php if ($isAuthenticated) : ?>
-            <?php if ($isTenant) : ?>
-                <div class="rate-prop-btn-container">
-                    <button class="rate-property filledButton" id="openRatingModalBtn">
-                        Rate Property
-                    </button>
-                </div>
-            <?php else : ?>
-                <div class="rate-prop-btn-container">
-                    <button class="rate-property filledButton" id="openWhoopsNotAllowed">
-                        Rate Property
-                    </button>
-                </div>
-            <?php endif; ?>
-        <?php else : ?>
-            <div class="rate-prop-btn-container">
-                <button class="rate-property filledButton" id="openRatingModalBtnButItsNot">
-                    Rate Property
-                </button>
-            </div>
-        <?php endif; ?>
 
-        <div class="parent-container" id="comment-parent-container" data-target="review-indicator">
-            <div class="boxes-container">
+        <!-- work in progress for comment section -->
+       
+    <div class="comment-section">
+    <h2>Comments</h2>
+    <label for="sort-comments">Sort by:</label>
+    <select name="sort-comments" id="sort-comments">
+        <option value="desc">Highest Rating</option>
+        <option value="asc">Lowest Rating</option>
+        <option value="oldest">Oldest Comment</option>
+        <option value="newest">Newest Comment</option>
+    </select>
 
-                <div class="left-box">
-                    <div class="comment-label-container">
-                        <div class="commentLabel">Reviews</div>
-                    </div>
-                    <div class="comment-section">
-                        <div class="sort-comments-container">
-                            <div class="inner-sort-comments-container">
-                                <label for="sort-comments">Sort by:</label>
-                                <select name="sort-comments" id="sort-comments">
-                                    <option value="desc">Highest</option>
-                                    <option value="asc">Lowest</option>
-                                    <option value="oldest">Oldest</option>
-                                    <option value="newest">Newest</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="comments-list-container">
-                            <?php include('comments.php'); ?>
-                        </div>
-                        <div class="comment-page-container">
-                            <div class="previous-page-container">
-                                <button class="previous-page-button firstOrLastPage">Previous</button>
-                            </div>
-                            <div class="page-number-container">
-                                <button class="page-number current-page">1</button>
-                                <button class="page-number">2</button>
-                                <button class="page-number">3</button>
-                            </div>
-                            <div class="next-page-container">
-                                <button class="next-page-button">Next Page</button>
-                            </div>
-                        </div>
-                    </div>
+    <?php
+        // Define the default sorting order
+        $sortOrder = "DESC"; // Highest rating by default
+        $orderBy = "avg_prop_review"; // Default sorting column
 
+        // Check if the select input value has changed (using JavaScript)
+        echo '<script>
+                document.getElementById("sort-comments").addEventListener("change", function() {
+                    var selectedValue = this.value;
+                    window.location.href = "property.php?sort=" + selectedValue;
+                });
+              </script>';
 
-                </div>
-                <div class="right-box">
-                    <div class="rating-summary-container">
-                        <div class="commentLabel">Overall</div>
-                        <hr class="horizontal-line-comment">
-                        <div class="rating-summary-overall-container">
-                            <?php echo "<p>$overallRating" ?>
-                            <span class="star">&#9733; - <?php echo " $count Reviews</p>" ?> </span>
-                        </div>
-                        <hr class="horizontal-line-comment">
-                        <div class="rating-summary-breakdown">
-                            <p style="display: inline;" >5 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFive; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFive</p>" ?><br>
-                            <p style="display: inline;" >4 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countFour; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countFour</p>" ?><br>
-                            <p style="display: inline;" >3 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countThree; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countThree</p>" ?><br>
-                            <p style="display: inline;" >2 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countTwo; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countTwo</p>" ?><br>
-                            <p style="display: inline;" >1 <span class="star">&#9733; <input type="range" min="1" max="5" value="<?php echo $countOne; ?>" class="sliderDisplay" id="overallPropertyCountFiveDisplay" readonly> </span> <?php echo " $countOne</p>" ?>
-                        </div>
-                    </div>
-                    <div class=landlord-rating-summary-container>
-                        <div class="star-rating-section">
-                            <!-- Cleanliness Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <h3>Cleanliness</h3>
-                                </div>
-                                <div class="star-rating-display" data-category="cleanliness" data-rating=<?php echo $cleanliness; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
+        // Check if a sorting option is specified in the URL
+        if (isset($_GET['sort'])) {
+            $sortValue = $_GET['sort'];
+            if ($sortValue === 'asc') {
+                $sortOrder = 'ASC';
+                $orderBy = 'avg_prop_review';
+            } elseif ($sortValue === 'oldest') {
+                $sortOrder = 'ASC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            } elseif ($sortValue === 'newest') {
+                $sortOrder = 'DESC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            }
+        }
 
-                            <!-- Noise Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <h3>Noise<h3>
-                                </div>
-                                <div class="star-rating-display" data-category="noise" data-rating=<?php echo $noise; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
+        // Assuming $resultReview is a result object from your SQL query
+        // Fetch comments ordered by selected option
+        $sql = "SELECT written_review, date_reviewed FROM review ORDER BY $orderBy $sortOrder ;";
+        $result = $conn->query($sql);
+        $comments = $resultReview->fetch_all(MYSQLI_ASSOC);
+        $reviewerNames = $resultReviewerName->fetch_all(MYSQLI_ASSOC);
+        // Check if there are comments
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="comment">';
+                echo '<strong>' . htmlspecialchars($reviewerNames['username']) . ':</strong>';
+                echo '<p>' . htmlspecialchars($row['written_review']) . '</p>';
+                // Display average rating as filled-in stars
+                $averageRating = $row['avg_prop_review']; // Replace with your actual average rating value
+                echo '<p>Average Rating: ';
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $averageRating) {
+                        echo '<span class="star-filled">&#9733;</span>';
+                    } else {
+                        echo '<span class="star-unfilled">&#9733;</span>';
+                    }
+                }
+                echo '</p>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>No comments available.</p>';
+        }
+    ?>
+</div>
+        <!-- work in progress for comment section -->
 
-                            <!-- Location Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <h3>Location<h3>
-                                </div>
-                                <div class="star-rating-display" data-category="location" data-rating=<?php echo $location; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
+        <!-- work in progress for comment section -->
+       
+    <div class="comment-section">
+    <h2>Comments</h2>
+    <label for="sort-comments">Sort by:</label>
+    <select name="sort-comments" id="sort-comments">
+        <option value="desc">Highest Rating</option>
+        <option value="asc">Lowest Rating</option>
+        <option value="oldest">Oldest Comment</option>
+        <option value="newest">Newest Comment</option>
+    </select>
 
-                            </div>
+    <?php
+        // Define the default sorting order
+        $sortOrder = "DESC"; // Highest rating by default
+        $orderBy = "avg_prop_review"; // Default sorting column
 
-                            <!-- Safety Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <h3>Safety<h3>
-                                </div>
-                                <div class="star-rating-display" data-category="safety" data-rating=<?php echo $safety; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
+        // Check if the select input value has changed (using JavaScript)
+        echo '<script>
+                document.getElementById("sort-comments").addEventListener("change", function() {
+                    var selectedValue = this.value;
+                    window.location.href = "property.php?sort=" + selectedValue;
+                });
+              </script>';
 
-                            <!-- Affordability Rating -->
-                            <div class="rating-item">
-                                <div class="ratingLabels">
-                                    <h3>Affordability<h3>
-                                </div>
-                                <div class="star-rating-display" data-category="affordability" data-rating=<?php echo $affordability; ?>>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                    <span class="star">&#9734;</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        // Check if a sorting option is specified in the URL
+        if (isset($_GET['sort'])) {
+            $sortValue = $_GET['sort'];
+            if ($sortValue === 'asc') {
+                $sortOrder = 'ASC';
+                $orderBy = 'avg_prop_review';
+            } elseif ($sortValue === 'oldest') {
+                $sortOrder = 'ASC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            } elseif ($sortValue === 'newest') {
+                $sortOrder = 'DESC';
+                $orderBy = 'date_reviewed'; // Assuming this is your date column
+            }
+        }
+
+        // Assuming $resultReview is a result object from your SQL query
+        // Fetch comments ordered by selected option
+        $sql = "SELECT written_review, date_reviewed FROM review ORDER BY $orderBy $sortOrder ;";
+        $result = $conn->query($sql);
+        $comments = $resultReview->fetch_all(MYSQLI_ASSOC);
+        $reviewerNames = $resultReviewerName->fetch_all(MYSQLI_ASSOC);
+        // Check if there are comments
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="comment">';
+                echo '<strong>' . htmlspecialchars($reviewerNames['username']) . ':</strong>';
+                echo '<p>' . htmlspecialchars($row['written_review']) . '</p>';
+                // Display average rating as filled-in stars
+                $averageRating = $row['avg_prop_review']; // Replace with your actual average rating value
+                echo '<p>Average Rating: ';
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $averageRating) {
+                        echo '<span class="star-filled">&#9733;</span>';
+                    } else {
+                        echo '<span class="star-unfilled">&#9733;</span>';
+                    }
+                }
+                echo '</p>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>No comments available.</p>';
+        }
+    ?>
+</div>
+        <!-- work in progress for comment section -->
+
+        <div class="rate-prop-btn-container">
+            <button class="rate-property" id="openRatingModalBtn">
+                Rate Property
+            </button>
         </div>
-
-
 
         <!-- The login modal -->
         <div id="loginModal" class="modal" style="display:none;">
@@ -726,17 +547,17 @@ $conn->close();
                     <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" placeholder="Username" required><br>
                     <label for="password" class="modalLabel">Password:</label>
                     <input type="password" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" placeholder="Password" required><br>
-                    <input type="submit" id="submitLogin" class="filledButton" value="Login">
-                    <button type="button" id="signupButton" class="filledButton">Signup</button>
+                    <input type="submit" id="submitLogin" value="Login">
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-
+                <button id="signupButton">Signup</button>
             </div>
         </div>
 
         <!-- The signup modal (hidden by default) -->
         <div id="signupModal" class="modal" style="display: none;">
+
             <div class="modal-content">
                 <span class="close" id="closeSignupButton">&times;</span>
                 <span class="back-arrow" style="color:white;" id="backToLoginButton">&#8592;</span>
@@ -787,12 +608,12 @@ $conn->close();
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn" class="inverseFilledButton">Change Password</button>
+                <button id="changePasswordBtn">Change Password</button>
 
-                <button id="deleteProfileBtn" class="inverseFilledButton">Delete Profile</button>
+                <button id="deleteProfileBtn">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php?page=property&id=<?php echo $propId; ?>" method="post" id="formProfileBtn">
-                    <button id="logoutButton" type="submit" class="filledButton loginButton">Logout</button>
+                <form action="../Backend_Files/logout.php?page=property&id=<?php echo $propId; ?>" method="post">
+                    <button type="submit" class="loginButton">Logout</button>
                 </form>
             </div>
         </div>
@@ -810,18 +631,17 @@ $conn->close();
                 <span class="back-arrow" style="color:white;" id="backToProfile">&#8592;</span>
 
                 <h2>Change Password</h2>
-                <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
+                <form id="changePasswordForm" action="../Backend_Files/change_password.php?page=property&id=<?php echo $propId; ?>" method="post">
                     <label for="currentPassword">Current Password:</label>
-                    <input type="password" id="currentPassword" class="modalInput" name="currentPassword" required><br>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
 
                     <label for="changeNewPassword">New Password:</label>
-                    <input type="password" id="changeNewPassword" class="modalInput" name="changeNewPassword" required><br>
+                    <input type="password" id="changeNewPassword" name="changeNewPassword" required>
 
                     <label for="confirmPassword">Confirm New Password:</label>
-                    <input type="password" id="confirmPassword" class="modalInput" name="confirmPassword" required><br>
-                    <br>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-                    <button id="changePasswordButtonFinal" type="submit" class="filledButton" style="display: inline-block;">Change Password</button>
+                    <button type="submit">Change Password</button>
                 </form>
             </div>
         </div>
@@ -832,18 +652,17 @@ $conn->close();
 
                 <h2>Confirm Delete</h2>
                 <p>Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" class="confirmDeleteForm" method="post">
-                    <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
-                    <button id="cancelDeleteBtn" class="filledButton" >Cancel</button>
+                <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" method="post">
+                    <button type="submit" class="deleteButton">Yes, Delete</button>
                 </form>
-                
+                <button id="cancelDeleteBtn">Cancel</button>
             </div>
         </div>
 
 
 
         <!-- The Rating Modal -->
-        <div id="ratingModal" class="modal" style="display: none;" data-page-id="<?php echo $_GET['id']; ?>" data-user-id="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
+        <div id="ratingModal" class="modal" style="display: none;">
             <div class="modal-content" id="ratingModalInner">
                 <span class="modal-close" id="closeRatingModalBtn">&times;</span>
                 <form id="ratingForm" action="process_ratings.php" method="post">
@@ -958,8 +777,8 @@ $conn->close();
                             <div class="review-section">
                                 <div id="writeAReview">Please write a review (optional)</div>
                                 <div class="reviewTextarea">
-                                    <textarea id="reviewTextarea" name="property_review" maxlength="500" rows="4" cols="50"></textarea>
-                                    <div id="wordCount">0/500</div>
+                                    <textarea id="reviewTextarea" name="property_review" rows="4" cols="50"></textarea>
+                                    <div id="wordCount">0/250</div>
                                 </div>
                             </div>
                         </div>
@@ -980,6 +799,7 @@ $conn->close();
                                     </div>
                                     <div class="rating-slider" id="politenessRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
+
                                     </div>
 
                                 </div>
@@ -1026,27 +846,20 @@ $conn->close();
                                 </div>
                             </div>
                         </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer" id="ratingfooter">
+                        <div class="modal-footer">
                             <button type="submit" id="submitRatingBtn" class="inverseFilledButton">Submit</button>
+
                         </div>
                     </div>
+                    <!-- Modal footer -->
+
                 </form>
             </div>
         </div>
-        <div id="notLoggedInModalSomethingElse" class="modal" style="display: none;">
-            <span class="modal-close" id="closeNotLoggedInModalSomethingElse">&times;</span>
-            <div class="modal-content">
-                <p>Please login to make a review</p>
-                <button type="menu" class="filledButton loginButton" id="loginButtonPropertyPage">Log in</button>
-            </div>
-        </div>
-        <div id="notATenantModal" class="modal" style="display: none;">
-            <span class="modal-close" id="closeNotATenantModal">&times;</span>
-            <div class="modal-content">
-                <p>Whoops sorry your not allowed to make a review. Contact your agent so they can add you</p>
-            </div>
-        </div>
+
+
+
+
     </main>
 </body>
 
