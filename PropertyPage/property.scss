@@ -219,7 +219,7 @@ main {
                         .contact-form {
                             display: grid;
                             gap: 3px;
-
+                            color: var(--global-font-color);
                             font-size: calc(8px + 0.2vw);
                             width: 100%;
                             height: 100%;
@@ -246,6 +246,8 @@ main {
                                 font-style: normal;
                                 font-weight: 250;
                                 line-height: normal;
+                                color: white
+;
                             }
                         }
                     }
