@@ -550,8 +550,7 @@ $conn->close();
                             </div>
                         </div>
                         <div class="comments-list-container">
-                            <!-- <?php //include('comments.php'); 
-                                    ?> -->
+                            <?php include('comments.php'); ?> 
                         </div>
                         <div class="comment-page-container">
                             <div class="previous-page-container">
