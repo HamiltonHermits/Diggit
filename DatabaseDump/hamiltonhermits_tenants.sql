@@ -16,30 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `searchbar_testing`
+-- Table structure for table `tenants`
 --
 
-DROP TABLE IF EXISTS `searchbar_testing`;
+DROP TABLE IF EXISTS `tenants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `searchbar_testing` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL,
-  `description` text,
-  `agent` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `tenants` (
+  `id_prop_tenant` int NOT NULL AUTO_INCREMENT,
+  `prop_id` int NOT NULL,
+  `tenant_id` varchar(450) NOT NULL,
+  PRIMARY KEY (`id_prop_tenant`),
+  UNIQUE KEY `id_prop_tenant_UNIQUE` (`id_prop_tenant`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `searchbar_testing`
+-- Dumping data for table `tenants`
 --
 
-LOCK TABLES `searchbar_testing` WRITE;
-/*!40000 ALTER TABLE `searchbar_testing` DISABLE KEYS */;
-INSERT INTO `searchbar_testing` VALUES (1,'Cozy Studio Apartment','123 Main Street, Cityville','A beautiful studio apartment with great views.','Agent Smith'),(2,'Spacious 2-Bedroom Apartment','456 Elm Street, Townsville','A large 2-bedroom apartment with modern amenities.','Agent Johnson'),(3,'Luxury Penthouse Suite','789 Oak Street, Luxville','An exquisite penthouse suite with a private rooftop terrace.','Agent Williams');
-/*!40000 ALTER TABLE `searchbar_testing` ENABLE KEYS */;
+LOCK TABLES `tenants` WRITE;
+/*!40000 ALTER TABLE `tenants` DISABLE KEYS */;
+INSERT INTO `tenants` VALUES (1,17,'hello@gmail.com'),(2,17,'what@gmail.com'),(3,20,'michaelgreen@gmail.com'),(4,20,'nomie@gmail.com'),(5,20,'sandman@gmail.com'),(6,22,'demo1@gmail.com'),(7,22,'demo2@gmail.com'),(8,25,'demo1@gmail.com'),(9,26,'someone@gmail.com'),(10,27,'someone@gmail.com'),(11,28,'some@gmail.com'),(12,29,'Ibeg@gmail.com'),(13,30,'some@gmail.com'),(15,32,'garwindampies@gmail.com'),(16,7,'admin@gmail.com'),(18,34,'sdsa@gmail.com'),(19,34,'new@gmail.com'),(20,34,'sdsass@gmail.com'),(21,35,'demo@gmail.com'),(22,35,'someone@gmail.com'),(23,35,'manu@gmail.com'),(52,31,'demo@gmail.com'),(53,31,'manu@gmail.com'),(54,31,'biden@gmail.com');
+/*!40000 ALTER TABLE `tenants` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 21:44:18
+-- Dump completed on 2023-10-02 22:51:34
