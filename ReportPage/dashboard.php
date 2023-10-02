@@ -205,10 +205,20 @@
                     </div>
                     <div id="generateReportButton" class="generateReportButton">
                         <button id="generateCriteriaReport" class="filledButton">Generate Report</button>
+                        <button id="chooseCriteria" class="filledButton" name="chooseCriteria">
+                            <div id="select-placeholder">Choose Criteria</div> 
+                            <select id="criteria-dropdown" name="criteria-dropdown">
+                                <option value="cleanliness">Cleanliness</option>
+                                <option value="noise">Noise</option>
+                                <option value="location">Location</option>
+                                <option value="safety">Safety</option>
+                                <option value="affordability">Affordability</option>
+                            </select>
+                        </button>
                     </div>
                     <div class="report-container" id="criteria-report-container">
                         <div class="report-text-container" id="criteria-report-text-container">
-                            <!-- php here -->
+                            
                         </div>
 
                     </div>
