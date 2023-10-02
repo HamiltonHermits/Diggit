@@ -53,11 +53,13 @@ document.getElementById('save-property').addEventListener('click', function () {
     console.log(amenitysInput);
     let lat = latitudeGlobal;
     let long = longitudeGlobal;
+    const filesGiven = false;
+    if(fileInput.files.length > 0 || imageFileNames>0)    filesGiven = true ;
 
-    console.log(titleInput.value.trim() !== "", fileInput.files.length !== 0, descriptionInput.value.trim() !== "", addressInput.value.trim() !== "", lat != 0, long != 0, amenitysInput.length !== 0, tenantsInput.length !== 0);
+    console.log(titleInput.value.trim() !== "", filesGiven, descriptionInput.value.trim() !== "", addressInput.value.trim() !== "", lat != 0, long != 0, amenitysInput.length !== 0, tenantsInput.length !== 0);
 
     // check if all the input fields are filled out 
-    if (titleInput.value.trim() !== "" && fileInput.files.length !== 0
+    if (titleInput.value.trim() !== "" && filesGiven !== 0
         && descriptionInput.value.trim() !== "" && addressInput.value.trim() !== ""
         && lat != 0 && long != 0 && amenitysInput.length !== 0 && tenantsInput.length !== 0) {
         //got rid of confirm looks tacky
