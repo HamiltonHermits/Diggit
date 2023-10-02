@@ -146,51 +146,37 @@ $(document).ready(function () {
             url: 'chartReports.php', // Change the URL to your PHP script
             type: 'GET',
             data: { chart: chartType },
-            success: function (data) {
+            success: function (chartData) {
+                const jsonData = JSON.parse(chartData);
+
                 google.charts.load("current", {packages:['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
+            
                 function drawChart() {
-                    console.log(data);
-                    console.log(typeof data);
-                    
-                    const dataArray = JSON.parse(data);
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Property Name');
+                    data.addColumn('number', 'Overall Property Rating');
+            
+                    for (var i = 0; i < jsonData.length; i++) {
+                        var prop_name = jsonData[i].prop_name;
+                        var overall_property_rating = parseInt(jsonData[i].overall_property_rating);
+                        console.log(prop_name, overall_property_rating);
+                        data.addRow([prop_name, overall_property_rating]);
 
-                    console.log(dataArray);
-                    
-                // for (let index = 0; index < data.length; index++) {
-                //     const el = data[index];
-                //     console.log(el);
-                    
-                // }
-                // data.forEach(element => {
-                //     console.log(element);
-                // });
-                // var dataArray = google.visualization.arrayToDataTable([
-                //     ["Element", "Density", { role: "style" } ],
-                //     ["Copper", 8.94, "#b87333"],
-                //     ["Silver", 10.49, "silver"],
-                //     ["Gold", 19.30, "gold"],
-                //     ["Platinum", 21.45, "color: #e5e4e2"]
-                // ]);
-
-                // var view = new google.visualization.DataView(data);
-                // view.setColumns([0, 1,
-                //                 { calc: "stringify",
-                //                     sourceColumn: 1,
-                //                     type: "string",
-                //                     role: "annotation" },
-                //                 2]);
-
-                // var options = {
-                //     title: "Density of Precious Metals, in g/cm^3",
-                //     width: 600,
-                //     height: 400,
-                //     bar: {groupWidth: "95%"},
-                //     legend: { position: "none" },
-                // };
-                // var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-                // chart.draw(view, options);
-            }
+                    }
+            
+                    var options = {
+                        title: 'Overall Property Ratings',
+                        bars: 'horizontal',
+                        width: "100%",
+                        height: "100%",
+                        hAxis: {title: 'Property Name'},
+                        vAxis: {title: 'Overall Property Rating'},
+                    };
+            
+                    var chart = new google.visualization.BarChart(document.getElementById('chart-report-text-container'));
+                    chart.draw(data, options);
+                }
             },  
             error: function () {
                 alert("An error occurred while fetching the report.");
