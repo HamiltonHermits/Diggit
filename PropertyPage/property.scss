@@ -174,7 +174,7 @@ main {
             .top-container {
                 display: flex;
                 gap: 1em;
-                height: 47.5%;
+                min-height: 45%;
 
                 .agent-container {
                     display: flex;
@@ -535,7 +535,7 @@ main {
 }
 
 #comment-parent-container {
-    margin: 6em 0 0 0;
+    margin: 10em 0 0 0;
     font-family: "Poppins";
 
     .boxes-container {
@@ -984,7 +984,17 @@ main {
     }
 }
 
-
+@media screen and (min-width:800px){
+    .background-sidebar-container{
+        position: static !important;
+        width: 15% !important;
+        display: block !important;
+        .sidebar{
+            width: 15% !important;
+            display: block !important;
+        }
+    }
+}
 @media screen and (max-width: 1156px) {
 
     body #property-parent-container {

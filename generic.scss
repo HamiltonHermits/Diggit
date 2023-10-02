@@ -111,7 +111,13 @@ body {
         height: 100vh;
         min-width: 150px;
         background-color: var(--sidebar-color);
-
+        #closeSignupButton{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10%;
+            display: none;
+        }
         .sidebar * {
             display: flex;
             flex-direction: column;
@@ -188,7 +194,7 @@ body {
 
         .settings-container {
             display: flex;
-            height: 25%;
+            height: 50%;
             justify-content: flex-start;
             align-items: center;
             position: relative;
@@ -489,8 +495,12 @@ a {
     }
 
     @media screen and (max-width: 800px) {
-        .logo-container {
-            display: none;
+        .background-sidebar-container{
+            .sidebar{
+                #closeSignupButton{
+                    display: block;
+                }
+            }
         }
 
         .background-sidebar-container {

@@ -3,10 +3,12 @@ var counter;
 var MAX_VIEW = 5;
 var lastval_boolean = false;
 var openModalBtnDashboard = document.getElementById("openModalBtnDashboard");
+var sidebarOuter = document.getElementById("outer-sidebar");
+var sidebar = document.getElementById("inner-sidebar");
 
-openModalBtnDashboard.addEventListener('click', () => {
-  window.location.href = "../IndexPage/index.php";
-});
+// openModalBtnDashboard.addEventListener('click', () => {
+//   window.location.href = "../IndexPage/index.php";
+// });
 //to disable the sliders
 var sliderDisplay = document.getElementsByClassName("sliderDisplay");
 
@@ -110,4 +112,25 @@ function showSlides(n) {
   }
   slides[slideIndex - 1].style.display = "block";
 
+}
+
+
+
+
+function showPhoneSidebar(){
+  
+  sidebarOuter.style.display = "block";
+  sidebarOuter.style.zIndex = "100";
+  sidebarOuter.style.position = "fixed";
+  sidebarOuter.style.width = "30%";
+  sidebar.style.width = "30%";
+}
+
+function hidePhoneSidebar(){
+  sidebarOuter.style.zIndex = "1";
+  sidebarOuter.style.position = "static";
+  sidebarOuter.style.width = "15%";
+  sidebarOuter.style.display = "none";
+  sidebar.style.width = "15%";
+  
 }

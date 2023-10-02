@@ -73,7 +73,7 @@ $landlordId = $result['created_by'];
 $isLandlord = false;
 if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $landlordId) {
     $isLandlord = true;
-    $_SESSION['isLandlord'] = $isLandlord;   
+    $_SESSION['isLandlord'] = $isLandlord;
 }
 //Get agent details who created property
 $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company,usertbl.profile_pic
@@ -226,8 +226,8 @@ $conn->close();
 </head>
 
 <body>
-    <div class="background-sidebar-container">
-        <div class="sidebar">
+    <div class="background-sidebar-container" id="outer-sidebar">
+        <div class="sidebar" id="inner-sidebar">
             <div class="logo-container">
                 <a id="logo" href="../IndexPage/index.php">
                     <div id="digg">Digg</div>
@@ -235,6 +235,7 @@ $conn->close();
                 </a>
 
             </div>
+            <span class="close" id="closeSignupButton" onclick="hidePhoneSidebar()">&times;</span>
             <div class="page-indicator-container">
                 <div class="page-indicator-inner-container" id="prop-indicator">
                     <a class="page-indicator" href="#property-parent-container">
@@ -303,16 +304,15 @@ $conn->close();
     <main>
         <div class="nav-top">
             <div class="profileContainer" id="dashboardContainer">
-                <button id="openModalBtnDashboard" style="z-index: 99;">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0_486_85" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-                            <rect width="30" height="30" fill="#D9D9D9" />
+                <button id="openModalBtnDashboard" style="z-index: 99;" onclick="showPhoneSidebar()">
+                    <svg width="40" height="40" viewBox="0 0 61 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_30_602" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="61" height="50">
+                            <rect width="61" height="50" fill="#D9D9D9" />
                         </mask>
-                        <g mask="url(#mask0_486_85)">
-                            <path d="M6 19H9V13H15V19H18V10L12 5.5L6 10V19ZM4 21V9L12 3L20 9V21H13V15H11V21H4Z" fill="#ad5511" />
+                        <g mask="url(#mask0_30_602)">
+                            <path d="M10.1665 31.25V27.0833H50.8332V31.25H10.1665ZM10.1665 22.9167V18.75H50.8332V22.9167H10.1665Z" fill="#E96B09" fill-opacity="0.7" />
                         </g>
                     </svg>
-
                 </button>
             </div>
             <div class="searchbar-container">
