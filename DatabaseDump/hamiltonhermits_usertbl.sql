@@ -39,7 +39,7 @@ CREATE TABLE `usertbl` (
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   UNIQUE KEY `user_name_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `usertbl` (
 
 LOCK TABLES `usertbl` WRITE;
 /*!40000 ALTER TABLE `usertbl` DISABLE KEYS */;
-INSERT INTO `usertbl` VALUES (2,'demo','$2y$10$JdIRcAosIOyPoHYdDbjMMedmCRv2.GR0F3pdV4eThQB1dMDTTpwEy','Kevin','Klark',0,1,'demo@gmail.com',0,'0121231234','Remax','1696108761photo-1438761681033-6461ffad8d80.jpeg'),(3,'demo1','$2y$10$zfySZIdu8t0ryBbwJ3yMle2VjceqOl63RQw3T0YVYjAtVm4jDXPVa','Marc','Daniel',0,0,'demo1@gmail.com',0,'0842146578','Demo1 Comp',NULL),(4,'manu','$2y$10$OP2ybDocf4cBGFdvLsp8ouAxZdSsee6Oc0CdIvbVt2ZXMR8joDKxO','Manu','Jourdan',0,1,'manu@gmail.com',0,'1123456789','manu company',NULL),(5,'cameron','$2y$10$R0.SADn6WVp0/.U1YR75YuM8gTJR0N7ncAVj0sDPdKVw5Yha/P0oy','Cameron','Wicks',0,1,'cameron@gmail.com',0,'9987654321','cameron and co.',NULL),(6,'Wynne1','$2y$10$BHqnwkJ0X8j0q9tsJBzdKOZC300RauX5gKYqu9vomEmhKT1BZ9uya','Wynne','Eeeeeee',1,1,'wynne1@gmail.com',0,'0435216851','Wynne lnadlords',NULL),(9,'admin','$2y$10$iQUE4o9faiMkm7EjNJZ8Web1rG8syW.SvCLucrpjA/EbY0OxvuuXK','Admin','Kent',0,0,'admin@gmail.com',0,NULL,NULL,NULL),(10,'mila','$2y$10$wdcDPaj66nZ6bB89ueaf2ulCgraB3ekmI7xHRChLgyh4aT2u2VKtK','Mila-jo','Davies',0,0,'daviesmila@gmail.com',0,NULL,NULL,NULL);
+INSERT INTO `usertbl` VALUES (2,'demo','$2y$10$JdIRcAosIOyPoHYdDbjMMedmCRv2.GR0F3pdV4eThQB1dMDTTpwEy','Kevin','Klark',0,1,'demo@gmail.com',0,'0121231234','Remax','1696108761photo-1438761681033-6461ffad8d80.jpeg'),(3,'demo1','$2y$10$zfySZIdu8t0ryBbwJ3yMle2VjceqOl63RQw3T0YVYjAtVm4jDXPVa','Marc','Daniel',0,1,'demo1@gmail.com',0,'0821212232','Bananans','1696277237photo-1481349518771-20055b2a7b24.jpeg'),(4,'manu','$2y$10$OP2ybDocf4cBGFdvLsp8ouAxZdSsee6Oc0CdIvbVt2ZXMR8joDKxO','Manu','Jourdan',0,1,'manu@gmail.com',0,'1123456789','manu company',NULL),(5,'cameron','$2y$10$R0.SADn6WVp0/.U1YR75YuM8gTJR0N7ncAVj0sDPdKVw5Yha/P0oy','Cameron','Wicks',0,1,'cameron@gmail.com',0,'9987654321','cameron and co.',NULL),(6,'Wynne1','$2y$10$BHqnwkJ0X8j0q9tsJBzdKOZC300RauX5gKYqu9vomEmhKT1BZ9uya','Wynne','Eeeeeee',1,1,'wynne1@gmail.com',0,'0435216851','Wynne lnadlords',NULL),(9,'admin','$2y$10$iQUE4o9faiMkm7EjNJZ8Web1rG8syW.SvCLucrpjA/EbY0OxvuuXK','Admin','Kent',0,0,'admin@gmail.com',0,NULL,NULL,NULL),(10,'mila','$2y$10$wdcDPaj66nZ6bB89ueaf2ulCgraB3ekmI7xHRChLgyh4aT2u2VKtK','Mila-jo','Davies',0,0,'daviesmila@gmail.com',0,NULL,NULL,NULL),(11,'Biden','$2y$10$E2zrPQpZjrdIUCqEdOm19e5GTHAt8ehuYxEBrmFbNJ5.tcSUHoPOq','Joe','Biden',0,0,'biden@gmail.com',0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `usertbl` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 21:44:17
+-- Dump completed on 2023-10-02 22:51:33

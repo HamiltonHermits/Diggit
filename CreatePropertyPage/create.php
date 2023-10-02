@@ -48,7 +48,7 @@ if (isset($_SESSION['profileMessage'])) {
 
 
 $editPropertyCheck = false;
-if (isset($_GET['pageId'])) { //if the prop id is sett we are going to populate the form with all the info from the db
+if (isset($_GET['pageId'])&& isset($_SESSION['isLandlord'])) { //if the prop id is sett we are going to populate the form with all the info from the db
     $propId = $_GET['pageId'];
     $_SESSION['property_id'] = $propId;
     require_once("../Backend_Files/database_connect.php");
