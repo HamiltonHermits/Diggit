@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SESSION['editingProperty'])) {
         //we are going to update the database instead of insert into
         $propId = $_SESSION['property_id'];
+        $prop_id = $propId;
         $query = "UPDATE property
         SET
             prop_name = '$propTitle',
@@ -72,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 move_uploaded_file($file_tmp, $destination);
 
                 // insert images into database
-                $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($prop_id,'$file_name')";
+                $query = "INSERT INTO property_images (prop_id, image_name) VALUES ($propId,'$file_name')";
                 $result = mysqli_query($conn, $query);
                 if (!$result) { //if query fails, return error, check network packets in dev tools
                     http_response_code(400); // Bad Request
@@ -87,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $propAmenitiesArray = explode(",", $propAmenities); //break string into an array
         foreach ($propAmenitiesArray as $amenity) {
-            $query = "INSERT INTO property_amenity (prop_id, amenity_id) VALUES ('$prop_id','$amenity')";
+            $query = "INSERT INTO property_amenity (prop_id, amenity_id) VALUES ('$propId','$amenity')";
             $result = mysqli_query($conn, $query);
             if (!$result) { //if query fails, return error, check network packets in dev tools
                 http_response_code(400); // Bad Request
@@ -103,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $propTenantsArray = explode(",", $propTenants); //break string into an array
         foreach ($propTenantsArray as $tenant) {
             $tenantCount = $tenantCount + 1;
-            $query = "INSERT INTO tenants (prop_id, tenant_id) VALUES ('$prop_id','$tenant')";
+            $query = "INSERT INTO tenants (prop_id, tenant_id) VALUES ('$propId','$tenant')";
             $result = mysqli_query($conn, $query);
             if (!$result) { //if query fails, return error, check network packets in dev tools
                 http_response_code(400); // Bad Request
@@ -112,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         //set the current amount of tenants
-        $query = "UPDATE property SET curr_tenants = '$tenantCount' WHERE (prop_id = '$prop_id')";
+        $query = "UPDATE property SET curr_tenants = '$tenantCount' WHERE (prop_id = '$propId')";
         $result = mysqli_query($conn, $query);
         if (!$result) { //if query fails, return error, check network packets in dev tools
             http_response_code(400); // Bad Request
