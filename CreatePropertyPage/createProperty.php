@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
         unset($_SESSION['editingProperty']);
-
+        unset($_SESSION['property_id']);
     } else {
 
         //insert prop title
