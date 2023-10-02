@@ -263,6 +263,8 @@ main {
   cursor: pointer;
 }
 #property-parent-container .boxes-container .left-box .prop-images-container .prop-images {
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
 }
@@ -271,7 +273,7 @@ main {
 }
 #property-parent-container .boxes-container .left-box .prop-images-container .prop-images .propertyImage img {
   height: 100%;
-  width: 100%;
+  width: auto;
   border-radius: 15px;
 }
 #property-parent-container .boxes-container .left-box .prop-desc-container {
