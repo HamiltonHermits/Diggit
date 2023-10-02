@@ -25,6 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $currentDate = date("Y-m-d");
 
+    // Attempt to calc the overall prop rating and the overall tenant rating///
+
+    
+    echo $overallLandlordRating.gettype();
+
     if (!empty($propertyId) && !empty($userId)) {
         try {
             // Prepare a SQL statement with placeholders for binding values to stop sql injection

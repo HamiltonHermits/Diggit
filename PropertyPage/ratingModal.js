@@ -204,16 +204,20 @@ ratingForm.addEventListener('submit', (event) => {
             formData.append(category, selectedRatings[category]);
             console.log(category);
         }
-
-        // Add slider ratings
+        var counter=0;
+        // Add slider ratings (ATTEMPTING TO CALC Overall Rating)
         const sliderElements = document.querySelectorAll('.slider');
         sliderElements.forEach((slider) => {
 
             const category = slider.parentElement.id;
             console.log(category);
             const value = slider.value;
+            counter+=parseInt(value);
             formData.append(category, value);
         });
+        var overallRatingLandlord = Math.round(counter/sliderElements.length);
+
+        formData.append("overallLandlordSlider", overallRatingLandLord);
 
         // Add review textarea
         const reviewTextarea = document.getElementById('reviewTextarea');
@@ -222,6 +226,7 @@ ratingForm.addEventListener('submit', (event) => {
         formData.append('propertyId', pageId);//this is gotten at the top
 
         formData.append('userId', userId);//this shouldnt work if its not set
+
 
 
 
