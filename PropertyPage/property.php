@@ -72,6 +72,7 @@ $landlordId = $result['created_by'];
 $isLandlord = false;
 if (isset($_SESSION['user_id'])&& $_SESSION['user_id'] == $landlordId) {
     $isLandlord = true;
+    $_SESSION['isLandlord'] = $isLandlord;   
 }
 //Get agent details who created property
 $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company,usertbl.profile_pic
