@@ -165,7 +165,7 @@ $countTotal = $countFive + $countFour + $countThree + $countTwo + $countOne;
 echo "<script>console.log($countTotal);</script>";
 
 //then we are going to average them out
-if ($count > 0) {
+if ($count > 0 && $countTotal > 0) {
     $countPercentFive = $countFive / $countTotal;
     $countPercentFour = $countFour / $countTotal;
     $countPercentThree = $countThree / $countTotal;
