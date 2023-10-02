@@ -11,8 +11,10 @@ $stmt = $conn->prepare("SELECT prop_id,prop_name, prop_description,address
                                
                         FROM property 
         
-                        WHERE prop_name LIKE ? 
-                        OR address LIKE ?");
+                        WHERE (prop_name LIKE ? 
+                        OR address LIKE ?) 
+                        AND is_deleted = false
+                        ");
 $searchParam = "%" . $searchQuery . "%";
 $stmt->bind_param("ss", $searchParam, $searchParam);
 $stmt->execute();

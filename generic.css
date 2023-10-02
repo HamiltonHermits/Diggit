@@ -153,6 +153,9 @@ body {
   width: 85%;
   target: "someValue";
 }
+.background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container .page-indicator .inverseFilledButton {
+  font-size: 0.8em;
+}
 .background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container .page-indicator .icon {
   display: flex;
   align-items: center;
@@ -239,6 +242,10 @@ body {
   --light_secondary_colour: #564b40;
   --main-color: #29292c;
   /* Close button styles */
+}
+.modal .modal-content #confirmFormDelete {
+  display: flex;
+  justify-content: space-evenly;
 }
 .modal .modal-content .back-arrow {
   position: absolute;

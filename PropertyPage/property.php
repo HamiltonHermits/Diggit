@@ -66,6 +66,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $result = $result->fetch_assoc();
 $stmt->close();
+if($result['is_deleted']) header("Location: ../IndexPage/index.php");
 
 $landlordId = $result['created_by'];
 

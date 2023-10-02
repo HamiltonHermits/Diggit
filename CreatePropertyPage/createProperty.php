@@ -120,6 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(["error" => "Query error: " . $conn->error]);
             exit;
         }
+        unset($_SESSION['editingProperty']);
 
     } else {
 

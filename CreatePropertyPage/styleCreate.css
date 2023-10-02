@@ -119,6 +119,9 @@ main {
   display: flex;
   justify-content: center;
 }
+#property-parent-container .boxes-container .left-box .prop-images-container .select-images-overlay #selectedImages p {
+  display: none;
+}
 #property-parent-container .boxes-container .left-box .prop-images-container .select-images-overlay .inputfile {
   display: none;
 }
@@ -144,6 +147,13 @@ main {
   right: 10px;
   font-size: 1em;
   position: absolute;
+}
+
+.parent-container .right-box .listingOfTenants ul li {
+  padding: 3px;
+}
+.parent-container .right-box .listingOfTenants ul li button {
+  display: inline;
 }
 
 /*# sourceMappingURL=styleCreate.css.map */
