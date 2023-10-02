@@ -14,6 +14,7 @@ $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 $query = "SELECT tenants.tenant_id, property.prop_name
           FROM hamiltonhermits.tenants
           JOIN hamiltonhermits.property ON property.prop_id = tenants.prop_id
+          JOIN hamiltonhermits.usertbl ON usertbl.email = tenants.tenant_id
           WHERE tenants.tenant_id LIKE '%" . $searchTerm . "%'";
 
 $result = $conn->query($query);
