@@ -1,5 +1,9 @@
-
-var map = L.map('map');
+// only initialse a map if it doesn't already exist
+if (typeof map === 'undefined') {
+    var map = L.map('map');
+    console.log("map created");
+    generateMapDynamic(-32.5, 25, 5.3);
+}
 
 var markerLayer = L.layerGroup();
 markerLayer.addTo(map); // add the marker layer to the map
@@ -7,12 +11,13 @@ var markerAdded = false;
 
 var manualEntry = false; //boolean to check if user has manually entered address
 
-var latitudeGlobal = 0;
-var longitudeGlobal = 0;
+var latitudeGlobal;
+var longitudeGlobal;
 
 //make map visible if a location is found
 // document.querySelector(".bottom-container").style.visibility = "visible";
-generateMapDynamic(-32.5, 25, 5.3);
+
+// generateMapDynamic(-32.5, 25, 5.3);
 
 //default function to generate a map dyamically based on which location the user picks
 function generateMapDynamic(latitude, longitude, zoom) {
@@ -58,17 +63,22 @@ function addMarker(e) {
     }
 }
 
+function addMarkerToMap(latitude, longitude) {
+    console.log("we made it to addMarkerToMap");
+    // L.marker([latitude, longitude]).addTo(markerLayer);
+    // append text tothe marker
+    L.marker([latitude, longitude]).addTo(markerLayer).bindPopup("Property was originally added here").openPopup();
+    generateMapDynamic(latitude, longitude, 15.5);
+    latitudeGlobal = latitude;
+    longitudeGlobal = longitude;
+
+    // map.setView([latitude, longitude], 5.3);
+}
+
+
 // If the user decides to manually enter their address
 // Add the click event listener to the map
 map.on('click', addMarker);
-
-//function to lat and long of selected point on the map;
-function getLatLng() {
-    var lat = map.getCenter().lat;
-    var lng = map.getCenter().lng;
-    console.log(lat, lng);
-}
-
 
 
 var address = document.querySelector("#address");

@@ -2,7 +2,11 @@ var borderSearchBar = document.getElementById("borderSearchBar");
 var counter;
 var MAX_VIEW = 5;
 var lastval_boolean = false;
+var openModalBtnDashboard = document.getElementById("openModalBtnDashboard");
 
+openModalBtnDashboard.addEventListener('click', () => {
+  window.location.href = "../IndexPage/index.php";
+});
 //to disable the sliders
 var sliderDisplay = document.getElementsByClassName("sliderDisplay");
 

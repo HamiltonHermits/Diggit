@@ -6,12 +6,14 @@ var closeAmenityButton = document.getElementById('closeAmenityButton');
 var amenityTable = document.getElementById("ammenityTable");
 var submitAmmenityBtn = document.getElementById("submitAmenitiesBtn");
 const amenitiesContainer = document.getElementsByClassName("amenities-container")[0];
+const addAmenitiesOverlay = document.getElementsByClassName("add-amenities-overlay")[0];
 
 
 //listen for the submitAmenity button to be clicked
 let totalArrayOfAmenityNames = []; // this array will hold all the amenities selected even if user clics add more
 var arrayOfAmenityIds = [];
 submitAmmenityBtn.addEventListener('click', function () {
+    addAmenitiesOverlay.style.display = 'none';
     console.log("totalarray = ");
     console.log(totalArrayOfAmenityNames);
     let arrayOfAmenityNames = []; // array holds amenities selected in the modal, will be deleted when modal closes
@@ -41,7 +43,7 @@ submitAmmenityBtn.addEventListener('click', function () {
     // const numRows = Math.ceil(numAmenities / numColumns);
     // console.log("numColumns = " + numColumns + " numRows = " + numRows);
 
-    const numColumns = (numAmenities % 8) ; 
+    // const numColumns = (numAmenities % 8) ; 
 
     // when submit button clicked change the display of the amenities container to grid 
     amenitiesContainer.style.display = "grid";

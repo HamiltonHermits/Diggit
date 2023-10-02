@@ -7,8 +7,14 @@ var submitAgentApplication = document.getElementById('submitAgentApplication');
 var loginButtonCreatePage = document.getElementById('loginButtonCreatePage');
 var closeLoginButton = document.getElementById('closeButton');
 var notLoggedInModal = document.getElementById('notLoggedInModal');
+var backToHomePage = document.getElementById('backToHomePage');
 
 
+if(backToHomePage){
+    backToHomePage.addEventListener('click', function () {
+        window.location.href = '../IndexPage/index.php';
+    });
+}
 
 
 if(loginButtonCreatePage){//we are clicking the login button on create page 
@@ -71,6 +77,7 @@ if(loginButtonCreatePage){//we are clicking the login button on create page
 
 if (notAgentModal && applyAgentModal && applyButton && backButtonNotAgent && submitAgentApplication) {
     savePropertyButtonHideIt.style.display = 'none';
+
 
 
     submitAgentApplication.addEventListener('mouseenter', function() {

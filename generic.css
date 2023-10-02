@@ -240,6 +240,17 @@ body {
   --main-color: #29292c;
   /* Close button styles */
 }
+.modal .modal-content .back-arrow {
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--secondary_colour);
+  top: 10px;
+  left: 10px;
+  font-size: 1em;
+}
 .modal .modal-content .modalInput {
   background-color: var(--main-color);
   padding: 0.5em;
