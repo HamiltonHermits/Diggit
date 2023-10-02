@@ -253,7 +253,14 @@ if (isset($_GET['pageId'])) { //if the prop id is sett we are going to populate 
                     <div id="coord-results"></div>
 
                     <div class="bottom-container">
-                        <div class="map-container" id="map"></div>
+                        <div class="map-container" id="map">
+                            <script type="text/javascript" src="map.js"></script>  <!-- this is needs for below php code !! -->
+                            <?php 
+                                if ($editPropertyCheck) { 
+                                    echo "<script>addMarkerToMap($propLat, $propLong);</script>";
+                                }
+                            ?> 
+                        </div>
                     </div>
                 </div>
             </div>
