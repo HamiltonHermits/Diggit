@@ -273,7 +273,17 @@ body {
         --background_colour: #202024;
         --light_secondary_colour: #564b40;
         --main-color: #29292c;
-
+        .back-arrow{
+            position: absolute;
+            display: flex;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--secondary_colour);
+            top: 10px;
+            left: 10px;
+            font-size: 1em;
+        }
         .modalInput {
             background-color: var(--main-color);
             padding: 0.5em;

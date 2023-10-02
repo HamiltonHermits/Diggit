@@ -7,10 +7,25 @@ const notFilledOutYet = document.getElementById('notFilledOutYet');
 const closeNotFilledOutYet = document.getElementById('closeNotFilledOutYet');
 const formFilledOutModal = document.getElementById('formFilledOutModal');
 const closeFormFilledOutModal = document.getElementById('closeFormFilledOutModal');
+const selectedImagesDivNeedThis = document.getElementById('selectedImages');
+
+
+
+
+
 
 
 // if save property button is pressed
 document.getElementById('save-property').addEventListener('click', function () {
+    const imageFileNames = [];
+    const imageParagraphs = selectedImagesDivNeedThis.querySelectorAll('p');
+    imageParagraphs.forEach(function (paragraph) {
+        const fileName = paragraph.textContent.trim();
+        imageFileNames.push(fileName);
+    });
+    // console.log(imageFileNames);
+
+
     const amenitysInput = arrayOfAmenityIds; // of type array
 
     // Initialize an empty array to store the items
@@ -45,13 +60,14 @@ document.getElementById('save-property').addEventListener('click', function () {
     if (titleInput.value.trim() !== "" && fileInput.files.length !== 0
         && descriptionInput.value.trim() !== "" && addressInput.value.trim() !== ""
         && lat != 0 && long != 0 && amenitysInput.length !== 0 && tenantsInput.length !== 0) {
-            //got rid of confirm looks tacky
+        //got rid of confirm looks tacky
         if (true) {
             // Create a FormData object, passing the form as a parameter
             formData = new FormData();
             formData.append('title', titleInput.value);
             console.log(fileInput.files);
             if (fileInput.files.length > 0) {
+                //if it is a file
                 for (var i = 0; i < fileInput.files.length; i++) {
                     formData.append('images[]', fileInput.files[i]);
                 }

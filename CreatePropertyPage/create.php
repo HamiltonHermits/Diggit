@@ -50,6 +50,7 @@ if (isset($_SESSION['profileMessage'])) {
 $editPropertyCheck = false;
 if (isset($_GET['pageId'])) { //if the prop id is sett we are going to populate the form with all the info from the db
     $propId = $_GET['pageId'];
+    $_SESSION['property_id'] = $propId;
     require_once("../Backend_Files/database_connect.php");
     $editPropertyCheck = true;
     $_SESSION['editingProperty'] = $editPropertyCheck;
@@ -489,6 +490,7 @@ if (isset($_GET['pageId'])) { //if the prop id is sett we are going to populate 
         <?php if (!isset($_SESSION["userType"])) : ?>
             <div id="notAgentModal" class="modal" style="display: block;">
                 <div class="modal-content">
+                    <span class="back-arrow" style="color:white;" id="backToHomePage">&#8592;</span>
                     <p>Whoops, sorry you're not an agent, but you can apply below.</p>
 
                     <button id="applyAgentButton">Apply now!</button>

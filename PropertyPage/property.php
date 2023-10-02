@@ -70,7 +70,7 @@ $stmt->close();
 $landlordId = $result['created_by'];
 
 $isLandlord = false;
-if ($_SESSION['user_id'] == $landlordId) {
+if (isset($_SESSION['user_id'])&& $_SESSION['user_id'] == $landlordId) {
     $isLandlord = true;
 }
 //Get agent details who created property
@@ -125,12 +125,12 @@ $resultReviews = $stmtReviews->get_result(); // Fetch the results
 $stmtReviews->close();
 
 //reviews for the property
-$cleanliness = 1.0;
-$noise = 1.0;
-$location = 1.0;
-$safety = 1.0;
-$affordability = 1.0;
-$overallRating = 1.0;
+$cleanliness = 0.0;
+$noise = 0.0;
+$location = 0.0;
+$safety = 0.0;
+$affordability = 0.0;
+$overallRating = 0.0;
 
 //reviews for the agent 
 $count = 0;
@@ -273,7 +273,7 @@ $conn->close();
                 </div>
                 <?php if ($isLandlord) : ?>
                     <div class="page-indicator-inner-container" id="edit-indicator">
-                        <a class="page-indicator" href = <?php echo "../CreatePropertyPage/create.php?pageId=$propId"; ?>>
+                        <a class="page-indicator" href=<?php echo "../CreatePropertyPage/create.php?pageId=$propId"; ?>>
                             <div class="icon">
                                 <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.7142 20.5463L16.5505 17.6464L21.3868 20.5463L20.1054 15.1142L24.4043 11.4383L18.7413 10.989L16.5505 5.84279L14.3597 10.989L8.69667 11.4383L12.9956 15.1142L11.7142 20.5463ZM0.0161133 33.2076V3.80064C0.0161133 2.9021 0.339912 2.13289 0.987509 1.49301C1.63511 0.85314 2.4136 0.533203 3.32299 0.533203H29.778C30.6874 0.533203 31.4659 0.85314 32.1135 1.49301C32.7611 2.13289 33.0849 2.9021 33.0849 3.80064V23.4053C33.0849 24.3038 32.7611 25.073 32.1135 25.7129C31.4659 26.3528 30.6874 26.6727 29.778 26.6727H6.62987L0.0161133 33.2076ZM5.22445 23.4053H29.778V3.80064H3.32299V25.2432L5.22445 23.4053Z" fill="#D9D9D9" />
@@ -1131,16 +1131,17 @@ $conn->close();
             </div>
         </div>
         <div id="notLoggedInModalSomethingElse" class="modal" style="display: none;">
-            <span class="modal-close" id="closeNotLoggedInModalSomethingElse">&times;</span>
+
             <div class="modal-content">
+                <span class="close" id="closeNotLoggedInModalSomethingElse">&times;</span>
                 <p>Please login to make a review</p>
                 <button type="menu" class="filledButton loginButton" id="loginButtonPropertyPage">Log in</button>
             </div>
         </div>
         <div id="notATenantModal" class="modal" style="display: none;">
-            <span class="modal-close" id="closeNotATenantModal">&times;</span>
             <div class="modal-content">
-                <p>Whoops sorry your not allowed to make a review. Contact your agent so they can add you</p>
+                <span class="close" id="closeNotATenantModal">&times;</span>
+                <p>Whoops sorry only tenants are allowed to make a review. Contact your agent so they can add you</p>
             </div>
         </div>
     </main>
