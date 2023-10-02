@@ -128,10 +128,10 @@ $overallRating = 1.0;
 
 //reviews for the agent 
 $count = 0;
-$agentPolite = 1;
-$agentQuality = 1;
-$agentResponse = 1;
-$agentOverall = 1;
+$agentPolite = 0;
+$agentQuality = 0;
+$agentResponse = 0;
+$agentOverall = 0;
 
 $countFive = 0;
 $countFour = 0;
