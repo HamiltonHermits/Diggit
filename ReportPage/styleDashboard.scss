@@ -34,6 +34,43 @@ main {
     background-color: var(--main-color);
 }
 
+table {
+    border-collapse: collapse;
+}
+
+table tr:nth-child(even) {
+    background-color: var(--inner-box-color);
+}
+
+table td {
+    word-wrap: break-word;
+    border: 1px solid black;
+}
+
+table td + td { border-left:2px solid rgb(0, 0, 0); }
+
+
+th {
+    text-align: left;
+    border-left:2px solid rgb(0, 0, 0);
+}
+
+#criteria-dropdown, #chart-dropdown {
+    display: none;
+    background-color: var(--main-color);
+    border: var(--orange);
+    border-radius: 25px;
+    color: var(--global-font-color);
+    width: 80%;
+    // padding: 5% 0 5% 0;
+}
+
+#chooseChart {
+    width: 80%;
+}
+
+  
+
 .nav-top {
     display: flex;
     justify-content: space-between;
@@ -84,7 +121,8 @@ main {
 
             #searchbar,
             #tenantSearchbar,
-            #propertySearchbar {
+            #propertySearchbar,
+            #criteria-searchbar {
                 width: 100%;
                 background: none;
                 border: none;
