@@ -353,6 +353,7 @@ main {
 #amenity-parent-container #right-box-amenity .main-content-landord-container #disclaimer {
   font-size: 0.5em;
   height: 5%;
+  margin-top: 1em;
 }
 #amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container {
   height: 100%;
@@ -367,7 +368,7 @@ main {
   justify-content: space-between;
 }
 #amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section .rating-item .rating-progress {
-  width: 100%;
+  width: 40%;
   height: 1vh;
   background-color: #ccc;
   border-radius: 5px;
@@ -391,7 +392,7 @@ main {
   padding: 1em;
   border-radius: 15px;
 }
-#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section #overall-rating-item .inner-rating-item .rating-slider {
+#amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section #overall-rating-item .inner-rating-item #overallLandlordRatingDisplay {
   width: 100%;
 }
 #amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container .landlord-rating-section .rating-item {
@@ -548,11 +549,11 @@ main {
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .star-rating-display {
   color: var(--orange);
 }
-#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .username-date-display {
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .username-date-comment {
   font-weight: 600;
   margin: 1em 0 1em 0;
 }
-#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .horizontal-line-display {
+#comment-parent-container .boxes-container .left-box .comments-list-container .comment-container .horizontal-line-comment {
   width: 100%;
 }
 #comment-parent-container .boxes-container .right-box {
@@ -797,16 +798,16 @@ main {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 30%;
+    margin: 6em 0 0 0;
   }
   #comment-parent-container .boxes-container .right-box .rating-summary-container {
     width: 50%;
+    min-width: 35%;
   }
   #comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-overall-container {
     font-size: 2.5vw;
   }
   #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container {
-    width: 50%;
     display: flex;
     align-items: center;
   }
@@ -872,8 +873,14 @@ main {
   #comment-parent-container .boxes-container .left-box .comment-section .comment-page-container .next-page-container {
     width: auto;
   }
+  #comment-parent-container .boxes-container .right-box .rating-summary-container {
+    width: 50%;
+  }
   #comment-parent-container .boxes-container .right-box .rating-summary-container .rating-summary-breakdown input {
     width: 75%;
+  }
+  #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container {
+    width: 50%;
   }
   #comment-parent-container .boxes-container .right-box .landlord-rating-summary-container .star-rating-section .rating-item {
     gap: 0;

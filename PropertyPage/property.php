@@ -70,7 +70,7 @@ $stmt->close();
 $landlordId = $result['created_by'];
 
 $isLandlord = false;
-if (isset($_SESSION['user_id'])&& $_SESSION['user_id'] == $landlordId) {
+if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $landlordId) {
     $isLandlord = true;
 }
 //Get agent details who created property
@@ -301,7 +301,7 @@ $conn->close();
     <main>
         <div class="nav-top">
             <div class="profileContainer" id="dashboardContainer">
-                <button id="openModalBtnDashboard" style="z-index: 99;" >
+                <button id="openModalBtnDashboard" style="z-index: 99;">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="mask0_486_85" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                             <rect width="30" height="30" fill="#D9D9D9" />
@@ -721,77 +721,78 @@ $conn->close();
                                 <div class="amount"><?php echo " $countOne"; ?></div>
                             </div>
                         </div>
-                        <div class=landlord-rating-summary-container>
-                            <div class="star-rating-section">
-                                <!-- Cleanliness Rating -->
-                                <div class="rating-item">
-                                    <div class="ratingLabels">
-                                        <div>Cleanliness</div>
-                                    </div>
-                                    <div class="star-rating-display" data-category="cleanliness" data-rating=<?php echo $cleanliness; ?>>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
+
+                    </div>
+                    <div class=landlord-rating-summary-container>
+                        <div class="star-rating-section">
+                            <!-- Cleanliness Rating -->
+                            <div class="rating-item">
+                                <div class="ratingLabels">
+                                    <div>Cleanliness</div>
+                                </div>
+                                <div class="star-rating-display" data-category="cleanliness" data-rating=<?php echo $cleanliness; ?>>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                </div>
+                            </div>
+
+                            <!-- Noise Rating -->
+                            <div class="rating-item">
+                                <div class="ratingLabels">
+                                    <div>Noise</div>
+                                </div>
+                                <div class="star-rating-display" data-category="noise" data-rating=<?php echo $noise; ?>>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                </div>
+                            </div>
+
+                            <!-- Location Rating -->
+                            <div class="rating-item">
+                                <div class="ratingLabels">
+                                    <div>Location</div>
+                                </div>
+                                <div class="star-rating-display" data-category="location" data-rating=<?php echo $location; ?>>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
                                 </div>
 
-                                <!-- Noise Rating -->
-                                <div class="rating-item">
-                                    <div class="ratingLabels">
-                                        <div>Noise</div>
-                                    </div>
-                                    <div class="star-rating-display" data-category="noise" data-rating=<?php echo $noise; ?>>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
+                            </div>
+
+                            <!-- Safety Rating -->
+                            <div class="rating-item">
+                                <div class="ratingLabels">
+                                    <div>Safety</div>
                                 </div>
-
-                                <!-- Location Rating -->
-                                <div class="rating-item">
-                                    <div class="ratingLabels">
-                                        <div>Location</div>
-                                    </div>
-                                    <div class="star-rating-display" data-category="location" data-rating=<?php echo $location; ?>>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-
+                                <div class="star-rating-display" data-category="safety" data-rating=<?php echo $safety; ?>>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
                                 </div>
+                            </div>
 
-                                <!-- Safety Rating -->
-                                <div class="rating-item">
-                                    <div class="ratingLabels">
-                                        <div>Safety</div>
-                                    </div>
-                                    <div class="star-rating-display" data-category="safety" data-rating=<?php echo $safety; ?>>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
+                            <!-- Affordability Rating -->
+                            <div class="rating-item">
+                                <div class="ratingLabels">
+                                    <div>Affordability</div>
                                 </div>
-
-                                <!-- Affordability Rating -->
-                                <div class="rating-item">
-                                    <div class="ratingLabels">
-                                        <div>Affordability</div>
-                                    </div>
-                                    <div class="star-rating-display" data-category="affordability" data-rating=<?php echo $affordability; ?>>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
+                                <div class="star-rating-display" data-category="affordability" data-rating=<?php echo $affordability; ?>>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
+                                    <span class="star">&#9734;</span>
                                 </div>
                             </div>
                         </div>
