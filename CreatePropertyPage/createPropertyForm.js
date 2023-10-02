@@ -53,8 +53,8 @@ document.getElementById('save-property').addEventListener('click', function () {
     console.log(amenitysInput);
     let lat = latitudeGlobal;
     let long = longitudeGlobal;
-    const filesGiven = false;
-    if(fileInput.files.length > 0 || imageFileNames>0)    filesGiven = true ;
+    var filesGiven = false;
+    if(fileInput.files.length > 0 || imageFileNames>0) filesGiven = true ;
 
     console.log(titleInput.value.trim() !== "", filesGiven, descriptionInput.value.trim() !== "", addressInput.value.trim() !== "", lat != 0, long != 0, amenitysInput.length !== 0, tenantsInput.length !== 0);
 

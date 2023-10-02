@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hamiltonhermits
+-- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.28-MariaDB
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `property_images`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `property_images` (
-  `id_prop_image` int(11) NOT NULL AUTO_INCREMENT,
-  `prop_id` int(11) NOT NULL,
+  `id_prop_image` int NOT NULL AUTO_INCREMENT,
+  `prop_id` int NOT NULL,
   `image_name` varchar(500) NOT NULL,
   PRIMARY KEY (`id_prop_image`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `property_images` (
 
 LOCK TABLES `property_images` WRITE;
 /*!40000 ALTER TABLE `property_images` DISABLE KEYS */;
-INSERT INTO `property_images` VALUES (5,20,'16960979151.PNG'),(6,20,'1696097915wqe.PNG'),(7,22,'16961069121.PNG'),(8,22,'16961069123.PNG'),(9,22,'1696106912wqe.PNG'),(10,25,'16961088271.PNG'),(11,25,'16961088273.PNG'),(12,26,'1696118059WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(13,26,'1696118059WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(14,27,'1696119109WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(15,27,'1696119109WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(16,28,'1696119229WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(17,28,'1696119229WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(18,29,'1696119458WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(19,29,'1696119458WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(20,30,'1696119581WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(21,31,'1696120177AP23199642942367.jpg'),(22,31,'1696120177entrancehall.jpg'),(23,31,'1696120177White_House_DC.jpeg');
+INSERT INTO `property_images` VALUES (5,20,'16960979151.PNG'),(6,20,'1696097915wqe.PNG'),(7,22,'16961069121.PNG'),(8,22,'16961069123.PNG'),(9,22,'1696106912wqe.PNG'),(10,25,'16961088271.PNG'),(11,25,'16961088273.PNG'),(12,26,'1696118059WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(13,26,'1696118059WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(14,27,'1696119109WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(15,27,'1696119109WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(16,28,'1696119229WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(17,28,'1696119229WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(18,29,'1696119458WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(19,29,'1696119458WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(20,30,'1696119581WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(24,32,'1696234816cat.jpg'),(25,34,'1696258420photo-1481349518771-20055b2a7b24.jpeg'),(26,34,'1696258420photo-1494253109108-2e30c049369b.jpeg'),(27,34,'1696258420White_House_DC.jpeg'),(28,35,'1696261860download.jpeg'),(29,35,'1696261860entrancehall.jpg'),(30,35,'1696261860oriel09.sized.jpg'),(31,31,'169627508551706785063_b3ac78522e_b.jpg'),(32,31,'169627508553007982507_cb9a0c496a_z.jpg'),(33,31,'1696275085AP23199642942367.jpg'),(34,31,'1696275085entrancehall.jpg'),(35,31,'1696275085images.jpeg'),(36,31,'1696275085White_House_DC.jpeg'),(37,31,'1696275085white-house-royalty-free-image-1610512078_.jpeg');
 /*!40000 ALTER TABLE `property_images` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-01 19:36:30
+-- Dump completed on 2023-10-02 21:44:17
