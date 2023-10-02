@@ -67,6 +67,12 @@ $result = $stmt->get_result();
 $result = $result->fetch_assoc();
 $stmt->close();
 
+$landlordId = $result['created_by'];
+
+$isLandlord = false;
+if ($_SESSION['user_id'] == $landlordId) {
+    $isLandlord = true;
+}
 //Get agent details who created property
 $stmtUser = $conn->prepare(" SELECT usertbl.first_name, usertbl.last_name, usertbl.agent_phone, usertbl.email, usertbl.agent_company,usertbl.profile_pic
                                  FROM usertbl
@@ -265,6 +271,18 @@ $conn->close();
                         Reviews
                     </a>
                 </div>
+                <?php if ($isLandlord) : ?>
+                    <div class="page-indicator-inner-container" id="edit-indicator">
+                        <a class="page-indicator" href = <?php echo "../CreatePropertyPage/create.php?pageId=$propId"; ?>>
+                            <div class="icon">
+                                <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.7142 20.5463L16.5505 17.6464L21.3868 20.5463L20.1054 15.1142L24.4043 11.4383L18.7413 10.989L16.5505 5.84279L14.3597 10.989L8.69667 11.4383L12.9956 15.1142L11.7142 20.5463ZM0.0161133 33.2076V3.80064C0.0161133 2.9021 0.339912 2.13289 0.987509 1.49301C1.63511 0.85314 2.4136 0.533203 3.32299 0.533203H29.778C30.6874 0.533203 31.4659 0.85314 32.1135 1.49301C32.7611 2.13289 33.0849 2.9021 33.0849 3.80064V23.4053C33.0849 24.3038 32.7611 25.073 32.1135 25.7129C31.4659 26.3528 30.6874 26.6727 29.778 26.6727H6.62987L0.0161133 33.2076ZM5.22445 23.4053H29.778V3.80064H3.32299V25.2432L5.22445 23.4053Z" fill="#D9D9D9" />
+                                </svg>
+                            </div>
+                            Edit
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="settings-container">
                 <svg width="30" height="30" viewBox="0 0 45 40" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -8,7 +8,7 @@ var nextUniqueId = 1; // Initialize a unique ID counter
 // Array to store email addresses
 var emailArray = [];//this will be accessed when we do form submision
 
-function openAddTenantModal(){
+function openAddTenantModal() {
     addTenantModel.style.display = 'block';
 }
 
@@ -41,26 +41,67 @@ function isValidEmail(email) {
 //             });
 //     });
 // }
+// Function to handle the removal of list items
+// Function to handle the removal of list items
+function removeListItem(targetId) {
+    const listItem = document.getElementById(targetId);
+    if (listItem) {
+        listItem.remove();
+    }
+}
+
+// Add a click event listener to all elements with class "remove-button"
+const removeButtons = document.querySelectorAll('.remove-button');
+removeButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+        // Get the target ID from the data attribute
+        const targetId = this.getAttribute('data-target');
+        removeListItem(targetId);
+    });
+});
 
 function addEmail() {
     const email = emailInput.value.trim();
     if (email && !emailArray.includes(email)) {
         if (isValidEmail(email)) {
-            // console.log("inside add email, tenant exists = " + tenantExists(email));
             const listItem = document.createElement('li');
             listItem.textContent = email;
             listItem.id = 'item-' + nextUniqueId++; // Assign a unique ID
+
+            // Create a remove button
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.className = "filledButton";
+            removeButton.addEventListener('click', () => {
+                removeEmail(listItem); // Pass the listItem as an argument
+            });
+
+            // Append the email and remove button to the list item
+            listItem.appendChild(removeButton);
+
             tenantList.appendChild(listItem); // Append the list item to the ul
-            emailArray.push(email); // Add email to the array
+            emailArray.push({ email, listItem }); // Add email and listItem to the array
             emailInput.value = ''; // Clear the input field
 
-                // errorDiv.textContent = 'This tenant does not exist. Please enter a valid email address.';
-            
+            errorDiv.textContent = ''; // Clear any previous error message
+
         } else {
             errorDiv.textContent = 'Invalid email format. Please enter a valid email address.';
         }
     }
 }
+
+function removeEmail(listItem) {
+    const indexToRemove = emailArray.findIndex(entry => entry.listItem === listItem);
+    if (indexToRemove !== -1) {
+        emailArray.splice(indexToRemove, 1);
+        listItem.remove();
+        console.log(emailArray);
+    }
+}
+
+
+
 
 closeAddTenantButton.addEventListener('click', function () {
     addTenantModel.style.display = 'none';
