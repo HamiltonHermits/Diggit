@@ -18,7 +18,11 @@ switch ($chartType) {
                   ORDER BY overall_property_rating";
         break;
     case 'agent-overall-rating-bc':
-        
+        $query = "SELECT usertbl.username, review.overall_tenant_rating
+                  FROM hamiltonhermits.usertbl
+                  JOIN hamiltonhermits.property ON property.created_by = usertbl.user_id 
+                  JOIN hamiltonhermits.review ON property.prop_id = review.prop_id
+                  ORDER BY review.overall_tenant_rating DESC";
     default:
         break;
 }

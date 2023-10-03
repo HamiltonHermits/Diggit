@@ -137,7 +137,8 @@ if (isset($_SESSION['profileMessage'])) {
     </div>
     <div class="mainContainer" id="mainContainer">
         <div class="logoContainer" id="logoContainer">
-            <img class="mainLogoImage" id="mainLogoImage" src="./ImagesIndex/mainLogo.png">
+            <!-- <img class="mainLogoImage" id="mainLogoImage" src="./ImagesIndex/mainLogo.png"> -->
+            <img class="mainLogoImage" id="mainLogoImage" src="./ImagesIndex/logo.svg">
         </div>
         <div class="searchBarContainer" id="searchBarContainer">
             <div class="borderSearchBar" id="borderSearchBar">

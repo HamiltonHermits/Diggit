@@ -206,7 +206,30 @@ $(document).ready(function () {
                                 colors: ['#FF5733', '#FFC300', '#3D6B37', '#3D6B90', '#8A3D6B'],
                             };
                             
-                            var chart = new google.visualization.ColumnChart(document.getElementById('chart-report-text-container'));                       
+                            var chart = new google.visualization.ColumnChart(document.getElementById('chart-report-text-container'));
+                            break;
+                        case 'agent-overall-rating-bc':
+                            var chartData = new google.visualization.DataTable();
+                            chartData.addColumn('string', 'Agent Name');
+                            chartData.addColumn('number', 'Overall Rating');
+                        
+                            for (var i = 0; i < data.length; i++) {
+                                var agent_name = data[i].username;
+                                var overall_agent_rating = parseInt(data[i].overall_tenant_rating);
+                                console.log(agent_name, overall_agent_rating);
+                                chartData.addRow([agent_name, overall_agent_rating]);
+                            }
+                        
+                            var options = {
+                                title: 'Agent Overall Ratings',
+                                width: "100%",
+                                height: 300,
+                                hAxis: {title: 'Overall Rating'},
+                                vAxis: {title: 'Agent Name'},
+                            };
+                            chart = new google.visualization.BarChart(document.getElementById('chart-report-text-container'));
+                            break;
+                            
                         default:
                             console.log("No chart type selected");
                     }

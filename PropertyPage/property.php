@@ -553,10 +553,10 @@ $conn->close();
                                 <div class="rating-item">
                                     <div class="rating-label-container">
                                         <div class="ratingLabels">Politeness:</div>
-                                        <div class="info-circle">
+                                        <!-- <div class="info-circle">
                                             <div class="info-icon">i</div>
                                             <div class="info-tooltip">left lower - right higher</div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="rating-progress" id="politenessRatingDisplay">
                                         <div class="progress-bar" style="width: <?php echo $agentPolite * 20; ?>%;"></div>
@@ -569,7 +569,7 @@ $conn->close();
                                         <div class="ratingLabels">Quality of Repair:</div>
                                         <div class="info-circle">
                                             <div class="info-icon">i</div>
-                                            <div class="info-tooltip">left lower - right higher</div>
+                                            <div class="info-tooltip">How helpful has the agent/landlord been with property repairs</div>
                                         </div>
                                     </div>
                                     <div class="rating-progress" id="repairRatingDisplay">
@@ -583,7 +583,7 @@ $conn->close();
                                         <div class="ratingLabels">Response Time:</div>
                                         <div class="info-circle">
                                             <div class="info-icon">i</div>
-                                            <div class="info-tooltip">left lower - right higher</div>
+                                            <div class="info-tooltip">How quick is the wait time when communicating with the agent/landlord</div>
                                         </div>
                                     </div>
                                     <div class="rating-progress" id="responseTimeRatingDisplay">
@@ -596,10 +596,10 @@ $conn->close();
                                     <div class="inner-rating-item">
                                         <div class="rating-label-container">
                                             <div class="ratingLabels">Overall Landlord Rating:</div>
-                                            <div class="info-circle">
+                                            <!-- <div class="info-circle">
                                                 <div class="info-icon">i</div>
                                                 <div class="info-tooltip">left lower - right higher</div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="rating-progress" id="overallLandlordRatingDisplay">
                                             <div class="progress-bar" style="width: <?php echo $agentOverall * 20; ?>%;"></div>
