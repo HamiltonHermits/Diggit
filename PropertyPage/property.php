@@ -669,9 +669,9 @@ $conn->close();
 
                             <!-- Runs delete comment code -->
                             <?php 
-                            if (isset($_POST['submit'])) {
+                            if (isset($_POST['deleteComment'])) {
                                 include('deleteComment.php');
-                                echo "<script>location.reload();</script>";
+                                // echo "<script>location.reload();</script>";
                                 }
                                 
                             ?>

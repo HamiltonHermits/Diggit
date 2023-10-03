@@ -48,7 +48,7 @@ if (!$result) {
 
 // Display comments
 while ($row = mysqli_fetch_assoc($result)) {
-    echo '<div class ="comment-container" id='.$row['username'].'>';
+    echo '<div class ="comment-container" >';
     echo '<div class = "star-rating-comment">★ Rating: ' . $row['overall_property_rating'] . '</div>';
     echo '<div class = "username-date-comment">' . $row['username'] . ' - ' . $row['date_reviewed'] . '</div>';
     echo '<div class = "description-comment">' . $row['written_review'] . '</div>';
