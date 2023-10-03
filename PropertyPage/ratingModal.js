@@ -13,17 +13,31 @@ var notATenantModal = document.getElementById('notATenantModal');
 var closeNotATenantModal = document.getElementById('closeNotATenantModal');
 var openWhoopsNotAllowed = document.getElementById('openWhoopsNotAllowed');
 
-//
+//im trying to give feedback to user
+var ratingSuccessfulModal = document.getElementById('ratingSuccessfulModal');
+var closeRatingSuccessfulModal = document.getElementById('closeRatingSuccessfulModal');
 
+var ratingUnsuccModal = document.getElementById('ratingUnsuccModal');
+var closeRatingUnsuccModal = document.getElementById('closeRatingUnsuccModal');
 
-if(openWhoopsNotAllowed){
+closeRatingUnsuccModal.addEventListener('click', () => {
+    ratingUnsuccModal.style.display = 'none';
+});
+window.addEventListener('click', (event) => {
+
+    if (event.target == ratingUnsuccModal) {
+        ratingUnsuccModal.style.display = 'none';
+    }
+});
+
+if (openWhoopsNotAllowed) {
     openWhoopsNotAllowed.addEventListener('click', () => {
         openWhoopsNotAllowed.style.display = 'none';
         notATenantModal.style.display = 'block';
     });
 }
 
-if(notATenantModal){
+if (notATenantModal) {
     closeNotATenantModal.addEventListener('click', () => {
         notATenantModal.style.display = 'none';
     });
@@ -120,7 +134,7 @@ const wordCountDisplay = document.getElementById('wordCount');
 // Add an input event listener to the textarea
 reviewTextarea.addEventListener('input', () => {
     const text = reviewTextarea.value;
-    
+
     const wordCount = text.length;
 
     // Update the word count display
@@ -207,7 +221,7 @@ ratingForm.addEventListener('submit', (event) => {
             formData.append(category, selectedRatings[category]);
             console.log(category);
         }
-     
+
         // Add slider ratings (ATTEMPTING TO CALC Overall Rating)
         const sliderElements = document.querySelectorAll('.slider');
         sliderElements.forEach((slider) => {
@@ -217,8 +231,8 @@ ratingForm.addEventListener('submit', (event) => {
             const value = slider.value;
             formData.append(category, value);
         });
-        
-        
+
+
 
         // Add review textarea
         const reviewTextarea = document.getElementById('reviewTextarea');
@@ -249,9 +263,14 @@ ratingForm.addEventListener('submit', (event) => {
             })
             .then(data => {
                 if (data && data.message) {
-                    alert("Form submitted successfully");
-                    location.reload();
+                    ratingSuccessfulModal.style.display = 'block';
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1500);
                 } else {
+
+                    ratingUnsuccModal.style.display = 'block';
+
                     console.error("No message found in the JSON response");
                 }
             })
