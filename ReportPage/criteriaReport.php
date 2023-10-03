@@ -1,55 +1,78 @@
 <!-- report.php -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>digsRating Report</title>
-</head>
-<body>
-    <h1>digsRating Report</h1>
+<?php
+require_once('../Backend_Files/database_connect.php');
 
-    <?php
-    // Database connection parameters
-    include_once('../Backend_Files/config.php');
-    include_once('../Backend_Files/database_connect.php');
-    // Create a database connection
-    $conn = new mysqli($host, $username, $password, $database);
+// Get the criteria and search
+$criteriaTerm = isset($_GET['criteria']) ? $_GET['criteria'] : '';
+$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 
-    // Check if the connection was successful
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+switch ($criteriaTerm) {
+    case 'cleanliness':
+        $selectedCriteria = 'cleanliness_rating';
+        $reviewSelectedCriteria = 'review.' . $selectedCriteria;
+        $query = "SELECT property.prop_name, $reviewSelectedCriteria
+                  FROM property
+                  JOIN review ON property.prop_id = review.prop_id
+                  WHERE property.prop_name LIKE '%" . $searchTerm . "%'";
+        break;
+    case 'noise':
+        $selectedCriteria = 'noise_rating';
+        $reviewSelectedCriteria = 'review.' . $selectedCriteria;
+        $query = "SELECT property.prop_name, $reviewSelectedCriteria
+                  FROM property
+                  JOIN review ON property.prop_id = review.prop_id
+                  WHERE property.prop_name LIKE '%" . $searchTerm . "%'";
+        break;
+    case 'location':
+        $selectedCriteria = 'location_rating';
+        $reviewSelectedCriteria = 'review.' . $selectedCriteria;
+        $query = "SELECT property.prop_name, $reviewSelectedCriteria
+                  FROM property
+                  JOIN review ON property.prop_id = review.prop_id
+                  WHERE property.prop_name LIKE '%" . $searchTerm . "%'";
+        break;
+    case 'safety':
+        $selectedCriteria = 'saftey_rating';
+        $reviewSelectedCriteria = 'review.' . $selectedCriteria;
+        $query = "SELECT property.prop_name, $reviewSelectedCriteria
+                  FROM property
+                  JOIN review ON property.prop_id = review.prop_id
+                  WHERE property.prop_name LIKE '%" . $searchTerm . "%'";
+        break;
+    case 'affordability':
+        $selectedCriteria = 'affordability_rating';
+        $reviewSelectedCriteria = 'review.' . $selectedCriteria;
+        $query = "SELECT property.prop_name, $reviewSelectedCriteria
+                  FROM property
+                  JOIN review ON property.prop_id = review.prop_id
+                  WHERE property.prop_name LIKE '%" . $searchTerm . "%'";
+        break;
+       
+    default:
+        break;
+}
+
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+    // Output the table header with column names
+    echo "<table>";
+    echo "<tr>";
+    echo "<th>Property Name</th>";
+    echo "<th>Criteria Rating</th>";
+    echo "</tr>";
+
+    while ($row = $result->fetch_assoc()) {
+        // Generate HTML rows for the table
+        echo "<tr>";
+        echo "<td>" . $row['prop_name'] . "</td>";
+        echo "<td>" . $row[$selectedCriteria] . "</td>";
+        echo "</tr>";
     }
+    echo "</table>";
+} else {
+    echo "<tr><td colspan='7'>No data found</td></tr>";
+}
 
-    // SQL query to retrieve dig information
-    $sql = "SELECT * FROM digs";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Date</th>
-            </tr>";
-
-        // Output data of each row
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>
-                <td>" . $row["id"] . "</td>
-                <td>" . $row["name"] . "</td>
-                <td>" . $row["location"] . "</td>
-                <td>" . $row["date"] . "</td>
-            </tr>";
-        }
-
-        echo "</table>";
-    } else {
-        echo "No digs found.";
-    }
-
-    // Close the database connection
-    $conn->close();
-    ?>
-
-</body>
-</html>
+$conn->close();
+?>

@@ -4,7 +4,7 @@ var counter;
 var MAX_VIEW = 5;
 var lastval_boolean = false;
 
- //-----------------------------------Commented Out as there is no search bar----------------------------------------
+//-----------------------------------Commented Out as there is no search bar----------------------------------------
 // Get allparentContainers
 const parentContainers = document.querySelectorAll(".parent-container");
 const fileInputPics = document.getElementById('file');
@@ -16,7 +16,34 @@ const searchButtonListeneres = document.getElementById('search-map-btn');
 const addAmenities = document.getElementById('addAmenities');
 const openAddTenantModel = document.getElementById('openAddTenantModel');
 const addMoreButtonListneres = document.getElementById('addMoreButton');
+const doNotDeletePropertyButton = document.getElementById('doNotDeletePropertyButton');
+const deletePropertyModal = document.getElementById('deletePropertyModal');
+const deleteProperty = document.getElementById('deleteProperty');
+const closePropertyModal = document.getElementById('closePropertyModal');
 
+if(deleteProperty){
+    deleteProperty.addEventListener('click', () => {
+        deletePropertyModal.style.display = 'block';
+    });
+
+    closePropertyModal.addEventListener('click', () => {
+        deletePropertyModal.style.display = 'none';
+    });
+
+    doNotDeletePropertyButton.addEventListener('click', () => {
+        deletePropertyModal.style.display = 'block';
+    });
+
+    doNotDeletePropertyButton.addEventListener('click', () => {
+        deletePropertyModal.style.display = 'none';
+    });
+    document.addEventListener("click", function (event) {
+        if (event.target == deletePropertyModal){
+            deletePropertyModal.style.display = 'none';
+        }
+        
+    });
+}
 // addMoreButtonListneres.addEventListener('mouseenter', function() {
 //     addMoreButtonListneres.style.backgroundColor = '#d9d9d9'; // Change to the hover color
 //     addMoreButtonListneres.style.color = '#202024';
@@ -75,7 +102,7 @@ textarea.addEventListener('input', updateCharCount);
 function updateCharCount() {
     const text = textarea.value;
     const charCount = text.length;
-    
+
     // Display the character count
     charCountElement.textContent = `${charCount}/500`;
 }
@@ -92,11 +119,16 @@ fileInputPics.addEventListener('change', () => {
     selectedImagesDiv.innerHTML = '';
 
     // Loop through the selected files and append their names to the div
+    var count = 0
     for (const file of fileInputPics.files) {
+        count++;
         const fileName = document.createElement('p');
         fileName.textContent = file.name;
         selectedImagesDiv.appendChild(fileName);
     }
+    const imageCount = document.createElement('div');
+    imageCount.textContent = count +" images selected";
+    selectedImagesDiv.appendChild(imageCount);
 });
 
 // Function to check if an element is in the viewport
@@ -111,7 +143,7 @@ function isElementInViewport(el) {
 }
 
 function updateActivePageIndicator() {
-    parentContainers.forEach(function(page) { // loop through each parent page
+    parentContainers.forEach(function (page) { // loop through each parent page
         const target = page.dataset.target; // associated sidebar element for this current parent page
         const sidebarElement = document.getElementById(target); // get the sidebar element
 
@@ -129,7 +161,7 @@ function displayImage(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             selectedImage.style.display = 'block';
             selectedImage.src = e.target.result;
         };
@@ -175,14 +207,14 @@ function displayImage(input) {
 //     dropdown.style.borderBottom = "2px solid #564B40";
 //     dropdown.style.backgroundColor = "#202024";
 //     // borderSearchBar.style.borderRadius = "30px 30px 0px 0px"
-    
+
 //     // Make an AJAX request to the server-side script
 //     fetch("../Backend_Files/search.php?query=" + encodeURIComponent(query))
 //         .then(response => response.json())
 //         .then(data => {
 //             // Clear previous dropdown items
 //             dropdown.innerHTML = "";
-            
+
 //             // Check if there are no matching results
 //             if (data.length === 0) {
 //                 var noResultItem = document.createElement("div");
@@ -194,7 +226,7 @@ function displayImage(input) {
 //                 counter = 0;
 //                 var lastVal = data[data.length - 1].location;
 //                 data.forEach(function(apartment) {
-                    
+
 //                     if (counter >= MAX_VIEW) {
 //                         return; // Exit the loop when reaching the limit
 //                     }
@@ -227,7 +259,7 @@ function displayImage(input) {
 //                         // locationSpan.style.color = "#564B40";
 //                         // dropdownItem.style.color = "#564B40";
 //                         // dropdownItem.style.borderRadius = "30px 30px 30px 30px";
-                        
+
 //                     });
 //                     //add a mouseout event listener to change the style of the dropdownitem
 //                     dropdownItem.addEventListener('mouseout', function() {

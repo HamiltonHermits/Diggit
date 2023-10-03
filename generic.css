@@ -99,6 +99,13 @@ body {
   min-width: 150px;
   background-color: var(--sidebar-color);
 }
+.background-sidebar-container .sidebar #closeSignupButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10%;
+  display: none;
+}
 .background-sidebar-container .sidebar .sidebar * {
   display: flex;
   flex-direction: column;
@@ -153,13 +160,16 @@ body {
   width: 85%;
   target: "someValue";
 }
+.background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container .page-indicator .inverseFilledButton {
+  font-size: 0.8em;
+}
 .background-sidebar-container .sidebar .page-indicator-container .page-indicator-inner-container .page-indicator .icon {
   display: flex;
   align-items: center;
 }
 .background-sidebar-container .sidebar .settings-container {
   display: flex;
-  height: 25%;
+  height: 50%;
   justify-content: flex-start;
   align-items: center;
   position: relative;
@@ -239,6 +249,21 @@ body {
   --light_secondary_colour: #564b40;
   --main-color: #29292c;
   /* Close button styles */
+}
+.modal .modal-content #confirmFormDelete {
+  display: flex;
+  justify-content: space-evenly;
+}
+.modal .modal-content .back-arrow {
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--secondary_colour);
+  top: 10px;
+  left: 10px;
+  font-size: 1em;
 }
 .modal .modal-content .modalInput {
   background-color: var(--main-color);
@@ -415,8 +440,8 @@ a {
   }
 }
 @media screen and (max-width: 1156px) and (max-width: 800px) {
-  .logo-container {
-    display: none;
+  .background-sidebar-container .sidebar #closeSignupButton {
+    display: block;
   }
   .background-sidebar-container {
     display: none;

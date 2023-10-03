@@ -64,7 +64,7 @@ main {
 #property-parent-container {
     .boxes-container {
         .right-box {
-            
+
             .bottom-container {
                 height: 100%;
 
@@ -124,7 +124,7 @@ main {
                     }
 
                     #char-count {
-                       font-size: calc(5px + 0.9vw);
+                        font-size: calc(5px + 0.9vw);
                     }
                 }
             }
@@ -144,6 +144,12 @@ main {
                     align-items: center;
                     display: flex;
                     justify-content: center;
+
+                    #selectedImages {
+                        p {
+                            display: none;
+                        }
+                    }
 
                     .inputfile {
                         display: none;
@@ -181,13 +187,33 @@ main {
 
     }
 }
+
 //more tyler shinanigans
 #closeAddTenantButton {
-        top: 10px;
-        right: 10px;
-        font-size: 1em;
-        position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1em;
+    position: absolute;
+}
+.parent-container{
+    .right-box{
+        .listingOfTenants{
+            ul{
+                li{
+                    padding: 3px;
+                    button{
+                        display: inline;
+                    }
+                }
+            }
+        }
     }
+}
+
 //////////--------------------------------------------------------------------------------------------//////////
+
+#go-home-instead {
+  margin: auto;
+}
 
 /*# sourceMappingURL=property.css.map */

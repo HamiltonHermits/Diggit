@@ -29,6 +29,52 @@ main {
   background-color: var(--main-color);
 }
 
+table {
+  border-collapse: collapse;
+}
+
+table tr:nth-child(even) {
+  background-color: var(--inner-box-color);
+}
+
+table td {
+  word-wrap: break-word;
+  border: 1px solid black;
+}
+
+table td + td {
+  border-left: 2px solid rgb(0, 0, 0);
+}
+
+th {
+  text-align: left;
+  border-left: 2px solid rgb(0, 0, 0);
+}
+
+#criteria-dropdown, #chart-dropdown {
+  display: none;
+  background-color: var(--main-color);
+  border: var(--orange);
+  border-radius: 25px;
+  color: var(--global-font-color);
+  width: 80%;
+}
+
+#chooseChart {
+  width: 80%;
+}
+
+#explainer {
+  font-size: calc(2px + 0.5vw);
+  display: inline-block;
+}
+
+#take-me-home-to-the-place-i-belong {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-top {
   display: flex;
   justify-content: space-between;
@@ -74,7 +120,8 @@ main {
 }
 .searchbar-container-container .searchbar-container .borderSearchBar #searchbar,
 .searchbar-container-container .searchbar-container .borderSearchBar #tenantSearchbar,
-.searchbar-container-container .searchbar-container .borderSearchBar #propertySearchbar {
+.searchbar-container-container .searchbar-container .borderSearchBar #propertySearchbar,
+.searchbar-container-container .searchbar-container .borderSearchBar #criteria-searchbar {
   width: 100%;
   background: none;
   border: none;

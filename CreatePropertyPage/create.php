@@ -45,6 +45,42 @@ if (isset($_SESSION['profileMessage'])) {
     $profileMessage = $_SESSION['profileMessage'];
     unset($_SESSION['changePasswordError']);
 }
+
+
+$editPropertyCheck = false;
+if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id is sett we are going to populate the form with all the info from the db
+    $propId = $_GET['pageId'];
+    $_SESSION['property_id'] = $propId;
+    require_once("../Backend_Files/database_connect.php");
+    $editPropertyCheck = true;
+    $_SESSION['editingProperty'] = $editPropertyCheck;
+    //got the main info from property
+    $propertyQuery = "SELECT * FROM property WHERE prop_id = $propId";
+    $resultProp = mysqli_query($conn, $propertyQuery) or die("Error with property query");
+    $rowProp = mysqli_fetch_array($resultProp);
+
+    $propName = $rowProp['prop_name'];
+    // $propName = "I got here";
+    $propDesc = $rowProp['prop_description'];
+    $propAddress = $rowProp['address'];
+    $propLat = $rowProp['lat'];
+    $propLong = $rowProp['long'];
+    //now need to get the rest of the info from other places
+    //images
+    $imagesQuery = "SELECT * FROM property_images WHERE prop_id = $propId";
+    $resultImages = mysqli_query($conn, $imagesQuery);
+
+    //im gonna just grab the rows for now
+
+    //amenities still need to be done
+    $amenQuery = "SELECT * FROM property_amenity WHERE prop_id = $propId";
+    $resultAmen = mysqli_query($conn, $amenQuery);
+    $rowAmenities = mysqli_fetch_array($resultAmen);
+
+    //this is tenants
+    $tenQuery = "SELECT * FROM tenants WHERE prop_id = $propId";
+    $resultTen = mysqli_query($conn, $tenQuery);
+}
 ?>
 
 <!DOCTYPE html>
@@ -117,18 +153,14 @@ if (isset($_SESSION['profileMessage'])) {
                         Amenities
                     </a>
                 </div>
-                    <!-- <a class="page-indicator" id="review-indicator" href="#">
-                        <div class="icon">
-                            <svg width="25" height="25" viewBox="0 0 34 34" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M11.7142 20.5463L16.5505 17.6464L21.3868 20.5463L20.1054 15.1142L24.4043 11.4383L18.7413 10.989L16.5505 5.84279L14.3597 10.989L8.69667 11.4383L12.9956 15.1142L11.7142 20.5463ZM0.0161133 33.2076V3.80064C0.0161133 2.9021 0.339912 2.13289 0.987509 1.49301C1.63511 0.85314 2.4136 0.533203 3.32299 0.533203H29.778C30.6874 0.533203 31.4659 0.85314 32.1135 1.49301C32.7611 2.13289 33.0849 2.9021 33.0849 3.80064V23.4053C33.0849 24.3038 32.7611 25.073 32.1135 25.7129C31.4659 26.3528 30.6874 26.6727 29.778 26.6727H6.62987L0.0161133 33.2076ZM5.22445 23.4053H29.778V3.80064H3.32299V25.2432L5.22445 23.4053Z"
-                                    fill="#D9D9D9" />
-                            </svg>
-
-                        </div>
-                        Reviews
-                    </a> -->
+                <?php if ($editPropertyCheck) : ?>
+                    <div class="page-indicator-inner-container" id="amenity-indicator">
+                        <a class="page-indicator" href="#ammenities-parent-container">
+                            <div id="deleteProperty" class="inverseFilledButton">Delete Property
+                            </div>
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="settings-container">
                 <svg width="30" height="30" viewBox="0 0 45 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +202,10 @@ if (isset($_SESSION['profileMessage'])) {
                     <div class="modal-content">
                         <p>Please login to continue</p>
                         <button type="menu" class="loginButton" id="loginButtonCreatePage">Log in</button>
-
+                        <p>or</p>
+                        <a href="../IndexPage/index.php">
+                            <button id="go-home-instead" class="inverseFilledButton">Go back home</button>
+                        </a>
                     </div>
                 </div>
 
@@ -182,19 +217,30 @@ if (isset($_SESSION['profileMessage'])) {
                 <div class="left-box">
                     <div class="prop-title-container">
                         <div class="prop-title">
-                            <input id="newPropertyTitle" maxlength="20" minlength="5" type="text" class="title-text-field" placeholder="Please add a property title" required>
+                            <input id="newPropertyTitle" maxlength="20" minlength="5" type="text" class="title-text-field" value="<?php if (isset($propName)) echo "$propName"; ?>" placeholder="Please add a property title" required>
                         </div>
                     </div>
                     <div class="prop-images-container">
                         <div class="select-images-overlay">
                             <button id="openFileButton" class="filledButton">Choose Images</button>
                             <input type="file" id="file" name="file" multiple required accept=".jpg, .png, .jpeg" hidden />
-                            <div id="selectedImages"></div>
+                            <div id="selectedImages">
+                                <?php
+                                $countImages = 0;
+                                if ($editPropertyCheck) {
+                                    while ($rowImages = mysqli_fetch_array($resultImages)) {
+                                        echo "<p>{$rowImages['image_name']}</p>";
+                                        $countImages++;
+                                    };
+                                }
+                                echo "<div>{$countImages} images selected</div>";
+                                ?>
+                            </div>
                         </div>
                     </div>
                     <div class="prop-desc-container">
                         <div class="prop-desc">
-                            <textarea id="desc-text-field" minlength="10" maxlength="500" class="description-text-field" placeholder="Please add a description" required></textarea>
+                            <textarea id="desc-text-field" minlength="10" maxlength="500" class="description-text-field" placeholder="Please add a description" required><?php if (isset($propDesc)) echo "$propDesc"; ?></textarea>
                             <p id="char-count">0/500</p>
                         </div>
                     </div>
@@ -203,13 +249,20 @@ if (isset($_SESSION['profileMessage'])) {
 
                     <!-- Code from https://majindv.blogspot.com/2021/03/leafleft-get-coordinates-css.html -->
                     <div class="map-search-container">
-                        <input type="text" placeholder="Search property address" for="search" id="address">
-                        <button id="search-map-btn" class="filledButton">Search</button>
+                        <input type="text" placeholder="Search property address" for="search" id="address" value="<?php if (isset($propAddress)) echo "$propAddress"; ?>">
+                        <button id="search-map-btn" class="filledButton" value>Search</button>
                     </div>
                     <div id="coord-results"></div>
 
                     <div class="bottom-container">
-                        <div class="map-container" id="map"></div>
+                        <div class="map-container" id="map">
+                            <script type="text/javascript" src="map.js"></script> <!-- this is needs for below php code !! -->
+                            <?php
+                            if ($editPropertyCheck) {
+                                echo "<script>addMarkerToMap($propLat, $propLong);</script>";
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -222,6 +275,9 @@ if (isset($_SESSION['profileMessage'])) {
                         <div class="title">
                             Amenities
                         </div>
+                        <?php if ($editPropertyCheck) : ?>
+                            <div>Please reselect your amenities</div>
+                        <?php endif; ?>
                     </div>
                     <div class="amenities-container">
                         <div class="add-amenities-overlay">
@@ -242,9 +298,20 @@ if (isset($_SESSION['profileMessage'])) {
                     <div class="searchbar-container-container">
                         <button id="openAddTenantModel" class="inverseFilledButton" onclick="openAddTenantModal()">Add Tenant</button>
                     </div>
-                    <div id="listingTenantsDiv" class="listingOfTenants">
 
-                        <ul id="tenantList"></ul>
+                    <div id="listingTenantsDiv" class="listingOfTenants">
+                        <ul id="tenantList">
+                            <?php
+                            if ($editPropertyCheck) {
+                                $countTenants = 1;
+                                while ($rowTenants = mysqli_fetch_array($resultTen)) {
+                                    $tenantId = $rowTenants['tenant_id'];
+                                    echo "<li id=\"item-{$countTenants}\">{$tenantId} <button class=\"filledButton remove-button\" data-target=\"item-{$countTenants}\">Remove</button></li>";
+                                    $countTenants++;
+                                }
+                            }
+                            ?>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -431,6 +498,7 @@ if (isset($_SESSION['profileMessage'])) {
         <?php if (!isset($_SESSION["userType"])) : ?>
             <div id="notAgentModal" class="modal" style="display: block;">
                 <div class="modal-content">
+                    <span class="back-arrow" style="color:white;" id="backToHomePage">&#8592;</span>
                     <p>Whoops, sorry you're not an agent, but you can apply below.</p>
 
                     <button id="applyAgentButton">Apply now!</button>
@@ -474,14 +542,40 @@ if (isset($_SESSION['profileMessage'])) {
         <div id="addTenantModel" class="modal" style="display: 'none';">
             <div class="modal-content">
                 <span class="close" id="closeAddTenantButton">&times;</span>
-                
+
                 <h3>Add Your Tenants Email</h3>
                 <div id="errorDiv"></div> <!-- Error message will be displayed here -->
-                <div style="display: inline-flex; gap: 0.5em;" >
+                <div style="display: inline-flex; gap: 0.5em;">
                     <input type="text" class="modalInput" name="emailInput" id="emailInput" placeholder="e.g: michael@gmail.com">
                     <!-- <input type="submit" name="submit" value="Add" class="filledButton" id="thisButtonExistsBecauseIsayso"> -->
-                    <button onclick="addEmail()" class="filledButton" id="thisButtonExistsBecauseIsayso" >Add</button>
+                    <button onclick="addEmail()" class="filledButton" id="thisButtonExistsBecauseIsayso">Add</button>
                 </div>
+            </div>
+        </div>
+        <!-- modal for createproperty form successful -->
+        <div id="formFilledOutModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeFormFilledOutModal">&times;</span>
+                <p>Thank you everything is filled out</p>
+                <p>Redirecting . . .</p>
+            </div>
+        </div>
+        <!-- modal for createproperty not filled all fields -->
+        <div id="notFilledOutYet" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeNotFilledOutYet">&times;</span>
+                <p>Whoops, sorry you haven't filled everything out</p>
+            </div>
+        </div>
+        <div id="deletePropertyModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closePropertyModal">&times;</span>
+                <p>Are you sure you want to delete your property?</p>
+
+                <form id="confirmFormDelete" method="post" action="deleteProperty.php">
+                    <button type="button" class="filledButton" id="doNotDeletePropertyButton">Cancel</button>
+                    <input type="submit" class="inverseFilledButton" name="confirmDelete" id="confirm" value="Confirm Delete">
+                </form>
             </div>
         </div>
 

@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hamiltonhermits
+-- Host: IS3-DEV.ICT.RU.AC.ZA    Database: hamiltonhermits
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.28-MariaDB
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,29 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tenants`
+-- Table structure for table `amenity_test`
 --
 
-DROP TABLE IF EXISTS `tenants`;
+DROP TABLE IF EXISTS `amenity_test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tenants` (
-  `id_prop_tenant` int(11) NOT NULL AUTO_INCREMENT,
-  `prop_id` int(11) NOT NULL,
-  `tenant_id` varchar(450) NOT NULL,
-  PRIMARY KEY (`id_prop_tenant`),
-  UNIQUE KEY `id_prop_tenant_UNIQUE` (`id_prop_tenant`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE `amenity_test` (
+  `amenity_id` int NOT NULL AUTO_INCREMENT,
+  `amenity_name` varchar(45) NOT NULL,
+  `amenity_image` varchar(300) NOT NULL,
+  PRIMARY KEY (`amenity_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Contains every possible amenity on record';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tenants`
+-- Dumping data for table `amenity_test`
 --
 
-LOCK TABLES `tenants` WRITE;
-/*!40000 ALTER TABLE `tenants` DISABLE KEYS */;
-INSERT INTO `tenants` VALUES (1,17,'hello@gmail.com'),(2,17,'what@gmail.com'),(3,20,'michaelgreen@gmail.com'),(4,20,'nomie@gmail.com'),(5,20,'sandman@gmail.com'),(6,22,'demo1@gmail.com'),(7,22,'demo2@gmail.com'),(8,25,'demo1@gmail.com'),(9,26,'someone@gmail.com'),(10,27,'someone@gmail.com'),(11,28,'some@gmail.com'),(12,29,'Ibeg@gmail.com'),(13,30,'some@gmail.com'),(14,31,'joebiden@gmail.com');
-/*!40000 ALTER TABLE `tenants` ENABLE KEYS */;
+LOCK TABLES `amenity_test` WRITE;
+/*!40000 ALTER TABLE `amenity_test` DISABLE KEYS */;
+INSERT INTO `amenity_test` VALUES (1,'Wifi','wifi.png'),(2,'Car parking','car.png'),(3,'Grey water tank','grey_water.png'),(4,'Drinking water tank','water_drink.png'),(5,'Kitchen appliances','kitchen.png'),(6,'Gas stove','gas.png'),(7,'Fridge','fridge.png'),(8,'Laundry','laundry.png'),(9,'Furnished','furniture.png'),(10,'24/7 Security','secure.png'),(11,'Cleaning service','mop.png'),(12,'Pet friendly','pet.png');
+/*!40000 ALTER TABLE `amenity_test` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-01 19:36:29
+-- Dump completed on 2023-10-02 22:51:33

@@ -46,12 +46,15 @@ body {
     padding: 0.5em;
     cursor: pointer;
 }
-.filledButton:hover{
+
+.filledButton:hover {
     background-color: #29292c;
 }
-.inverseFilledButton:hover{
+
+.inverseFilledButton:hover {
     background-color: #ad5511;
 }
+
 //Login Profile Modal
 #profileModal {
     #closeModalBtn {
@@ -69,7 +72,7 @@ body {
     #deleteProfileBtn {
         display: inline-flex;
     }
-    
+
     #formProfileBtn {
         display: flex;
         justify-content: center;
@@ -108,7 +111,13 @@ body {
         height: 100vh;
         min-width: 150px;
         background-color: var(--sidebar-color);
-
+        #closeSignupButton{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10%;
+            display: none;
+        }
         .sidebar * {
             display: flex;
             flex-direction: column;
@@ -168,6 +177,10 @@ body {
                     position: relative;
                     width: 85%;
 
+                    .inverseFilledButton {
+                        font-size: 0.8em;
+                    }
+
                     //
                     target: "someValue";
 
@@ -181,7 +194,7 @@ body {
 
         .settings-container {
             display: flex;
-            height: 25%;
+            height: 50%;
             justify-content: flex-start;
             align-items: center;
             position: relative;
@@ -273,6 +286,25 @@ body {
         --background_colour: #202024;
         --light_secondary_colour: #564b40;
         --main-color: #29292c;
+
+        #confirmFormDelete {
+
+            display: flex;
+            justify-content: space-evenly;
+
+        }
+
+        .back-arrow {
+            position: absolute;
+            display: flex;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--secondary_colour);
+            top: 10px;
+            left: 10px;
+            font-size: 1em;
+        }
 
         .modalInput {
             background-color: var(--main-color);
@@ -463,8 +495,12 @@ a {
     }
 
     @media screen and (max-width: 800px) {
-        .logo-container {
-            display: none;
+        .background-sidebar-container{
+            .sidebar{
+                #closeSignupButton{
+                    display: block;
+                }
+            }
         }
 
         .background-sidebar-container {
@@ -472,11 +508,13 @@ a {
         }
     }
 }
+
 //tylers shinanigans
-.textWhite{
+.textWhite {
     color: white;
 }
-.confirmDeleteForm{
+
+.confirmDeleteForm {
     display: flex;
     justify-content: space-evenly;
 }
