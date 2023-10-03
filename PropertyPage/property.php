@@ -644,6 +644,8 @@ $conn->close();
                         <div class="commentLabel">Reviews</div>
                     </div>
                     <div class="comment-section">
+                    
+
                         <div class="sort-comments-container">
                             <div class="inner-sort-comments-container">
                                 <label for="sort-comments">Sort by:</label>
@@ -656,8 +658,27 @@ $conn->close();
                             </div>
                         </div>
                         <div class="comments-list-container">
+
                             <?php include('comments.php'); ?>
+
+                             <!-- delete form for button -->  
+                            <form id="deleteCommentForm" action="../PropertyPage/property.php?id=<?php echo $propId; ?>" method="POST"> 
+                            <input class="filledButton" type="submit" name="deleteComment" id="deleteComment" value="Delete Comment"/>
+                            
+                            </form>
+
+                            <!-- Runs delete comment code -->
+                            <?php 
+                            if (isset($_POST['deleteComment'])) {
+                                include('deleteComment.php');
+                                // echo "<script>location.reload();</script>";
+                                }
+                                
+                            ?>
+                          
+                            
                         </div>
+                        
                         <div class="comment-page-container">
                             <!-- <div class="previous-page-container">
                                 <button class="previous-page-button firstOrLastPage">Previous</button>

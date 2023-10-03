@@ -21,9 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $politenessRating = isset($_POST['politenessRating']) ? $_POST['politenessRating'] : '';
     $repairRating = isset($_POST['repairRating']) ? $_POST['repairRating'] : '';
     $responseTimeRating = isset($_POST['responseTimeRating']) ? $_POST['responseTimeRating'] : '';
-    $overallLandlordRating = isset($_POST['overallLandlordRating']) ? $_POST['overallLandlordRating'] : '';
+    $overallLandlordRating = isset($_POST['overallRatingLandlord']) ? $_POST['overallRatingLandlord'] : '';
 
     $currentDate = date("Y-m-d");
+
+
+
 
     if (!empty($propertyId) && !empty($userId)) {
         try {
