@@ -149,3 +149,72 @@ document.addEventListener('click', function (event) {
         borderSearchBar.style.borderRadius = '50px';
     }
 });
+
+// get dash div
+const dash = document.getElementById('dash');
+const outerSidebar = document.getElementById('outer-index-sidebar-container');
+const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+
+// // sidebar 
+dash.addEventListener('click', function () {
+    console.log('dash clicked');
+    outerSidebar.style.display = 'block';
+});
+
+closeSidebarBtn.addEventListener('click', function (event) {
+        outerSidebar.style.display = 'none';
+});
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     const dashElement = document.getElementById('dash');
+//     const sidebarContainer = document.getElementById('outer-index-sidebar-container');
+
+//     // Function to open sidebar
+//     function openSidebar() {
+//         console.log("open sidebar");
+//         sidebarContainer.style.display = 'block';
+//     }
+
+//     // Function to close sidebar
+//     function closeSidebar() {
+//         sidebarContainer.style.display = 'none';
+//     }
+
+//     // Click event for 'dash' element
+//     dashElement.addEventListener('click', openSidebar);
+
+//     // Click event for window (to close sidebar when clicking outside)
+//     window.addEventListener('click', function(event) {
+//         if (event.target !== sidebarContainer && event.target !== dashElement) {
+//             closeSidebar();
+//         }
+//     });
+// });
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     const dashElement = document.getElementById('dash');
+//     const sidebarContainer = document.getElementById('outer-index-sidebar-container');
+
+//     // Function to open sidebar
+//     function openSidebar() {
+//         sidebarContainer.style.display = 'block';
+//     }
+
+//     // Function to close sidebar
+//     function closeSidebar() {
+//         sidebarContainer.style.display = 'none';
+//     }
+
+//     // Click event for 'dash' element
+//     dashElement.addEventListener('click', openSidebar);
+
+//     // Click event for the whole document
+//     document.addEventListener('click', function(event) {
+//         if (!sidebarContainer.contains(event.target) && event.target !== dashElement) {
+//             closeSidebar();
+//         }
+//     });
+// });
+
+
+

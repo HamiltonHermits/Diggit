@@ -202,7 +202,10 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                     <div class="modal-content">
                         <p>Please login to continue</p>
                         <button type="menu" class="loginButton" id="loginButtonCreatePage">Log in</button>
-
+                        <p>or</p>
+                        <a href="../IndexPage/index.php">
+                            <button id="go-home-instead" class="inverseFilledButton">Go back home</button>
+                        </a>
                     </div>
                 </div>
 
