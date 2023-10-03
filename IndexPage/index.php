@@ -147,7 +147,7 @@ if (isset($_SESSION['profileMessage'])) {
                 <div class="dropdown-filter" id="dropdownFilter">
                     <select id="filterSelect">
                         <option value="" disabled selected>Filter</option>
-                        <option value="overallRating">Highest Overall Rating</option>           
+                        <option value="overallRating">Prop Rating</option>           
                     </select>
                 </div>
             </div>
