@@ -578,17 +578,16 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 </form>
             </div>
         </div>
-
-        <?php if (isset($_SESSION["applicationSuccess"])) : unset($_SESSION["applicationSuccess"]); ?>
-            <script>
-                window.alert("Congradulations you have been accepted as an agent");
-            </script>
+        <?php if (isset($_SESSION["applicationSuccess"])or true) : unset($_SESSION["applicationSuccess"]); ?>
+            <div id="applicationStatus" class="modal" style="display: block;">
+                <div class="modal-content">
+                    <span class="close" id="closeApplicationStatusButton">&times;</span>
+                    <p>Application has been accepted</p>
+                    <button id="closeModalApplicationStatus" style="display: inline;" class="filledButton">Close</button>
+                </div>
+            </div>
         <?php endif; ?>
-        <?php if (isset($_SESSION["applicationSuccess"])) : unset($_SESSION["applicationSuccess"]); ?>
-            <script>
-                window.alert("Congradulations you have been accepted as an agent");
-            </script>
-        <?php endif; ?>
+    </main>
 </body>
 
 </html>
