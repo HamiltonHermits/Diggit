@@ -306,6 +306,18 @@ if (isset($_SESSION['profileMessage'])) {
                 </div>
             </div>
         </div>
+        <footer>
+            <img src="../footerImage.png">
+            <div class="footer-tc">
+                <div class="footer-tc-text-container">
+                    <div class="footer-tc-text">Terms & Conditions</div>
+                    <div class="footer-tc-text">|</div>
+                    <div class="footer-tc-text">Privacy Policy</div>
+                    <div class="footer-tc-text">|</div>
+                    <div class="footer-tc-text">All Rights Reserved</div>
+                </div>
+        </footer>
+
 
         <!-- The login modal -->
         <div id="loginModal" class="modal" style="display:none;">

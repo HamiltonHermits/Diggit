@@ -316,6 +316,17 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 </div>
             </div>
         </div>
+        <footer>
+        <img src="../footerImage.png">
+            <div class="footer-tc">
+                <div class="footer-tc-text-container">
+                    <div class="footer-tc-text">Terms & Conditions</div>
+                    <div class="footer-tc-text">|</div>
+                    <div class="footer-tc-text">Privacy Policy</div>
+                    <div class="footer-tc-text">|</div>
+                    <div class="footer-tc-text">All Rights Reserved</div>
+                </div>
+        </footer>
 
 
 
@@ -578,7 +589,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 </form>
             </div>
         </div>
-        <?php if (isset($_SESSION["applicationSuccess"])or true) : unset($_SESSION["applicationSuccess"]); ?>
+        <?php if (isset($_SESSION["applicationSuccess"])) : unset($_SESSION["applicationSuccess"]); ?>
             <div id="applicationStatus" class="modal" style="display: block;">
                 <div class="modal-content">
                     <span class="close" id="closeApplicationStatusButton">&times;</span>

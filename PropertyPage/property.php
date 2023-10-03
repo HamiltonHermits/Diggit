@@ -66,7 +66,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $result = $result->fetch_assoc();
 $stmt->close();
-if($result['is_deleted']) header("Location: ../IndexPage/index.php");
+if ($result['is_deleted']) header("Location: ../IndexPage/index.php");
 
 $landlordId = $result['created_by'];
 
@@ -328,7 +328,7 @@ $conn->close();
                     <div class="dropdown-filter" id="dropdownFilter">
                         <select id="filterSelect">
                             <option value="" disabled selected>Filter</option>
-                            <option value="overallRating">Highest Overall Rating</option>           
+                            <option value="overallRating">Highest Overall Rating</option>
                         </select>
                     </div>
 
@@ -808,7 +808,17 @@ $conn->close();
                 </div>
             </div>
         </div>
-
+        <footer>
+            <img src="../footerImage.png">
+            <div class="footer-tc">
+                <div class="footer-tc-text-container">
+                    <div class="footer-tc-text">Terms & Conditions</div>
+                    <div class="footer-tc-text">|</div>
+                    <div class="footer-tc-text">Privacy Policy</div>
+                    <div class="footer-tc-text">|</div>
+                    <div class="footer-tc-text">All Rights Reserved</div>
+                </div>
+        </footer>
 
 
 
