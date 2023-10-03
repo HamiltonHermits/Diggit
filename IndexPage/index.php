@@ -51,7 +51,7 @@ if (isset($_SESSION['profileMessage'])) {
     <link rel="stylesheet" href="../generic.css" />
     <script src="index.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
-
+    <link rel="icon" type="image/x-icon" href="../crab.png">
 </head>
 <nav class="nav" id="nav">
     <div class="navContainer" id="navContainer">
