@@ -58,7 +58,7 @@ body {
 .nav-top {
     #dashboardContainer {
         #openModalBtnDashboard {
-            display: block;
+            display: none;
         }
     }
 }
@@ -489,7 +489,7 @@ a {
     @media screen and (max-width: 800px) {
         #dashboardContainer {
             #openModalBtnDashboard {
-                display: block;
+                display: block !important;
             }
         }
         .background-sidebar-container {

@@ -20,6 +20,25 @@ const doNotDeletePropertyButton = document.getElementById('doNotDeletePropertyBu
 const deletePropertyModal = document.getElementById('deletePropertyModal');
 const deleteProperty = document.getElementById('deleteProperty');
 const closePropertyModal = document.getElementById('closePropertyModal');
+const applicationStatus = document.getElementById('applicationStatus');
+const closeApplicationStatusButton =document.getElementById('closeApplicationStatusButton');
+const closeModalApplicationStatus = document.getElementById('closeModalApplicationStatus');
+
+if(applicationStatus){
+
+    closeApplicationStatusButton.addEventListener('click', () => {
+        applicationStatus.style.display = 'none';
+    });
+    closeModalApplicationStatus.addEventListener('click', () => {
+        applicationStatus.style.display = 'none';
+    });
+    document.addEventListener("click", function (event) {
+        if (event.target == applicationStatus){
+            applicationStatus.style.display = 'none';
+        }
+        
+    });
+}
 
 if(deleteProperty){
     deleteProperty.addEventListener('click', () => {

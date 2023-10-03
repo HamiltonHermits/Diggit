@@ -217,7 +217,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 <div class="left-box">
                     <div class="prop-title-container">
                         <div class="prop-title">
-                            <input id="newPropertyTitle" maxlength="20" minlength="5" type="text" class="title-text-field" value="<?php if (isset($propName)) echo "$propName"; ?>" placeholder="Please add a property title" required>
+                            <input id="newPropertyTitle" maxlength="50" minlength="5" type="text" class="title-text-field" value="<?php if (isset($propName)) echo "$propName"; ?>" placeholder="Please add a property title" required>
                         </div>
                     </div>
                     <div class="prop-images-container">
@@ -578,17 +578,16 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 </form>
             </div>
         </div>
-
-        <?php if (isset($_SESSION["applicationSuccess"])) : unset($_SESSION["applicationSuccess"]); ?>
-            <script>
-                window.alert("Congradulations you have been accepted as an agent");
-            </script>
+        <?php if (isset($_SESSION["applicationSuccess"])or true) : unset($_SESSION["applicationSuccess"]); ?>
+            <div id="applicationStatus" class="modal" style="display: block;">
+                <div class="modal-content">
+                    <span class="close" id="closeApplicationStatusButton">&times;</span>
+                    <p>Application has been accepted</p>
+                    <button id="closeModalApplicationStatus" style="display: inline;" class="filledButton">Close</button>
+                </div>
+            </div>
         <?php endif; ?>
-        <?php if (isset($_SESSION["applicationSuccess"])) : unset($_SESSION["applicationSuccess"]); ?>
-            <script>
-                window.alert("Congradulations you have been accepted as an agent");
-            </script>
-        <?php endif; ?>
+    </main>
 </body>
 
 </html>

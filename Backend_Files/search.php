@@ -9,13 +9,13 @@ $filterOption = $_GET["filterOption"];
 
 switch ($filterOption) {
     case 'overallRating':
-        $stmt = $conn->prepare("SELECT property.prop_id, property.prop_name, 
+        $stmt = $conn->prepare("SELECT DISTINCT property.prop_id, property.prop_name, 
                                        property.prop_description, property.address,
                                        review.overall_property_rating
                                 FROM property
                                 JOIN review ON property.prop_id = review.prop_id
-                                WHERE property.prop_name LIKE ? 
-                                OR address LIKE ?
+                                WHERE (property.prop_name LIKE ? 
+                                OR address LIKE ?)
                                 AND property.is_deleted = false
                                 ORDER BY review.overall_property_rating DESC");
         break;
@@ -23,9 +23,8 @@ switch ($filterOption) {
     default:
         $stmt = $conn->prepare("SELECT property.prop_id, property.prop_name, property.prop_description, property.address
                                 FROM property
-                                JOIN review ON property.prop_id = review.prop_id
-                                WHERE property.prop_name LIKE ? 
-                                OR address LIKE ?
+                                WHERE (property.prop_name LIKE ? 
+                                OR address LIKE ?)
                                 AND property.is_deleted = false");
         break;
 }
