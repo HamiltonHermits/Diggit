@@ -467,9 +467,6 @@ a {
 
 
 @media screen and (max-width: 1156px) {
-    main {
-        width: 100vw;
-    }
 
     body .parent-container {
         height: 88.75em;
@@ -477,7 +474,6 @@ a {
         .boxes-container {
             flex-direction: column;
             align-items: center;
-            width: auto;
             //the property below is the secret sauce to make image and map grow after resize
             height: 100%;
             gap: 2em;
