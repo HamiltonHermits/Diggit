@@ -287,7 +287,7 @@ if (isset($_SESSION['profileMessage'])) {
                 <p class="modalLabel">Are you sure you want to delete your profile?</p>
                 <form action="../Backend_Files/deleteProfile.php" class="confirmDeleteForm" method="post">
                     <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
-                    <button id="cancelDeleteBtn" class="filledButton" style="right: 0;">Cancel</button>
+                    <button type="button" id="cancelDeleteBtn" class="filledButton" style="right: 0;">Cancel</button>
                 </form>
             </div>
         </div>

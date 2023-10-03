@@ -35,12 +35,13 @@ if (openModalBtn) {
         profileModal.style.display = 'block';
     });
 }
-
-backButtonProfile.addEventListener('click', function () {
-    changePasswordModal.style.display = 'none';
-    confirmDeleteModal.style.display = 'none';
-    profileModal.style.display = 'block';
-});
+if (backButtonProfile) {
+    backButtonProfile.addEventListener('click', function () {
+        changePasswordModal.style.display = 'none';
+        confirmDeleteModal.style.display = 'none';
+        profileModal.style.display = 'block';
+    });
+}
 
 backButtonSignup.addEventListener('click', function () {
     signupModal.style.display = 'none';
