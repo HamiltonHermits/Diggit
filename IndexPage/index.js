@@ -7,6 +7,7 @@ var MAX_VIEW = 3;
 var lastval_boolean = false;
 var searchBarCheck = true;
 var dropdownThere = false;
+var filterOption = null;
 
 
 // Function to redirect to property page
@@ -52,8 +53,8 @@ searchbar.addEventListener('input', function () {
     borderSearchBar.style.borderRadius = '30px 30px 0px 0px';
     dropdownThere = true;
 
-    // Make an AJAX request to the server-side script
-    fetch('../Backend_Files/search.php?query=' + encodeURIComponent(query))
+    // Make an AJAX request to the server-side script with the query string and filter option
+    fetch('../Backend_Files/search.php?query=' + query + '&filterOption=' + filterOption)
         .then((response) => response.json())
         .then((data) => {
             dropdown.innerHTML = ''; // Clear previous dropdown items
@@ -70,6 +71,7 @@ searchbar.addEventListener('input', function () {
                 // Limit the loop to iterate only three times or up to the number of search results
                 for (var i = 0; i < Math.min(data.length, MAX_VIEW); i++) {
                     var apartment = data[i];
+                    console.log(apartment);
                     //console.log(apartment.prop_id);
                     // Create a new dropdown item element
                     const dropdownItem = document.createElement('div');
@@ -80,7 +82,15 @@ searchbar.addEventListener('input', function () {
                         streetNumName = apartment.address;
                     }
                     dropdownItem.title = apartment.prop_name + (streetNumName ? ' ' + streetNumName : '');
+
+                    // add the overall property rating to textConent
                     dropdownItem.textContent = apartment.prop_name + (streetNumName ? '  -  ' + streetNumName : '');
+
+                    // if overall_property_rating exists in the apartment object, add it to the textContent
+                    if (apartment.overall_property_rating) {
+                        dropdownItem.textContent += '  -  ' + apartment.overall_property_rating + ' ★';
+                    }
+                    
 
 
                     // Event listeners for click, mouseover, and mouseout
@@ -216,5 +226,36 @@ closeSidebarBtn.addEventListener('click', function (event) {
 //     });
 // });
 
+
+
+// FILTER SEARCH
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     // Add an event listener for the filter button click
+//     document.getElementById('filterButton').addEventListener('click', function() {
+//         // Get the selected filter option and sort option
+//         var filterOption = document.getElementById('filterSelect').value;
+//         var sortOption = document.querySelector('input[name="sortOption"]:checked').value;
+
+//         console.log(filterOption);
+//         console.log(sortOption);
+
+//         // Define the URL for the AJAX query
+//         var url = 'filterSearch.php';
+
+//         // Define the parameters for the fetch request
+//     });
+// });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const filterSelect = document.getElementById('filterSelect');
+
+    // Event listener for the filter select
+    filterSelect.addEventListener('change', function() {
+        const selectedValue = this.value;
+        filterOption = selectedValue; //set global filter option var to selected value      
+        console.log(filterOption);
+    });
+});
 
 

@@ -144,6 +144,12 @@ if (isset($_SESSION['profileMessage'])) {
                     </svg>
                 </button>
                 <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
+                <div class="dropdown-filter" id="dropdownFilter">
+                    <select id="filterSelect">
+                        <option value="" disabled selected>Filter</option>
+                        <option value="overallRating">Highest Overall Rating</option>           
+                    </select>
+                </div>
             </div>
             <div id="dropdown" class="dropdown-content"></div>
         </div>
