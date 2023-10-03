@@ -58,6 +58,9 @@ include_once('database_connect.php');
                  $userData['agentPhone'] = $row['agent_phone'];
                  $userData['agentCompany'] = $row['agent_company'];
              }
+             if($row['is_admin']){
+                $userData['isAdmin'] = true;
+             }
  
              return $userData;
          }

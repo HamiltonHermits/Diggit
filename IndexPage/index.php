@@ -51,7 +51,7 @@ if (isset($_SESSION['profileMessage'])) {
     <link rel="stylesheet" href="../generic.css" />
     <script src="index.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
-    
+
 </head>
 <nav class="nav" id="nav">
     <div class="navContainer" id="navContainer">
@@ -104,20 +104,23 @@ if (isset($_SESSION['profileMessage'])) {
                     </div>
                     Add Property
                 </a>
-
-                <a href="../ReportPage/dashboard.php" id="reports-sidebar">
-                    <div class="icon">
-                        <svg width="30" height="30" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0_30_336" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="42">
-                                <rect x="0.0161133" y="0.962891" width="39" height="40.0435" fill="#202024" />
-                            </mask>
-                            <g mask="url(#mask0_30_336)">
-                                <path d="M31.7927 25.9399V12.4857L24.0143 6.86243L16.2762 12.4857V16.9427H12.4474V10.4863L24.0143 1.94727L35.6214 10.4697V25.9399H31.7927ZM24.5785 15.1932H26.6742V13.0689H24.5785V15.1932ZM21.3543 15.1932H23.45V13.0689H21.3543V15.1932ZM24.5785 18.5255H26.6742V16.4012H24.5785V18.5255ZM21.3543 18.5255H23.45V16.4012H21.3543V18.5255ZM23.047 39.1442L10.9965 35.562V37.7697H0.920898V19.4419H14.4626L24.9009 23.524C25.7876 23.8572 26.5399 24.4126 27.1579 25.1902C27.7759 25.9677 28.0848 27.0507 28.0848 28.4392H31.7524C33.1204 28.4392 34.2752 28.8071 35.2167 29.543C36.1582 30.2789 36.629 31.4521 36.629 33.0628V34.8955L23.047 39.1442ZM4.26601 34.3124H7.57082V22.8992H4.26601V34.3124ZM22.8858 35.562L33.2033 32.313C33.0152 31.7854 32.8039 31.4244 32.5693 31.23C32.3348 31.0356 32.0605 30.9384 31.7465 30.9384H23.3694C22.644 30.9384 21.9051 30.8829 21.1528 30.7718C20.4005 30.6607 19.7691 30.5219 19.2586 30.3553L15.9538 29.2723L16.8404 26.8563L19.6213 27.8144C20.4005 28.0643 21.0876 28.2309 21.6827 28.3142C22.2777 28.3975 23.243 28.4392 24.5785 28.4392C24.5785 28.1059 24.5181 27.7797 24.3972 27.4603C24.2762 27.141 24.068 26.9119 23.7725 26.773L13.8983 22.8992H10.9965V31.9381L22.8858 35.562Z" fill="#D9D9D9" />
-                            </g>
-                        </svg>
-                    </div>
-                    Reports
-                </a>            
+                <?php if (isset($_SESSION['isAdmin'])) : ?>
+                    <?php if ($_SESSION['isAdmin']) : ?>
+                        <a href="../ReportPage/dashboard.php" id="reports-sidebar">
+                            <div class="icon">
+                                <svg width="30" height="30" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_30_336" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="42">
+                                        <rect x="0.0161133" y="0.962891" width="39" height="40.0435" fill="#202024" />
+                                    </mask>
+                                    <g mask="url(#mask0_30_336)">
+                                        <path d="M31.7927 25.9399V12.4857L24.0143 6.86243L16.2762 12.4857V16.9427H12.4474V10.4863L24.0143 1.94727L35.6214 10.4697V25.9399H31.7927ZM24.5785 15.1932H26.6742V13.0689H24.5785V15.1932ZM21.3543 15.1932H23.45V13.0689H21.3543V15.1932ZM24.5785 18.5255H26.6742V16.4012H24.5785V18.5255ZM21.3543 18.5255H23.45V16.4012H21.3543V18.5255ZM23.047 39.1442L10.9965 35.562V37.7697H0.920898V19.4419H14.4626L24.9009 23.524C25.7876 23.8572 26.5399 24.4126 27.1579 25.1902C27.7759 25.9677 28.0848 27.0507 28.0848 28.4392H31.7524C33.1204 28.4392 34.2752 28.8071 35.2167 29.543C36.1582 30.2789 36.629 31.4521 36.629 33.0628V34.8955L23.047 39.1442ZM4.26601 34.3124H7.57082V22.8992H4.26601V34.3124ZM22.8858 35.562L33.2033 32.313C33.0152 31.7854 32.8039 31.4244 32.5693 31.23C32.3348 31.0356 32.0605 30.9384 31.7465 30.9384H23.3694C22.644 30.9384 21.9051 30.8829 21.1528 30.7718C20.4005 30.6607 19.7691 30.5219 19.2586 30.3553L15.9538 29.2723L16.8404 26.8563L19.6213 27.8144C20.4005 28.0643 21.0876 28.2309 21.6827 28.3142C22.2777 28.3975 23.243 28.4392 24.5785 28.4392C24.5785 28.1059 24.5181 27.7797 24.3972 27.4603C24.2762 27.141 24.068 26.9119 23.7725 26.773L13.8983 22.8992H10.9965V31.9381L22.8858 35.562Z" fill="#D9D9D9" />
+                                    </g>
+                                </svg>
+                            </div>
+                            Reports
+                        </a>
+                    <?php endif; ?>
+                <?php endif; ?>
             </div>
             <a id="settings-sidebar">
                 <svg width="30" height="30" viewBox="0 0 45 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +150,8 @@ if (isset($_SESSION['profileMessage'])) {
                 <div class="dropdown-filter" id="dropdownFilter">
                     <select id="filterSelect">
                         <option value="" disabled selected>Filter</option>
-                        <option value="overallRating">Prop Rating</option>           
+                        <option value=""> No Filter</option>
+                        <option value="overallRating">Prop Rating</option>
                     </select>
                 </div>
             </div>
@@ -164,7 +168,8 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <?php if (isset($login_error_message)) { ?>
                     <p><?php echo $login_error_message; ?></p>
-                    <?php echo '<script>loginModal.style.display = "block";</script>'; unset($_SESSION['$login_error_message;'])?>
+                    <?php echo '<script>loginModal.style.display = "block";</script>';
+                    unset($_SESSION['$login_error_message;']) ?>
                 <?php } ?>
 
                 <form id="loginForm" action="../Backend_Files/login.php" method="POST">
@@ -178,7 +183,7 @@ if (isset($_SESSION['profileMessage'])) {
                 </form>
 
                 <!-- Add a button to open the signup modal -->
-                
+
             </div>
         </div>
 
@@ -235,12 +240,12 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- <p id="fullNameProfile" class = "modalLabel">Fullname: <?php if (isset($_SESSION['fullName'])) /*echo $_SESSION['fullName'];*/ ?></p> -->
                 <p id="emailProfile" class="modalLabel"><?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?></p>
                 <p id="userType" class="modalLabel"><?php if (isset($_SESSION["userType"])) echo $_SESSION["userType"]; ?></p>
-                <button id="changePasswordBtn" class = "inverseFilledButton">Change Password</button>
+                <button id="changePasswordBtn" class="inverseFilledButton">Change Password</button>
 
-                <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
+                <button id="deleteProfileBtn" class="inverseFilledButton">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php" method="post" id = "formProfileBtn">
-                    <button id = "logoutButton" type="submit" class="filledButton loginButton" >Logout</button>
+                <form action="../Backend_Files/logout.php" method="post" id="formProfileBtn">
+                    <button id="logoutButton" type="submit" class="filledButton loginButton">Logout</button>
                 </form>
             </div>
         </div>
@@ -257,7 +262,7 @@ if (isset($_SESSION['profileMessage'])) {
                 <span class="close" id="closeChangePasswordModalBtn">&times;</span>
                 <span class="back-arrow" style="color:white;" id="backToProfile">&#8592;</span>
 
-                <h2 class="textWhite" >Change Password</h2>
+                <h2 class="textWhite">Change Password</h2>
                 <form id="changePasswordForm" action="../Backend_Files/change_password.php" method="post">
                     <label for="currentPassword" class="textWhite">Current Password:</label>
                     <input type="password" id="currentPassword" class="modalInput" name="currentPassword" required><br>
@@ -269,7 +274,7 @@ if (isset($_SESSION['profileMessage'])) {
                     <input type="password" id="confirmPassword" class="modalInput" name="confirmPassword" required><br>
                     <br>
 
-                    <button id="changePasswordButtonFinal" type="submit" class="filledButton" style="display: inline-block;" >Change Password</button>
+                    <button id="changePasswordButtonFinal" type="submit" class="filledButton" style="display: inline-block;">Change Password</button>
                 </form>
             </div>
         </div>
@@ -278,18 +283,18 @@ if (isset($_SESSION['profileMessage'])) {
             <div class="modal-content">
                 <span class="close" id="closeDeleteModalBtn">&times;</span>
 
-                <h2 class="modalLabel" >Confirm Delete</h2>
+                <h2 class="modalLabel">Confirm Delete</h2>
                 <p class="modalLabel">Are you sure you want to delete your profile?</p>
-                <form action="../Backend_Files/deleteProfile.php" class="confirmDeleteForm"  method="post">
+                <form action="../Backend_Files/deleteProfile.php" class="confirmDeleteForm" method="post">
                     <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
-                    <button id="cancelDeleteBtn" class="filledButton" style="right: 0;" >Cancel</button>
+                    <button id="cancelDeleteBtn" class="filledButton" style="right: 0;">Cancel</button>
                 </form>
             </div>
         </div>
 
     </div>
 
-    
+
 </body>
 
 </html>
