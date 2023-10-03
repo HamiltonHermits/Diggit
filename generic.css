@@ -53,7 +53,7 @@ body {
 }
 
 .nav-top #dashboardContainer #openModalBtnDashboard {
-  display: block;
+  display: none;
 }
 
 #profileModal #closeModalBtn {
@@ -441,7 +441,7 @@ a {
 }
 @media screen and (max-width: 1156px) and (max-width: 800px) {
   #dashboardContainer #openModalBtnDashboard {
-    display: block;
+    display: block !important;
   }
   .background-sidebar-container .sidebar #closeSignupButton {
     display: block;
