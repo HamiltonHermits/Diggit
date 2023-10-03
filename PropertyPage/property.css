@@ -85,13 +85,17 @@ main {
   border: 2px var(--orange) solid;
 }
 .nav-top .searchbar-container .borderSearchBar #searchbar {
-  width: auto;
+  width: 60%;
   height: 70%;
   background: none;
   border: none;
   color: var(--global-font-color);
 }
-.nav-top .searchbar-container .borderSearchBar #filterSelect {
+.nav-top .searchbar-container .borderSearchBar .dropdown-filter {
+  width: 30%;
+}
+.nav-top .searchbar-container .borderSearchBar .dropdown-filter #filterSelect {
+  width: 100%;
   background: transparent;
   border: 2px #ad5511 solid;
   color: var(--global-font-color);

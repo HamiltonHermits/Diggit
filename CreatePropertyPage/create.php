@@ -117,8 +117,8 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
 
 
 <body>
-    <div class="background-sidebar-container">
-        <div class="sidebar">
+    <div class="background-sidebar-container" id = "outer-sidebar">
+        <div class="sidebar" id = "inner-sidebar">
             <div class="logo-container">
                 <a id="logo" href="../IndexPage/index.php">
                     <div id="digg">Digg</div>
@@ -126,6 +126,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 </a>
 
             </div>
+            <span class="close" id="closeSignupButton" onclick="hidePhoneSidebar()">&times;</span>
             <div class="page-indicator-container">
                 <div class="page-indicator-inner-container" id="prop-indicator">
                     <a class="page-indicator" href="#property-parent-container">
@@ -178,6 +179,18 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
     </div>
     <main>
         <div class="nav-top">
+            <div class="profileContainer" id="dashboardContainer">
+                <button id="openModalBtnDashboard" style="z-index: 99;" onclick="showPhoneSidebar()">
+                    <svg width="40" height="40" viewBox="0 0 61 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_30_602" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="61" height="50">
+                            <rect width="61" height="50" fill="#D9D9D9" />
+                        </mask>
+                        <g mask="url(#mask0_30_602)">
+                            <path d="M10.1665 31.25V27.0833H50.8332V31.25H10.1665ZM10.1665 22.9167V18.75H50.8332V22.9167H10.1665Z" fill="#E96B09" fill-opacity="0.7" />
+                        </g>
+                    </svg>
+                </button>
+            </div>
             <div class="empty-div"></div>
             <!-- Personalised Page if authenticated-->
             <?php if ($isAuthenticated) : ?>
@@ -317,7 +330,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
             </div>
         </div>
         <footer>
-        <img src="../footerImage.png">
+            <img src="../footerImage.png">
             <div class="footer-tc">
                 <div class="footer-tc-text-container">
                     <div class="footer-tc-text">Terms & Conditions</div>

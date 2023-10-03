@@ -73,6 +73,7 @@ if (isset($_SESSION['profileMessage'])) {
                 </a>
 
             </div>
+            <span class="close" id="closeSignupButton" onclick="hidePhoneSidebar()">&times;</span>
             <div class="page-indicator-container">
                 <div class="page-indicator-inner-container">
                     <a class="page-indicator" id="home-indicator" href="../IndexPage/index.php">

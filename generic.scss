@@ -59,7 +59,17 @@ body {
     #dashboardContainer {
         #openModalBtnDashboard {
             display: none;
+            border: none;
+            background: none;
+            left:2em;
+            position: relative;
         }
+    }
+    #openModalBtn {
+        border: none;
+        background: none;
+        right: 2em;
+        position: relative;
     }
 }
 

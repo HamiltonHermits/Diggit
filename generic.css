@@ -54,6 +54,16 @@ body {
 
 .nav-top #dashboardContainer #openModalBtnDashboard {
   display: none;
+  border: none;
+  background: none;
+  left: 2em;
+  position: relative;
+}
+.nav-top #openModalBtn {
+  border: none;
+  background: none;
+  right: 2em;
+  position: relative;
 }
 
 #profileModal #closeModalBtn {
