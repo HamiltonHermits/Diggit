@@ -644,6 +644,8 @@ $conn->close();
                         <div class="commentLabel">Reviews</div>
                     </div>
                     <div class="comment-section">
+                    
+
                         <div class="sort-comments-container">
                             <div class="inner-sort-comments-container">
                                 <label for="sort-comments">Sort by:</label>
@@ -656,8 +658,27 @@ $conn->close();
                             </div>
                         </div>
                         <div class="comments-list-container">
+
                             <?php include('comments.php'); ?>
+
+                             <!-- delete form for button -->  
+                            <form id="deleteCommentForm" action="../PropertyPage/property.php?id=<?php echo $propId; ?>" method="POST"> 
+                            <input class="filledButton" type="submit" name="deleteComment" id="deleteComment" value="Delete Comment"/>
+                            
+                            </form>
+
+                            <!-- Runs delete comment code -->
+                            <?php 
+                            if (isset($_POST['deleteComment'])) {
+                                include('deleteComment.php');
+                                // echo "<script>location.reload();</script>";
+                                }
+                                
+                            ?>
+                          
+                            
                         </div>
+                        
                         <div class="comment-page-container">
                             <!-- <div class="previous-page-container">
                                 <button class="previous-page-button firstOrLastPage">Previous</button>
@@ -831,7 +852,7 @@ $conn->close();
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($login_error_message)) { ?>
-                    <p><?php echo $login_error_message; ?></p>
+                    <p class="textWhite"><?php echo $login_error_message; ?></p>
                     <?php echo '<script>loginModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -860,7 +881,7 @@ $conn->close();
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($signup_error_message)) { ?>
-                    <p><?php echo $signup_error_message; ?></p>
+                    <p class="textWhite"><?php echo $signup_error_message; ?></p>
                     <?php echo '<script>signupModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -891,7 +912,7 @@ $conn->close();
             <div class="modal-content">
 
                 <?php if (isset($profileMessage)) { ?>
-                    <p><?php echo $profileMessage; ?></p>
+                    <p class="textWhite"><?php echo $profileMessage; ?></p>
                     <?php echo '<script>profileModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -917,7 +938,7 @@ $conn->close();
             <div class="modal-content">
 
                 <?php if (isset($changePasswordError)) { ?>
-                    <p><?php echo $changePasswordError; ?></p>
+                    <p class="textWhite"><?php echo $changePasswordError; ?></p>
                     <?php echo '<script>changePasswordModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 

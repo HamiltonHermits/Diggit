@@ -393,7 +393,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($login_error_message)) { ?>
-                    <p><?php echo $login_error_message; ?></p>
+                    <p class="textWhite"><?php echo $login_error_message; ?></p>
                     <?php echo '<script>loginModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -425,7 +425,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($signup_error_message)) { ?>
-                    <p><?php echo $signup_error_message; ?></p>
+                    <p class="textWhite"><?php echo $signup_error_message; ?></p>
                     <?php echo '<script>signupModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -456,7 +456,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
             <div class="modal-content">
 
                 <?php if (isset($profileMessage)) { ?>
-                    <p><?php echo $profileMessage; ?></p>
+                    <p class="textWhite"><?php echo $profileMessage; ?></p>
                     <?php echo '<script>profileModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -482,7 +482,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
             <div class="modal-content">
 
                 <?php if (isset($changePasswordError)) { ?>
-                    <p><?php echo $changePasswordError; ?></p>
+                    <p class="textWhite" ><?php echo $changePasswordError; ?></p>
                     <?php echo '<script>changePasswordModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -538,7 +538,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 <h2>Application Form</h2>
 
                 <?php if (isset($apply_agent_error_message)) { ?>
-                    <p><?php echo $apply_agent_error_message; ?></p>
+                    <p class="textWhite"><?php echo $apply_agent_error_message; ?></p>
                     <?php echo '<script>applyAgentModal.style.display = "block";</script>'; ?>
                     <?php echo '<script>notAgentModal.style.display = "none";</script>'; ?>
                 <?php } ?>
@@ -552,7 +552,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                     <img id="selectedImage" src="#" alt="Selected Image" style="display: none; max-width: 100px; max-height: 100px;">
 
                     <label for="phoneNumber" class="modalLabel">Phone Number:</label>
-                    <input type="text" id="phoneNumber" class="modalInput" name="phoneNumber" value="<?php echo isset($_SESSION['phoneNumber']) ? htmlspecialchars($_SESSION['phoneNumber']) : ''; ?>" placeholder="e.g: 082 123 4444" minlength="12" maxlength="12" required><br><br>
+                    <input type="text" id="phoneNumber" class="modalInput" name="phoneNumber" value="<?php echo isset($_SESSION['phoneNumber']) ? htmlspecialchars($_SESSION['phoneNumber']) : ''; ?>" placeholder="e.g: 0821234444" minlength="10" maxlength="10" required><br><br>
 
                     <label for="companyName" class="modalLabel">Company Name:</label>
                     <input type="text" id="companyName" class="modalInput" name="companyName" value="<?php echo isset($_SESSION['companyName']) ? htmlspecialchars($_SESSION['companyName']) : ''; ?>" placeholder="e.g: Remax Inc" spellcheck="false" required><br><br>

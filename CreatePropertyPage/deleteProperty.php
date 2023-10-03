@@ -1,7 +1,7 @@
 <?php
 require_once('../Backend_Files/database_connect.php');
 session_start();
-echo "we gosdsathere";
+// echo "we gosdsathere";
 if (isset($_SESSION['property_id'])) {
     echo "we gothere";
     $propId = $_SESSION['property_id'];
