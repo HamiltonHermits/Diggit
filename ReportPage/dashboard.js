@@ -174,13 +174,31 @@ $(document).ready(function () {
                             }
                         
                             var options = {
-                                title: 'Overall Property Ratings',
+                                title: 'Overall Property Ratings', titleTextStyle: {color: 'white'},
                                 width: "100%",
                                 height: 300,
-                                hAxis: {title: 'Overall Property Rating'},
-                                vAxis: {title: 'Property Name'},
+                                backgroundColor: '#E4E4E4',
+                                hAxis: {title: 'Overall Property Rating', titleTextStyle: {color: 'white'}, textStyle: { color: 'white' }},
+                                vAxis: {title: 'Property Name', titleTextStyle: {color: 'white'}, textStyle: { color: 'white' }},
                                 colors: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6'],
-                            };
+                                chartArea: {
+                                    backgroundColor: {
+                                      fill: '#29292c',
+                                      fillOpacity: 1
+                                    },
+                                },
+                                backgroundColor: {
+                                    fill: '#29292c',
+                                    fillOpacity: 1
+                                },
+                                legend: {
+                                    textStyle: {
+                                        color: 'white'
+                                    }
+                                },
+                            },
+       
+
                             chart = new google.visualization.BarChart(document.getElementById('chart-report-text-container'));
                             break;
                         case 'rating-distribution-bc':
@@ -198,12 +216,27 @@ $(document).ready(function () {
                             }
 
                             var options = {
-                                title: 'Overall Rating Distribution',
+                                title: 'Overall Rating Distribution', titleTextStyle: {color: 'white'},
                                 width: "100%",
                                 height: 300,
-                                hAxis: {title: 'Rating'},
-                                vAxis: {title: 'Frequency'},
+                                hAxis: {title: 'Rating', titleTextStyle: {color: 'white'}, textStyle: { color: 'white' }},
+                                vAxis: {title: 'Frequency', titleTextStyle: {color: 'white'}, textStyle: { color: 'white' }},
                                 colors: ['#FF5733', '#FFC300', '#3D6B37', '#3D6B90', '#8A3D6B'],
+                                chartArea: {
+                                    backgroundColor: {
+                                      fill: '#29292c',
+                                      fillOpacity: 1
+                                    },
+                                },
+                                backgroundColor: {
+                                    fill: '#29292c',
+                                    fillOpacity: 1
+                                },
+                                legend: {
+                                    textStyle: {
+                                        color: 'white'
+                                    }
+                                },
                             };
                             
                             var chart = new google.visualization.ColumnChart(document.getElementById('chart-report-text-container'));
@@ -221,11 +254,26 @@ $(document).ready(function () {
                             }
                         
                             var options = {
-                                title: 'Agent Overall Ratings',
+                                title: 'Agent Overall Ratings', titleTextStyle: {color: 'white'},
                                 width: "100%",
                                 height: 300,
-                                hAxis: {title: 'Overall Rating'},
-                                vAxis: {title: 'Agent Name'},
+                                hAxis: {title: 'Overall Rating', titleTextStyle: {color: 'white'}, textStyle: { color: 'white' }},
+                                vAxis: {title: 'Agent Name', titleTextStyle: {color: 'white'}, textStyle: { color: 'white' }},
+                                chartArea: {
+                                    backgroundColor: {
+                                      fill: '#29292c',
+                                      fillOpacity: 1
+                                    },
+                                },
+                                backgroundColor: {
+                                    fill: '#29292c',
+                                    fillOpacity: 1
+                                },
+                                legend: {
+                                    textStyle: {
+                                        color: 'white'
+                                    }
+                                },
                             };
                             chart = new google.visualization.BarChart(document.getElementById('chart-report-text-container'));
                             break;
