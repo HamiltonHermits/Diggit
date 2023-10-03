@@ -230,6 +230,7 @@ main {
   gap: 1em;
   border-radius: 15px;
   padding: 0.5em 2em 2em 2em;
+  min-height: 500px;
   background-color: var(--inner-box-color);
 }
 
