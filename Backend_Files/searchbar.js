@@ -8,6 +8,7 @@ var lastval_boolean = false;
 var searchBarCheck = true;
 var dropdownThere = false;
 var streetNumName = "";
+var filterOption = null;
 
 function redirectToPage(apartID) {
     // Go to property page and pass apartment ID has query parameter
@@ -47,7 +48,7 @@ searchbar.addEventListener('input', function () {
     dropdownThere = true;
 
     // Make an AJAX request to the server-side script
-    fetch('../Backend_Files/search.php?query=' + encodeURIComponent(query))
+    fetch('../Backend_Files/search.php?query=' + query + '&filterOption=' + filterOption)
         .then((response) => response.json())
         .then((data) => {
             dropdown.innerHTML = ''; // Clear previous dropdown items
@@ -76,6 +77,10 @@ searchbar.addEventListener('input', function () {
                     dropdownItem.title = apartment.prop_name + (streetNumName ? ' ' + streetNumName : '');
                     dropdownItem.textContent = apartment.prop_name + (streetNumName ? '  -  ' + streetNumName : '');
 
+                    // if overall_property_rating exists in the apartment object, add it to the textContent
+                    if (apartment.overall_property_rating) {
+                        dropdownItem.textContent += '  -  ' + apartment.overall_property_rating + ' ★';
+                    }
 
                     // Event listeners for click, mouseover, and mouseout
 
@@ -134,4 +139,16 @@ searchbar.addEventListener('input', function () {
             console.error('Error:', error);
         });
 
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const filterSelect = document.getElementById('filterSelect');
+
+    // Event listener for the filter select
+    filterSelect.addEventListener('change', function() {
+        const selectedValue = this.value;
+        filterOption = selectedValue; //set global filter option var to selected value      
+        console.log(filterOption);
+    });
 });
