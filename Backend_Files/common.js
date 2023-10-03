@@ -26,7 +26,26 @@ var changePasswordButtonFinal = document.getElementById('changePasswordButtonFin
 
 var logoutButton = document.getElementById('logoutButton');
 
+var settingsModal = document.getElementById('settingsModal');
+var closeSettingsButton = document.getElementById('closeSettingsButton');
+var settingsButton = document.getElementById('settingsButton');
 
+
+
+//opening closing settings modal
+if(settingsModal){
+    settingsButton.addEventListener('click', function () {
+        settingsModal.style.display = 'block';
+    });
+    closeSettingsButton.addEventListener('click', function () {
+        settingsModal.style.display = 'none';
+    });
+    window.addEventListener('click', function (event) {
+        if (event.target == settingsModal) {
+            settingsModal.style.display = 'none';
+        }
+    });
+}
 
 
 // Event listeners to open and close profile
