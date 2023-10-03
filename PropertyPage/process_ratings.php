@@ -25,9 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $currentDate = date("Y-m-d");
 
-
-
-
     if (!empty($propertyId) && !empty($userId)) {
         try {
             // Prepare a SQL statement with placeholders for binding values to stop sql injection

@@ -11,7 +11,6 @@ if (isset($_SESSION['applyAgentError'])) {
     $apply_agent_error_message = $_SESSION['applyAgentError'];
     unset($_SESSION['applyAgentError']);
 }
-
 // Check if a login error message exists
 if (isset($_SESSION['login_error'])) {
     $login_error_message = $_SESSION['login_error'];
