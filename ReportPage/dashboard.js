@@ -204,3 +204,4 @@ document.getElementById('chooseChart').addEventListener('click', function(event)
     chartDropdown.style.display = 'block';
     console.log("clicked criteria btton");
 });
+

@@ -19,13 +19,15 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="dashboard.js" defer></script>
+    <script src="../Backend_Files/common.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /></head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
 
 <body>
-    <div class="background-sidebar-container">
-        <div class="sidebar">
+    <div class="background-sidebar-container" id ="outer-sidebar">
+        <div class="sidebar" id = "inner-sidebar">
             <div class="logo-container">
                 <a id="logo" href="../IndexPage/index.php">
                     <div id="digg">Digg</div>
@@ -48,15 +50,15 @@
                         </div> -->
                         <svg width="48" id="mask0_205_6" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_205_7" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
-                                <rect x="0.630859" width="47.0319" height="47.0319" fill="#D9D9D9"/>
+                                <rect x="0.630859" width="47.0319" height="47.0319" fill="#D9D9D9" />
                             </mask>
                             <g mask="url(#mask0_205_7)">
-                                <path d="M12.389 37.2336H18.268V25.4756H30.026V37.2336H35.905V19.5967L24.147 10.7782L12.389 19.5967V37.2336ZM8.46973 41.1529V17.637L24.147 5.87903L39.8243 17.637V41.1529H26.1067V29.395H22.1874V41.1529H8.46973Z" fill="white"/>
+                                <path d="M12.389 37.2336H18.268V25.4756H30.026V37.2336H35.905V19.5967L24.147 10.7782L12.389 19.5967V37.2336ZM8.46973 41.1529V17.637L24.147 5.87903L39.8243 17.637V41.1529H26.1067V29.395H22.1874V41.1529H8.46973Z" fill="white" />
                             </g>
                         </svg>
                         <div id="take-me-home-to-the-place-i-belong">Home</div>
-                        
-                        
+
+
                     </a>
                     <!-- <a class="page-indicator" id="amenity-indicator" href="#">
                         <div class="icon">
@@ -85,7 +87,17 @@
     </div>
     <main>
         <div class="nav-top">
-            <div class="empty-div"></div>
+            <div class = "empty-div"></div>
+            <button id="openModalBtnDashboard" style="z-index: 99;" onclick="showPhoneSidebar()">
+                <svg width="40" height="40" viewBox="0 0 61 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_30_602" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="61" height="50">
+                        <rect width="61" height="50" fill="#D9D9D9" />
+                    </mask>
+                    <g mask="url(#mask0_30_602)">
+                        <path d="M10.1665 31.25V27.0833H50.8332V31.25H10.1665ZM10.1665 22.9167V18.75H50.8332V22.9167H10.1665Z" fill="#E96B09" fill-opacity="0.7" />
+                    </g>
+                </svg>
+            </button>
             <div class="profile-container">
                 <button class="profile"><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4.50202 18.875C5.49597 18.0625 6.60686 17.4219 7.83468 16.9531C9.0625 16.4844 10.3488 16.25 11.6935 16.25C13.0383 16.25 14.3246 16.4844 15.5524 16.9531C16.7802 17.4219 17.8911 18.0625 18.8851 18.875C19.5672 18.0208 20.0983 17.0521 20.4783 15.9688C20.8584 14.8854 21.0484 13.7292 21.0484 12.5C21.0484 9.72917 20.1373 7.36979 18.315 5.42188C16.4928 3.47396 14.2856 2.5 11.6935 2.5C9.10148 2.5 6.89432 3.47396 5.07208 5.42188C3.24983 7.36979 2.33871 9.72917 2.33871 12.5C2.33871 13.7292 2.52873 14.8854 2.90877 15.9688C3.28881 17.0521 3.81989 18.0208 4.50202 18.875ZM11.6935 13.75C10.5437 13.75 9.57409 13.3281 8.78478 12.4844C7.99546 11.6406 7.60081 10.6042 7.60081 9.375C7.60081 8.14583 7.99546 7.10938 8.78478 6.26562C9.57409 5.42188 10.5437 5 11.6935 5C12.8434 5 13.813 5.42188 14.6023 6.26562C15.3916 7.10938 15.7863 8.14583 15.7863 9.375C15.7863 10.6042 15.3916 11.6406 14.6023 12.4844C13.813 13.3281 12.8434 13.75 11.6935 13.75ZM11.6935 25C10.0759 25 8.55578 24.6719 7.13306 24.0156C5.71035 23.3594 4.47278 22.4688 3.42036 21.3438C2.36794 20.2188 1.53478 18.8958 0.920867 17.375C0.306956 15.8542 0 14.2292 0 12.5C0 10.7708 0.306956 9.14583 0.920867 7.625C1.53478 6.10417 2.36794 4.78125 3.42036 3.65625C4.47278 2.53125 5.71035 1.64062 7.13306 0.984375C8.55578 0.328125 10.0759 0 11.6935 0C13.3112 0 14.8313 0.328125 16.254 0.984375C17.6768 1.64062 18.9143 2.53125 19.9667 3.65625C21.0192 4.78125 21.8523 6.10417 22.4662 7.625C23.0801 9.14583 23.3871 10.7708 23.3871 12.5C23.3871 14.2292 23.0801 15.8542 22.4662 17.375C21.8523 18.8958 21.0192 20.2188 19.9667 21.3438C18.9143 22.4688 17.6768 23.3594 16.254 24.0156C14.8313 24.6719 13.3112 25 11.6935 25ZM11.6935 22.5C12.7265 22.5 13.7009 22.3385 14.6169 22.0156C15.5329 21.6927 16.371 21.2292 17.1311 20.625C16.371 20.0208 15.5329 19.5573 14.6169 19.2344C13.7009 18.9115 12.7265 18.75 11.6935 18.75C10.6606 18.75 9.68616 18.9115 8.77016 19.2344C7.85417 19.5573 7.01613 20.0208 6.25605 20.625C7.01613 21.2292 7.85417 21.6927 8.77016 22.0156C9.68616 22.3385 10.6606 22.5 11.6935 22.5ZM11.6935 11.25C12.2003 11.25 12.6193 11.0729 12.9506 10.7187C13.2819 10.3646 13.4476 9.91667 13.4476 9.375C13.4476 8.83333 13.2819 8.38542 12.9506 8.03125C12.6193 7.67708 12.2003 7.5 11.6935 7.5C11.1868 7.5 10.7678 7.67708 10.4365 8.03125C10.1052 8.38542 9.93952 8.83333 9.93952 9.375C9.93952 9.91667 10.1052 10.3646 10.4365 10.7187C10.7678 11.0729 11.1868 11.25 11.6935 11.25Z" fill="#AD5511" />
@@ -108,7 +120,7 @@
                                 <button type="submit" class="searchButton" id="searchButton">
                                     <svg viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.6 18.5L10.3 12.2C9.8 12.6 9.225 12.9167 8.575 13.15C7.925 13.3833 7.23333 13.5 6.5 13.5C4.68333 13.5 3.14583 12.8708 1.8875 11.6125C0.629167 10.3542 0 8.81667 0 7C0 5.18333 0.629167 3.64583 1.8875 2.3875C3.14583 1.12917 4.68333 0.5 6.5 0.5C8.31667 0.5 9.85417 1.12917 11.1125 2.3875C12.3708 3.64583 13 5.18333 13 7C13 7.73333 12.8833 8.425 12.65 9.075C12.4167 9.725 12.1 10.3 11.7 10.8L18 17.1L16.6 18.5ZM6.5 11.5C7.75 11.5 8.8125 11.0625 9.6875 10.1875C10.5625 9.3125 11 8.25 11 7C11 5.75 10.5625 4.6875 9.6875 3.8125C8.8125 2.9375 7.75 2.5 6.5 2.5C5.25 2.5 4.1875 2.9375 3.3125 3.8125C2.4375 4.6875 2 5.75 2 7C2 8.25 2.4375 9.3125 3.3125 10.1875C4.1875 11.0625 5.25 11.5 6.5 11.5Z" fill="#D9D9D9" />
-                                        
+
                                     </svg>
                                 </button>
                                 <input type="text" class="searchTerm" spellcheck="false" placeholder="Search for a Tenant.." id="tenantSearchbar">
@@ -188,9 +200,9 @@
                     <div id="generateReportButton" class="generateReportButton">
                         <button id="generateChartReport" class="filledButton">Generate Report</button>
                         <button id="chooseChart" class="filledButton" name="chooseChart">
-                            <div id="chart-select-placeholder">Choose Chart</div> 
+                            <div id="chart-select-placeholder">Choose Chart</div>
                             <select id="chart-dropdown" name="chart-dropdown">
-                            <option value="null"></option>
+                                <option value="null"></option>
                                 <option value="overall-prop-rating-cc">Overall Property Rating - Column chart</option>
                                 <!-- <option value="noise">Noise</option>
                                 <option value="location">Location</option>
@@ -228,7 +240,7 @@
                     <div id="generateReportButton" class="generateReportButton">
                         <button id="generateCriteriaReport" class="filledButton">Generate Report</button>
                         <button id="chooseCriteria" class="filledButton" name="chooseCriteria">
-                            <div id="select-placeholder">Choose Criteria</div> 
+                            <div id="select-placeholder">Choose Criteria</div>
                             <select id="criteria-dropdown" name="criteria-dropdown">
                                 <option value="null"></option>
                                 <option value="cleanliness">Cleanliness</option>
@@ -241,7 +253,7 @@
                     </div>
                     <div class="report-container" id="criteria-report-container">
                         <div class="report-text-container" id="criteria-report-text-container">
-                            
+
                         </div>
 
                     </div>

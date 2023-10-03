@@ -27,6 +27,8 @@ var changePasswordButtonFinal = document.getElementById('changePasswordButtonFin
 var logoutButton = document.getElementById('logoutButton');
 
 
+
+
 // Event listeners to open and close profile
 if (openModalBtn) {
     openModalBtn.addEventListener('click', function () {
@@ -111,3 +113,28 @@ window.addEventListener('click', function (event) {
         confirmDeleteModal.style.display = 'none';
     }
 });
+
+
+
+function showPhoneSidebar() {
+    //Buttons for sidebar open and close dont move it, for some reason it breaks idek
+    var sidebarOuter = document.getElementById("outer-sidebar");
+    var sidebar = document.getElementById("inner-sidebar");
+    sidebarOuter.style.display = "block";
+    sidebarOuter.style.zIndex = "100";
+    sidebarOuter.style.position = "fixed";
+    sidebarOuter.style.width = "30%";
+    sidebar.style.width = "30%";
+}
+
+function hidePhoneSidebar() {
+    //Buttons for sidebar open and close dont move it, for some reason it breaks idek
+    var sidebarOuter = document.getElementById("outer-sidebar");
+    var sidebar = document.getElementById("inner-sidebar");
+    sidebarOuter.style.zIndex = "1";
+    sidebarOuter.style.position = "static";
+    sidebarOuter.style.width = "15%";
+    sidebarOuter.style.display = "none";
+    sidebar.style.width = "15%";
+
+}

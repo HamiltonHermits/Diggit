@@ -27,7 +27,7 @@ main {
     align-items: center;
     padding: 1em 0 0 0;
     height: 2em;
-
+    
     #dashboardContainer {
         position: relative;
         justify-content: flex-end;
@@ -998,17 +998,7 @@ main {
     }
 }
 
-@media screen and (min-width:800px){
-    .background-sidebar-container{
-        position: static !important;
-        width: 15% !important;
-        display: block !important;
-        .sidebar{
-            width: 15% !important;
-            display: block !important;
-        }
-    }
-}
+
 @media screen and (max-width: 1156px) {
 
     body #property-parent-container {
@@ -1100,7 +1090,7 @@ main {
         .searchbar-container {
             width: 100%;
         }
-
+        
         #dashboardContainer {
             #openModalBtnDashboard {
                 display: block;
