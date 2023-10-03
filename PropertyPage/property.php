@@ -1184,6 +1184,21 @@ $conn->close();
                 <p>Whoops sorry only tenants are allowed to make a review. Contact your agent so they can add you</p>
             </div>
         </div>
+        <!-- if rating sucess -->
+        <div id="ratingSuccessfulModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeRatingSuccessfulModal">&times;</span>
+                <p>Review has been sucessfully made!</p>
+            </div>
+        </div>
+        <!-- if rating unsucc -->
+        <div id="ratingUnsuccModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeRatingUnsuccModal">&times;</span>
+                <p>Whoops! sorry something unexpected happened </p>
+                <p>... please try again later</p>
+            </div>
+        </div>
     </main>
 </body>
 

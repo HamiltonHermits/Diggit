@@ -13,6 +13,9 @@ var notATenantModal = document.getElementById('notATenantModal');
 var closeNotATenantModal = document.getElementById('closeNotATenantModal');
 var openWhoopsNotAllowed = document.getElementById('openWhoopsNotAllowed');
 
+//
+
+
 if(openWhoopsNotAllowed){
     openWhoopsNotAllowed.addEventListener('click', () => {
         openWhoopsNotAllowed.style.display = 'none';
