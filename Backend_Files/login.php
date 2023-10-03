@@ -48,6 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["agentPhone"] = $authResult['agentPhone'];
                 $_SESSION["agentCompany"] = $authResult['agentCompany'];
             }
+            if($authResult['isAdmin']){
+                $_SESSION["isAdmin"] = true;
+            }
 
 
             // Redirect to a secure page (e.g., whatever page they were on)
