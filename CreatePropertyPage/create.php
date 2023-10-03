@@ -578,7 +578,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 </form>
             </div>
         </div>
-        <?php if (isset($_SESSION["applicationSuccess"])or true) : unset($_SESSION["applicationSuccess"]); ?>
+        <?php if (isset($_SESSION["applicationSuccess"])) : unset($_SESSION["applicationSuccess"]); ?>
             <div id="applicationStatus" class="modal" style="display: block;">
                 <div class="modal-content">
                     <span class="close" id="closeApplicationStatusButton">&times;</span>
