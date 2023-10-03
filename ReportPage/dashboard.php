@@ -248,13 +248,6 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="rate-prop-btn-container">
-            <button id="rate-property" class="filledButton">
-                Save Property
-            </button>
-        </div>
 </body>
 
 </html>

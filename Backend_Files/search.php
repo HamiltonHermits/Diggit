@@ -5,15 +5,33 @@ include_once('database_connect.php');
 
 // User's search input
 $searchQuery = $_GET["query"];
+$filterOption = $_GET["filterOption"];
+
+switch ($filterOption) {
+    case 'overallRating':
+        $stmt = $conn->prepare("SELECT property.prop_id, property.prop_name, 
+                                       property.prop_description, property.address,
+                                       review.overall_property_rating
+                                FROM property
+                                JOIN review ON property.prop_id = review.prop_id
+                                WHERE property.prop_name LIKE ? 
+                                OR address LIKE ?
+                                AND property.is_deleted = false
+                                ORDER BY review.overall_property_rating DESC");
+        break;
+    
+    default:
+        $stmt = $conn->prepare("SELECT property.prop_id, property.prop_name, property.prop_description, property.address
+                                FROM property
+                                JOIN review ON property.prop_id = review.prop_id
+                                WHERE property.prop_name LIKE ? 
+                                OR address LIKE ?
+                                AND property.is_deleted = false");
+        break;
+}
 
 // Prepare and execute the SQL query
-$stmt = $conn->prepare("SELECT prop_id,prop_name, prop_description,address
-                               
-                        FROM property 
-        
-                        WHERE prop_name LIKE ? 
-                        OR address LIKE ?
-                        AND is_deleted = false");
+
 $searchParam = "%" . $searchQuery . "%";
 $stmt->bind_param("ss", $searchParam, $searchParam);
 $stmt->execute();

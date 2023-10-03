@@ -144,6 +144,12 @@ if (isset($_SESSION['profileMessage'])) {
                     </svg>
                 </button>
                 <input id="searchbar" type="text" class="searchTerm" spellcheck="false" placeholder="Find your Digs..">
+                <div class="dropdown-filter" id="dropdownFilter">
+                    <select id="filterSelect">
+                        <option value="" disabled selected>Filter</option>
+                        <option value="overallRating">Prop Rating</option>           
+                    </select>
+                </div>
             </div>
             <div id="dropdown" class="dropdown-content"></div>
         </div>
@@ -233,7 +239,7 @@ if (isset($_SESSION['profileMessage'])) {
 
                 <button id="deleteProfileBtn" class = "inverseFilledButton">Delete Profile</button>
 
-                <form action="../Backend_Files/logout.php" method="post">
+                <form action="../Backend_Files/logout.php" method="post" id = "formProfileBtn">
                     <button id = "logoutButton" type="submit" class="filledButton loginButton" >Logout</button>
                 </form>
             </div>

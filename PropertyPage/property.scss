@@ -95,7 +95,7 @@ main {
             border: 2px var(--orange) solid;
 
             #searchbar {
-                width: 80%;
+                width: auto;
                 height: 70%;
                 background: none;
                 border: none;
@@ -105,6 +105,20 @@ main {
                 //     font-size: 30px;
                 // }
             }
+
+            #filterSelect {
+                background: transparent;
+                border: 2px #ad5511 solid;
+                color: var(--global-font-color);
+                text-align: center;
+                height: 100%;
+                border-radius: 0 50px 50px 0;
+            }
+
+            option {
+                background: var(--main-color);
+            }
+              
 
             #searchButton {
                 background: none;
