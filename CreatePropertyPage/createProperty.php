@@ -125,8 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
 
         //insert prop title
-        $query = "INSERT INTO property (prop_name, created_by, prop_description,created_on, address, lat, `long`) 
-                    VALUES ('$propTitle', '$userId', '$propDescription','$currentDate', '$propAddress', '$propLat', '$propLong')";
+        $query = "INSERT INTO property (prop_name, created_by, prop_description,created_on, address, lat, `long`,is_deleted) 
+                    VALUES ('$propTitle', '$userId', '$propDescription','$currentDate', '$propAddress', '$propLat', '$propLong','0')";
         $result = mysqli_query($conn, $query);
 
         if (!$result) { //if query fails, return error, check network packets in dev tools

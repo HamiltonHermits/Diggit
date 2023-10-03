@@ -799,17 +799,6 @@ main {
   justify-content: flex-end;
 }
 
-@media screen and (min-width: 800px) {
-  .background-sidebar-container {
-    position: static !important;
-    width: 15% !important;
-    display: block !important;
-  }
-  .background-sidebar-container .sidebar {
-    width: 15% !important;
-    display: block !important;
-  }
-}
 @media screen and (max-width: 1156px) {
   body #property-parent-container .boxes-container .right-box .top-container .agent-container .agent-info-container {
     font-size: 2vw;

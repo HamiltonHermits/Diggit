@@ -217,7 +217,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                 <div class="left-box">
                     <div class="prop-title-container">
                         <div class="prop-title">
-                            <input id="newPropertyTitle" maxlength="20" minlength="5" type="text" class="title-text-field" value="<?php if (isset($propName)) echo "$propName"; ?>" placeholder="Please add a property title" required>
+                            <input id="newPropertyTitle" maxlength="50" minlength="5" type="text" class="title-text-field" value="<?php if (isset($propName)) echo "$propName"; ?>" placeholder="Please add a property title" required>
                         </div>
                     </div>
                     <div class="prop-images-container">
