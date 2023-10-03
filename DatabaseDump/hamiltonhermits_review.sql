@@ -54,7 +54,6 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (1,31,5,' A historic gem! Iconic architecture, rich history, and grandeur define this remarkable property. A must-visit for its cultural significance.',5,5,5,5,1,5,5,5,5,'2020-10-05',5),(2,7,3,'This has to be one of the cozest places ever but the wifi sucks',2,2,2,1,2,2,2,2,2,'2020-03-03',3),(3,25,4,'The lego is pretty cool here ',1,2,3,2,1,5,5,6,5,'2022-08-12',4),(4,31,3,'Well, folks, let me tell you about this place, the White House. First off, it\'s a real honor to be here, serving as your President. Now, about the White House itself – it\'s a historic gem, no doubt about it. It\'s seen countless leaders, from Abraham Lincoln to FDR, make tough decisions that shaped our nation.\r\n\r\nThe Oval Office, where I work, is something else. It\'s got that Resolute Desk, and let me tell you, it\'s a real sturdy piece of furniture. I\'ve been using it to make some big calls for our',4,4,4,4,4,3,3,11,2,'2023-10-02',4);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -67,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 22:51:33
+-- Dump completed on 2023-10-03 18:21:28

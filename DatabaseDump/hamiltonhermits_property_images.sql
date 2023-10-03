@@ -27,7 +27,7 @@ CREATE TABLE `property_images` (
   `prop_id` int NOT NULL,
   `image_name` varchar(500) NOT NULL,
   PRIMARY KEY (`id_prop_image`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `property_images` (
 
 LOCK TABLES `property_images` WRITE;
 /*!40000 ALTER TABLE `property_images` DISABLE KEYS */;
-INSERT INTO `property_images` VALUES (5,20,'16960979151.PNG'),(6,20,'1696097915wqe.PNG'),(7,22,'16961069121.PNG'),(8,22,'16961069123.PNG'),(9,22,'1696106912wqe.PNG'),(10,25,'16961088271.PNG'),(11,25,'16961088273.PNG'),(12,26,'1696118059WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(13,26,'1696118059WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(14,27,'1696119109WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(15,27,'1696119109WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(16,28,'1696119229WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(17,28,'1696119229WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(18,29,'1696119458WhatsApp Image 2022-07-16 at 9.56.11 PM.jpeg'),(19,29,'1696119458WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(20,30,'1696119581WhatsApp Image 2022-07-20 at 2.37.32 PM.jpeg'),(24,32,'1696234816cat.jpg'),(25,34,'1696258420photo-1481349518771-20055b2a7b24.jpeg'),(26,34,'1696258420photo-1494253109108-2e30c049369b.jpeg'),(27,34,'1696258420White_House_DC.jpeg'),(28,35,'1696261860download.jpeg'),(29,35,'1696261860entrancehall.jpg'),(30,35,'1696261860oriel09.sized.jpg'),(31,31,'169627508551706785063_b3ac78522e_b.jpg'),(32,31,'169627508553007982507_cb9a0c496a_z.jpg'),(33,31,'1696275085AP23199642942367.jpg'),(34,31,'1696275085entrancehall.jpg'),(35,31,'1696275085images.jpeg'),(36,31,'1696275085White_House_DC.jpeg'),(37,31,'1696275085white-house-royalty-free-image-1610512078_.jpeg');
+INSERT INTO `property_images` VALUES (38,36,'1696348622P1020844.JPG.png'),(39,36,'1696348622WhatsApp-Image-2021-02-03-at-12.30.30.jpeg'),(40,36,'1696348622WhatsApp-Image-2021-02-03-at-12.30.30-1.jpeg'),(41,36,'1696348622WhatsApp-Image-2021-02-03-at-12.30.32-1.jpeg'),(42,36,'1696348622WhatsApp-Image-2021-02-03-at-12.30.33.jpeg');
 /*!40000 ALTER TABLE `property_images` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 22:51:34
+-- Dump completed on 2023-10-03 18:21:29
