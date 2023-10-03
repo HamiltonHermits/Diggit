@@ -199,7 +199,7 @@ body {
 }
 
 main {
-  width: 100%;
+  width: 85%;
 }
 
 .parent-container {
@@ -483,6 +483,9 @@ a {
   }
 }
 @media screen and (max-width: 1156px) and (max-width: 800px) {
+  main {
+    width: 100%;
+  }
   #dashboardContainer #openModalBtnDashboard {
     display: block !important;
   }

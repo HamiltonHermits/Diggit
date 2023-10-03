@@ -231,7 +231,7 @@ body {
     background: linear-gradient(90deg, rgba(173, 85, 17, 1) 0%, rgba(32, 32, 36, 1) 16.12%);
 }
 main{
-    width: 100%;
+    width: 85%;
 }
 .parent-container {
     height: 75vh;
@@ -527,6 +527,9 @@ a {
     }
 
     @media screen and (max-width: 800px) {
+        main{
+            width: 100%;
+        }
         #dashboardContainer {
             #openModalBtnDashboard {
                 display: block !important;
