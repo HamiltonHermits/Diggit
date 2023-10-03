@@ -117,20 +117,4 @@ function showSlides(n) {
 
 
 
-function showPhoneSidebar(){
-  
-  sidebarOuter.style.display = "block";
-  sidebarOuter.style.zIndex = "100";
-  sidebarOuter.style.position = "fixed";
-  sidebarOuter.style.width = "30%";
-  sidebar.style.width = "30%";
-}
 
-function hidePhoneSidebar(){
-  sidebarOuter.style.zIndex = "1";
-  sidebarOuter.style.position = "static";
-  sidebarOuter.style.width = "15%";
-  sidebarOuter.style.display = "none";
-  sidebar.style.width = "15%";
-  
-}

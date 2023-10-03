@@ -86,7 +86,15 @@ th {
     justify-content: space-between;
     align-items: center;
     padding: 1em 0 0 0;
-
+    .empty-div{
+        display: block;
+    }
+    #openModalBtnDashboard{
+        width: 15%;
+        background: none;
+        border: none;
+        display: none;
+    }
     .profile-container {
         right: 3%;
         position: relative;
@@ -233,6 +241,15 @@ th {
 }
 
 //////////--------------------------------------------------------------------------------------------//////////
-
+@media screen and (max-width: 800px) {
+    .nav-top{
+        .empty-div{
+            display: none;
+        }
+        #openModalBtnDashboard{
+            display: block;
+        }
+    }
+}
 
 /*# sourceMappingURL=property.css.map */
