@@ -160,6 +160,8 @@ th {
   width: 100%;
   height: 100%;
   overflow: auto;
+  background-color: var(--main-color);
+  border-radius: 15px;
 }
 .parent-container .boxes-container .right-box .report-container .report-text-container {
   display: flex;
