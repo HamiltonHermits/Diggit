@@ -203,7 +203,8 @@ a:hover {
 }
 #mainContainer #searchBarContainer #borderSearchBar #filterSelect {
   background: transparent;
-  border: 2px #ad5511 solid;
+  border: none;
+  border-left: 2px var(--light_secondary_colour) solid;
   color: var(--global-font-color);
   text-align: center;
   height: 100%;
@@ -212,6 +213,11 @@ a:hover {
 #mainContainer #searchBarContainer #borderSearchBar option {
   background: var(--main-color);
   color: var(--global-font-color);
+}
+#mainContainer #searchBarContainer #borderSearchBar select option {
+  /* Set a fixed width for the options */
+  max-width: 20px;
+  /* Allow text to wrap within the width */
 }
 #mainContainer #searchBarContainer #borderSearchBar #searchButton {
   text-align: center;
