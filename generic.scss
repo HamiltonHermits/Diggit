@@ -59,7 +59,17 @@ body {
     #dashboardContainer {
         #openModalBtnDashboard {
             display: none;
+            border: none;
+            background: none;
+            left:2em;
+            position: relative;
         }
+    }
+    #openModalBtn {
+        border: none;
+        background: none;
+        right: 2em;
+        position: relative;
     }
 }
 
@@ -220,10 +230,11 @@ body {
 .current-page-bg-effect {
     background: linear-gradient(90deg, rgba(173, 85, 17, 1) 0%, rgba(32, 32, 36, 1) 16.12%);
 }
-
+main{
+    width: 100%;
+}
 .parent-container {
     height: 75vh;
-
     background-color: var(--main-color);
 
     .boxes-container {
@@ -253,6 +264,34 @@ body {
             padding: 0.5em 2em 2em 2em;
 
             background-color: var(--inner-box-color);
+        }
+    }
+}
+
+footer{
+    margin: 6em 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1em;
+    img{
+        width: 65%;
+    }
+    .footer-tc{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 10vh;
+        .footer-tc-text-container{
+            display: inline-flex;
+            width: 45%;
+            justify-content: space-around;
+            .footer-tc-text{
+                color: var(--secondary_colour);
+                font-size: 0.7em;
+                margin: 0.5em 0 0 0;
+            }
         }
     }
 }

@@ -115,7 +115,7 @@ searchbar.addEventListener('input', function () {
 
             // Add "Add Property" link as the last item
             const addPropertyItem = document.createElement('a');
-            addPropertyItem.className = 'dropdown-item add-property';
+            addPropertyItem.className = 'dropdown-item add-property filledButton';
             addPropertyItem.href = '../CreatePropertyPage/create.php';
             addPropertyItem.textContent = 'Add a Property';
 
