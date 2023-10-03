@@ -344,7 +344,7 @@ main {
   text-align: center;
 }
 #amenity-parent-container #left-box-amenity #amenity-item-container #amenity-item-inner-container .amenity-item #amenity-img {
-  width: 20%;
+  width: 1.5em;
 }
 #amenity-parent-container #right-box-amenity {
   display: flex;
