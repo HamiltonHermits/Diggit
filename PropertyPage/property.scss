@@ -16,8 +16,8 @@ body {
 main {
     display: flex;
     flex-direction: column;
-    width: var(--main-width);
     height: 100%;
+    width: 85%;
     background-color: var(--main-color);
 }
 
@@ -1071,7 +1071,9 @@ main {
 }
 
 @media screen and (max-width: 800px) {
-
+    main{
+        width: 100%;
+    }
     #property-parent-container {
         .boxes-container {
             .right-box {
