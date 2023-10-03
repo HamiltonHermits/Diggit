@@ -1110,10 +1110,10 @@ $conn->close();
                             <div class="landlord-rating-section">
                                 <div class="rating-item">
                                     <p class="ratingLabels">Politeness:</p>
-                                    <div class="info-circle">
+                                    <!-- <div class="info-circle">
                                         <div class="info-icon">i</div>
                                         <div class="info-tooltip">left lower - right higher</div>
-                                    </div>
+                                    </div> -->
                                     <div class="rating-slider" id="politenessRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
                                     </div>
@@ -1125,7 +1125,7 @@ $conn->close();
                                     <p class="ratingLabels">Quality of Repair:</p>
                                     <div class="info-circle">
                                         <div class="info-icon">i</div>
-                                        <div class="info-tooltip">left lower - right higher</div>
+                                        <div class="info-tooltip">How helpful has the agent/landlord been with property repairs</div>
                                     </div>
                                     <div class="rating-slider" id="repairRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
@@ -1139,7 +1139,7 @@ $conn->close();
                                     <p class="ratingLabels">Response Time:</p>
                                     <div class="info-circle">
                                         <div class="info-icon">i</div>
-                                        <div class="info-tooltip">left lower - right higher</div>
+                                        <div class="info-tooltip">How quick is the wait time when communicating with the agent/landlord</div>
                                     </div>
                                     <div class="rating-slider" id="responseTimeRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
@@ -1151,10 +1151,10 @@ $conn->close();
                                 <!-- Overall Landlord Rating -->
                                 <div class="rating-item">
                                     <p class="ratingLabels">Overall Landlord Rating:</p>
-                                    <div class="info-circle">
+                                    <!-- <div class="info-circle">
                                         <div class="info-icon">i</div>
                                         <div class="info-tooltip">left lower - right higher</div>
-                                    </div>
+                                    </div> -->
                                     <div class="rating-slider" id="overallLandlordRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
 
