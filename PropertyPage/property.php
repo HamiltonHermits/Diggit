@@ -852,7 +852,7 @@ $conn->close();
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($login_error_message)) { ?>
-                    <p><?php echo $login_error_message; ?></p>
+                    <p class="textWhite"><?php echo $login_error_message; ?></p>
                     <?php echo '<script>loginModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -881,7 +881,7 @@ $conn->close();
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($signup_error_message)) { ?>
-                    <p><?php echo $signup_error_message; ?></p>
+                    <p class="textWhite"><?php echo $signup_error_message; ?></p>
                     <?php echo '<script>signupModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -912,7 +912,7 @@ $conn->close();
             <div class="modal-content">
 
                 <?php if (isset($profileMessage)) { ?>
-                    <p><?php echo $profileMessage; ?></p>
+                    <p class="textWhite"><?php echo $profileMessage; ?></p>
                     <?php echo '<script>profileModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 
@@ -938,7 +938,7 @@ $conn->close();
             <div class="modal-content">
 
                 <?php if (isset($changePasswordError)) { ?>
-                    <p><?php echo $changePasswordError; ?></p>
+                    <p class="textWhite"><?php echo $changePasswordError; ?></p>
                     <?php echo '<script>changePasswordModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 

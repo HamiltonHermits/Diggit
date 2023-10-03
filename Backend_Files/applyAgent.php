@@ -24,8 +24,6 @@ if (isset($_POST['phoneNumber']) && isset($_POST['companyName']) && isset($_FILE
 
             move_uploaded_file($_FILES['profilePicture']['tmp_name'], $destination);
 
-            $phonenum = substr($phonenum, 0, 3) . substr($phonenum, 4, 3) . substr($phonenum, 8, 4);
-
             $user_id = $_SESSION["user_id"];
 
             // Use prepared statements to update user information

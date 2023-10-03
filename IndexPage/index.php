@@ -168,7 +168,7 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($login_error_message)) { ?>
-                    <p><?php echo $login_error_message; ?></p>
+                    <p class="textWhite" ><?php echo $login_error_message; ?></p>
                     <?php echo '<script>loginModal.style.display = "block";</script>';
                     unset($_SESSION['$login_error_message;']) ?>
                 <?php } ?>
@@ -199,7 +199,7 @@ if (isset($_SESSION['profileMessage'])) {
                 <!-- Display the error message if it exists -->
 
                 <?php if (isset($signup_error_message)) { ?>
-                    <p><?php echo $signup_error_message; ?></p>
+                    <p class="textWhite"><?php echo $signup_error_message; ?></p>
                     <?php echo '<script>signupModal.style.display = "block";</script>'; ?>
                 <?php } ?>
 

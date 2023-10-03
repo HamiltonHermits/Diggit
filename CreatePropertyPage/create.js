@@ -192,10 +192,6 @@ function displayImage(input) {
     }
 }
 
-
-
-
-
 // //makes the search text disapear after clicking in it
 // searchbar.addEventListener('click', function () {
 //     searchbar.placeholder = '';
