@@ -661,20 +661,7 @@ $conn->close();
 
                             <?php include('comments.php'); ?>
 
-                             <!-- delete form for button -->  
-                            <form id="deleteCommentForm" action="../PropertyPage/property.php?id=<?php echo $propId; ?>" method="POST"> 
-                            <input class="filledButton" type="submit" name="deleteComment" id="deleteComment" value="Delete Comment"/>
                             
-                            </form>
-
-                            <!-- Runs delete comment code -->
-                            <?php 
-                            if (isset($_POST['deleteComment'])) {
-                                include('deleteComment.php');
-                                // echo "<script>location.reload();</script>";
-                                }
-                                
-                            ?>
                           
                             
                         </div>

@@ -1,5 +1,6 @@
 <?php
 include('../Backend_Files/database_connect.php');
+
 // Define your SQL query based on the sorting option
 $propId = $_GET["id"];
 $sort_option = isset($_GET['sort']) ? $_GET['sort'] : 'desc';
@@ -39,10 +40,9 @@ switch ($sort_option) {
            break;
 }
 
-// Execute the SQL query and fetch comments
+// Execute the SQL query
 $result = mysqli_query($conn, $sql);
-
-if (!$result) {
+if ($result === false) {
     die("Database query failed: " . mysqli_error($conn));
 }
 
@@ -52,9 +52,24 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '<div class = "star-rating-comment">★ Rating: ' . $row['overall_property_rating'] . '</div>';
     echo '<div class = "username-date-comment">' . $row['username'] . ' - ' . $row['date_reviewed'] . '</div>';
     echo '<div class = "description-comment">' . $row['written_review'] . '</div>';
+    
+    echo "<!-- delete form for button --> ";
+
+    echo "<form id=\"deleteCommentForm\" action=\"../PropertyPage/property.php?id=$propId\" method=\"POST\"> ";
+    echo  "<input class=\"filledButton\" type=\"submit\" name=\"deleteComment\" id=\"deleteComment\" value=\"Delete Comment\"/>";
+    
+    echo"</form>";
+
+    echo"  <!-- Runs delete comment code -->";
+  
+     if (isset($_POST['deleteComment'])) {
+        include('deleteComment.php');
+      }
+    
     echo '<hr class = "horizontal-line-comment">';
+
     echo '</div>';
-}
+ }
 
 // Close the database connection
 mysqli_close($conn);
