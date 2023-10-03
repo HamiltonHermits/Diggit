@@ -362,7 +362,7 @@ main {
   height: 30%;
 }
 #amenity-parent-container #right-box-amenity .main-content-landord-container #picture-name-container img {
-  width: 50%;
+  width: auto;
   height: 100%;
   border-radius: 9px;
   background-color: var(--main-color);
@@ -373,7 +373,7 @@ main {
   margin-top: 1em;
 }
 #amenity-parent-container #right-box-amenity .main-content-landord-container #rating-bars-container {
-  height: 100%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
