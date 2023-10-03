@@ -204,10 +204,8 @@
                             <select id="chart-dropdown" name="chart-dropdown">
                                 <option value="null"></option>
                                 <option value="overall-prop-rating-cc">Overall Property Rating - Column chart</option>
-                                <!-- <option value="noise">Noise</option>
-                                <option value="location">Location</option>
-                                <option value="safety">Safety</option>
-                                <option value="affordability">Affordability</option> -->
+                                <option value="rating-distribution-bc">Rating Distribution - Bar chart</option>
+                                <option value="agent-overall-rating-bc">Agent Overall Rating - Bar chart</option>
                             </select>
                         </button>
                     </div>

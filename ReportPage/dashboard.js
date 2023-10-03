@@ -148,35 +148,73 @@ $(document).ready(function () {
             data: { chart: chartType },
             success: function (chartData) {
                 const jsonData = JSON.parse(chartData);
+                console.log(jsonData);
+
+                var chartType = jsonData.chart_type;
+                var data = jsonData.chartData;
+                console.log(data);
 
                 google.charts.load("current", {packages:['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
-            
-                function drawChart() {
-                    var data = new google.visualization.DataTable();
-                    data.addColumn('string', 'Property Name');
-                    data.addColumn('number', 'Overall Property Rating');
-            
-                    for (var i = 0; i < jsonData.length; i++) {
-                        var prop_name = jsonData[i].prop_name;
-                        var overall_property_rating = parseInt(jsonData[i].overall_property_rating);
-                        console.log(prop_name, overall_property_rating);
-                        data.addRow([prop_name, overall_property_rating]);
 
+                function drawChart() {            
+                    var chart;
+                
+                    switch (chartType) {
+                        case 'overall-prop-rating-cc':
+                            var chartData = new google.visualization.DataTable();
+                            chartData.addColumn('string', 'Property Name');
+                            chartData.addColumn('number', 'Overall Property Rating');
+                        
+                            for (var i = 0; i < data.length; i++) {
+                                var prop_name = data[i].prop_name;
+                                var overall_property_rating = parseInt(data[i].overall_property_rating);
+                                console.log(prop_name, overall_property_rating);
+                                chartData.addRow([prop_name, overall_property_rating]);
+                            }
+                        
+                            var options = {
+                                title: 'Overall Property Ratings',
+                                width: "100%",
+                                height: 300,
+                                hAxis: {title: 'Overall Property Rating'},
+                                vAxis: {title: 'Property Name'},
+                                colors: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6'],
+                            };
+                            chart = new google.visualization.BarChart(document.getElementById('chart-report-text-container'));
+                            break;
+                        case 'rating-distribution-bc':
+                            var chartData = new google.visualization.DataTable();
+                            chartData.addColumn('string', 'Rating');
+                            chartData.addColumn('number', 'Frequency');
+                            
+                            var colors = [];
+                            // Assuming 'data' is an array of objects as described
+                            for (var i = 0; i < data.length; i++) {
+                                var overall_property_rating = data[i].overall_property_rating;
+                                var rating_count = parseInt(data[i].rating_count);
+                                
+                                chartData.addRow([overall_property_rating, rating_count]);
+                            }
+
+                            var options = {
+                                title: 'Overall Rating Distribution',
+                                width: "100%",
+                                height: 300,
+                                hAxis: {title: 'Rating'},
+                                vAxis: {title: 'Frequency'},
+                                colors: ['#FF5733', '#FFC300', '#3D6B37', '#3D6B90', '#8A3D6B'],
+                            };
+                            
+                            var chart = new google.visualization.ColumnChart(document.getElementById('chart-report-text-container'));                       
+                        default:
+                            console.log("No chart type selected");
                     }
-            
-                    var options = {
-                        title: 'Overall Property Ratings',
-                        bars: 'horizontal',
-                        width: "100%",
-                        height: "100%",
-                        hAxis: {title: 'Property Name'},
-                        vAxis: {title: 'Overall Property Rating'},
-                    };
-            
-                    var chart = new google.visualization.BarChart(document.getElementById('chart-report-text-container'));
-                    chart.draw(data, options);
+                
+                    chart.draw(chartData, options);
                 }
+
+              
             },  
             error: function () {
                 alert("An error occurred while fetching the report.");
@@ -184,6 +222,14 @@ $(document).ready(function () {
         });
     }
     
+    function generateRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
 
     // Click event for "Generate Report" button
     $("#generateChartReport").click(function () {
@@ -204,4 +250,7 @@ document.getElementById('chooseChart').addEventListener('click', function(event)
     chartDropdown.style.display = 'block';
     console.log("clicked criteria btton");
 });
+
+
+
 
