@@ -1098,7 +1098,7 @@ $conn->close();
                                         <div class="info-tooltip">left lower - right higher</div>
                                     </div>
                                     <div class="rating-slider" id="overallLandlordRating">
-                                        <input type="range" min="1" max="5" value="3"  id="overallLandlordSlider">
+                                        <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
 
                                     </div>
                                 </div>
