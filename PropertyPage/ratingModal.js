@@ -262,12 +262,19 @@ ratingForm.addEventListener('submit', (event) => {
                 }
             })
             .then(data => {
-                if (data && data.message) {
+                if (data.alreadyReview) {
+                    const errorForRatings = document.getElementById('errorForRatings');
+                    errorForRatings.textContent = 'Sorry you already have a review, either delete or edit your current one';
+                    ratingUnsuccModal.style.display = 'block';
+                    ratingModal.style.display = none;
+                }
+                else if (data && data.message) {
                     ratingSuccessfulModal.style.display = 'block';
                     setTimeout(function () {
                         location.reload();
                     }, 1000);
-                } else {
+                }
+                else {
 
                     ratingUnsuccModal.style.display = 'block';
 

@@ -1180,8 +1180,8 @@ $conn->close();
         <div id="ratingUnsuccModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close" id="closeRatingUnsuccModal">&times;</span>
-                <p>Whoops! sorry something unexpected happened </p>
-                <p>... please try again later</p>
+                <p id = "errorForRatings">Whoops! sorry something unexpected happened 
+                ... please try again later </p>
             </div>
         </div>
         <!-- The Modal -->

@@ -50,9 +50,7 @@ if ($result === false) {
 while ($row = mysqli_fetch_assoc($result)) {
     $review_id = $row['review_id'];
     $user_id = $row['user_id'];
-
-
-
+    
     echo '<div class ="comment-container">';
     echo '<div class = "star-rating-comment">★ Rating: ' . $row['overall_property_rating'] . '</div>';
     echo '<div class = "username-date-comment">' . $row['username'] . ' - ' . $row['date_reviewed'] . '</div>';

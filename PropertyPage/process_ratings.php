@@ -23,13 +23,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $responseTimeRating = isset($_POST['responseTimeRating']) ? $_POST['responseTimeRating'] : '';
     $overallLandlordRating = isset($_POST['overallLandlordRating']) ? $_POST['overallLandlordRating'] : '';
 
-    $checkIfIsset = isset($_POST['propertyId']) && isset($_POST['userId']) && isset($_POST['property_review']) && isset($_POST['cleanliness'])&&
-    isset($_POST['noise']) && isset($_POST['location']) && isset($_POST['safety']) && isset($_POST['affordability']) && isset($_POST['overallRating'])
-    && isset($_POST['politenessRating']) && isset($_POST['repairRating']) && isset($_POST['responseTimeRating']) && isset($_POST['overallLandlordRating']);
+    $checkIfIsset = isset($_POST['propertyId']) && isset($_POST['userId']) && isset($_POST['property_review']) && isset($_POST['cleanliness']) &&
+        isset($_POST['noise']) && isset($_POST['location']) && isset($_POST['safety']) && isset($_POST['affordability']) && isset($_POST['overallRating'])
+        && isset($_POST['politenessRating']) && isset($_POST['repairRating']) && isset($_POST['responseTimeRating']) && isset($_POST['overallLandlordRating']);
+
+    $query = "SELECT * FROM review WHERE user_id = $userId AND prop_id = $propertyId";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($result);
+    //need to check there is no other comments before you comment
+
+
 
     $currentDate = date("Y-m-d");
-
-    if (!empty($propertyId) && !empty($userId) && $checkIfIsset) {
+    if ($row > 0) {
+        header('Content-Type: application/json');
+        $response['alreadyReview'] = true;
+        $response['success'] = false;
+        $response['message'] = 'Already made a review';
+    } elseif (!empty($propertyId) && !empty($userId) && $checkIfIsset) {
         try {
             // Prepare a SQL statement with placeholders for binding values to stop sql injection
             $stmt = $conn->prepare("INSERT INTO review (
@@ -50,8 +61,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             // Bind the parameters
-            $stmt->bind_param("ssssssssssssss", $propertyId, $politenessRating, $propertyReview, $cleanliness, 
-            $noise, $location, $safety, $affordability, $repairRating, $responseTimeRating, $userId, $overallLandlordRating, $currentDate, $overallRating);
+            $stmt->bind_param(
+                "ssssssssssssss",
+                $propertyId,
+                $politenessRating,
+                $propertyReview,
+                $cleanliness,
+                $noise,
+                $location,
+                $safety,
+                $affordability,
+                $repairRating,
+                $responseTimeRating,
+                $userId,
+                $overallLandlordRating,
+                $currentDate,
+                $overallRating
+            );
 
             // Execute the statement
             if ($stmt->execute()) {
@@ -69,10 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             http_response_code(400); // Bad Request
             echo json_encode(["error" => $e->getMessage()]);
         }
-
     } else {
-            http_response_code(400); // Bad Request
-            echo json_encode(["error" => $e->getMessage()]);
+        http_response_code(400); // Bad Request
+        echo json_encode(["error" => $e->getMessage()]);
     }
     // Send the JSON response
     header('Content-Type: application/json');
