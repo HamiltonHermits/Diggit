@@ -665,23 +665,8 @@ $conn->close();
                             <?php include('comments.php'); ?>
 
                             
-                          
-                            
                         </div>
-
-                        <script>
-                         // Check if there are comments on the page
-                        window.addEventListener('DOMContentLoaded', function () {
-                        
-                         var commentForm = document.getElementById('comments-list-container');
-
-                          // Assuming that if there are no child elements within the comments div, there are no comments
-                         if (commentsDiv.children.length === 0) {
-                             commentForm.style.display = 'none'; // Hide the form
-                                }
-                           });
-                         </script>
-                        
+                   
                         <div class="comment-page-container">
                             <!-- <div class="previous-page-container">
                                 <button class="previous-page-button firstOrLastPage">Previous</button>

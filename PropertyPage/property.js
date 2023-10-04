@@ -8,10 +8,10 @@ var sidebar = document.getElementById("inner-sidebar");
 var deleteComment = document.getElementById("deleteComment");
 
 
-deleteComment.addEventListener('click', () => {
-    location.reload();
+// deleteComment.addEventListener('click', () => {
+//     location.reload();
  
-});
+// });
 
 // openModalBtnDashboard.addEventListener('click', () => {
 //   window.location.href = "../IndexPage/index.php";

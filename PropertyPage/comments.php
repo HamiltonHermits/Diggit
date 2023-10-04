@@ -48,28 +48,22 @@ if ($result === false) {
 
 // Display comments
 while ($row = mysqli_fetch_assoc($result)) {
-    echo '<div class ="comment-container" >';
+    $review_id = $row['review_id']; 
+
+    echo '<div class ="comment-container">';
     echo '<div class = "star-rating-comment">★ Rating: ' . $row['overall_property_rating'] . '</div>';
     echo '<div class = "username-date-comment">' . $row['username'] . ' - ' . $row['date_reviewed'] . '</div>';
     echo '<div class = "description-comment">' . $row['written_review'] . '</div>';
-    
+
     echo "<!-- delete form for button --> ";
+    echo "<form id=\"deleteCommentForm\" action=\"delete.php\" method=\"POST\">";
+    echo "<input type=\"hidden\" name=\"page_id\" value=\"{$propId}\">";
+    echo "<input type=\"hidden\" name=\"review_id\" value=\"{$review_id}\">"; 
+    echo "<input class=\"filledButton\" type=\"submit\" name=\"deleteComment\" value=\"Delete Comment\"/>";
+    echo "</form>";
 
-    echo "<form id=\"deleteCommentForm\" action=\"../PropertyPage/property.php?id=$propId\" method=\"POST\"> ";
-    echo  "<input class=\"filledButton\" type=\"submit\" name=\"deleteComment\" id=\"deleteComment\" value=\"Delete Comment\"/>";
-    
-    echo"</form>";
-
-    echo"  <!-- Runs delete comment code -->";
-  
-     if (isset($_POST['deleteComment'])) {
-        include('deleteComment.php');
-      }
-    
-    echo '<hr class = "horizontal-line-comment">';
-
-    echo '</div>';
- }
+    echo "  <!-- Runs delete comment code -->";
+}
 
 // Close the database connection
 mysqli_close($conn);
