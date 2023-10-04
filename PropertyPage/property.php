@@ -955,7 +955,7 @@ $conn->close();
                 <p>Are you sure you want to delete your profile?</p>
                 <form action="../Backend_Files/deleteProfile.php?page=property&id=<?php echo $propId; ?>" class="confirmDeleteForm" method="post">
                     <button type="submit" class="deleteButton inverseFilledButton">Yes, Delete</button>
-                    <button id="cancelDeleteBtn" class="filledButton">Cancel</button>
+                    <button type="button" id="cancelDeleteBtn" class="filledButton">Cancel</button>
                 </form>
 
             </div>
