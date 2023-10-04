@@ -266,7 +266,7 @@ ratingForm.addEventListener('submit', (event) => {
                     ratingSuccessfulModal.style.display = 'block';
                     setTimeout(function () {
                         location.reload();
-                    }, 1500);
+                    }, 1000);
                 } else {
 
                     ratingUnsuccModal.style.display = 'block';

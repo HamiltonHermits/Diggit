@@ -71,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
     } else {
-        $response['success'] = false;
-        $response['message'] = 'Property ID and/or User ID are not provided or not everything is sett';
+            http_response_code(400); // Bad Request
+            echo json_encode(["error" => $e->getMessage()]);
     }
     // Send the JSON response
     header('Content-Type: application/json');
