@@ -62,6 +62,7 @@ main {
 
 //////////--------------------------------------------------------------------------------------------//////////
 #property-parent-container {
+    height: 100vh;
     .boxes-container {
         .right-box {
 
@@ -166,7 +167,7 @@ main {
 
 #ammenities-parent-container {
     margin: 6em 0 0 0;
-
+    height: 100vh;
     .amen-addmore-container {
         justify-content: center;
         display: flex;

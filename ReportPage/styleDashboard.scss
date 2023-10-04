@@ -162,6 +162,7 @@ th {
 
 //Seeing all require a similar grid layout.
 .parent-container {
+    height: 100vh;
     .boxes-container {
         .right-box {
             #generateReportButton {
@@ -181,7 +182,8 @@ th {
                 width: 100%;
                 height: 100%;
                 overflow:auto;
-
+                background-color: var(--main-color);
+                border-radius: 15px;
                 .report-text-container {
                     display: flex;
                     border-radius: 15px;

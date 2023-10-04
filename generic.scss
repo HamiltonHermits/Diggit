@@ -231,10 +231,9 @@ body {
     background: linear-gradient(90deg, rgba(173, 85, 17, 1) 0%, rgba(32, 32, 36, 1) 16.12%);
 }
 main{
-    width: 100%;
+    width: 85%;
 }
 .parent-container {
-    height: 75vh;
     background-color: var(--main-color);
 
     .boxes-container {
@@ -252,6 +251,8 @@ main{
             padding: 0.5em 2em 2em 2em;
             border-radius: 15px;
             background-color: var(--inner-box-color);
+            max-height: 75vh;
+            min-height: 45vh;
         }
 
         .left-box {
@@ -262,7 +263,8 @@ main{
             gap: 1em;
             border-radius: 15px;
             padding: 0.5em 2em 2em 2em;
-
+            max-height: 75vh;
+            min-height: 45vh;
             background-color: var(--inner-box-color);
         }
     }
@@ -504,8 +506,6 @@ a {
 
 @media screen and (max-width: 1156px) {
     body .parent-container {
-        height: 88.75em;
-
         .boxes-container {
             flex-direction: column;
             align-items: center;
@@ -520,12 +520,15 @@ a {
 
             .left-box {
                 width: 90%;
-                height: 50%;
+                height: 50%; 
             }
         }
     }
 
     @media screen and (max-width: 800px) {
+        main{
+            width: 100%;
+        }
         #dashboardContainer {
             #openModalBtnDashboard {
                 display: block !important;

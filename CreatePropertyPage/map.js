@@ -1,8 +1,17 @@
+var latitudeGlobal = 0;
+var longitudeGlobal = 0;
+
 // only initialse a map if it doesn't already exist
 if (typeof map === 'undefined') {
+    console.log("inside undefined thing");
     var map = L.map('map');
     console.log("map created");
     generateMapDynamic(-32.5, 25, 5.3);
+
+    // latitudeGlobal = 0;
+    // longitudeGlobal = 0;
+    console.log("lat long = inside top thing");
+    console.log(latitudeGlobal, longitudeGlobal);
 }
 
 var markerLayer = L.layerGroup();
@@ -11,8 +20,7 @@ var markerAdded = false;
 
 var manualEntry = false; //boolean to check if user has manually entered address
 
-var latitudeGlobal;
-var longitudeGlobal;
+
 
 //make map visible if a location is found
 // document.querySelector(".bottom-container").style.visibility = "visible";
@@ -35,6 +43,8 @@ function generateMapDynamic(latitude, longitude, zoom) {
     }).addTo(map);
     
     // var marker = L.marker([latitude, longitude]).addTo(map); //marker
+    console.log("lat long =");
+    console.log(latitudeGlobal, longitudeGlobal);
 }
 
 // if the user has decided to manually enter their address
