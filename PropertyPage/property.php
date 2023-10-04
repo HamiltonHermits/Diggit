@@ -215,6 +215,8 @@ $conn->close();
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <link rel="icon" type="image/x-icon" href="../crab.png">
 
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -223,6 +225,7 @@ $conn->close();
     <script src="ratingModal.js" defer></script>
     <script src="visualElements.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
+    
 </head>
 
 <body>
@@ -833,11 +836,9 @@ $conn->close();
             <img src="../footerImage.png">
             <div class="footer-tc">
                 <div class="footer-tc-text-container">
-                    <div class="footer-tc-text">Terms & Conditions</div>
+                <div class="footer-tc-text">&copy Hamilton Hermits 2023.</div>
                     <div class="footer-tc-text">|</div>
-                    <div class="footer-tc-text">Privacy Policy</div>
-                    <div class="footer-tc-text">|</div>
-                    <div class="footer-tc-text">All Rights Reserved</div>
+                    <div class="footer-tc-text">Rhodes University, Makhanda.</div>
                 </div>
         </footer>
 
@@ -1110,10 +1111,10 @@ $conn->close();
                             <div class="landlord-rating-section">
                                 <div class="rating-item">
                                     <p class="ratingLabels">Politeness:</p>
-                                    <div class="info-circle">
+                                    <!-- <div class="info-circle">
                                         <div class="info-icon">i</div>
                                         <div class="info-tooltip">left lower - right higher</div>
-                                    </div>
+                                    </div> -->
                                     <div class="rating-slider" id="politenessRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="politenessSlider">
                                     </div>
@@ -1125,7 +1126,7 @@ $conn->close();
                                     <p class="ratingLabels">Quality of Repair:</p>
                                     <div class="info-circle">
                                         <div class="info-icon">i</div>
-                                        <div class="info-tooltip">left lower - right higher</div>
+                                        <div class="info-tooltip">How helpful has the agent/landlord been with property repairs</div>
                                     </div>
                                     <div class="rating-slider" id="repairRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="repairSlider">
@@ -1139,7 +1140,7 @@ $conn->close();
                                     <p class="ratingLabels">Response Time:</p>
                                     <div class="info-circle">
                                         <div class="info-icon">i</div>
-                                        <div class="info-tooltip">left lower - right higher</div>
+                                        <div class="info-tooltip">How quick is the wait time when communicating with the agent/landlord</div>
                                     </div>
                                     <div class="rating-slider" id="responseTimeRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="responseTimeSlider">
@@ -1151,10 +1152,10 @@ $conn->close();
                                 <!-- Overall Landlord Rating -->
                                 <div class="rating-item">
                                     <p class="ratingLabels">Overall Landlord Rating:</p>
-                                    <div class="info-circle">
+                                    <!-- <div class="info-circle">
                                         <div class="info-icon">i</div>
                                         <div class="info-tooltip">left lower - right higher</div>
-                                    </div>
+                                    </div> -->
                                     <div class="rating-slider" id="overallLandlordRating">
                                         <input type="range" min="1" max="5" value="3" class="slider" id="overallLandlordSlider">
 
@@ -1182,6 +1183,21 @@ $conn->close();
             <div class="modal-content">
                 <span class="close" id="closeNotATenantModal">&times;</span>
                 <p>Whoops sorry only tenants are allowed to make a review. Contact your agent so they can add you</p>
+            </div>
+        </div>
+        <!-- if rating sucess -->
+        <div id="ratingSuccessfulModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeRatingSuccessfulModal">&times;</span>
+                <p>Review has been sucessfully made!</p>
+            </div>
+        </div>
+        <!-- if rating unsucc -->
+        <div id="ratingUnsuccModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeRatingUnsuccModal">&times;</span>
+                <p>Whoops! sorry something unexpected happened </p>
+                <p>... please try again later</p>
             </div>
         </div>
     </main>

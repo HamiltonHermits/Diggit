@@ -28,7 +28,7 @@ function updateActivePageIndicator() {
         // console.log(sidebarElement);
 
         if (isElementInViewport(page)) { // if the parent page is in the viewport
-            console.log("in viewport!!!!!!!!!!!!!!!!!!!!!!!!");
+            // console.log("in viewport!!!!!!!!!!!!!!!!!!!!!!!!");
             sidebarElement.classList.add("current-page-bg-effect"); // add the background effect to sidebar element
         } else {
             if (sidebarElement) { //if not null

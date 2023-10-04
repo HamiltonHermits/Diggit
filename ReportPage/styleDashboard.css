@@ -145,6 +145,9 @@ th {
   justify-content: left;
 }
 
+.parent-container {
+  height: 100vh;
+}
 .parent-container .boxes-container .right-box #generateReportButton {
   display: flex;
   gap: 0.5em;
@@ -160,6 +163,8 @@ th {
   width: 100%;
   height: 100%;
   overflow: auto;
+  background-color: var(--main-color);
+  border-radius: 15px;
 }
 .parent-container .boxes-container .right-box .report-container .report-text-container {
   display: flex;

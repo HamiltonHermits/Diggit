@@ -446,7 +446,7 @@ main {
                 height: 30%;
 
                 img {
-                    width: 50%;
+                    width: auto;
                     height: 100%;
                     border-radius: 9px;
                     background-color: var(--main-color);
@@ -460,7 +460,7 @@ main {
             }
 
             #rating-bars-container {
-                height: 100%;
+                height: 50%;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
@@ -1098,6 +1098,11 @@ main {
     .nav-top {
         .searchbar-container {
             width: 100%;
+            
+        }
+        .loginContainer{
+            width: 22%;
+            padding-right: 0;
         }
 
         #dashboardContainer {

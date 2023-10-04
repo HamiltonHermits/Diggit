@@ -21,14 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $politenessRating = isset($_POST['politenessRating']) ? $_POST['politenessRating'] : '';
     $repairRating = isset($_POST['repairRating']) ? $_POST['repairRating'] : '';
     $responseTimeRating = isset($_POST['responseTimeRating']) ? $_POST['responseTimeRating'] : '';
-    $overallLandlordRating = isset($_POST['overallRatingLandlord']) ? $_POST['overallRatingLandlord'] : '';
+    $overallLandlordRating = isset($_POST['overallLandlordRating']) ? $_POST['overallLandlordRating'] : '';
+
+    $checkIfIsset = isset($_POST['propertyId']) && isset($_POST['userId']) && isset($_POST['property_review']) && isset($_POST['cleanliness'])&&
+    isset($_POST['noise']) && isset($_POST['location']) && isset($_POST['safety']) && isset($_POST['affordability']) && isset($_POST['overallRating'])
+    && isset($_POST['politenessRating']) && isset($_POST['repairRating']) && isset($_POST['responseTimeRating']) && isset($_POST['overallLandlordRating']);
 
     $currentDate = date("Y-m-d");
 
-
-
-
-    if (!empty($propertyId) && !empty($userId)) {
+    if (!empty($propertyId) && !empty($userId) && $checkIfIsset) {
         try {
             // Prepare a SQL statement with placeholders for binding values to stop sql injection
             $stmt = $conn->prepare("INSERT INTO review (
@@ -71,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } else {
         $response['success'] = false;
-        $response['message'] = 'Property ID and/or User ID are not provided';
+        $response['message'] = 'Property ID and/or User ID are not provided or not everything is sett';
     }
     // Send the JSON response
     header('Content-Type: application/json');
