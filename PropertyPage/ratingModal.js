@@ -287,7 +287,7 @@ ratingForm.addEventListener('submit', (event) => {
             });
     } else {
         // Display a message to the user indicating that they need to rate all categories
-        alert('Please rate all categories before submitting the form.PropertyRating:' + isAllRated + " Landlord" + isAllRatedLandLord);
+        alert('Please rate all categories to make a review');
 
     }
 });
