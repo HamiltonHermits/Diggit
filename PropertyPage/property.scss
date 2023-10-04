@@ -689,6 +689,10 @@ main {
                 flex-direction: column;
                 padding: 0em 2em 0.5em 2em;
 
+                .horizontal-line-comment{
+                    width: 100%;
+                }
+
                 .comment-container {
                     font-family: "Poppins";
                     margin-top: 1em;

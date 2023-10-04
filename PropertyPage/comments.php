@@ -31,13 +31,13 @@ switch ($sort_option) {
         break;
     case 'desc':
     default:
-         $sql = "SELECT *
+        $sql = "SELECT *
          FROM hamiltonhermits.review
          JOIN hamiltonhermits.usertbl ON usertbl.user_id = review.user_id
          JOIN hamiltonhermits.property ON property.prop_id = review.prop_id
          WHERE property.prop_id=$propId
          ORDER BY overall_property_rating DESC";
-           break;
+        break;
 }
 
 // Execute the SQL query
@@ -48,24 +48,28 @@ if ($result === false) {
 
 // Display comments
 while ($row = mysqli_fetch_assoc($result)) {
-    $review_id = $row['review_id']; 
+    $review_id = $row['review_id'];
     $user_id = $row['user_id'];
 
-    
+
 
     echo '<div class ="comment-container">';
     echo '<div class = "star-rating-comment">★ Rating: ' . $row['overall_property_rating'] . '</div>';
     echo '<div class = "username-date-comment">' . $row['username'] . ' - ' . $row['date_reviewed'] . '</div>';
     echo '<div class = "description-comment">' . $row['written_review'] . '</div>';
     echo '</div>';
-    if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $user_id){
-    echo "<!-- delete form for button --> ";
-    echo "<form id=\"deleteCommentForm\" action=\"delete.php\" method=\"POST\">";
-    echo "<input type=\"hidden\" name=\"page_id\" value=\"{$propId}\">";
-    echo "<input type=\"hidden\" name=\"review_id\" value=\"{$review_id}\">"; 
-    echo "<input class=\"filledButton\" type=\"submit\" name=\"deleteComment\" value=\"Delete Comment\"/>";
-    echo "</form>";
+    if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $user_id) {
+        echo '<div class = "editOrDeleteComment">';
+        echo '<button class="editCommentButton filledButton" data-comment-id="' . $review_id . '" data-comment-text="' . $row['written_review'] . '">Edit Comment</button>';
+        echo "<!-- delete form for button --> ";
+        echo "<form id=\"deleteCommentForm\" action=\"delete.php\" method=\"POST\">";
+        echo "<input type=\"hidden\" name=\"page_id\" value=\"{$propId}\">";
+        echo "<input type=\"hidden\" name=\"review_id\" value=\"{$review_id}\">";
+        echo "<input class=\"filledButton\" type=\"submit\" name=\"deleteComment\" value=\"Delete Comment\"/>";
+        echo "</form>";
+        echo '</div>';  
     }
+    echo '<hr class="horizontal-line-comment">';
 }
 
 // Close the database connection
