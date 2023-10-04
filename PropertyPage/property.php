@@ -833,11 +833,9 @@ $conn->close();
             <img src="../footerImage.png">
             <div class="footer-tc">
                 <div class="footer-tc-text-container">
-                    <div class="footer-tc-text">Terms & Conditions</div>
+                <div class="footer-tc-text">&copy Hamilton Hermits 2023.</div>
                     <div class="footer-tc-text">|</div>
-                    <div class="footer-tc-text">Privacy Policy</div>
-                    <div class="footer-tc-text">|</div>
-                    <div class="footer-tc-text">All Rights Reserved</div>
+                    <div class="footer-tc-text">Rhodes University, Makhanda.</div>
                 </div>
         </footer>
 

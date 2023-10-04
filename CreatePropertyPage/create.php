@@ -245,7 +245,7 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
                                         $countImages++;
                                     };
                                 }
-                                echo "<div>{$countImages} images selected</div>";
+                                echo "<div>&nbsp {$countImages} images selected</div>";
                                 ?>
                             </div>
                         </div>
@@ -332,11 +332,9 @@ if (isset($_GET['pageId']) && isset($_SESSION['isLandlord'])) { //if the prop id
             <img src="../footerImage.png">
             <div class="footer-tc">
                 <div class="footer-tc-text-container">
-                    <div class="footer-tc-text">Terms & Conditions</div>
+                    <div class="footer-tc-text">&copy Hamilton Hermits 2023.</div>
                     <div class="footer-tc-text">|</div>
-                    <div class="footer-tc-text">Privacy Policy</div>
-                    <div class="footer-tc-text">|</div>
-                    <div class="footer-tc-text">All Rights Reserved</div>
+                    <div class="footer-tc-text">Rhodes University, Makhanda.</div>
                 </div>
         </footer>
 

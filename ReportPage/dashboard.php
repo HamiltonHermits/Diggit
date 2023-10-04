@@ -76,7 +76,7 @@ if (isset($_SESSION['profileMessage'])) {
             <span class="close" id="closeSignupButton" onclick="hidePhoneSidebar()">&times;</span>
             <div class="page-indicator-container">
                 <div class="page-indicator-inner-container">
-                    <a class="page-indicator" id="home-indicator" href="../IndexPage/index.php">
+                    <!-- <a class="page-indicator" id="home-indicator" href="../IndexPage/index.php"> -->
                         <!-- <div class="icon">
                             <svg width="30" height="30" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_30_336" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="42">
@@ -87,7 +87,7 @@ if (isset($_SESSION['profileMessage'])) {
                                 </g>
                             </svg>
                         </div> -->
-                        <svg width="48" id="mask0_205_6" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- <svg width="48" id="mask0_205_6" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_205_7" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
                                 <rect x="0.630859" width="47.0319" height="47.0319" fill="#D9D9D9" />
                             </mask>
@@ -95,10 +95,10 @@ if (isset($_SESSION['profileMessage'])) {
                                 <path d="M12.389 37.2336H18.268V25.4756H30.026V37.2336H35.905V19.5967L24.147 10.7782L12.389 19.5967V37.2336ZM8.46973 41.1529V17.637L24.147 5.87903L39.8243 17.637V41.1529H26.1067V29.395H22.1874V41.1529H8.46973Z" fill="white" />
                             </g>
                         </svg>
-                        <div id="take-me-home-to-the-place-i-belong">Home</div>
+                        <div id="take-me-home-to-the-place-i-belong">Home</div> -->
 
 
-                    </a>
+                    <!-- </a> -->
                     <!-- <a class="page-indicator" id="amenity-indicator" href="#">
                         <div class="icon">
                             <svg width="25" height="25" viewBox="0 0 29 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -311,11 +311,9 @@ if (isset($_SESSION['profileMessage'])) {
             <img src="../footerImage.png">
             <div class="footer-tc">
                 <div class="footer-tc-text-container">
-                    <div class="footer-tc-text">Terms & Conditions</div>
+                <div class="footer-tc-text">&copy Hamilton Hermits 2023.</div>
                     <div class="footer-tc-text">|</div>
-                    <div class="footer-tc-text">Privacy Policy</div>
-                    <div class="footer-tc-text">|</div>
-                    <div class="footer-tc-text">All Rights Reserved</div>
+                    <div class="footer-tc-text">Rhodes University, Makhanda.</div>
                 </div>
         </footer>
 
