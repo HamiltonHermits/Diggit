@@ -215,7 +215,7 @@ $conn->close();
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
+
     <link rel="icon" type="image/x-icon" href="../crab.png">
 
 
@@ -225,7 +225,8 @@ $conn->close();
     <script src="ratingModal.js" defer></script>
     <script src="visualElements.js" defer></script>
     <script src="../Backend_Files/common.js" defer></script>
-    
+    <script src="comments.js" defer></script>
+
 </head>
 
 <body>
@@ -647,7 +648,7 @@ $conn->close();
                         <div class="commentLabel">Reviews</div>
                     </div>
                     <div class="comment-section">
-                    
+
 
                         <div class="sort-comments-container">
                             <div class="inner-sort-comments-container">
@@ -664,24 +665,8 @@ $conn->close();
 
                             <?php include('comments.php'); ?>
 
-                             <!-- delete form for button -->  
-                            <form id="deleteCommentForm" action="../PropertyPage/property.php?id=<?php echo $propId; ?>" method="POST"> 
-                            <input class="filledButton" type="submit" name="deleteComment" id="deleteComment" value="Delete Comment"/>
-                            
-                            </form>
-
-                            <!-- Runs delete comment code -->
-                            <?php 
-                            if (isset($_POST['deleteComment'])) {
-                                include('deleteComment.php');
-                                // echo "<script>location.reload();</script>";
-                                }
-                                
-                            ?>
-                          
-                            
                         </div>
-                        
+
                         <div class="comment-page-container">
                             <!-- <div class="previous-page-container">
                                 <button class="previous-page-button firstOrLastPage">Previous</button>
@@ -696,9 +681,8 @@ $conn->close();
                             </div> -->
                         </div>
                     </div>
-
-
                 </div>
+
                 <div class="right-box">
                     <div class="rating-summary-container">
                         <div class="commentLabel">Overall</div>
@@ -836,7 +820,7 @@ $conn->close();
             <img src="../footerImage.png">
             <div class="footer-tc">
                 <div class="footer-tc-text-container">
-                <div class="footer-tc-text">&copy Hamilton Hermits 2023.</div>
+                    <div class="footer-tc-text">&copy Hamilton Hermits 2023.</div>
                     <div class="footer-tc-text">|</div>
                     <div class="footer-tc-text">Rhodes University, Makhanda.</div>
                 </div>
@@ -1198,6 +1182,19 @@ $conn->close();
                 <span class="close" id="closeRatingUnsuccModal">&times;</span>
                 <p>Whoops! sorry something unexpected happened </p>
                 <p>... please try again later</p>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div id="editCommentModal" class="modal" style="display: none;" >
+            <div class="modal-content">
+                <span class="close" id="closeComentsEdit">&times;</span>
+                <h2>Edit Comment</h2>
+                <form id="editCommentForm" action="editComment.php" method="POST">
+                    <input type="hidden" id="commentId" name="comment_id" value="">
+                    <input type="hidden" id="pageId" name="page_id" value=<?php echo $propId; ?>>
+                    <textarea id="editCommentText" name="edited_comment" rows="4" cols="50"></textarea>
+                    <input type="submit" class="filledButton" name="editComment" value="Save Changes">
+                </form>
             </div>
         </div>
     </main>

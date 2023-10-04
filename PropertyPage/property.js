@@ -5,13 +5,13 @@ var lastval_boolean = false;
 var openModalBtnDashboard = document.getElementById("openModalBtnDashboard");
 var sidebarOuter = document.getElementById("outer-sidebar");
 var sidebar = document.getElementById("inner-sidebar");
-var deleteComment = document.getElementById("deleteComment");
+// var deleteComment = document.getElementById("deleteComment");
 
 
-deleteComment.addEventListener('click', () => {
-    location.reload();
+// deleteComment.addEventListener('click', () => {
+//     location.reload();
  
-});
+// });
 
 // openModalBtnDashboard.addEventListener('click', () => {
 //   window.location.href = "../IndexPage/index.php";

@@ -559,6 +559,9 @@ main {
   flex-direction: column;
   padding: 0em 2em 0.5em 2em;
 }
+#comment-parent-container .boxes-container .left-box .comments-list-container .horizontal-line-comment {
+  width: 100%;
+}
 #comment-parent-container .boxes-container .left-box .comments-list-container .comment-container {
   font-family: "Poppins";
   margin-top: 1em;
