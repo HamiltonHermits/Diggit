@@ -680,9 +680,8 @@ $conn->close();
                             </div> -->
                         </div>
                     </div>
-
-
                 </div>
+
                 <div class="right-box">
                     <div class="rating-summary-container">
                         <div class="commentLabel">Overall</div>

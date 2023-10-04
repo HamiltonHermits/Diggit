@@ -57,6 +57,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '<div class = "star-rating-comment">★ Rating: ' . $row['overall_property_rating'] . '</div>';
     echo '<div class = "username-date-comment">' . $row['username'] . ' - ' . $row['date_reviewed'] . '</div>';
     echo '<div class = "description-comment">' . $row['written_review'] . '</div>';
+    echo '</div>';
     if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $user_id){
     echo "<!-- delete form for button --> ";
     echo "<form id=\"deleteCommentForm\" action=\"delete.php\" method=\"POST\">";
