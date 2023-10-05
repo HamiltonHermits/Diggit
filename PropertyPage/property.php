@@ -688,7 +688,7 @@ $conn->close();
                         <div class="commentLabel">Overall</div>
                         <hr class="horizontal-line-comment">
                         <div class="rating-summary-overall-container">
-                            <?php echo "<div class = 'ratingLabel'>$overallRating" ?>
+                            <?php $rounded_num = sprintf("%.1f", $overallRating); echo "<div class = 'ratingLabel'>$rounded_num" ?>
                             <span class="star">&#9733;</span> - <?php echo " $count Reviews</div>" ?>
                         </div>
                         <hr class="horizontal-line-comment">
