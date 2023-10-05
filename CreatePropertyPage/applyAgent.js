@@ -8,7 +8,13 @@ var loginButtonCreatePage = document.getElementById('loginButtonCreatePage');
 var closeLoginButton = document.getElementById('closeButton');
 var notLoggedInModal = document.getElementById('notLoggedInModal');
 var backToHomePage = document.getElementById('backToHomePage');
+var backToWhoops = document.getElementById('backToWhoops');
 
+
+backToWhoops.addEventListener('click', function() {
+    applyAgentModal.style.display = 'none';
+    notAgentModal.style.display = 'block';
+});
 
 if(backToHomePage){
     backToHomePage.addEventListener('click', function () {

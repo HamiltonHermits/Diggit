@@ -40,6 +40,8 @@ if (openWhoopsNotAllowed) {
 if (notATenantModal) {
     closeNotATenantModal.addEventListener('click', () => {
         notATenantModal.style.display = 'none';
+        openWhoopsNotAllowed.style.display = 'block';
+
     });
     window.addEventListener('click', (event) => {
 
